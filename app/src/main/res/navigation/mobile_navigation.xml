@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.surrus.bikeshare.ui.home.HomeFragment"
+        android:name="com.surrus.bikeshare.ui.bikeshare.BikeShareStationListFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 

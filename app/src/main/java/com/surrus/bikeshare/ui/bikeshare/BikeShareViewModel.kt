@@ -1,17 +1,16 @@
-package com.surrus.bikeshare.ui.home
+package com.surrus.bikeshare.ui.bikeshare
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Station
 import com.surrus.common.repository.CityBikesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class BikeShareViewModel : ViewModel() {
     val stations = MutableLiveData<List<Station>>()
     private val cityBikesRepository = CityBikesRepository()
 
@@ -20,7 +19,6 @@ class HomeViewModel : ViewModel() {
         Log.d("BikeShare", "starting job")
         val job = viewModelScope.launch(Dispatchers.IO) {
             while (true) {
-                //val result = repo.fetchBikeShareInfo("oslo-bysykkel")
                 val network = cityBikesRepository.fetchBikeShareInfo("galway")
 
                 if (stations.value != null) {

@@ -21,7 +21,9 @@ data class Network(val id: String, val name: String, val stations: List<Station>
 data class Station(val id: String,
                    val name: String,
                    @SerialName("empty_slots") val emptySlots: Int,
-                   @SerialName("free_bikes") val freeBikes: Int
+                   @SerialName("free_bikes") val freeBikes: Int,
+                   val latitude: Double,
+                   val longitude: Double
                    )
 
 

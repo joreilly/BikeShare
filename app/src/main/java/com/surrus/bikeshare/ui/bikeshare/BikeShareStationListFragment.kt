@@ -1,30 +1,28 @@
-package com.surrus.bikeshare.ui.home
+package com.surrus.bikeshare.ui.bikeshare
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.surrus.bikeshare.R
 import com.surrus.bikeshare.ext.inflate
 import com.surrus.common.remote.Station
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.station_list_item.view.*
 
-class HomeFragment : Fragment() {
+class BikeShareStationListFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: BikeShareViewModel
 
     private lateinit var stationListAdapter: BikeStationListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProviders.of(this).get(BikeShareViewModel::class.java)
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -37,6 +35,9 @@ class HomeFragment : Fragment() {
             stationListAdapter = BikeStationListAdapter()
             layoutManager = LinearLayoutManager(context)
             adapter = stationListAdapter
+
+            val dividerItemDecoration = DividerItemDecoration(requireContext(),  LinearLayout.VERTICAL)
+            addItemDecoration(dividerItemDecoration)
         }
 
 
@@ -55,7 +56,6 @@ class HomeFragment : Fragment() {
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             fun bind(station: Station) = with(itemView) {
                 stationName.text = station.name
-                emptySlots.text = station.emptySlots.toString()
                 freeBikes.text = station.freeBikes.toString()
             }
         }

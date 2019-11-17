@@ -70,8 +70,8 @@ kotlin {
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
 
             // SQL Delight
-//            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-//            implementation "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+            implementation "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         }
 
         androidMain.dependencies {
