@@ -7,22 +7,21 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.*
 import com.surrus.bikeshare.R
 import com.surrus.bikeshare.ext.inflate
 import com.surrus.common.remote.Station
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.station_list_item.view.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class BikeShareStationListFragment : Fragment() {
 
-    private lateinit var homeViewModel: BikeShareViewModel
+    private val bikeShareViewModel by sharedViewModel<BikeShareViewModel>()
 
     private lateinit var stationListAdapter: BikeStationListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        homeViewModel = ViewModelProviders.of(this).get(BikeShareViewModel::class.java)
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -41,7 +40,7 @@ class BikeShareStationListFragment : Fragment() {
         }
 
 
-        homeViewModel.stations.observe(viewLifecycleOwner, Observer {
+        bikeShareViewModel.stations.observe(viewLifecycleOwner, Observer {
             stationListAdapter.submitList(it)
         })
 

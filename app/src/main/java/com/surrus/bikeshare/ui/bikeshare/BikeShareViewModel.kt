@@ -10,9 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class BikeShareViewModel : ViewModel() {
+class BikeShareViewModel(cityBikesRepository: CityBikesRepository) : ViewModel() {
     val stations = MutableLiveData<List<Station>>()
-    private val cityBikesRepository = CityBikesRepository()
 
     init {
 
