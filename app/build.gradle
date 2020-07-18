@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.surrus.bikeshare"
         minSdkVersion 21
@@ -13,6 +13,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    composeOptions {
+        kotlinCompilerVersion "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
+        kotlinCompilerExtensionVersion = "${Versions.compose}"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,8 +30,11 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     packagingOptions {
@@ -30,24 +43,31 @@ android {
 }
 
 dependencies {
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
+    implementation "androidx.ui:ui-core:${Versions.compose}"
+    implementation "androidx.ui:ui-layout:${Versions.compose}"
+    implementation "androidx.ui:ui-material:${Versions.compose}"
+    implementation "androidx.ui:ui-tooling:${Versions.compose}"
+    implementation "androidx.ui:ui-graphics:${Versions.compose}"
+    implementation "androidx.ui:ui-livedata:${Versions.compose}"
+
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation Koin.core
     implementation Koin.android
     implementation Koin.androidViewModel
 
-
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 

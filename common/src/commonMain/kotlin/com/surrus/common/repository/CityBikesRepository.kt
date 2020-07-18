@@ -1,10 +1,9 @@
 package com.surrus.common.repository
 
-import com.surrus.common.ApplicationDispatcher
+import com.surrus.common.ktorScope
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 
 class CityBikesRepository {
     private val cityBikesApi = CityBikesApi()
@@ -16,7 +15,7 @@ class CityBikesRepository {
 
 
     fun fetchBikeShareInfo(network: String, success: (Network) -> Unit) {
-        GlobalScope.launch(ApplicationDispatcher) {
+        ktorScope {
             success(fetchBikeShareInfo(network))
         }
     }

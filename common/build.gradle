@@ -7,7 +7,7 @@ apply plugin: 'org.jetbrains.kotlin.native.cocoapods'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
 
     defaultConfig {
@@ -31,16 +31,20 @@ android {
 
 kotlin {
     targets {
-        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
-                              ? presets.iosArm64 : presets.iosX64
-
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
         fromPreset(iOSTarget, 'iOS') {
             binaries {
                 framework('common')
             }
         }
 
-        fromPreset(presets.android, 'android')
+        fromPreset(presets.macosX64, 'macOS') {
+            binaries {
+                framework('common')
+            }
+        }
+
+        android()
     }
 
 
@@ -70,8 +74,8 @@ kotlin {
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
 
             // SQL Delight
-            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-            implementation "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+//            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+//            implementation "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         }
 
         androidMain.dependencies {
@@ -111,8 +115,6 @@ kotlin {
             // Serialize
             implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
 
-            // SQL Delight
-            implementation "com.squareup.sqldelight:ios-driver:${Versions.sqlDelight}"
         }
 
         jvmMain.dependencies {
@@ -127,21 +129,17 @@ kotlin {
             implementation "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
             implementation "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
 
-
-            // Serialize
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
-
-            // SQL Delight
-            implementation "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
         }
 
-        jsMain.dependencies {
-            api Kotlin.stdlibJs
-            api Kotlin.serializationRuntimeJs
-            api Ktor.clientJs
-            api Ktor.clientJsonJs
-            api Ktor.clientLoggingJs
-            api Ktor.clientSerializationJs
+        macOSMain.dependencies {
+
+            // Ktor
+            implementation "io.ktor:ktor-client-curl:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-core-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-json-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-logging-macosx64:${Versions.ktor}"
+            implementation "io.ktor:ktor-client-serialization-macosx64:${Versions.ktor}"
+
         }
 
     }

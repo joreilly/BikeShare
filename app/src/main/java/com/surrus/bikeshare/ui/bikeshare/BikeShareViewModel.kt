@@ -10,43 +10,26 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class BikeShareViewModel(cityBikesRepository: CityBikesRepository) : ViewModel() {
+class BikeShareViewModel(private val cityBikesRepository: CityBikesRepository) : ViewModel() {
     val stations = MutableLiveData<List<Station>>()
 
+    private var city: String = "galway"
+
     init {
+        getStations()
+    }
 
-        Log.d("BikeShare", "starting job")
-        val job = viewModelScope.launch(Dispatchers.IO) {
-            while (true) {
-                val network = cityBikesRepository.fetchBikeShareInfo("galway")
-
-                if (stations.value != null) {
-                    if (stations.value != network.stations) {
-                        Log.d("BikeShare", "results changed")
-                    }
-
-                    val diff = stations.value?.minus(network.stations)
-                    if (!diff.isNullOrEmpty()) {
-
-                        Log.d("BikeShare", "diff found")
-                    }
-
-
-                }
-                stations.postValue(network.stations)
-                Log.d("BikeShare", "got results")
-
-                delay(5000)
-            }
-        }
-
-        job.invokeOnCompletion {
-            Log.d("BikeShare", "job complated")
+    private fun getStations() {
+        viewModelScope.launch {
+            val network = cityBikesRepository.fetchBikeShareInfo(city)
+            stations.postValue(network.stations)
+            Log.d("BikeShare", "got results")
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 
+    fun setCity(city: String) {
+        this.city = city.toLowerCase()
+        getStations()
+    }
 }

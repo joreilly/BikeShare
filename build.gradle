@@ -4,10 +4,11 @@ buildscript {
     repositories {
         google()
         jcenter()
-
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:${Versions.androidBuildToolsVersion}"
+        classpath 'com.android.tools.build:gradle:4.2.0-alpha04'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         classpath "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
     }
@@ -17,6 +18,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://dl.bintray.com/ekito/koin" }
     }
 }
 
