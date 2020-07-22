@@ -19,18 +19,23 @@ import kotlinx.serialization.json.JsonConfiguration
 @Serializable
 data class NetworkResult(val network: Network)
 
+@Serializable
+data class NetworkListResult(val networks: List<Network>)
+
 
 @Serializable
-data class Network(val id: String, val name: String, val stations: List<Station>)
+data class Network(@SerialName("id") val networkId: String, val name: String, val location: Location, val stations: List<Station> = emptyList())
+
 
 @Serializable
-data class Station(val id: String,
-                   val name: String,
-                   @SerialName("empty_slots") val emptySlots: Int,
-                   @SerialName("free_bikes") val freeBikes: Int,
-                   val latitude: Double,
-                   val longitude: Double
-                   )
+data class Location(val city: String, val country: String, val latitude: Double, val longitude: Double)
+
+
+@Serializable
+data class Station(val id: String? = "", val name: String,
+                   @SerialName("empty_slots") val emptySlots: Int? = 0,
+                   @SerialName("free_bikes") val freeBikes: Int? = 0,
+                   val latitude: Double, val longitude: Double)
 
 
 @UnstableDefault
@@ -50,6 +55,11 @@ class CityBikesApi {
             }
         }
     }
+
+    suspend fun fetchNetworkList(): NetworkListResult {
+        return client.get("$baseUrl")
+    }
+
 
     suspend fun fetchBikeShareInfo(network: String): NetworkResult {
         return client.get("$baseUrl/$network")

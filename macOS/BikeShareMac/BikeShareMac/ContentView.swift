@@ -7,58 +7,129 @@
 //
 
 import SwiftUI
+import MapKit
 import common
+
+
+final class CityStore: ObservableObject {
+    @Published var cities: [String: String] = [
+        "Galway": "galway",
+        "Oslo": "oslo-bysykkel",
+        "Toronto": "bixi-toronto"
+    ]
+}
+
+
+@main
+struct BikeShareApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView().environment(\.colorScheme, .dark)
+        }
+    }
+}
 
 
 
 struct ContentView : View {
     @ObservedObject var cityBikesViewModel = CityBikesViewModel(repository: CityBikesRepository())
+    @StateObject var cityStore = CityStore()
+    @State private var selectedLabel: String? = "Galway"
+    
     
     var body: some View {
-        TabView {
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway")
-                .tabItem {
-                    VStack {
-                        Text("Galway")
-                    }
-                }
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "oslo-bysykkel")
-                .tabItem {
-                    VStack {
-                        Text("Oslo")
-                    }
-                }
+        NavigationView {
+            Sidebar(
+                cityBikesViewModel: cityBikesViewModel,
+                selectedNetwork: $selectedLabel
+            )
+
+//            if let label = selectedLabel {
+//                StationListView(
+//                    cityBikesViewModel: cityBikesViewModel,
+//                    title: label,
+//                    network: cityStore.cities[label, default:""]
+//                )
+//            } else {
+                Text("Select label...")
+//            }
+
+            Text("Select station...")
         }
     }
 }
 
 
+extension Network: Identifiable { }
+
+struct Sidebar: View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    @Binding var selectedNetwork: String?
+
+    var body: some View {
+        List(selection: $selectedNetwork) {
+            ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
+                NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
+                                                            country: countryName(from: countryCode),
+                                                            networks: cityBikesViewModel.networkList[countryCode]!))
+                {
+                    Text(countryName(from: countryCode)).font(.headline)
+                }
+            }
+        }
+        .onAppear(perform: {
+            self.cityBikesViewModel.fetchNetworkList()
+        })
+    }
+}
+
+
+func countryName(from countryCode: String) -> String {
+    if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: countryCode) {
+        // Country name was found
+        return name
+    } else {
+        // Country name cannot be found
+        return countryCode
+    }
+}
 
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    var network: String
- 
+    let country: String
+    let networks: [Network]
+
     var body: some View {
-        NavigationView {
-            List(cityBikesViewModel.stationList, id: \.id) { station in
-                StationView(station: station)
+        List(networks.sorted(by: { $0.location.city < $1.location.city }), id: \.networkId) { network in
+            NavigationLink(destination: BikeNetworkView(cityBikesViewModel: cityBikesViewModel,network: network)) {
+                Text("\(network.name) (\(network.location.city))").font(.subheadline)
             }
-            .onAppear(perform: {
-                self.cityBikesViewModel.fetch(network: self.network)
-            })
+
         }
+        .navigationTitle(country)
     }
 }
 
-struct StationView : View {
-    var station: Station
-    
+
+extension Station: Identifiable { }
+
+struct BikeNetworkView : View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var network: Network
+    @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
+                                           latitudinalMeters: 5000, longitudinalMeters: 5000)
+
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(station.name).font(.headline)
-                Text(String(station.freeBikes)).font(.subheadline)
-            }
+        Map(coordinateRegion: $region, annotationItems: self.cityBikesViewModel.stationList) {
+            (station) -> MapPin in
+                let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
+                                                        longitude: station.longitude)
+                return MapPin(coordinate: coordinate)
         }
+        .onAppear(perform: {
+            region.center = CLLocationCoordinate2D(latitude: network.location.latitude,
+                                                   longitude: network.location.longitude)
+            self.cityBikesViewModel.fetch(network: network.networkId)
+        })
     }
 }

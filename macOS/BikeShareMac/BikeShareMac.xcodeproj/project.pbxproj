@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		1A0DA6F5240AC835008C7199 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0DA6F4240AC835008C7199 /* ViewModel.swift */; };
 		1A12F30F241FF960008BC866 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A12F30E241FF960008BC866 /* libcurl.a */; };
-		1A286ECA240A95A700A381F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A286EC9240A95A700A381F0 /* AppDelegate.swift */; };
 		1A286ECC240A95A700A381F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A286ECB240A95A700A381F0 /* ContentView.swift */; };
 		1A286ECE240A95A900A381F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A286ECD240A95A900A381F0 /* Assets.xcassets */; };
 		1A286ED1240A95A900A381F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A286ED0240A95A900A381F0 /* Preview Assets.xcassets */; };
-		1A286ED4240A95A900A381F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A286ED2240A95A900A381F0 /* Main.storyboard */; };
+		1A3B2B7B24C885C00067F8B9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B2B7A24C885C00067F8B9 /* MapView.swift */; };
 		C1D061A7EE1B33D482D3E5E1 /* libPods-BikeShareMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5F1466FD2AF0758DCF8AFA /* libPods-BikeShareMac.a */; };
 /* End PBXBuildFile section */
 
@@ -23,13 +22,12 @@
 		1A12F30C241FF942008BC866 /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = ../../../../../libcurl/libcurl.4.dylib; sourceTree = "<group>"; };
 		1A12F30E241FF960008BC866 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../../../libcurl/libcurl.a; sourceTree = "<group>"; };
 		1A286EC6240A95A700A381F0 /* BikeShareMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeShareMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A286EC9240A95A700A381F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A286ECB240A95A700A381F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A286ECD240A95A900A381F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A286ED0240A95A900A381F0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A286ED3240A95A900A381F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A286ED5240A95A900A381F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A286ED6240A95A900A381F0 /* BikeShareMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeShareMac.entitlements; sourceTree = "<group>"; };
+		1A3B2B7A24C885C00067F8B9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1AF19719241AD641003431BF /* libcurl.4.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.4.tbd; path = usr/lib/libcurl.4.tbd; sourceTree = SDKROOT; };
 		1AF1971B241AD651003431BF /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		BC3E598179939A053E300BE6 /* Pods-BikeShareMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareMac.release.xcconfig"; path = "Target Support Files/Pods-BikeShareMac/Pods-BikeShareMac.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,14 +69,13 @@
 		1A286EC8240A95A700A381F0 /* BikeShareMac */ = {
 			isa = PBXGroup;
 			children = (
-				1A286EC9240A95A700A381F0 /* AppDelegate.swift */,
 				1A286ECB240A95A700A381F0 /* ContentView.swift */,
 				1A286ECD240A95A900A381F0 /* Assets.xcassets */,
-				1A286ED2240A95A900A381F0 /* Main.storyboard */,
 				1A286ED5240A95A900A381F0 /* Info.plist */,
 				1A286ED6240A95A900A381F0 /* BikeShareMac.entitlements */,
 				1A286ECF240A95A900A381F0 /* Preview Content */,
 				1A0DA6F4240AC835008C7199 /* ViewModel.swift */,
+				1A3B2B7A24C885C00067F8B9 /* MapView.swift */,
 			);
 			path = BikeShareMac;
 			sourceTree = "<group>";
@@ -172,7 +169,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A286ED4240A95A900A381F0 /* Main.storyboard in Resources */,
 				1A286ED1240A95A900A381F0 /* Preview Assets.xcassets in Resources */,
 				1A286ECE240A95A900A381F0 /* Assets.xcassets in Resources */,
 			);
@@ -211,23 +207,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A286ECC240A95A700A381F0 /* ContentView.swift in Sources */,
+				1A3B2B7B24C885C00067F8B9 /* MapView.swift in Sources */,
 				1A0DA6F5240AC835008C7199 /* ViewModel.swift in Sources */,
-				1A286ECA240A95A700A381F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		1A286ED2240A95A900A381F0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1A286ED3240A95A900A381F0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1A286ED7240A95A900A381F0 /* Debug */ = {
@@ -280,7 +265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -334,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -360,7 +345,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -392,7 +377,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
