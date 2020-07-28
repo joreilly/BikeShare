@@ -10,9 +10,7 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 
 
 
@@ -38,11 +36,10 @@ data class Station(val id: String? = "", val name: String,
                    val latitude: Double, val longitude: Double)
 
 
-@UnstableDefault
 class CityBikesApi {
     private val baseUrl = "https://api.citybik.es/v2/networks"
 
-    private val nonStrictJson = Json(JsonConfiguration(isLenient = true, ignoreUnknownKeys = true))
+    private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
     private val client by lazy {
         HttpClient() {

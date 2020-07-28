@@ -21,6 +21,7 @@ import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.surrus.bikeshare.ui.bikeshare.BikeShareViewModel
 import com.surrus.common.remote.Station
+import com.surrus.common.repository.CityBikesRepository
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

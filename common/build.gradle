@@ -58,11 +58,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // Kotlin
-            implementation "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
-
             // Coroutines
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.kotlinCoroutines}"
+            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
 
             // Ktor
             implementation "io.ktor:ktor-client-core:${Versions.ktor}"
@@ -71,7 +68,7 @@ kotlin {
             implementation "io.ktor:ktor-client-serialization:${Versions.ktor}"
 
             // Serialize
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}"
+            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
 
             // SQL Delight
 //            implementation "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
@@ -79,12 +76,6 @@ kotlin {
         }
 
         androidMain.dependencies {
-            // Kotlin
-            implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-
-            // Coroutines
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
 
             // Ktor
             implementation "io.ktor:ktor-client-android:${Versions.ktor}"
@@ -93,42 +84,23 @@ kotlin {
             implementation "io.ktor:ktor-client-logging-jvm:${Versions.ktor}"
             implementation "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
 
-            // Serialize
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
-
             // SQL Delight
             implementation "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
             implementation "com.squareup.sqldelight:coroutines-extensions-jvm:${Versions.sqlDelight}"
         }
 
         iOSMain.dependencies {
-            // Coroutines
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:${Versions.kotlinCoroutines}"
 
             // Ktor
             implementation "io.ktor:ktor-client-ios:${Versions.ktor}"
-            implementation "io.ktor:ktor-client-core-native:${Versions.ktor}"
-            implementation "io.ktor:ktor-client-json-native:${Versions.ktor}"
-            implementation "io.ktor:ktor-client-logging-native:${Versions.ktor}"
-            implementation "io.ktor:ktor-client-serialization-native:${Versions.ktor}"
-
-            // Serialize
-            implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}"
-
         }
 
         jvmMain.dependencies {
-            // Kotlin
-            implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-
-            // Coroutines
-            implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
 
             // Ktor
             implementation "io.ktor:ktor-client-core-jvm:${Versions.ktor}"
             implementation "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
             implementation "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
-
         }
 
         macOSMain.dependencies {
