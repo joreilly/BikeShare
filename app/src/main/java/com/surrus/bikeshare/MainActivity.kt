@@ -12,6 +12,7 @@ import androidx.ui.graphics.Color
 import androidx.ui.layout.Column
 import androidx.ui.layout.Row
 import androidx.ui.layout.padding
+import androidx.ui.layout.width
 import androidx.ui.livedata.observeAsState
 import androidx.ui.material.*
 import androidx.ui.material.icons.Icons
@@ -80,7 +81,14 @@ fun StationView(station: Station) {
         Column {
 
             Text(text = station.name, style = TextStyle(fontSize = 20.sp))
-            Text(text = station.freeBikes.toString(), style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+            Row {
+                Text("Free:", modifier = Modifier.width(48.dp), fontSize = 14.sp)
+                Text(text = station.freeBikes.toString(), style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+            }
+            Row {
+                Text("Empty:", modifier = Modifier.width(48.dp), fontSize = 14.sp)
+                Text(text = station.emptySlots.toString(), style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+            }
         }
     }
 }
