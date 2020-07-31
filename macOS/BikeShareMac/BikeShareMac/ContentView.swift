@@ -11,15 +11,6 @@ import MapKit
 import common
 
 
-final class CityStore: ObservableObject {
-    @Published var cities: [String: String] = [
-        "Galway": "galway",
-        "Oslo": "oslo-bysykkel",
-        "Toronto": "bixi-toronto"
-    ]
-}
-
-
 @main
 struct BikeShareApp: App {
     var body: some Scene {
@@ -30,37 +21,22 @@ struct BikeShareApp: App {
 }
 
 
-
 struct ContentView : View {
     @ObservedObject var cityBikesViewModel = CityBikesViewModel(repository: CityBikesRepository())
-    @StateObject var cityStore = CityStore()
     @State private var selectedLabel: String? = "Galway"
-    
-    
+        
     var body: some View {
         NavigationView {
             Sidebar(
                 cityBikesViewModel: cityBikesViewModel,
                 selectedNetwork: $selectedLabel
             )
-
-//            if let label = selectedLabel {
-//                StationListView(
-//                    cityBikesViewModel: cityBikesViewModel,
-//                    title: label,
-//                    network: cityStore.cities[label, default:""]
-//                )
-//            } else {
-                Text("Select label...")
-//            }
-
+            Text("Select label...")
             Text("Select station...")
         }
     }
 }
 
-
-extension Network: Identifiable { }
 
 struct Sidebar: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
@@ -70,8 +46,8 @@ struct Sidebar: View {
         List(selection: $selectedNetwork) {
             ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
                 NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
-                                                            country: countryName(from: countryCode),
-                                                            networks: cityBikesViewModel.networkList[countryCode]!))
+                                    country: countryName(from: countryCode),
+                                    networks: cityBikesViewModel.networkList[countryCode]!))
                 {
                     Text(countryName(from: countryCode)).font(.headline)
                 }
@@ -120,11 +96,13 @@ struct BikeNetworkView : View {
                                            latitudinalMeters: 5000, longitudinalMeters: 5000)
 
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: self.cityBikesViewModel.stationList) {
-            (station) -> MapPin in
+        Map(coordinateRegion: $region,
+            interactionModes: MapInteractionModes.all,
+            showsUserLocation: true,
+            annotationItems: self.cityBikesViewModel.stationList) { (station) -> MapPin in
                 let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
                                                         longitude: station.longitude)
-                return MapPin(coordinate: coordinate)
+            return MapPin(coordinate: coordinate) //, tint: station.freeBikes() < 5 ? Color.red : Color.green)
         }
         .onAppear(perform: {
             region.center = CLLocationCoordinate2D(latitude: network.location.latitude,

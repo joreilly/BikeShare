@@ -1,0 +1,5 @@
+
+target 'BikeShare' do
+    pod 'common', :path => '../../common'
+end
+

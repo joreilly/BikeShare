@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "4163BD98-1743-401A-94D4-030C7D753853"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC53F252-EE48-43E0-A194-3B6FE4294A59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BikeShareMac/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "BC53F252-EE48-43E0-A194-3B6FE4294A59 - 1e52307c252b942d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(BikeShareMac.Sidebar, SwiftUI._ConditionalContent&lt;BikeShareMac.FolderView, SwiftUI.Text&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in BikeShareMac.ContentView.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "730">
+               </Location>
+               <Location
+                  uuid = "BC53F252-EE48-43E0-A194-3B6FE4294A59 - 1e52307c252b942d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(BikeShareMac.Sidebar, SwiftUI._ConditionalContent&lt;BikeShareMac.FolderView, SwiftUI.Text&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0)&gt; in BikeShareMac.ContentView.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "3568">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A89AF835-5C1B-4D88-A032-1691CCAEDD63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BikeShareMac/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A89AF835-5C1B-4D88-A032-1691CCAEDD63 - d003572343f7898f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationListView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Swift.String&gt;, Swift.String, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationListView&gt;&gt;&gt; in BikeShareMac.Sidebar.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "333">
+               </Location>
+               <Location
+                  uuid = "A89AF835-5C1B-4D88-A032-1691CCAEDD63 - d003572343f7898f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.String) -&gt; Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationListView&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Swift.String&gt;, Swift.String, Swift.Optional&lt;SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationListView&gt;&gt;&gt; in BikeShareMac.Sidebar.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "2040">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26FB534E-12DF-4AEA-8A19-FDB9FFDB23EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BikeShareMac/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "26FB534E-12DF-4AEA-8A19-FDB9FFDB23EF - c8b05b296fe026e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.CommonNetwork) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationView&gt; in BikeShareMac.StationListView.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "26FB534E-12DF-4AEA-8A19-FDB9FFDB23EF - 2108bc3ce918c3d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Text in closure #1 (__C.CommonNetwork) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationView&gt; in BikeShareMac.StationListView.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "150">
+               </Location>
+               <Location
+                  uuid = "26FB534E-12DF-4AEA-8A19-FDB9FFDB23EF - 2108bc3ce918c7f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.Text in closure #1 (__C.CommonNetwork) -&gt; SwiftUI.NavigationLink&lt;SwiftUI.Text, BikeShareMac.StationView&gt; in BikeShareMac.StationListView.body.getter : some"
+                  moduleName = "BikeShareMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joreilly/dev/github/BikeShare/macOS/BikeShareMac/BikeShareMac/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "1472">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

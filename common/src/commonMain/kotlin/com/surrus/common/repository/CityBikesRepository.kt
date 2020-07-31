@@ -5,7 +5,7 @@ import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
 
 
-class CityBikesRepository {
+class CityBikesRepository  {
     private val cityBikesApi = CityBikesApi()
 
     suspend fun fetchBikeShareInfo(network: String) : Network {

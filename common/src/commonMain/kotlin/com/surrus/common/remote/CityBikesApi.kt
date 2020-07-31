@@ -31,10 +31,15 @@ data class Location(val city: String, val country: String, val latitude: Double,
 
 @Serializable
 data class Station(val id: String? = "", val name: String,
-                   @SerialName("empty_slots") val emptySlots: Int? = 0,
-                   @SerialName("free_bikes") val freeBikes: Int? = 0,
-                   val latitude: Double, val longitude: Double)
+                   val empty_slots: Int? = 0, val free_bikes: Int? = 0,
+                   val latitude: Double, val longitude: Double) {}
 
+fun Station.freeBikes(): Int {
+    return free_bikes?: 0
+}
+fun Station.slots(): Int {
+    return (empty_slots ?: 0) + (free_bikes ?: 0)
+}
 
 class CityBikesApi {
     private val baseUrl = "https://api.citybik.es/v2/networks"

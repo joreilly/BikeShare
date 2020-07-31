@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1A0DA6F5240AC835008C7199 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0DA6F4240AC835008C7199 /* ViewModel.swift */; };
-		1A12F30F241FF960008BC866 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A12F30E241FF960008BC866 /* libcurl.a */; };
 		1A286ECC240A95A700A381F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A286ECB240A95A700A381F0 /* ContentView.swift */; };
 		1A286ECE240A95A900A381F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A286ECD240A95A900A381F0 /* Assets.xcassets */; };
 		1A286ED1240A95A900A381F0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A286ED0240A95A900A381F0 /* Preview Assets.xcassets */; };
 		1A3B2B7B24C885C00067F8B9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B2B7A24C885C00067F8B9 /* MapView.swift */; };
+		1A67DEB724D451CA00425DAF /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF1971B241AD651003431BF /* libcurl.tbd */; };
 		C1D061A7EE1B33D482D3E5E1 /* libPods-BikeShareMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5F1466FD2AF0758DCF8AFA /* libPods-BikeShareMac.a */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A12F30F241FF960008BC866 /* libcurl.a in Frameworks */,
+				1A67DEB724D451CA00425DAF /* libcurl.tbd in Frameworks */,
 				C1D061A7EE1B33D482D3E5E1 /* libPods-BikeShareMac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
