@@ -92,15 +92,16 @@ fun StationView(station: Station) {
         Spacer(modifier = Modifier.preferredSize(16.dp))
 
         Column {
+            Text(text = station.name, style = MaterialTheme.typography.h6)
 
-            Text(text = station.name, style = TextStyle(fontSize = 20.sp))
+            val textStyle = MaterialTheme.typography.body2
             Row {
-                Text("Free:", modifier = Modifier.width(48.dp), fontSize = 16.sp)
-                Text(text = station.freeBikes().toString(), style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+                Text("Free:", modifier = Modifier.width(48.dp), style = textStyle)
+                Text(text = station.freeBikes().toString(), style = textStyle)
             }
             Row {
-                Text("Slots:", modifier = Modifier.width(48.dp), fontSize = 16.sp)
-                Text(text = station.slots().toString(), style = TextStyle(color = Color.DarkGray, fontSize = 14.sp))
+                Text("Slots:", modifier = Modifier.width(48.dp), style = textStyle)
+                Text(text = station.slots().toString(), style = textStyle)
             }
         }
     }
