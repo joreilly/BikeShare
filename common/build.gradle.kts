@@ -52,6 +52,12 @@ kotlin {
     }
 
 
+
+    js {
+        browser {
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -88,5 +94,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-curl:${Versions.ktor}")
             }
         }
+
+
+        val jsMain by getting {
+            dependencies {
+            }
+        }
+
     }
 }
