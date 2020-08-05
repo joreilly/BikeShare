@@ -19,8 +19,8 @@ class BikeShareViewModel(private val cityBikesRepository: CityBikesRepository) :
 
     private fun getStations() {
         viewModelScope.launch {
-            val network = cityBikesRepository.fetchBikeShareInfo(city)
-            stations.postValue(network.stations)
+            val result = cityBikesRepository.fetchBikeShareInfo(city)
+            stations.postValue(result)
             Log.d("BikeShare", "got results")
         }
     }

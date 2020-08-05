@@ -20,7 +20,7 @@ class CityBikesViewModel: ObservableObject {
 
     func fetch(network: String) {
         repository.fetchBikeShareInfo(network: network, success: { data in
-            self.stationList = data.stations
+            self.stationList = data
         })
     }
 }
