@@ -14,7 +14,7 @@ val App = functionalComponent<RProps> { _ ->
         val mainScope = MainScope()
 
         mainScope.launch {
-            setStations(repository.fetchBikeShareInfo("galway").stations)
+            setStations(repository.fetchBikeShareInfo("galway"))
         }
         return@useEffectWithCleanup { mainScope.cancel() }
     }
