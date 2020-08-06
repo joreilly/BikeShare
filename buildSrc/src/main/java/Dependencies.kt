@@ -12,7 +12,7 @@ object Versions {
     const val work = "2.1.0-alpha02"
     const val lifecycle = "2.2.0-alpha01"
     const val fragment = "1.1.0-alpha09"
-    const val compose = "0.1.0-dev15"
+    const val compose = "0.1.0-dev16"
     const val coilVersion = "0.1.6"
 
     const val junit = "4.12"

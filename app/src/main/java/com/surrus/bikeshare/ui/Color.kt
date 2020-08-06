@@ -1,6 +1,7 @@
 package com.surrus.bikeshare.ui
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
+
 
 val maroon200 = Color(0xFFb73d2a)
 val maroon500 = Color(0xFF800000)

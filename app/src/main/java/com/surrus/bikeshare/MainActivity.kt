@@ -2,25 +2,24 @@ package com.surrus.bikeshare
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.*
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.Image
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.lazy.LazyColumnItems
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.ColorFilter
-import androidx.ui.layout.*
-import androidx.ui.livedata.observeAsState
-import androidx.ui.material.*
-import androidx.ui.material.icons.Icons
-import androidx.ui.material.icons.filled.LocationOn
-import androidx.ui.res.vectorResource
-import androidx.ui.text.TextStyle
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnItems
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import com.surrus.bikeshare.ui.BikeShareTheme
 import com.surrus.bikeshare.ui.highAvailabilityColor
 import com.surrus.bikeshare.ui.lowAvailabilityColor
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
-    var bottomBarSelectedIndex by state { 0 }
+    var bottomBarSelectedIndex by remember { mutableStateOf(0) }
 
     val stationsState = bikeShareViewModel.stations.observeAsState(emptyList())
 
@@ -61,16 +60,16 @@ fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
         },
         bottomBar = {
             BottomAppBar(content = {
-                BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, text = { Text("Galway") },
+                BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, label = { Text("Galway") },
                     selected = bottomBarSelectedIndex == 0,
-                    onSelected = {
+                    onSelect = {
                         bottomBarSelectedIndex = 0
                         bikeShareViewModel.setCity("galway")
                     })
 
-                BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, text = { Text("Oslo") },
+                BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, label = { Text("Oslo") },
                     selected = bottomBarSelectedIndex == 1,
-                    onSelected = {
+                    onSelect = {
                         bottomBarSelectedIndex = 1
                         bikeShareViewModel.setCity("oslo-bysykkel")
                     })
