@@ -6,6 +6,7 @@ Currently using Kotlin 1.4.0-rc and running on:
 * iOS
 * macOS
 * Android
+* Web
 
 Based at the moment on following dependencies:
 * Kotlin: 1.4.0-rc
@@ -24,3 +25,6 @@ important to note that it does not work right now with `native-mt` version of Ko
 so that dependency (in `Dependencies.kt`) needs to be updated for that to run).
 
 
+### Web client
+
+There's a very basic Kotlin/JS (+react) client in `web` module.  To exercise this run `./gradlew :web:browserDevelopmentRun`.
