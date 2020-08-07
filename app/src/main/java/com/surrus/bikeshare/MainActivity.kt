@@ -6,6 +6,7 @@ import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.lazy.LazyColumnItems
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -54,7 +55,7 @@ fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
             TopAppBar(title = { Text("Bike Share") })
         },
         bodyContent = {
-            LazyColumnItems(items = stationsState.value) { station ->
+            LazyColumnFor(items = stationsState.value) { station ->
                 StationView(station)
             }
         },
