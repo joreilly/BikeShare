@@ -54,8 +54,10 @@ fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
         topBar = {
             TopAppBar(title = { Text("Bike Share") })
         },
-        bodyContent = {
-            LazyColumnFor(items = stationsState.value) { station ->
+        bodyContent = { innerPadding ->
+            LazyColumnFor(
+                contentPadding = innerPadding,
+                items = stationsState.value) { station ->
                 StationView(station)
             }
         },
