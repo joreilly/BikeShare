@@ -28,6 +28,7 @@ import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
 import com.surrus.common.remote.Station
 import com.surrus.common.remote.freeBikes
 import com.surrus.common.remote.slots
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -44,11 +45,12 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
     var bottomBarSelectedIndex by remember { mutableStateOf(0) }
 
-    val stationsState = bikeShareViewModel.stations.observeAsState(emptyList())
+    val stationsState = bikeShareViewModel.stations.collectAsState()
 
     Scaffold(
         topBar = {
