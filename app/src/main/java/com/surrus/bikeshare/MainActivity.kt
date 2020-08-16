@@ -29,7 +29,7 @@ import com.surrus.common.remote.Station
 import com.surrus.common.remote.freeBikes
 import com.surrus.common.remote.slots
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val bikeShareViewModel: BikeShareViewModel by viewModel()
