@@ -19,7 +19,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.0-rc"
+        kotlinCompilerVersion = "1.4.0"
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
@@ -47,7 +47,7 @@ android {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs = listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check", "-Xskip-metadata-version-check")
+        freeCompilerArgs = listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
     }
 }
 

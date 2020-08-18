@@ -62,36 +62,32 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
-                    isForce = true
-                }
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
 
-                // Ktor
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
+                //implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+
 
                 // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
             }
         }
 
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
 
         val iOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
 
         val macOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-curl:${Versions.ktor}")
             }
         }
 
@@ -100,6 +96,5 @@ kotlin {
             dependencies {
             }
         }
-
     }
 }

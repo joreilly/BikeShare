@@ -1,10 +1,9 @@
 
 object Versions {
-    const val kotlin = "1.4.0-rc"
-    const val kotlinCoroutines = "1.3.8-native-mt-1.4.0-rc"
-    //const val kotlinCoroutines = "1.3.8-1.4.0-rc"
-    const val ktor = "1.3.2-1.4.0-rc"
-    const val kotlinxSerialization = "1.0-M1-1.4.0-rc"
+    const val kotlin = "1.4.0"
+    const val kotlinCoroutines = "1.3.9-native-mt"
+    const val ktor = "1.4.0"
+    const val kotlinxSerialization = "1.0.0-RC"
     const val koin = "3.0.0-alpha-2"
     const val slf4j = "1.7.30"
     const val ktx = "1.0.1"
@@ -12,7 +11,7 @@ object Versions {
     const val work = "2.1.0-alpha02"
     const val lifecycle = "2.2.0-alpha01"
     const val fragment = "1.1.0-alpha09"
-    const val compose = "0.1.0-dev16"
+    const val compose = "0.1.0-dev17"
     const val coilVersion = "0.1.6"
 
     const val junit = "4.12"

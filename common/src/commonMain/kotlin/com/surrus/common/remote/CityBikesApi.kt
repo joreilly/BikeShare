@@ -1,12 +1,13 @@
 package com.surrus.common.remote
 
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.DEFAULT
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
+//import io.ktor.client.features.logging.DEFAULT
+//import io.ktor.client.features.logging.LogLevel
+//import io.ktor.client.features.logging.Logger
+//import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -42,19 +43,19 @@ fun Station.slots(): Int {
 }
 
 class CityBikesApi {
-    private val baseUrl = "https://api.citybik.es/v2/networks"
+    private val baseUrl = "http://api.citybik.es/v2/networks"
 
     private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
     private val client by lazy {
-        HttpClient() {
+        HttpClient(CIO) {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
             }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.ALL
-            }
+//            install(Logging) {
+//                logger = Logger.DEFAULT
+//                level = LogLevel.ALL
+//            }
         }
     }
 
