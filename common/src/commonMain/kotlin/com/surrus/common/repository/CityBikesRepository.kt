@@ -1,6 +1,5 @@
 package com.surrus.common.repository
 
-import com.surrus.common.ktorScope
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
 import com.surrus.common.remote.Station
@@ -24,19 +23,6 @@ class CityBikesRepository  {
             return result.networks.groupBy { it.location.country }
         } catch (e: Exception) {
             return emptyMap()
-        }
-    }
-
-
-    fun fetchNetworkList(success: (Map<String, List<Network>>) -> Unit) {
-        ktorScope {
-            success(fetchNetworkList())
-        }
-    }
-
-    fun fetchBikeShareInfo(network: String, success: (List<Station>) -> Unit) {
-        ktorScope {
-            success(fetchBikeShareInfo(network))
         }
     }
 }

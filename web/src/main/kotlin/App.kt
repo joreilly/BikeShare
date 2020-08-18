@@ -17,7 +17,9 @@ val App = functionalComponent<RProps> { _ ->
                     routeLink("/oslo-bysykkel") { +"Oslo" }
                 }
             }
+        }
 
+        div {
             switch {
                 route("/galway") { child(StationList) {
                         attrs { networkId = "galway" }
