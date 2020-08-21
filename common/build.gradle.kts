@@ -66,9 +66,8 @@ kotlin {
 
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                //implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
 
 
                 // Serialize
@@ -78,22 +77,26 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
             }
         }
 
         val iOSMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
             }
         }
 
         val macOSMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
             }
         }
 
 
         val jsMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-client-js:${Versions.ktor}")
             }
         }
     }
