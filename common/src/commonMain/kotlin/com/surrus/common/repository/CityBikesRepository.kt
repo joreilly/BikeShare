@@ -8,21 +8,15 @@ import com.surrus.common.remote.Station
 class CityBikesRepository  {
     private val cityBikesApi = CityBikesApi()
 
+    @Throws(Exception::class)
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {
-        try {
-            val result = cityBikesApi.fetchBikeShareInfo(network)
-            return result.network.stations
-        } catch (e: Exception) {
-            return emptyList()
-        }
+        val result = cityBikesApi.fetchBikeShareInfo(network)
+        return result.network.stations
     }
 
+    @Throws(Exception::class)
     suspend fun fetchNetworkList() : Map<String, List<Network>> {
-        try {
-            val result = cityBikesApi.fetchNetworkList()
-            return result.networks.groupBy { it.location.country }
-        } catch (e: Exception) {
-            return emptyMap()
-        }
+        val result = cityBikesApi.fetchNetworkList()
+        return result.networks.groupBy { it.location.country }
     }
 }

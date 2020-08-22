@@ -15,6 +15,9 @@ class CityBikesViewModel: ObservableObject {
             if let stationList = data {
                 self.stationList = stationList
             }
+            if let errorReal = error {
+               print(errorReal)
+            }
         }
     }
 }
