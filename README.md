@@ -9,10 +9,10 @@ Currently using Kotlin 1.4.0-rc and running on:
 * Web
 
 Based at the moment on following dependencies:
-* Kotlin: 1.4.0-rc
-* Kotlinx Coroutines: 1.3.8-native-mt-1.4.0-rc
-* Kotlinx Serialization: 1.0-M1-1.4.0-rc
-* Ktor: 1.3.2-1.4.0-rc
+* Kotlin: 1.4.0
+* Kotlinx Coroutines: 1.3.9-native-mt
+* Kotlinx Serialization: 1.0.0-RC
+* Ktor: 1.4.0
 
 Note that, due to use of Jetpack Compose, Android Studio Canary is required to build/run Android client (currently 4.2 Canary 7).
 The iOS client has been tested in latest released version of XCode (currently 11.6). See below regarding macOS build.
