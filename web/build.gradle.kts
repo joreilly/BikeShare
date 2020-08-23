@@ -1,10 +1,9 @@
 plugins {
-    id("org.jetbrains.kotlin.js")
+    kotlin("js")
     kotlin("plugin.serialization")
 }
 
 repositories {
-    maven("https://dl.bintray.com/kotlin/kotlin-eap")
     mavenCentral()
 }
 
