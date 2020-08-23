@@ -20,9 +20,7 @@ When opening iOS and macOS projects remember to open `.xcworkspace` file (and no
 
 
 ### macOS client
-The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12 beta.  Also
-important to note that it does not work right now with `native-mt` version of Kotlinx Coroutines (hopefully this will change soon)
-so that dependency (in `Dependencies.kt`) needs to be updated for that to run).
+The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12 beta. 
 
 
 ### Web client
