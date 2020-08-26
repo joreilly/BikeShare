@@ -7,7 +7,7 @@ object Versions {
     const val koin = "3.0.0-alpha-2"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "0.1.0-dev17"
+    const val compose = "1.0.0-alpha01"
 
     const val junit = "4.12"
 }
