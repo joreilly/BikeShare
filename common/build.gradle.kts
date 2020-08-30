@@ -83,13 +83,13 @@ kotlin {
 
         val iOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
 
         val macOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
+                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
 

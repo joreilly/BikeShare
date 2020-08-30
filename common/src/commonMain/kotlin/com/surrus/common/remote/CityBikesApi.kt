@@ -42,7 +42,7 @@ fun Station.slots(): Int {
 }
 
 class CityBikesApi {
-    private val baseUrl = "http://api.citybik.es/v2/networks"
+    private val baseUrl = "https://api.citybik.es/v2/networks"
 
     private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
@@ -51,10 +51,10 @@ class CityBikesApi {
             install(JsonFeature) {
                 serializer = KotlinxSerializer(nonStrictJson)
             }
-//            install(Logging) {
-//                logger = Logger.DEFAULT
-//                level = LogLevel.ALL
-//            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
         }
     }
 
