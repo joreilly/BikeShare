@@ -2,13 +2,13 @@
 
 Jetpack Compose and SwiftUI based Kotlin Multiplatform sample project (based on [CityBikes API](http://api.citybik.es/v2/)).
 
-Currently using Kotlin 1.4.0-rc and running on:
+Running on
 * iOS
 * macOS
 * Android
 * Web
 
-Based at the moment on following dependencies:
+Using following dependencies
 * Kotlin: 1.4.0
 * Kotlinx Coroutines: 1.3.9-native-mt
 * Kotlinx Serialization: 1.0.0-RC
