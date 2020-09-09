@@ -7,48 +7,81 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		8217FBB9D1218C346C0781D0B8F2BBE8 /* common */ = {
+		34EF04CC7803B0FE5BD6CDEDD87E22AF /* common-iOS13.6 */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */;
+			buildConfigurationList = F0A7B070728F718C284DCC5F286AF486 /* Build configuration list for PBXAggregateTarget "common-iOS13.6" */;
 			buildPhases = (
-				1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */,
+				427425319C623743681B279C39BBDE82 /* [CP-User] Build common */,
 			);
 			dependencies = (
 			);
-			name = common;
+			name = "common-iOS13.6";
+		};
+		C19E6A7BEAAA498CB1C7E8790D63AA03 /* common-iOS14.0 */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7EA5E812EEACF88870175F5B89F4F665 /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */;
+			buildPhases = (
+				77C00F6F574390B56EC976F36172F3BA /* [CP-User] Build common */,
+			);
+			dependencies = (
+			);
+			name = "common-iOS14.0";
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		941B6207AD13C26282EC311894BB128A /* Pods-BikeShare-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DD0CA8FBCF115609C8C4607D9FFCE7 /* Pods-BikeShare-dummy.m */; };
+		04327CA319C6C4596AF690A4A4AE7220 /* Pods-BikeShareWidgetExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9DA03190F32BCA9F47E214A43FD3 /* Pods-BikeShareWidgetExtension-dummy.m */; };
+		EFD637A8C3345175BA284DA6C9D3667C /* Pods-BikeShare-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DDB0714F9D0C48F598B41DCF30652 /* Pods-BikeShare-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9C605BA77B67E68FFE23C0A049A8CAD5 /* PBXContainerItemProxy */ = {
+		9A7D7EE906226CFC6BB8F5DF43F7E919 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8217FBB9D1218C346C0781D0B8F2BBE8;
-			remoteInfo = common;
+			remoteGlobalIDString = 34EF04CC7803B0FE5BD6CDEDD87E22AF;
+			remoteInfo = "common-iOS13.6";
+		};
+		D03DBBA5E49282B44DEC68BFE56B6231 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C19E6A7BEAAA498CB1C7E8790D63AA03;
+			remoteInfo = "common-iOS14.0";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
-		0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
-		13586F97DCBA45EC9D3025B566A00F0F /* Pods-BikeShare-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BikeShare-acknowledgements.plist"; sourceTree = "<group>"; };
-		1E06B79DFD18C579527DB6E2BEC3C151 /* Pods-BikeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShare.release.xcconfig"; sourceTree = "<group>"; };
-		4D68C6CAD8E0DCB3BF1D35BCD921150E /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
-		5C5D4134658B75FAB622CB8FACE9D979 /* Pods-BikeShare-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BikeShare-acknowledgements.markdown"; sourceTree = "<group>"; };
+		001927E1C22C125D30A0E6B7EC022098 /* Pods-BikeShare-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BikeShare-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0051D0508DEAE35620A8277B51F6708D /* libPods-BikeShareWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-BikeShareWidgetExtension.a"; path = "libPods-BikeShareWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		055DDB0714F9D0C48F598B41DCF30652 /* Pods-BikeShare-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BikeShare-dummy.m"; sourceTree = "<group>"; };
+		1C1573D112FD3E11E380F81924FA65AD /* common-iOS13.6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS13.6.debug.xcconfig"; sourceTree = "<group>"; };
+		1E1BF5DB984855512EA93F1C1421014E /* Pods-BikeShareWidgetExtension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BikeShareWidgetExtension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		36C33C07E03FE2CE92EC8096D7C84456 /* Pods-BikeShareWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShareWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		3CAD9DA03190F32BCA9F47E214A43FD3 /* Pods-BikeShareWidgetExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BikeShareWidgetExtension-dummy.m"; sourceTree = "<group>"; };
+		58C0083F66CC363E67D49D34BB77F3C3 /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		73A06DAF2EAB82895C9723DD216B32BE /* Pods-BikeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShare.release.xcconfig"; sourceTree = "<group>"; };
+		95A70CDCF5F8BDACE1F92A0C0BC6548D /* Pods-BikeShare-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BikeShare-acknowledgements.plist"; sourceTree = "<group>"; };
+		97FD7B346A77C3A0551D540223785304 /* common-iOS13.6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "common-iOS13.6.release.xcconfig"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A51C0448E0AC3F189C6D448091131888 /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
 		A7A8582279F44DAA1A535F514ADCC098 /* libPods-BikeShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-BikeShare.a"; path = "libPods-BikeShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7DD0CA8FBCF115609C8C4607D9FFCE7 /* Pods-BikeShare-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BikeShare-dummy.m"; sourceTree = "<group>"; };
-		C98F0BF5ECB41E45BE4F39C7BF7D11F3 /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
-		F1FEE9BE4C0814C5BCB00A88F2D1D5AD /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B38CE2BDD3EBBFB27D0C852B71422283 /* common-iOS14.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS14.0.release.xcconfig"; path = "../common-iOS14.0/common-iOS14.0.release.xcconfig"; sourceTree = "<group>"; };
+		B50491F23B24635AFA1951412300E398 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
+		CA945FFA872C81329C4EFDBF31DC067C /* Pods-BikeShareWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShareWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		CB1A6F9ACAE5A70756FA02552E445232 /* Pods-BikeShareWidgetExtension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BikeShareWidgetExtension-acknowledgements.plist"; sourceTree = "<group>"; };
+		DBE9B1A4CD68F04293686905FA6AA049 /* common-iOS14.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "common-iOS14.0.debug.xcconfig"; path = "../common-iOS14.0/common-iOS14.0.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7BE0217E5ACA03B2873D31035BBDAD21 /* Frameworks */ = {
+		03334975BFCB80AF281027FB8151B49A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		98A94F693D579126D118AE197FCFC0EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,70 +91,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		076C1D8476FAC5B0FC5723A04CA29692 /* common */ = {
+		52A5E3485C1B4877C660BB7EEFD04E26 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				7EA81EDCC1894A83742442426A8EF4A6 /* Frameworks */,
-				306BF0C9F644F9E3C60AC852D6C66DD4 /* Pod */,
-				958A8BC9E551453743F380CFE79A2E5A /* Support Files */,
+				8170684FD2D633904E7D367ADF9726B6 /* Pods-BikeShare */,
+				A55DF6FE4F0876BBC6AB908D4566EE76 /* Pods-BikeShareWidgetExtension */,
 			);
-			name = common;
-			path = ../../../common;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		306BF0C9F644F9E3C60AC852D6C66DD4 /* Pod */ = {
+		64B44A646D64D2F9923B6BDB3F3C943F /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				F1FEE9BE4C0814C5BCB00A88F2D1D5AD /* common.podspec */,
+				58C0083F66CC363E67D49D34BB77F3C3 /* common.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		598AC64BACA55B4061BA3C156422657A /* Pods-BikeShare */ = {
+		70F307DA07A2880E5CCE89C5A8E3AFCE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5C5D4134658B75FAB622CB8FACE9D979 /* Pods-BikeShare-acknowledgements.markdown */,
-				13586F97DCBA45EC9D3025B566A00F0F /* Pods-BikeShare-acknowledgements.plist */,
-				B7DD0CA8FBCF115609C8C4607D9FFCE7 /* Pods-BikeShare-dummy.m */,
-				C98F0BF5ECB41E45BE4F39C7BF7D11F3 /* Pods-BikeShare.debug.xcconfig */,
-				1E06B79DFD18C579527DB6E2BEC3C151 /* Pods-BikeShare.release.xcconfig */,
+				1C1573D112FD3E11E380F81924FA65AD /* common-iOS13.6.debug.xcconfig */,
+				97FD7B346A77C3A0551D540223785304 /* common-iOS13.6.release.xcconfig */,
+				DBE9B1A4CD68F04293686905FA6AA049 /* common-iOS14.0.debug.xcconfig */,
+				B38CE2BDD3EBBFB27D0C852B71422283 /* common-iOS14.0.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../ios/BikeShare/Pods/Target Support Files/common-iOS13.6";
+			sourceTree = "<group>";
+		};
+		8170684FD2D633904E7D367ADF9726B6 /* Pods-BikeShare */ = {
+			isa = PBXGroup;
+			children = (
+				001927E1C22C125D30A0E6B7EC022098 /* Pods-BikeShare-acknowledgements.markdown */,
+				95A70CDCF5F8BDACE1F92A0C0BC6548D /* Pods-BikeShare-acknowledgements.plist */,
+				055DDB0714F9D0C48F598B41DCF30652 /* Pods-BikeShare-dummy.m */,
+				A51C0448E0AC3F189C6D448091131888 /* Pods-BikeShare.debug.xcconfig */,
+				73A06DAF2EAB82895C9723DD216B32BE /* Pods-BikeShare.release.xcconfig */,
 			);
 			name = "Pods-BikeShare";
 			path = "Target Support Files/Pods-BikeShare";
 			sourceTree = "<group>";
 		};
-		5ADBB2749C66FC96130097447BF23D7E /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				598AC64BACA55B4061BA3C156422657A /* Pods-BikeShare */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		7EA81EDCC1894A83742442426A8EF4A6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4D68C6CAD8E0DCB3BF1D35BCD921150E /* common.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		958A8BC9E551453743F380CFE79A2E5A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */,
-				049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../ios/BikeShare/Pods/Target Support Files/common";
-			sourceTree = "<group>";
-		};
-		BEA9DC4B3C7D4988284154901D39D6ED /* Products */ = {
+		86106751A480FDA80E6DB26A7DA4D9E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				A7A8582279F44DAA1A535F514ADCC098 /* libPods-BikeShare.a */,
+				0051D0508DEAE35620A8277B51F6708D /* libPods-BikeShareWidgetExtension.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A55DF6FE4F0876BBC6AB908D4566EE76 /* Pods-BikeShareWidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1E1BF5DB984855512EA93F1C1421014E /* Pods-BikeShareWidgetExtension-acknowledgements.markdown */,
+				CB1A6F9ACAE5A70756FA02552E445232 /* Pods-BikeShareWidgetExtension-acknowledgements.plist */,
+				3CAD9DA03190F32BCA9F47E214A43FD3 /* Pods-BikeShareWidgetExtension-dummy.m */,
+				CA945FFA872C81329C4EFDBF31DC067C /* Pods-BikeShareWidgetExtension.debug.xcconfig */,
+				36C33C07E03FE2CE92EC8096D7C84456 /* Pods-BikeShareWidgetExtension.release.xcconfig */,
+			);
+			name = "Pods-BikeShareWidgetExtension";
+			path = "Target Support Files/Pods-BikeShareWidgetExtension";
+			sourceTree = "<group>";
+		};
+		B8BBD032F1E9AC17C20C019E9407623E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				EFB02C6281AACDB8B2EF38A676F0B213 /* Frameworks */,
+				64B44A646D64D2F9923B6BDB3F3C943F /* Pod */,
+				70F307DA07A2880E5CCE89C5A8E3AFCE /* Support Files */,
+			);
+			name = common;
+			path = ../../../common;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -130,8 +172,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				BEA9DC4B3C7D4988284154901D39D6ED /* Products */,
-				5ADBB2749C66FC96130097447BF23D7E /* Targets Support Files */,
+				86106751A480FDA80E6DB26A7DA4D9E4 /* Products */,
+				52A5E3485C1B4877C660BB7EEFD04E26 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,15 +187,30 @@
 		E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				076C1D8476FAC5B0FC5723A04CA29692 /* common */,
+				B8BBD032F1E9AC17C20C019E9407623E /* common */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		EFB02C6281AACDB8B2EF38A676F0B213 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B50491F23B24635AFA1951412300E398 /* common.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9F00982A2E5919424CD094F9A78AB1AC /* Headers */ = {
+		29AF10D5E4940AE9F325EBE838BCA3CD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6C6C2729312BF043D96179391C0E23D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -163,18 +220,36 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C409CDC9030E182436E030AFB332F090 /* Pods-BikeShare */ = {
+		2325F64A884E73EEE4325C94E0CC8CB5 /* Pods-BikeShareWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 08C3FBB10DFA0DA5B3A2B228E0D13EDF /* Build configuration list for PBXNativeTarget "Pods-BikeShare" */;
+			buildConfigurationList = 32E161D4FCBE3FDFE05973A38ED4F1D2 /* Build configuration list for PBXNativeTarget "Pods-BikeShareWidgetExtension" */;
 			buildPhases = (
-				9F00982A2E5919424CD094F9A78AB1AC /* Headers */,
-				F5AF90F888C327B0525BE5C026B4B494 /* Sources */,
-				7BE0217E5ACA03B2873D31035BBDAD21 /* Frameworks */,
+				29AF10D5E4940AE9F325EBE838BCA3CD /* Headers */,
+				E454D8B6DFB3C75794C0AADC59767AF8 /* Sources */,
+				03334975BFCB80AF281027FB8151B49A /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				98DFD9BF7D86DD0498A899E753EA3148 /* PBXTargetDependency */,
+				ACC66D299E523095AAEEB4FB6A70EA61 /* PBXTargetDependency */,
+			);
+			name = "Pods-BikeShareWidgetExtension";
+			productName = "Pods-BikeShareWidgetExtension";
+			productReference = 0051D0508DEAE35620A8277B51F6708D /* libPods-BikeShareWidgetExtension.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C409CDC9030E182436E030AFB332F090 /* Pods-BikeShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EBBD8729E6CCA85C329981F29742AA9 /* Build configuration list for PBXNativeTarget "Pods-BikeShare" */;
+			buildPhases = (
+				F6C6C2729312BF043D96179391C0E23D /* Headers */,
+				D698128A094D3A7CCCFE00C50B5B9260 /* Sources */,
+				98A94F693D579126D118AE197FCFC0EA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48374E5AF4C9E62412735E29567B4916 /* PBXTargetDependency */,
 			);
 			name = "Pods-BikeShare";
 			productName = "Pods-BikeShare";
@@ -199,18 +274,30 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = BEA9DC4B3C7D4988284154901D39D6ED /* Products */;
+			productRefGroup = 86106751A480FDA80E6DB26A7DA4D9E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8217FBB9D1218C346C0781D0B8F2BBE8 /* common */,
+				34EF04CC7803B0FE5BD6CDEDD87E22AF /* common-iOS13.6 */,
+				C19E6A7BEAAA498CB1C7E8790D63AA03 /* common-iOS14.0 */,
 				C409CDC9030E182436E030AFB332F090 /* Pods-BikeShare */,
+				2325F64A884E73EEE4325C94E0CC8CB5 /* Pods-BikeShareWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */ = {
+		427425319C623743681B279C39BBDE82 /* [CP-User] Build common */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Build common";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" :common:syncFramework                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
+		};
+		77C00F6F574390B56EC976F36172F3BA /* [CP-User] Build common */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -223,26 +310,102 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F5AF90F888C327B0525BE5C026B4B494 /* Sources */ = {
+		D698128A094D3A7CCCFE00C50B5B9260 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				941B6207AD13C26282EC311894BB128A /* Pods-BikeShare-dummy.m in Sources */,
+				EFD637A8C3345175BA284DA6C9D3667C /* Pods-BikeShare-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E454D8B6DFB3C75794C0AADC59767AF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04327CA319C6C4596AF690A4A4AE7220 /* Pods-BikeShareWidgetExtension-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		98DFD9BF7D86DD0498A899E753EA3148 /* PBXTargetDependency */ = {
+		48374E5AF4C9E62412735E29567B4916 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = common;
-			target = 8217FBB9D1218C346C0781D0B8F2BBE8 /* common */;
-			targetProxy = 9C605BA77B67E68FFE23C0A049A8CAD5 /* PBXContainerItemProxy */;
+			name = "common-iOS13.6";
+			target = 34EF04CC7803B0FE5BD6CDEDD87E22AF /* common-iOS13.6 */;
+			targetProxy = 9A7D7EE906226CFC6BB8F5DF43F7E919 /* PBXContainerItemProxy */;
+		};
+		ACC66D299E523095AAEEB4FB6A70EA61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "common-iOS14.0";
+			target = C19E6A7BEAAA498CB1C7E8790D63AA03 /* common-iOS14.0 */;
+			targetProxy = D03DBBA5E49282B44DEC68BFE56B6231 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0104DEA86221A7DC3695A007A200CB9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A51C0448E0AC3F189C6D448091131888 /* Pods-BikeShare.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04F5096709CE30ABE044B7B24A46E448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C1573D112FD3E11E380F81924FA65AD /* common-iOS13.6.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		050B1DC07D5C40FE3CD47699CA024E64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73A06DAF2EAB82895C9723DD216B32BE /* Pods-BikeShare.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		13967C5C8F4B10B3EE4D6C208A0A7BEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -307,31 +470,9 @@
 			};
 			name = Debug;
 		};
-		1E4F7F0FBE242452ABCF2CCE9A28920C /* Debug */ = {
+		3C956685B01E13BB31917949392829C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C98F0BF5ECB41E45BE4F39C7BF7D11F3 /* Pods-BikeShare.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		525831EE7A270ED1CF9BD347742EDDD9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */;
+			baseConfigurationReference = DBE9B1A4CD68F04293686905FA6AA049 /* common-iOS14.0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -345,6 +486,47 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		681CD98F15D3C3E45CEEA7183755E506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C33C07E03FE2CE92EC8096D7C84456 /* Pods-BikeShareWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7858DE5D5308073DBE4E8C836C4E731D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B38CE2BDD3EBBFB27D0C852B71422283 /* common-iOS14.0.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		871B6E28ABA34DAE69824AB9D22D3B7D /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -406,32 +588,9 @@
 			};
 			name = Release;
 		};
-		DDD1D3C08C4CFA7922961D9842CA9F66 /* Release */ = {
+		A797BDDF1D928D71D5D5B151106A253E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E06B79DFD18C579527DB6E2BEC3C151 /* Pods-BikeShare.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		FE7358C343E1336EE23FDD5B6EF53049 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */;
+			baseConfigurationReference = 97FD7B346A77C3A0551D540223785304 /* common-iOS13.6.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -447,23 +606,36 @@
 			};
 			name = Release;
 		};
+		E64250BC1EE1A6031A6ACD9F96C51200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA945FFA872C81329C4EFDBF31DC067C /* Pods-BikeShareWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		08C3FBB10DFA0DA5B3A2B228E0D13EDF /* Build configuration list for PBXNativeTarget "Pods-BikeShare" */ = {
+		32E161D4FCBE3FDFE05973A38ED4F1D2 /* Build configuration list for PBXNativeTarget "Pods-BikeShareWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1E4F7F0FBE242452ABCF2CCE9A28920C /* Debug */,
-				DDD1D3C08C4CFA7922961D9842CA9F66 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				525831EE7A270ED1CF9BD347742EDDD9 /* Debug */,
-				FE7358C343E1336EE23FDD5B6EF53049 /* Release */,
+				E64250BC1EE1A6031A6ACD9F96C51200 /* Debug */,
+				681CD98F15D3C3E45CEEA7183755E506 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -473,6 +645,33 @@
 			buildConfigurations = (
 				13967C5C8F4B10B3EE4D6C208A0A7BEB /* Debug */,
 				871B6E28ABA34DAE69824AB9D22D3B7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EBBD8729E6CCA85C329981F29742AA9 /* Build configuration list for PBXNativeTarget "Pods-BikeShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0104DEA86221A7DC3695A007A200CB9C /* Debug */,
+				050B1DC07D5C40FE3CD47699CA024E64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EA5E812EEACF88870175F5B89F4F665 /* Build configuration list for PBXAggregateTarget "common-iOS14.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C956685B01E13BB31917949392829C4 /* Debug */,
+				7858DE5D5308073DBE4E8C836C4E731D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0A7B070728F718C284DCC5F286AF486 /* Build configuration list for PBXAggregateTarget "common-iOS13.6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04F5096709CE30ABE044B7B24A46E448 /* Debug */,
+				A797BDDF1D928D71D5D5B151106A253E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

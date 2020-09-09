@@ -14,10 +14,43 @@
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
 		1A56766024D352FA0047F88F /* BikeShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */; };
+		1AAFDB8F2508F810002EB01C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAFDB8E2508F810002EB01C /* WidgetKit.framework */; };
+		1AAFDB912508F810002EB01C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAFDB902508F810002EB01C /* SwiftUI.framework */; };
+		1AAFDB942508F810002EB01C /* BikeShareWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFDB932508F810002EB01C /* BikeShareWidget.swift */; };
+		1AAFDB962508F811002EB01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAFDB952508F811002EB01C /* Assets.xcassets */; };
+		1AAFDB9A2508F811002EB01C /* BikeShareWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1AAFDB8D2508F810002EB01C /* BikeShareWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1AAFDBA4250918A6002EB01C /* BikeShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */; };
+		32D279A1966D676743D4E24D /* libPods-BikeShareWidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 067317F335A46FB868DC8A63 /* libPods-BikeShareWidgetExtension.a */; };
 		E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */; };
+		FEAE7A6F7439F490C98ABB8E /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAFDBA225091734002EB01C /* libPods-BikeShare.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1AAFDB982508F811002EB01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A56764024D351FC0047F88F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1AAFDB8C2508F810002EB01C;
+			remoteInfo = BikeShareWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1AAFDB9B2508F811002EB01C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1AAFDB9A2508F811002EB01C /* BikeShareWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		067317F335A46FB868DC8A63 /* libPods-BikeShareWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShareWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A56764824D351FC0047F88F /* BikeShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A56764B24D351FC0047F88F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +61,15 @@
 		1A56765724D351FF0047F88F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A56765924D351FF0047F88F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareViewModel.swift; sourceTree = "<group>"; };
+		1AAFDB8D2508F810002EB01C /* BikeShareWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeShareWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AAFDB8E2508F810002EB01C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1AAFDB902508F810002EB01C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1AAFDB932508F810002EB01C /* BikeShareWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareWidget.swift; sourceTree = "<group>"; };
+		1AAFDB952508F811002EB01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AAFDB972508F811002EB01C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33344FE486D5DD9E0359352E /* Pods-BikeShareWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.debug.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
+		C4270FC2D61FFAE721537F30 /* Pods-BikeShareWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.release.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,6 +79,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */,
+				FEAE7A6F7439F490C98ABB8E /* libPods-BikeShare.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AAFDB8A2508F810002EB01C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AAFDB912508F810002EB01C /* SwiftUI.framework in Frameworks */,
+				1AAFDB8F2508F810002EB01C /* WidgetKit.framework in Frameworks */,
+				32D279A1966D676743D4E24D /* libPods-BikeShareWidgetExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				1A56764A24D351FC0047F88F /* BikeShare */,
+				1AAFDB922508F810002EB01C /* BikeShareWidget */,
 				1A56764924D351FC0047F88F /* Products */,
 				2B16266B2E9C4220CA269D49 /* Pods */,
 				3E7F7EC3ABE0A3DAE509A197 /* Frameworks */,
@@ -58,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				1A56764824D351FC0047F88F /* BikeShare.app */,
+				1AAFDB8D2508F810002EB01C /* BikeShareWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,11 +139,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1AAFDB922508F810002EB01C /* BikeShareWidget */ = {
+			isa = PBXGroup;
+			children = (
+				1AAFDB932508F810002EB01C /* BikeShareWidget.swift */,
+				1AAFDB952508F811002EB01C /* Assets.xcassets */,
+				1AAFDB972508F811002EB01C /* Info.plist */,
+			);
+			path = BikeShareWidget;
+			sourceTree = "<group>";
+		};
 		2B16266B2E9C4220CA269D49 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */,
 				DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */,
+				33344FE486D5DD9E0359352E /* Pods-BikeShareWidgetExtension.debug.xcconfig */,
+				C4270FC2D61FFAE721537F30 /* Pods-BikeShareWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -98,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */,
+				1AAFDB8E2508F810002EB01C /* WidgetKit.framework */,
+				1AAFDB902508F810002EB01C /* SwiftUI.framework */,
+				067317F335A46FB868DC8A63 /* libPods-BikeShareWidgetExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,15 +182,35 @@
 				1A56764424D351FC0047F88F /* Sources */,
 				1A56764524D351FC0047F88F /* Frameworks */,
 				1A56764624D351FC0047F88F /* Resources */,
+				1AAFDB9B2508F811002EB01C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1AAFDB992508F811002EB01C /* PBXTargetDependency */,
 			);
 			name = BikeShare;
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1AAFDB8C2508F810002EB01C /* BikeShareWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AAFDB9E2508F811002EB01C /* Build configuration list for PBXNativeTarget "BikeShareWidgetExtension" */;
+			buildPhases = (
+				76302117AB88009987644DE7 /* [CP] Check Pods Manifest.lock */,
+				1AAFDB892508F810002EB01C /* Sources */,
+				1AAFDB8A2508F810002EB01C /* Frameworks */,
+				1AAFDB8B2508F810002EB01C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BikeShareWidgetExtension;
+			productName = BikeShareWidgetExtension;
+			productReference = 1AAFDB8D2508F810002EB01C /* BikeShareWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -129,12 +218,15 @@
 		1A56764024D351FC0047F88F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "John O'Reilly";
 				TargetAttributes = {
 					1A56764724D351FC0047F88F = {
 						CreatedOnToolsVersion = 11.6;
+					};
+					1AAFDB8C2508F810002EB01C = {
+						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
@@ -152,6 +244,7 @@
 			projectRoot = "";
 			targets = (
 				1A56764724D351FC0047F88F /* BikeShare */,
+				1AAFDB8C2508F810002EB01C /* BikeShareWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -167,9 +260,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1AAFDB8B2508F810002EB01C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AAFDB962508F811002EB01C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		76302117AB88009987644DE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BikeShareWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9D61C20E261DD7716D4163C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -206,7 +329,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1AAFDB892508F810002EB01C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AAFDB942508F810002EB01C /* BikeShareWidget.swift in Sources */,
+				1AAFDBA4250918A6002EB01C /* BikeShareViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1AAFDB992508F811002EB01C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1AAFDB8C2508F810002EB01C /* BikeShareWidgetExtension */;
+			targetProxy = 1AAFDB982508F811002EB01C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1A56765624D351FF0047F88F /* LaunchScreen.storyboard */ = {
@@ -338,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
@@ -359,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
@@ -371,6 +513,54 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1AAFDB9C2508F811002EB01C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33344FE486D5DD9E0359352E /* Pods-BikeShareWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT77748GS8;
+				INFOPLIST_FILE = BikeShareWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare.BikeShareWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1AAFDB9D2508F811002EB01C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4270FC2D61FFAE721537F30 /* Pods-BikeShareWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT77748GS8;
+				INFOPLIST_FILE = BikeShareWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare.BikeShareWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -393,6 +583,15 @@
 			buildConfigurations = (
 				1A56765D24D351FF0047F88F /* Debug */,
 				1A56765E24D351FF0047F88F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AAFDB9E2508F811002EB01C /* Build configuration list for PBXNativeTarget "BikeShareWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AAFDB9C2508F811002EB01C /* Debug */,
+				1AAFDB9D2508F811002EB01C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
