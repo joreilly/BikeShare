@@ -67,14 +67,13 @@ fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
             BottomAppBar(content = {
                 BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, label = { Text("Galway") },
                     selected = bottomBarSelectedIndex == 0,
-                    onSelect = {
+                    onClick = {
                         bottomBarSelectedIndex = 0
                         bikeShareViewModel.setCity("galway")
                     })
-
                 BottomNavigationItem(icon = { Icon(Icons.Default.LocationOn) }, label = { Text("Oslo") },
                     selected = bottomBarSelectedIndex == 1,
-                    onSelect = {
+                    onClick = {
                         bottomBarSelectedIndex = 1
                         bikeShareViewModel.setCity("oslo-bysykkel")
                     })
@@ -87,7 +86,7 @@ fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
 @Composable
 fun StationView(station: Station) {
     Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
-        verticalGravity = Alignment.CenterVertically) {
+        verticalAlignment = Alignment.CenterVertically) {
 
         Image(asset = vectorResource(R.drawable.ic_bike),
             colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
