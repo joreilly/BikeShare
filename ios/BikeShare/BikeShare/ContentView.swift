@@ -4,23 +4,24 @@ import common
 
 struct ContentView : View {
     @ObservedObject var cityBikesViewModel = CityBikesViewModel(repository: CityBikesRepository())
+    @State private var selection = 0
     
     var body: some View {
-        TabView {
+        TabView(selection: $selection) {
             StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway")
                 .tabItem {
                     VStack {
-                        Image(systemName: "1.circle")
+                        Image(systemName: "location")
                         Text("Galway")
                     }
-                }
+                }.tag(0)
             StationListView(cityBikesViewModel: cityBikesViewModel, network: "oslo-bysykkel")
                 .tabItem {
                     VStack {
-                        Image(systemName: "2.circle")
+                        Image(systemName: "location")
                         Text("Oslo")
                     }
-                }
+                }.tag(1)
         }
     }
 }
