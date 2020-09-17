@@ -48,7 +48,7 @@ val StationList = functionalComponent<NetworkProps> { props ->
 
     val (stations, setStations) = useState(emptyList<Station>())
 
-    useEffectWithCleanup {
+    useEffectWithCleanup(dependencies = listOf(networkId)) {
         console.log("Network Id $networkId")
 
         val mainScope = MainScope()
