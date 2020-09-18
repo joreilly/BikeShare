@@ -15,12 +15,12 @@ Using following dependencies
 * Ktor: 1.4.0
 
 Note that, due to use of Jetpack Compose, Android Studio Canary is required to build/run Android client (currently 4.2 Canary 7).
-The iOS client has been tested in latest released version of XCode (currently 11.6). See below regarding macOS build.
+The iOS client has been tested in latest released version of XCode (currently 12.0). See below regarding macOS build.
 When opening iOS and macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)
 
 
 ### macOS client
-The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12 beta. 
+The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12.2 beta.
 
 
 ### Web client

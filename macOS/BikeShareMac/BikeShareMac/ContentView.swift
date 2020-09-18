@@ -53,6 +53,7 @@ struct Sidebar: View {
                 }
             }
         }
+        .listStyle(PlainListStyle())
         .onAppear(perform: {
             self.cityBikesViewModel.fetchNetworkList()
         })
