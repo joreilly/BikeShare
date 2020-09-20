@@ -8,28 +8,31 @@ struct ContentView : View {
     
     var body: some View {
         TabView(selection: $selection) {
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway")
+            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway", tag: 0, selection: $selection)
                 .tabItem {
                     VStack {
                         Image(systemName: "location")
                         Text("Galway")
                     }
                 }.tag(0)
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "oslo-bysykkel")
+            StationListView(cityBikesViewModel: cityBikesViewModel, network: "oslo-bysykkel", tag: 1, selection: $selection)
                 .tabItem {
                     VStack {
                         Image(systemName: "location")
                         Text("Oslo")
                     }
                 }.tag(1)
-        }
+            }
+        
     }
 }
 
+// see https://stackoverflow.com/questions/63978584/tabview-lifecycle-issue-if-views-are-the-same/63981763#63981763
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
     var network: String
-    let timer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+    var tag: Int
+    @Binding var selection: Int
  
     var body: some View {
         NavigationView {
@@ -37,12 +40,18 @@ struct StationListView: View {
                 StationView(station: station)
             }
             .navigationBarTitle(Text("Bike Share"))
-            .onReceive(timer) { _ in
-                self.cityBikesViewModel.fetch(network: self.network)
+            .onChange(of: selection) { _ in
+                refreshData()
             }
-            .onAppear(perform: {
-                self.cityBikesViewModel.fetch(network: self.network)
-            })
+            .onAppear {
+                refreshData()
+            }
+        }
+    }
+    
+    func refreshData() {
+        if tag == selection {
+            cityBikesViewModel.fetch(network: self.network)
         }
     }
 }
