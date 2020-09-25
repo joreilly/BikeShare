@@ -68,6 +68,7 @@ dependencies {
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.androidViewModel)
+    implementation(Koin.compose)
 
     testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test:runner:1.2.0")

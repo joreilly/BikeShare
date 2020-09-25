@@ -7,7 +7,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.foundation.lazy.LazyColumnItems
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -29,17 +28,16 @@ import com.surrus.common.remote.Station
 import com.surrus.common.remote.freeBikes
 import com.surrus.common.remote.slots
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.compose.getViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val bikeShareViewModel: BikeShareViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             BikeShareTheme {
-                mainLayout(bikeShareViewModel)
+                mainLayout()
             }
         }
     }
@@ -47,9 +45,10 @@ class MainActivity : AppCompatActivity() {
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun mainLayout(bikeShareViewModel: BikeShareViewModel) {
+fun mainLayout() {
     var bottomBarSelectedIndex by remember { mutableStateOf(0) }
 
+    val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val stationsState = bikeShareViewModel.stations.collectAsState()
 
     Scaffold(
