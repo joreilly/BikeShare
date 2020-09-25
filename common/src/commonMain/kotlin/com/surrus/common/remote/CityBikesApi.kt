@@ -11,7 +11,7 @@ import io.ktor.client.request.get
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-
+import org.kodein.db.model.orm.Metadata
 
 
 @Serializable
@@ -22,7 +22,7 @@ data class NetworkListResult(val networks: List<Network>)
 
 
 @Serializable
-data class Network(@SerialName("id") val networkId: String, val name: String, val location: Location, val stations: List<Station> = emptyList())
+data class Network(override val id: String, val name: String, val location: Location, val stations: List<Station> = emptyList()) : Metadata
 
 
 @Serializable
@@ -53,7 +53,7 @@ class CityBikesApi {
             }
             install(Logging) {
                 logger = Logger.DEFAULT
-                level = LogLevel.INFO
+                level = LogLevel.ALL
             }
         }
     }

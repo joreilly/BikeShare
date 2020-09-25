@@ -9,6 +9,8 @@ object Versions {
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-alpha04"
 
+    const val kodein_db = "0.3.0-beta"
+
     const val junit = "4.12"
 }
 

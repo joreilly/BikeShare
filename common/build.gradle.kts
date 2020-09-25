@@ -24,6 +24,18 @@ android {
             minifyEnabled(false)
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 // CocoaPods requires the podspec to have a version.
@@ -53,10 +65,10 @@ kotlin {
 
 
 
-    js {
-        browser {
-        }
-    }
+//    js {
+//        browser {
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -69,9 +81,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
 
-
                 // Serialize
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
+
+                // Kodein-DB
+                implementation ("org.kodein.db:kodein-db:${Versions.kodein_db}")
+                implementation ("org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}")
             }
         }
 
@@ -94,10 +109,10 @@ kotlin {
         }
 
 
-        val jsMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-js:${Versions.ktor}")
-            }
-        }
+//        val jsMain by getting {
+//            dependencies {
+//                implementation("io.ktor:ktor-client-js:${Versions.ktor}")
+//            }
+//        }
     }
 }
