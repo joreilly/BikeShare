@@ -1,9 +1,9 @@
 
 object Versions {
     const val kotlin = "1.4.10"
-    const val kotlinCoroutines = "1.3.9-native-mt-2"
-    const val ktor = "1.4.1"
-    const val kotlinxSerialization = "1.0.0-RC2"
+    const val kotlinCoroutines = "1.3.9-native-mt"
+    const val ktor = "1.4.0"
+    const val kotlinxSerialization = "1.0.0-RC"
     const val koin = "2.2.0-beta-2"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"

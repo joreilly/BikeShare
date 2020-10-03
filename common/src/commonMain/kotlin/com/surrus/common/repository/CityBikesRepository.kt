@@ -30,12 +30,12 @@ class CityBikesRepository  {
         }
     }
 
-private suspend fun fetchAndStoreNetworkList() {
-    val networkList = cityBikesApi.fetchNetworkList().networks
-    networkList.forEach {
-        db.put(it)
+    private suspend fun fetchAndStoreNetworkList() {
+        val networkList = cityBikesApi.fetchNetworkList().networks
+        networkList.forEach {
+            db.put(it)
+        }
     }
-}
 
     @Throws(Exception::class)
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {

@@ -22,6 +22,14 @@ struct ContentView : View {
                         Text("Oslo")
                     }
                 }.tag(1)
+            NetworkListView(cityBikesViewModel: cityBikesViewModel)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "location")
+                        Text("Networks")
+                    }
+                }.tag(2)
+
             }
         
     }
@@ -51,7 +59,7 @@ struct StationListView: View {
     
     func refreshData() {
         if tag == selection {
-            cityBikesViewModel.fetch(network: self.network)
+            cityBikesViewModel.fetchBikeShareInfo(network: self.network)
         }
     }
 }
@@ -78,6 +86,23 @@ struct StationView : View {
                     Text("Slots:").font(.subheadline).frame(width: 80, alignment: .leading)
                     Text("\(station.slots())").font(.subheadline)
                 }
+            }
+        }
+    }
+}
+
+
+struct NetworkListView : View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+
+    var body: some View {
+        NavigationView {
+            List(cityBikesViewModel.networkList, id: \.id) { network in
+                Text(network.name + " (" + network.location.city + ")")
+            }
+            .navigationBarTitle(Text("Networks"))
+            .onAppear {
+                cityBikesViewModel.fetchNetworks()
             }
         }
     }
