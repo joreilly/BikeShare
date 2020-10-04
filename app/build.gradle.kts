@@ -69,6 +69,7 @@ dependencies {
     implementation(Compose.foundationLayout)
     implementation(Compose.material)
     implementation(Compose.runtimeLiveData)
+    implementation("com.github.zsoltk:compose-router:${Versions.composeRouterVersion}")
 
     implementation(Koin.core)
     implementation(Koin.android)

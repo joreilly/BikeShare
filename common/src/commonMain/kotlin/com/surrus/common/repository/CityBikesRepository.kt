@@ -19,13 +19,13 @@ class CityBikesRepository  {
     private lateinit var db: DB
 
     init {
-        GlobalScope.launch(Dispatchers.Main) {
-            db = DB.factory
-                .inDir(getApplicationFilesDirectoryPath())
-                .open("bikeshare_db", TypeTable {
-                    root<Network>()
-                }, KotlinxSerializer())
+        db = DB.factory
+            .inDir(getApplicationFilesDirectoryPath())
+            .open("bikeshare_db", TypeTable {
+                root<Network>()
+            }, KotlinxSerializer())
 
+        GlobalScope.launch(Dispatchers.Main) {
             fetchAndStoreNetworkList()
         }
     }
