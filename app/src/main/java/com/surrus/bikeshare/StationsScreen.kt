@@ -1,16 +1,19 @@
 package com.surrus.bikeshare
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -61,29 +64,31 @@ fun StationsScreen() {
 
 @Composable
 fun StationView(station: Station) {
-    Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
-        verticalAlignment = Alignment.CenterVertically) {
+    Card(elevation = 12.dp, shape = RoundedCornerShape(4.dp), modifier = Modifier.fillMaxWidth()) {
 
-        Image(asset = vectorResource(R.drawable.ic_bike),
-            colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-            modifier = Modifier.preferredSize(32.dp))
+        Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
+            verticalAlignment = Alignment.CenterVertically) {
 
-        Spacer(modifier = Modifier.preferredSize(16.dp))
+            Image(asset = vectorResource(R.drawable.ic_bike),
+                colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
+                modifier = Modifier.preferredSize(32.dp))
 
-        Column {
-            Text(text = station.name, style = MaterialTheme.typography.h6)
+            Spacer(modifier = Modifier.preferredSize(16.dp))
 
-            val textStyle = MaterialTheme.typography.body2
-            Row {
-                Text("Free:", modifier = Modifier.width(48.dp), style = textStyle)
-                Text(text = station.freeBikes().toString(), style = textStyle)
-            }
-            Row {
-                Text("Slots:", modifier = Modifier.width(48.dp), style = textStyle)
-                Text(text = station.slots().toString(), style = textStyle)
+            Column {
+                Text(text = station.name, style = MaterialTheme.typography.h6)
+
+                val textStyle = MaterialTheme.typography.body2
+                Row {
+                    Text("Free:", modifier = Modifier.width(48.dp), style = textStyle)
+                    Text(text = station.freeBikes().toString(), style = textStyle)
+                }
+                Row {
+                    Text("Slots:", modifier = Modifier.width(48.dp), style = textStyle)
+                    Text(text = station.slots().toString(), style = textStyle)
+                }
             }
         }
     }
-    Divider()
 }
 
