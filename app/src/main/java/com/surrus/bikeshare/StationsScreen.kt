@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.AmbientNavController
 import com.surrus.bikeshare.ui.highAvailabilityColor
@@ -70,11 +71,11 @@ fun StationView(station: Station) {
 
                 val textStyle = MaterialTheme.typography.body2
                 Row {
-                    Text("Free:", modifier = Modifier.width(48.dp), style = textStyle)
+                    Text("Free:", style = textStyle, textAlign = TextAlign.Justify, modifier = Modifier.width(48.dp))
                     Text(text = station.freeBikes().toString(), style = textStyle)
                 }
                 Row {
-                    Text("Slots:", modifier = Modifier.width(48.dp), style = textStyle)
+                    Text("Slots:", style = textStyle, textAlign = TextAlign.Justify, modifier = Modifier.width(48.dp), )
                     Text(text = station.slots().toString(), style = textStyle)
                 }
             }
