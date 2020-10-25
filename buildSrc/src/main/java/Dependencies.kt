@@ -8,7 +8,7 @@ object Versions {
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-alpha05"
-    const val composeRouterVersion = "0.18.0"
+    const val coilVersion = "0.3.1"
 
     const val kodein_db = "0.3.0-beta"
 
@@ -22,7 +22,9 @@ object Compose {
     const val uiTooling = "androidx.ui:ui-tooling:${Versions.compose}"
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
-    const val runtimeLiveData =  "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    const val navigation = "androidx.navigation:navigation-compose:1.0.0-SNAPSHOT"
+    const val accompanist= "dev.chrisbanes.accompanist:accompanist-coil:${Versions.coilVersion}"
 }
 
 object Koin {

@@ -2,79 +2,54 @@ package com.surrus.bikeshare
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.setContent
+import androidx.core.os.bundleOf
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.surrus.bikeshare.ui.BikeShareTheme
-import com.github.zsoltk.compose.backpress.AmbientBackPressHandler
-import com.github.zsoltk.compose.backpress.BackPressHandler
-import com.github.zsoltk.compose.router.Router
 
 
 class MainActivity : AppCompatActivity() {
-    private val backPressHandler = BackPressHandler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Providers(AmbientBackPressHandler provides backPressHandler) {
-                MainLayout(Routing.StationsScreenRoute)
-            }
+            MainLayout()
         }
     }
 }
 
 
-sealed class Routing(val title: String) {
-    object StationsScreenRoute: Routing("Stations")
-    object NetworkScreenRoute: Routing("Networks")
+sealed class Screen(val title: String) {
+    object CountryListScreen : Screen("CountryList")
+    object NetworkListScreen : Screen("NetworkList")
+    object StationsScreen : Screen("Stations")
 }
 
 
 @Composable
-fun MainLayout(defaultRouting: Routing) {
-    val screenList = listOf(Routing.StationsScreenRoute, Routing.NetworkScreenRoute)
+fun MainLayout() {
+    val navController = rememberNavController()
 
     BikeShareTheme {
-        Scaffold(
-            topBar = { TopAppBar(title = { Text("Bike Share") }) },
-            bodyContent = { innerPadding ->
-                Column {
-                    Router(defaultRouting) { backStack ->
-                        HomeTabs(screenList, backStack.last()) {
-                            backStack.push(it)
-                        }
-
-                        when (backStack.last()) {
-                            is Routing.StationsScreenRoute -> StationsScreen()
-                            is Routing.NetworkScreenRoute -> NetworksScreen()
-                        }
-                    }
+        NavHost(navController, startDestination = Screen.CountryListScreen.title) {
+            composable(Screen.CountryListScreen.title) {
+                CountryListScreen {
+                    navController.navigate(Screen.NetworkListScreen.title, bundleOf("countryCode" to it))
                 }
             }
-        )
-    }
-}
-
-
-
-@Composable
-private fun HomeTabs(screenList: List<Routing>, selectedScreen: Routing, onScreenSelected: (Routing) -> Unit) {
-    val selectedIndex = screenList.indexOfFirst { it == selectedScreen }
-
-    TabRow(selectedTabIndex = selectedIndex) {
-        screenList.forEachIndexed { index, screen ->
-            Tab(
-                selected = index == selectedIndex,
-                onClick = { onScreenSelected(screen) },
-                text = { Text(screen.title, style = MaterialTheme.typography.body2) }
-            )
+            composable(Screen.NetworkListScreen.title) { backStackEntry ->
+                NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String) {
+                    navController.navigate(Screen.StationsScreen.title, bundleOf("networkId" to it))
+                }
+            }
+            composable(Screen.StationsScreen.title) { backStackEntry ->
+                StationsScreen(backStackEntry.arguments?.get("networkId") as String)
+            }
         }
     }
 }
-
-
-

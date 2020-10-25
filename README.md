@@ -9,7 +9,7 @@ Running on
 * Web
 
 Using following dependencies
-* Kotlin: 1.4.0
+* Kotlin: 1.4.10
 * Kotlinx Coroutines: 1.3.9-native-mt
 * Kotlinx Serialization: 1.0.0-RC
 * Ktor: 1.4.0
@@ -26,3 +26,5 @@ The macOS client uses functionality only available in SwiftUI 2 and as a result 
 ### Web client
 
 There's a very basic Kotlin/JS (+react) client in `web` module.  To exercise this run `./gradlew :web:browserDevelopmentRun`.
+
+Note that this makes use of https://github.com/Shusshu/android-flags for flag images shown.

@@ -45,8 +45,8 @@ class CityBikesRepository  {
 
     @Throws(Exception::class)
     suspend fun fetchGroupedNetworkList() : Map<String, List<Network>> {
-        val result = cityBikesApi.fetchNetworkList()
-        return result.networks.groupBy { it.location.country }
+        val networks = db.find<Network>().all().useModels { it.toList() }
+        return networks.groupBy { it.location.country }
     }
 
     @Throws(Exception::class)
