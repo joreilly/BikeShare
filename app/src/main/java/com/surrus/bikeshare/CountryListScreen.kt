@@ -29,7 +29,9 @@ import java.util.*
 @Composable
 fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
-    val countryCodeLIst = bikeShareViewModel.groupedNetworks.value.keys.toList().sortedBy { it.displayName }
+    val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
+
+    val countryCodeLIst = groupedNetworkListState.value.keys.toList().sortedBy { it.displayName }
 
     Scaffold(
         topBar = {

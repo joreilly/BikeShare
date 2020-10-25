@@ -15,7 +15,6 @@ object Versions {
     const val junit = "4.12"
 }
 
-
 object Compose {
     const val ui = "androidx.compose.ui:ui:${Versions.compose}"
     const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"

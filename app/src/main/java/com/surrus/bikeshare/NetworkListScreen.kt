@@ -1,5 +1,6 @@
 package com.surrus.bikeshare
 
+import android.util.Log
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.AmbientNavController
 import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
+import com.surrus.bikeshare.ui.viewmodel.Country
 import com.surrus.common.remote.Network
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
@@ -26,15 +28,20 @@ import org.koin.androidx.compose.getViewModel
 fun NetworkListScreen(countryCode: String, networkSelected: (network: String) -> Unit) {
     val navController = AmbientNavController.current
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
+    val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
 
-    val countryKeys = bikeShareViewModel.groupedNetworks.value.filterKeys { it.code == countryCode }
-    val country = countryKeys.keys.toList()[0]
-    val networkList = bikeShareViewModel.groupedNetworks.value[country]
+    var networkList: List<Network>? = null
+    var country: Country? = null
+    val countryKeys = groupedNetworkListState.value.filterKeys { it.code == countryCode }
+    if (countryKeys.isNotEmpty()) {
+        country = countryKeys.keys.toList()[0]
+        networkList = groupedNetworkListState.value[country]
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("BikeShare - ${country.displayName}") },
+                title = { Text("BikeShare - ${country?.displayName}") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.Filled.ArrowBack) }
                 }

@@ -8,10 +8,8 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import org.kodein.db.model.orm.Metadata
 
 
 @Serializable
@@ -20,14 +18,11 @@ data class NetworkResult(val network: Network)
 @Serializable
 data class NetworkListResult(val networks: List<Network>)
 
-
 @Serializable
-data class Network(override val id: String, val name: String, val location: Location, val stations: List<Station> = emptyList()) : Metadata
-
+data class Network(val id: String, val name: String, val location: Location, val stations: List<Station> = emptyList())
 
 @Serializable
 data class Location(val city: String, val country: String, val latitude: Double, val longitude: Double)
-
 
 @Serializable
 data class Station(val id: String? = "", val name: String,

@@ -85,8 +85,8 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
 
                 // Kodein-DB
-                api ("org.kodein.db:kodein-db:${Versions.kodein_db}")
-                api ("org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}")
+                api("org.kodein.db:kodein-db:${Versions.kodein_db}")
+                api("org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}")
             }
         }
 
@@ -116,3 +116,6 @@ kotlin {
 //        }
     }
 }
+
+
+
