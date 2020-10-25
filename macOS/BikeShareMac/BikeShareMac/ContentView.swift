@@ -77,7 +77,7 @@ struct StationListView: View {
     let networks: [Network]
 
     var body: some View {
-        List(networks.sorted(by: { $0.location.city < $1.location.city }), id: \.networkId) { network in
+        List(networks.sorted(by: { $0.location.city < $1.location.city }), id: \.id) { network in
             NavigationLink(destination: BikeNetworkView(cityBikesViewModel: cityBikesViewModel,network: network)) {
                 Text("\(network.name) (\(network.location.city))").font(.subheadline)
             }
@@ -108,7 +108,7 @@ struct BikeNetworkView : View {
         .onAppear(perform: {
             region.center = CLLocationCoordinate2D(latitude: network.location.latitude,
                                                    longitude: network.location.longitude)
-            self.cityBikesViewModel.fetch(network: network.networkId)
+            self.cityBikesViewModel.fetch(network: network.id)
         })
     }
 }
