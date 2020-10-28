@@ -16,17 +16,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.AmbientNavController
+import androidx.navigation.NavController
 import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
 import com.surrus.bikeshare.ui.viewmodel.Country
 import com.surrus.common.remote.Network
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.firstOrNull
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun NetworkListScreen(countryCode: String, networkSelected: (network: String) -> Unit) {
-    val navController = AmbientNavController.current
+fun NetworkListScreen(navController: NavController, countryCode: String, networkSelected: (network: String) -> Unit) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
 

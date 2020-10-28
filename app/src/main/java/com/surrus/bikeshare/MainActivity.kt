@@ -39,16 +39,16 @@ fun MainLayout() {
         NavHost(navController, startDestination = Screen.CountryListScreen.title) {
             composable(Screen.CountryListScreen.title) {
                 CountryListScreen {
-                    navController.navigate(Screen.NetworkListScreen.title, bundleOf("countryCode" to it))
+                    navController.navigate(Screen.NetworkListScreen.title + "/$it")
                 }
             }
-            composable(Screen.NetworkListScreen.title) { backStackEntry ->
-                NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String) {
-                    navController.navigate(Screen.StationsScreen.title, bundleOf("networkId" to it))
+            composable(Screen.NetworkListScreen.title + "/{countryCode}") { backStackEntry ->
+                NetworkListScreen(navController, backStackEntry.arguments?.get("countryCode") as String) {
+                    navController.navigate(Screen.StationsScreen.title + "/$it")
                 }
             }
-            composable(Screen.StationsScreen.title) { backStackEntry ->
-                StationsScreen(backStackEntry.arguments?.get("networkId") as String)
+            composable(Screen.StationsScreen.title + "/{networkId}") { backStackEntry ->
+                StationsScreen(navController, backStackEntry.arguments?.get("networkId") as String)
             }
         }
     }

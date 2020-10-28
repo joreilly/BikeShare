@@ -18,7 +18,6 @@ allprojects {
         maven { url = "https://dl.bintray.com/ekito/koin" }
         maven { url "https://dl.bintray.com/kodein-framework/Kodein-DB" }
         maven { url 'https://jitpack.io' }
-        maven { url = "https://androidx.dev/snapshots/builds/6910220/artifacts/repository" }
     }
 }
 
