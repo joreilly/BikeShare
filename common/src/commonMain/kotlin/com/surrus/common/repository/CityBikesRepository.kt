@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import org.kodein.db.*
@@ -24,7 +25,8 @@ class CityBikesRepository  {
     private val cityBikesApi = CityBikesApi()
     private var db: DB
 
-    val groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+    private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+    val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
 
     init {
         db = DB.factory
@@ -35,7 +37,7 @@ class CityBikesRepository  {
 
         db.on<NetworkList>().register {
             didPut { networkListData ->
-                groupedNetworkList.value = networkListData.networks.groupBy { it.location.country }
+                _groupedNetworkList.value = networkListData.networks.groupBy { it.location.country }
             }
             didDelete { }
         }
