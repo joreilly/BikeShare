@@ -4,12 +4,10 @@ import com.surrus.common.getApplicationFilesDirectoryPath
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
 import com.surrus.common.remote.Station
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 import kotlinx.serialization.Serializable
 import org.kodein.db.*
 import org.kodein.db.impl.factory
@@ -24,9 +22,13 @@ data class NetworkList(override val id: String, val networks: List<Network>) : M
 class CityBikesRepository  {
     private val cityBikesApi = CityBikesApi()
     private var db: DB
+    private val coroutineScope: CoroutineScope = MainScope()
 
     private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
     val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
+
+    private val _networkList = MutableStateFlow<List<Network>>(emptyList())
+    val networkList: StateFlow<List<Network>> = _networkList
 
     init {
         db = DB.factory
@@ -37,12 +39,13 @@ class CityBikesRepository  {
 
         db.on<NetworkList>().register {
             didPut { networkListData ->
+                _networkList.value = networkListData.networks
                 _groupedNetworkList.value = networkListData.networks.groupBy { it.location.country }
             }
             didDelete { }
         }
 
-        GlobalScope.launch(Dispatchers.Main) {
+        coroutineScope.launch { 
             fetchAndStoreNetworkList()
         }
     }
@@ -60,13 +63,22 @@ class CityBikesRepository  {
     }
 
     @Throws(Exception::class)
-    suspend fun fetchGroupedNetworkList() : Map<String, List<Network>> {
-        return groupedNetworkList.value
+    suspend fun fetchGroupedNetworkList(success: (Map<String, List<Network>>) -> Unit)  {
+        coroutineScope.launch {
+            groupedNetworkList.collect {
+                success(it)
+            }
+        }
     }
 
     @Throws(Exception::class)
-    suspend fun fetchNetworkList() : List<Network> {
-        val key = db.key<NetworkList>("networkList")
-        return db[key]?.networks ?: emptyList()
+    suspend fun fetchNetworkList(success: (List<Network>) -> Unit)  {
+        coroutineScope.launch {
+            networkList.collect {
+                success(it)
+            }
+        }
     }
+
+
 }

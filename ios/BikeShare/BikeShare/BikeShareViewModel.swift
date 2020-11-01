@@ -12,16 +12,15 @@ class CityBikesViewModel: ObservableObject {
     }
  
     func fetchNetworks() {
-        repository.fetchNetworkList() { data, error in
-            if let networkList = data {
-                self.networkList = networkList
-            }
+        repository.fetchNetworkList(success: { data in
+            self.networkList = data
+        }) { (result, error) in
             if let errorReal = error {
-               print(errorReal)
+                print(errorReal)
             }
         }
     }
-
+    
     
     func fetchBikeShareInfo(network: String) {
         repository.fetchBikeShareInfo(network: network) { data, error in
