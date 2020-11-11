@@ -4,12 +4,12 @@ object Versions {
     const val kotlinCoroutines = "1.3.9-native-mt"
     const val ktor = "1.4.0"
     const val kotlinxSerialization = "1.0.0-RC"
-    const val koin = "2.2.0-beta-2"
+    const val koin = "2.2.1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha06"
-    const val nav_compose_version = "1.0.0-alpha01"
-    const val coilVersion = "0.3.1"
+    const val compose = "1.0.0-alpha07"
+    const val nav_compose_version = "1.0.0-alpha02"
+    const val coilVersion = "0.3.3.1"
 
     const val kodein_db = "0.3.0-beta"
 
