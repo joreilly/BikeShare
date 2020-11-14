@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftUIRefresh
 import common
 
 
@@ -41,6 +42,7 @@ struct StationListView: View {
     var network: String
     var tag: Int
     @Binding var selection: Int
+    @State private var isShowing = false
  
     var body: some View {
         NavigationView {
@@ -53,6 +55,12 @@ struct StationListView: View {
             }
             .onAppear {
                 refreshData()
+            }
+            .pullToRefresh(isShowing: $isShowing) {
+                refreshData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.isShowing = false
+                }
             }
         }
     }

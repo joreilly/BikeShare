@@ -1,0 +1,6 @@
+module Pods_BikeShare {
+  umbrella header "Pods-BikeShare-umbrella.h"
+
+  export *
+  module * { export * }
+}

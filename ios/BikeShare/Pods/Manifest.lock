@@ -1,16 +1,27 @@
 PODS:
   - common (1.0)
+  - Introspect (0.1.1)
+  - SwiftUIRefresh (0.0.3):
+    - Introspect (~> 0.1.0)
 
 DEPENDENCIES:
   - common (from `../../common`)
+  - SwiftUIRefresh
+
+SPEC REPOS:
+  trunk:
+    - Introspect
+    - SwiftUIRefresh
 
 EXTERNAL SOURCES:
   common:
     :path: "../../common"
 
 SPEC CHECKSUMS:
-  common: 76c359cba804461b4521dee28747abbf3bd40715
+  common: 71b0c52c1eec02792ae942ca52e7e05066dbe4af
+  Introspect: 50c17d6b1f091f4cfd678ea8a4157ac071808fe3
+  SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
 
-PODFILE CHECKSUM: 1bb234ed5cd4f2009be0427fa6c34d50bdecc5e6
+PODFILE CHECKSUM: 5040f2961bf963713288c6e014e84211f56fdfa5
 
 COCOAPODS: 1.9.3
