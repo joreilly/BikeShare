@@ -1,7 +1,5 @@
 package com.surrus.bikeshare
 
-import android.util.Log
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,7 +37,9 @@ fun NetworkListScreen(navController: NavController, countryCode: String, network
             TopAppBar(
                 title = { Text("BikeShare - ${country?.displayName}") },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.Filled.ArrowBack) }
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.Filled.ArrowBack)
+                    }
                 }
             )
         },
