@@ -1,4 +1,4 @@
 enableFeaturePreview('GRADLE_METADATA')
 
-include ':app', ':common', ':web'
+include ':app', ':common'
 rootProject.name='BikeShare'
