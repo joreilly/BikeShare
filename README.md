@@ -7,6 +7,9 @@ Running on
 * macOS
 * Android
 
+![BikeShare Screenshot](/art/screenshot1.png?raw=true )
+![BikeShare Screenshot](/art/screenshot2.png?raw=true )
+
 Note that, due to use of Jetpack Compose, Android Studio Canary is required to build/run Android client (currently 4.2 Canary 7).
 The iOS client has been tested in latest released version of XCode (currently 12.0). See below regarding macOS build.
 When opening iOS and macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)

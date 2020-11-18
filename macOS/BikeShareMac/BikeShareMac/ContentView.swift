@@ -103,7 +103,7 @@ struct BikeNetworkView : View {
             annotationItems: self.cityBikesViewModel.stationList) { (station) -> MapPin in
                 let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
                                                         longitude: station.longitude)
-            return MapPin(coordinate: coordinate) //, tint: station.freeBikes() < 5 ? Color.red : Color.green)
+            return MapPin(coordinate: coordinate, tint: station.freeBikes() < 5 ? Color.red : Color.green)
         }
         .onAppear(perform: {
             region.center = CLLocationCoordinate2D(latitude: network.location.latitude,
