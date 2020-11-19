@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.surrus.bikeshare.ui.highAvailabilityColor
 import com.surrus.bikeshare.ui.lowAvailabilityColor
 import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
@@ -24,7 +23,7 @@ import com.surrus.common.remote.slots
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun StationsScreen(navController: NavController, networkId: String) {
+fun StationsScreen(networkId: String, popBack: () -> Unit) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val stationsState = bikeShareViewModel.stations.collectAsState()
 
@@ -35,7 +34,7 @@ fun StationsScreen(navController: NavController, networkId: String) {
             TopAppBar(
                 title = { Text("BikeShare - $networkId") },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.Filled.ArrowBack) }
+                    IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack) }
                 }
             )
         },

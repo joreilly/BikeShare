@@ -13,14 +13,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
 import com.surrus.bikeshare.ui.viewmodel.Country
 import com.surrus.common.remote.Network
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun NetworkListScreen(navController: NavController, countryCode: String, networkSelected: (network: String) -> Unit) {
+fun NetworkListScreen(countryCode: String, networkSelected: (network: String) -> Unit,  popBack: () -> Unit) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
 
@@ -37,7 +36,7 @@ fun NetworkListScreen(navController: NavController, countryCode: String, network
             TopAppBar(
                 title = { Text("BikeShare - ${country?.displayName}") },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { popBack() }) {
                         Icon(Icons.Filled.ArrowBack)
                     }
                 }

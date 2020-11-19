@@ -43,12 +43,13 @@ fun MainLayout() {
                 }
             }
             composable(Screen.NetworkListScreen.title + "/{countryCode}") { backStackEntry ->
-                NetworkListScreen(navController, backStackEntry.arguments?.get("countryCode") as String) {
-                    navController.navigate(Screen.StationsScreen.title + "/$it")
-                }
+                NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String,
+                    networkSelected = { navController.navigate(Screen.StationsScreen.title + "/$it") },
+                    popBack = { navController.popBackStack() } )
             }
             composable(Screen.StationsScreen.title + "/{networkId}") { backStackEntry ->
-                StationsScreen(navController, backStackEntry.arguments?.get("networkId") as String)
+                StationsScreen(backStackEntry.arguments?.get("networkId") as String,
+                    popBack = { navController.popBackStack() } )
             }
         }
     }
