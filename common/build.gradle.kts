@@ -54,6 +54,7 @@ kotlin {
 
         macosX64("macOS")
         android()
+        jvm()
     }
 
 
@@ -70,13 +71,13 @@ kotlin {
                 // Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
 
-                implementation("io.ktor:ktor-client-core:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-json:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-logging:${Versions.ktor}")
-                implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                implementation(Ktor.clientCore)
+                implementation(Ktor.clientJson)
+                implementation(Ktor.clientLogging)
+                implementation(Ktor.clientSerialization)
 
                 // Serialize
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
+                implementation(Serialization.core)
 
                 // Kodein-DB
                 api("org.kodein.db:kodein-db:${Versions.kodein_db}")
@@ -89,19 +90,26 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:${Versions.ktor}")
+                implementation(Ktor.clientAndroid)
             }
         }
 
         val iOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation(Ktor.clientIos)
             }
         }
 
         val macOSMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:${Versions.ktor}")
+                implementation(Ktor.clientIos)
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(Ktor.clientApache)
+                implementation(Ktor.slf4j)
             }
         }
     }

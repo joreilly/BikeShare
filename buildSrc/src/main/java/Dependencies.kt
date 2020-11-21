@@ -10,6 +10,7 @@ object Versions {
     const val compose = "1.0.0-alpha07"
     const val nav_compose_version = "1.0.0-alpha02"
     const val coilVersion = "0.3.3.1"
+    const val slf4j = "1.7.30"
 
     const val kermit = "0.1.8"
     const val kodein_db = "0.3.0-beta"
@@ -39,4 +40,22 @@ object Koin {
     val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
 }
 
+object Serialization {
+    val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+}
+
+
+object Ktor {
+    val clientCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+    val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
+    val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+    val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+
+    val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
+    val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
+    val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
+    val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
+    val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
+}
 
