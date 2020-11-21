@@ -11,9 +11,14 @@ object Versions {
     const val nav_compose_version = "1.0.0-alpha02"
     const val coilVersion = "0.3.3.1"
 
+    const val kermit = "0.1.8"
     const val kodein_db = "0.3.0-beta"
 
     const val junit = "4.12"
+}
+
+object Deps {
+    const val kermit = "co.touchlab:kermit:${Versions.kermit}"
 }
 
 object Compose {

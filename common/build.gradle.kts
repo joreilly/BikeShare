@@ -81,6 +81,9 @@ kotlin {
                 // Kodein-DB
                 api("org.kodein.db:kodein-db:${Versions.kodein_db}")
                 api("org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}")
+
+                // kermit
+                api(Deps.kermit)
             }
         }
 

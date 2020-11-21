@@ -5,9 +5,7 @@ import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
 import com.surrus.common.remote.Station
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.serialization.Serializable
 import org.kodein.db.*
 import org.kodein.db.impl.factory
@@ -80,5 +78,16 @@ class CityBikesRepository  {
         }
     }
 
+    fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
+        while (true) {
+            val stations = cityBikesApi.fetchBikeShareInfo(network).network.stations
+            println(stations)
+            emit(stations)
+            delay(POLL_INTERVAL)
+        }
+    }
 
+    companion object {
+        private const val POLL_INTERVAL = 10000L
+    }
 }
