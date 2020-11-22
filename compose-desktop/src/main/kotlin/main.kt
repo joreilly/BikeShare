@@ -1,3 +1,4 @@
+import androidx.compose.animation.animate
 import androidx.compose.desktop.AppManager
 import androidx.compose.desktop.ComposePanel
 import androidx.compose.desktop.setContent
@@ -10,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
@@ -68,7 +70,10 @@ fun createMap() : JXMapViewer {
 @Composable
 fun BikeShareView()  {
     val cityBikesApi = CityBikesApi()
-    var networkId by remember { mutableStateOf("") }
+
+    var selectedCountry by remember { mutableStateOf<Country?>(null) }
+    var selectedNetwork by remember { mutableStateOf<Network?>(null) }
+
     var networkList by remember { mutableStateOf(emptyList<Network>()) }
     var stationList by remember { mutableStateOf(emptyList<Station>()) }
     var groupedNetworkList: Map<Country, List<Network>> by remember { mutableStateOf(emptyMap()) }
@@ -89,9 +94,12 @@ fun BikeShareView()  {
         println(countryList)
     }
 
-    LaunchedEffect(networkId) {
-        if (networkId.isNotEmpty()) {
-            stationList = cityBikesApi.fetchBikeShareInfo(networkId).network.stations
+    LaunchedEffect(selectedNetwork) {
+        selectedNetwork?.let {
+            val city = GeoPosition(it.location.latitude, it.location.longitude)
+            map?.addressLocation = city
+
+            stationList = cityBikesApi.fetchBikeShareInfo(it.id).network.stations
 
             val wpp = WaypointPainter<Waypoint>()
             val wpSet = mutableSetOf<Waypoint>()
@@ -109,15 +117,19 @@ fun BikeShareView()  {
 
     MaterialTheme {
         Row {
-            Box(Modifier.width(200.dp).fillMaxHeight()) {
+            Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
                 LazyColumnFor(items = countryList, itemContent = { country ->
                     Row(
                         Modifier.clickable(onClick = {
+                            selectedCountry = country
                             networkList = groupedNetworkList[country]!!
                         }).padding(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(country.displayName)
+                        Text(country.displayName,
+                            color = animate(if (country == selectedCountry) Color.White else Color.LightGray),
+                            style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                        )
                     }
                 })
             }
@@ -129,13 +141,14 @@ fun BikeShareView()  {
                 LazyColumnFor(items = networkList, itemContent = { network ->
                     Row(
                         Modifier.clickable(onClick = {
-                            networkId = network.id
-                            val city = GeoPosition(network.location.latitude, network.location.longitude)
-                            map?.addressLocation = city
+                            selectedNetwork = network
                         }).padding(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("${network.name} (${network.location.city})")
+                        Text("${network.name} (${network.location.city})",
+                            color = animate(if (network == selectedNetwork) Color.Black else Color.Gray),
+                            style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                        )
                     }
                 })
             }
