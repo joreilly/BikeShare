@@ -1,10 +1,11 @@
 package com.surrus.bikeshare.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import co.touchlab.kermit.Kermit
+import com.surrus.common.remote.Station
 import com.surrus.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.map
 import java.util.*
 
 data class Country(val code: String, val displayName: String)
@@ -14,9 +15,8 @@ class BikeShareViewModel(
     private val logger: Kermit
 ) : ViewModel() {
 
-    val network = MutableStateFlow<String>("")
-    val stations =  network.flatMapLatest { cityBikesRepository.pollNetworkUpdates(it) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+    val network = MutableLiveData<String>("")
+    val stations = network.switchMap { cityBikesRepository.pollNetworkUpdates(it).asLiveData() }
 
     val groupedNetworks = cityBikesRepository.groupedNetworkList.map {
         it.mapKeys {
