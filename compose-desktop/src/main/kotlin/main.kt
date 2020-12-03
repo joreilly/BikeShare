@@ -1,7 +1,6 @@
 import androidx.compose.animation.animate
 import androidx.compose.desktop.AppManager
 import androidx.compose.desktop.ComposePanel
-import androidx.compose.desktop.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
