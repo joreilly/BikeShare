@@ -30,7 +30,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -71,6 +72,8 @@ dependencies {
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.compose)
+
+    implementation("org.osmdroid:osmdroid-android:6.1.10")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.3.0")

@@ -13,6 +13,7 @@ import org.kodein.db.*
 import org.kodein.db.impl.inDir
 import org.kodein.db.model.orm.Metadata
 import org.kodein.db.orm.kotlinx.KotlinxSerializer
+import kotlin.coroutines.CoroutineContext
 
 
 @Serializable
@@ -88,7 +89,32 @@ class CityBikesRepository: KoinComponent {
         }
     }
 
+
+    val scope: CoroutineScope = object : CoroutineScope {
+        override val coroutineContext: CoroutineContext
+            get() = SupervisorJob() + Dispatchers.Default
+    }
+
     companion object {
         private const val POLL_INTERVAL = 10000L
     }
+}
+
+
+sealed class FlowWrapper<T>(private val flow: Flow<T>) {
+    init {
+        //freeze()
+    }
+
+    fun subscribe(
+        scope: CoroutineScope,
+        onEach: (item: T) -> Unit,
+        onComplete: () -> Unit,
+        onThrow: (error: Throwable) -> Unit
+    ) = flow
+//        .onEach { onEach(it.freeze()) }
+//        .catch { onThrow(it.freeze()) } // catch{} before onCompletion{} or else completion hits rx first and ends stream
+        .onCompletion { onComplete() }
+        .launchIn(scope)
+//        .freeze()
 }
