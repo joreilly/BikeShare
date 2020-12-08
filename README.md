@@ -6,7 +6,7 @@ Running on
 * iOS (SwiftUI)
 * macOS (SwiftUI)
 * Android (Jetpack Compose)
-* Desktop (Jetpack Compose)
+* Desktop (Compose for Desktop)
 
 ![BikeShare Screenshot](/art/screenshot1.png?raw=true )
 ![BikeShare Screenshot](/art/screenshot2.png?raw=true )
@@ -19,7 +19,7 @@ When opening iOS and macOS projects remember to open `.xcworkspace` file (and no
 ### macOS client
 The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12.2 beta.
 
-### Jetpack Compose for Desktop client
+### Compose for Desktop client
 
 This client is available in `compose-desktop` module.  Note that you currently need to use EAP version of kotlin
 plugin and also use appropriate JVM when running (works for example with Java 11)
