@@ -2,7 +2,7 @@ package com.surrus.bikeshare
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -40,10 +40,10 @@ fun StationsScreen(networkId: String, popBack: () -> Unit) {
             )
         },
         bodyContent = { innerPadding ->
-            LazyColumnFor(
-                contentPadding = innerPadding,
-                items = stationsState.value) { station ->
-                StationView(station)
+            LazyColumn(contentPadding = innerPadding) {
+                items(items = stationsState.value, itemContent = { station ->
+                    StationView(station)
+                })
             }
         }
     )
@@ -57,7 +57,7 @@ fun StationView(station: Station) {
         Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically) {
 
-            Image(asset = vectorResource(R.drawable.ic_bike),
+            Image(vectorResource(R.drawable.ic_bike),
                 colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
                 modifier = Modifier.preferredSize(32.dp))
 

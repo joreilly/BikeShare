@@ -4,13 +4,14 @@ import android.content.res.Resources
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -20,7 +21,7 @@ import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
 import com.surrus.bikeshare.ui.viewmodel.Country
 import com.surrus.common.remote.freeBikes
 import org.koin.androidx.compose.getViewModel
-import java.util.*
+
 
 @Composable
 fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
@@ -34,8 +35,10 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
             TopAppBar(title = { Text("BikeShare - Countries") })
         },
         bodyContent = {
-            LazyColumnFor(items = countryCodeLIst) { country ->
-                CountryView(country, countrySelected)
+            LazyColumn {
+                items(items = countryCodeLIst, itemContent = { country ->
+                    CountryView(country, countrySelected)
+                })
             }
         }
     )
@@ -43,17 +46,17 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
 
 @Composable
 fun CountryView(country: Country, countrySelected: (countryCode: String) -> Unit) {
-    val context = ContextAmbient.current
+    val context = AmbientContext.current
 
     Row(
-        modifier = Modifier.fillMaxWidth() + Modifier.clickable(onClick = { countrySelected(country.code) })
-                + Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
+        modifier = Modifier.fillMaxWidth().clickable(onClick = { countrySelected(country.code) })
+                .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
         val flagResourceId = context.resources.getIdentifier("flag_${country.code}", "drawable", context.getPackageName())
         if (flagResourceId != 0) {
-            Image(asset = vectorResource(flagResourceId), modifier = Modifier.preferredSize(32.dp))
+            Image(vectorResource(flagResourceId), modifier = Modifier.preferredSize(32.dp))
         }
 
         Spacer(modifier = Modifier.preferredSize(16.dp))
