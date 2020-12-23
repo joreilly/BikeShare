@@ -41,6 +41,19 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 // CocoaPods requires the podspec to have a version.
 version = "1.0"
 
+// workaround for https://youtrack.jetbrains.com/issue/KT-43944
+android {
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
+
+
 kotlin {
     targets {
         val sdkName: String? = System.getenv("SDK_NAME")
