@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.Serializable
 import org.kodein.db.*
-import org.kodein.db.impl.factory
+import org.kodein.db.impl.inDir
 import org.kodein.db.model.orm.Metadata
 import org.kodein.db.orm.kotlinx.KotlinxSerializer
 
@@ -29,7 +29,7 @@ class CityBikesRepository  {
     val networkList: StateFlow<List<Network>> = _networkList
 
     init {
-        db = DB.factory
+        db = DB
             .inDir(getApplicationFilesDirectoryPath())
             .open("bikeshare_db", TypeTable {
                 root<NetworkList>()
