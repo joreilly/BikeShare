@@ -10,7 +10,8 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-
+import de.jensklingenberg.cabret.Cabret
+import de.jensklingenberg.cabret.DebugLog
 
 @Serializable
 data class NetworkResult(val network: Network)
@@ -53,11 +54,13 @@ class CityBikesApi {
         }
     }
 
+    @DebugLog
     suspend fun fetchNetworkList(): NetworkListResult {
         return client.get("$baseUrl")
     }
 
 
+    @DebugLog
     suspend fun fetchBikeShareInfo(network: String): NetworkResult {
         return client.get("$baseUrl/$network")
     }

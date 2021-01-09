@@ -81,7 +81,6 @@ class CityBikesRepository  {
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
             val stations = cityBikesApi.fetchBikeShareInfo(network).network.stations
-            println(stations)
             emit(stations)
             delay(POLL_INTERVAL)
         }

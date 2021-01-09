@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
+    id("de.jensklingenberg.cabret")
 }
 
 android {
@@ -35,6 +36,7 @@ android {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        useIR = true
     }
 }
 
@@ -98,6 +100,9 @@ kotlin {
 
                 // kermit
                 api(Deps.kermit)
+
+                // Cabret-Log
+                implementation("de.jensklingenberg.cabret:cabret-log:1.0.3")
             }
         }
 
@@ -128,5 +133,9 @@ kotlin {
     }
 }
 
+
+configure<de.jensklingenberg.gradle.CabretGradleExtension> {
+    enabled = true
+}
 
 
