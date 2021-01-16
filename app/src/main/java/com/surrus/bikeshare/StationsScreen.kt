@@ -24,20 +24,20 @@ import com.surrus.common.remote.slots
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun StationsScreen(networkId: String, popBack: () -> Unit) {
+fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val stationsState = bikeShareViewModel.stations.observeAsState(emptyList())
 
     bikeShareViewModel.setCity(networkId)
 
+    var navigationIcon:  @Composable() (() -> Unit)? = null
+    if (popBack != null) { navigationIcon =  {
+            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack) } }
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("BikeShare - $networkId") },
-                navigationIcon = {
-                    IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack) }
-                }
-            )
+            TopAppBar(title = { Text("BikeShare - $networkId") }, navigationIcon = navigationIcon)
         },
         bodyContent = { innerPadding ->
             LazyColumn(contentPadding = innerPadding) {

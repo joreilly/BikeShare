@@ -36,20 +36,26 @@ fun MainLayout() {
     val navController = rememberNavController()
 
     BikeShareTheme {
-        NavHost(navController, startDestination = Screen.CountryListScreen.title) {
-            composable(Screen.CountryListScreen.title) {
-                CountryListScreen {
-                    navController.navigate(Screen.NetworkListScreen.title + "/$it")
+        val bikeNetwork = BuildConfig.BIKE_NETWORK
+        if (bikeNetwork.isNotEmpty()) {
+            StationsScreen(bikeNetwork, popBack = null)
+
+        } else {
+            NavHost(navController, startDestination = Screen.CountryListScreen.title) {
+                composable(Screen.CountryListScreen.title) {
+                    CountryListScreen {
+                        navController.navigate(Screen.NetworkListScreen.title + "/$it")
+                    }
                 }
-            }
-            composable(Screen.NetworkListScreen.title + "/{countryCode}") { backStackEntry ->
-                NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String,
-                    networkSelected = { navController.navigate(Screen.StationsScreen.title + "/$it") },
-                    popBack = { navController.popBackStack() } )
-            }
-            composable(Screen.StationsScreen.title + "/{networkId}") { backStackEntry ->
-                StationsScreen(backStackEntry.arguments?.get("networkId") as String,
-                    popBack = { navController.popBackStack() } )
+                composable(Screen.NetworkListScreen.title + "/{countryCode}") { backStackEntry ->
+                    NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String,
+                        networkSelected = { navController.navigate(Screen.StationsScreen.title + "/$it") },
+                        popBack = { navController.popBackStack() })
+                }
+                composable(Screen.StationsScreen.title + "/{networkId}") { backStackEntry ->
+                    StationsScreen(backStackEntry.arguments?.get("networkId") as String,
+                        popBack = { navController.popBackStack() })
+                }
             }
         }
     }

@@ -15,6 +15,9 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // see https://api.citybik.es/v2/networks/ for possible network values
+        buildConfigField("String", "BIKE_NETWORK", "\"\"")
     }
 
     composeOptions {
