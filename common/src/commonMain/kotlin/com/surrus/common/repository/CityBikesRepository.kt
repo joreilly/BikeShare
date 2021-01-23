@@ -18,7 +18,7 @@ data class NetworkList(override val id: String, val networks: List<Network>) : M
 
 @ExperimentalCoroutinesApi
 class CityBikesRepository  {
-    private val cityBikesApi = CityBikesApi()
+    private val cityBikesApi = CityBikesApi
     private var db: DB
     private val coroutineScope: CoroutineScope = MainScope()
 

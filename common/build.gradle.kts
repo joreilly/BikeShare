@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("de.jensklingenberg.cabret")
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 android {
@@ -138,4 +139,10 @@ configure<de.jensklingenberg.gradle.CabretGradleExtension> {
     enabled = true
 }
 
-
+multiplatformSwiftPackage {
+    packageName("BikeShare")
+    swiftToolsVersion("5.3")
+    targetPlatforms {
+        iOS { v("13") }
+    }
+}

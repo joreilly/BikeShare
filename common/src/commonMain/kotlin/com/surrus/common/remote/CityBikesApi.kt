@@ -10,6 +10,7 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlin.native.concurrent.ThreadLocal
 import de.jensklingenberg.cabret.Cabret
 import de.jensklingenberg.cabret.DebugLog
 
@@ -37,20 +38,19 @@ fun Station.slots(): Int {
     return (empty_slots ?: 0) + (free_bikes ?: 0)
 }
 
-class CityBikesApi {
+@ThreadLocal
+object CityBikesApi {
     private val baseUrl = "https://api.citybik.es/v2/networks"
 
     private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
-    private val client by lazy {
-        HttpClient {
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(nonStrictJson)
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.INFO
-            }
+    private val client = HttpClient {
+        install(JsonFeature) {
+            serializer = KotlinxSerializer(nonStrictJson)
+        }
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.INFO
         }
     }
 
