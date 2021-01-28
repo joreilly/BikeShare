@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -37,7 +38,7 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                 title = { Text("BikeShare - ${country?.displayName}") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
                 }
             )
@@ -45,9 +46,9 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
         bodyContent = {
             networkList?.let {
                 LazyColumn {
-                    items(items = networkList, itemContent = { network ->
+                    items(networkList) { network ->
                         NetworkView(network, networkSelected)
-                    })
+                    }
                 }
             }
         }

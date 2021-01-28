@@ -3,6 +3,7 @@ package com.surrus.bikeshare
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -32,7 +33,7 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
 
     var navigationIcon:  @Composable() (() -> Unit)? = null
     if (popBack != null) { navigationIcon =  {
-            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack) } }
+            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = null) } }
     }
 
     Scaffold(
@@ -41,9 +42,9 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
         },
         bodyContent = { innerPadding ->
             LazyColumn(contentPadding = innerPadding) {
-                items(items = stationsState.value, itemContent = { station ->
+                items(stationsState.value) { station ->
                     StationView(station)
-                })
+                }
             }
         }
     )
@@ -59,7 +60,7 @@ fun StationView(station: Station) {
 
             Image(vectorResource(R.drawable.ic_bike),
                 colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-                modifier = Modifier.preferredSize(32.dp))
+                modifier = Modifier.preferredSize(32.dp), contentDescription = null)
 
             Spacer(modifier = Modifier.preferredSize(16.dp))
 
