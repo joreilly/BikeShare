@@ -57,7 +57,7 @@ fun CountryView(country: Country, countrySelected: (countryCode: String) -> Unit
 
         val flagResourceId = context.resources.getIdentifier("flag_${country.code}", "drawable", context.getPackageName())
         if (flagResourceId != 0) {
-            Image(vectorResource(flagResourceId), modifier = Modifier.preferredSize(32.dp), contentDescription = null)
+            Image(vectorResource(flagResourceId), modifier = Modifier.preferredSize(32.dp), contentDescription = country.displayName)
         }
 
         Spacer(modifier = Modifier.preferredSize(16.dp))

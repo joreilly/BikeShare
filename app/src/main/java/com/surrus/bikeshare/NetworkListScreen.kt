@@ -38,7 +38,7 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                 title = { Text("BikeShare - ${country?.displayName}") },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )

@@ -33,7 +33,7 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
 
     var navigationIcon:  @Composable() (() -> Unit)? = null
     if (popBack != null) { navigationIcon =  {
-            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = null) } }
+            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = "Back") } }
     }
 
     Scaffold(
@@ -60,7 +60,7 @@ fun StationView(station: Station) {
 
             Image(vectorResource(R.drawable.ic_bike),
                 colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-                modifier = Modifier.preferredSize(32.dp), contentDescription = null)
+                modifier = Modifier.preferredSize(32.dp), contentDescription = station.freeBikes().toString())
 
             Spacer(modifier = Modifier.preferredSize(16.dp))
 
