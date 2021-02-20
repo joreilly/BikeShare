@@ -21,6 +21,7 @@ import org.jxmapviewer.viewer.*
 import java.awt.GridLayout
 import java.util.*
 import javax.swing.JFrame
+import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
 
 
@@ -35,7 +36,7 @@ fun main() {
 var map: JXMapViewer? = null
 
 
-fun SwingComposeWindow() {
+fun SwingComposeWindow()= SwingUtilities.invokeLater {
     val window = JFrame()
     window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
     window.title = "BikeShare"
@@ -68,7 +69,7 @@ fun createMap() : JXMapViewer {
 
 @Composable
 fun BikeShareView()  {
-    val cityBikesApi = CityBikesApi()
+    val cityBikesApi = CityBikesApi
 
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
     var selectedNetwork by remember { mutableStateOf<Network?>(null) }
