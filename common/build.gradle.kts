@@ -3,7 +3,6 @@ plugins {
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
-    id("de.jensklingenberg.cabret")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
@@ -101,9 +100,6 @@ kotlin {
 
                 // kermit
                 api(Deps.kermit)
-
-                // Cabret-Log
-                implementation("de.jensklingenberg.cabret:cabret-log:1.0.3")
             }
         }
 
@@ -134,10 +130,6 @@ kotlin {
     }
 }
 
-
-configure<de.jensklingenberg.gradle.CabretGradleExtension> {
-    enabled = true
-}
 
 multiplatformSwiftPackage {
     packageName("BikeShare")
