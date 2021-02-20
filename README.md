@@ -17,7 +17,7 @@ When opening iOS and macOS projects remember to open `.xcworkspace` file (and no
 
 
 ### macOS client
-The macOS client uses functionality only available in SwiftUI 2 and as a result requires use of XCode 12.2 beta.
+The macOS client has been tested with XCode 12.4.
 
 ### Compose for Desktop client
 

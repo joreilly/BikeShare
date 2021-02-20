@@ -15,3 +15,7 @@ jobs:
         java-version: 11
     - name: Build with Gradle
       run: ./gradlew assembleDebug
+    - name: Build iOS shared code
+      run: ./gradlew :common:compileKotlinIOS
+    - name: Build macOS shared code
+      run: ./gradlew :common:compileKotlinMacOS
