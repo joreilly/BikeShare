@@ -1,19 +1,19 @@
 
 object Versions {
-    const val kotlin = "1.4.21-2"
-    const val kotlinCoroutines = "1.4.2-native-mt"
-    const val ktor = "1.5.0"
+    const val kotlin = "1.4.31"
+    const val kotlinCoroutines = "1.4.3-native-mt"
+    const val ktor = "1.5.2"
     const val kotlinxSerialization = "1.0.1"
-    const val koin = "2.2.2"
+    const val koin = "3.0.1-beta-1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha11"
-    const val nav_compose = "1.0.0-alpha06"
-    const val accompanist = "0.5.0"
+    const val compose = "1.0.0-beta02"
+    const val nav_compose = "1.0.0-alpha09"
+    const val accompanist = "0.6.2"
     const val slf4j = "1.7.30"
 
     const val kermit = "0.1.8"
-    const val kodein_db = "0.5.0-beta"
+    const val kodein_db = "0.6.0-beta-kx.ser-1.0.1-126-SNAPSHOT"
 
     const val junit = "4.12"
 }
@@ -34,10 +34,10 @@ object Compose {
 }
 
 object Koin {
-    val core = "org.koin:koin-core:${Versions.koin}"
-    val android = "org.koin:koin-android:${Versions.koin}"
-    val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-    val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
+    val core = "io.insert-koin:koin-core:${Versions.koin}"
+    val test = "io.insert-koin:koin-test:${Versions.koin}"
+    val android = "io.insert-koin:koin-android:${Versions.koin}"
+    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
 }
 
 object Serialization {

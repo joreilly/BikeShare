@@ -1,10 +1,11 @@
-import androidx.compose.animation.animate
+import androidx.compose.animation.core.animate
 import androidx.compose.desktop.AppManager
 import androidx.compose.desktop.ComposePanel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -36,7 +37,7 @@ fun main() {
 var map: JXMapViewer? = null
 
 
-fun SwingComposeWindow()= SwingUtilities.invokeLater {
+fun SwingComposeWindow() = SwingUtilities.invokeLater {
     val window = JFrame()
     window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
     window.title = "BikeShare"
@@ -52,7 +53,7 @@ fun SwingComposeWindow()= SwingUtilities.invokeLater {
         BikeShareView()
     }
 
-    window.setSize(800, 600)
+    window.setSize(900, 600)
     window.isVisible = true
 }
 
@@ -118,39 +119,45 @@ fun BikeShareView()  {
     MaterialTheme {
         Row {
             Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
-                LazyColumnFor(items = countryList, itemContent = { country ->
-                    Row(
-                        Modifier.clickable(onClick = {
-                            selectedCountry = country
-                            networkList = groupedNetworkList[country]!!
-                        }).padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(country.displayName,
-                            color = animate(if (country == selectedCountry) Color.White else Color.LightGray),
-                            style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                        )
+
+                LazyColumn {
+                    items(countryList) { country ->
+                        Row(
+                            Modifier.clickable(onClick = {
+                                selectedCountry = country
+                                networkList = groupedNetworkList[country]!!
+                            }).padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(country.displayName,
+                                color = Color.White,
+                                style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            )
+                        }
                     }
-                })
+                }
             }
 
-            Spacer(modifier = Modifier.preferredWidth(1.dp).fillMaxHeight()
+            Spacer(modifier = Modifier.width(1.dp).fillMaxHeight()
                     .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
 
             Box {
-                LazyColumnFor(items = networkList, itemContent = { network ->
-                    Row(
-                        Modifier.clickable(onClick = {
-                            selectedNetwork = network
-                        }).padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("${network.name} (${network.location.city})",
-                            color = animate(if (network == selectedNetwork) Color.Black else Color.Gray),
-                            style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                        )
+
+                LazyColumn {
+                    items(networkList) { network ->
+                        Row(
+                            Modifier.clickable(onClick = {
+                                selectedNetwork = network
+                            }).padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text("${network.name} (${network.location.city})",
+                                color = Color.Black,
+                                style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            )
+                        }
                     }
-                })
+                }
             }
 
         }
