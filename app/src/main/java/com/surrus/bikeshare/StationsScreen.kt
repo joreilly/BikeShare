@@ -13,6 +13,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,21 +34,19 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
 
     var navigationIcon:  @Composable() (() -> Unit)? = null
     if (popBack != null) { navigationIcon =  {
-            IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = "Back") } }
+        IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = "Back") } }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("BikeShare - $networkId") }, navigationIcon = navigationIcon)
-        },
-        bodyContent = { innerPadding ->
+        }) { innerPadding ->
             LazyColumn(contentPadding = innerPadding) {
                 items(stationsState.value) { station ->
                     StationView(station)
                 }
             }
         }
-    )
 }
 
 
@@ -58,11 +57,11 @@ fun StationView(station: Station) {
         Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically) {
 
-            Image(vectorResource(R.drawable.ic_bike),
+            Image(painterResource(R.drawable.ic_bike),
                 colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-                modifier = Modifier.preferredSize(32.dp), contentDescription = station.freeBikes().toString())
+                modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
 
-            Spacer(modifier = Modifier.preferredSize(16.dp))
+            Spacer(modifier = Modifier.size(16.dp))
 
             Column {
                 Text(text = station.name, style = MaterialTheme.typography.h6)

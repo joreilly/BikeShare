@@ -36,7 +36,7 @@ fun main() {
 var map: JXMapViewer? = null
 
 
-fun SwingComposeWindow()= SwingUtilities.invokeLater {
+fun SwingComposeWindow() = SwingUtilities.invokeLater {
     val window = JFrame()
     window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
     window.title = "BikeShare"
@@ -52,7 +52,7 @@ fun SwingComposeWindow()= SwingUtilities.invokeLater {
         BikeShareView()
     }
 
-    window.setSize(800, 600)
+    window.setSize(900, 600)
     window.isVisible = true
 }
 

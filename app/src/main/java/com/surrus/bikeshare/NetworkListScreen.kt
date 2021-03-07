@@ -42,8 +42,7 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                     }
                 }
             )
-        },
-        bodyContent = {
+        }) {
             networkList?.let {
                 LazyColumn {
                     items(networkList) { network ->
@@ -52,7 +51,6 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                 }
             }
         }
-    )
 }
 
 @Composable
