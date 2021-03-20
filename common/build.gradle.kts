@@ -132,9 +132,10 @@ kotlin {
 
 
 multiplatformSwiftPackage {
-    packageName("BikeShare")
+    packageName("BikeShareKit")
     swiftToolsVersion("5.3")
     targetPlatforms {
         iOS { v("13") }
+        macOS{ v("10_15") }
     }
 }
