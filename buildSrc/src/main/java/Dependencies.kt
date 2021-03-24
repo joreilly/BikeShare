@@ -7,7 +7,7 @@ object Versions {
     const val koin = "3.0.1-beta-1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-beta02"
+    const val compose = "1.0.0-beta03"
     const val nav_compose = "1.0.0-alpha09"
     const val accompanist = "0.6.2"
     const val slf4j = "1.7.30"
