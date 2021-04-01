@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -20,14 +22,6 @@ android {
         buildConfigField("String", "BIKE_NETWORK", "\"\"")
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -42,8 +36,8 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
     }
-
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -56,6 +50,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
+    add(PLUGIN_CLASSPATH_CONFIGURATION_NAME, "androidx.compose.compiler:compiler:${Versions.compose}")
+    implementation("androidx.compose.runtime:runtime:${Versions.compose}")
+
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
