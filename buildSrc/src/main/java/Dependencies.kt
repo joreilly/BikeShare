@@ -2,8 +2,8 @@
 object Versions {
     const val kotlin = "1.4.31"
     const val kotlinCoroutines = "1.4.3-native-mt"
-    const val ktor = "1.5.2"
-    const val kotlinxSerialization = "1.0.1"
+    const val ktor = "1.5.3"
+    const val kotlinxSerialization = "1.1.0"
     const val koin = "3.0.1-beta-1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
@@ -13,7 +13,7 @@ object Versions {
     const val slf4j = "1.7.30"
 
     const val kermit = "0.1.8"
-    const val kodein_db = "0.6.0-beta-kx.ser-1.0.1-126-SNAPSHOT"
+    const val kodein_db = "0.6.1-beta"
 
     const val junit = "4.12"
 }
