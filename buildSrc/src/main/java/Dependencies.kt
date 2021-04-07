@@ -8,7 +8,7 @@ object Versions {
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-beta04"
-    const val nav_compose = "1.0.0-alpha09"
+    const val nav_compose = "1.0.0-alpha10"
     const val accompanist = "0.7.0"
     const val slf4j = "1.7.30"
 
