@@ -49,7 +49,7 @@ kotlin {
 
         val isiOSDevice = sdkName.orEmpty().startsWith("iphoneos")
         if (isiOSDevice) {
-            iosArm64("iOS64")
+            iosArm64("iOS")
         } else {
             iosX64("iOS")
         }
