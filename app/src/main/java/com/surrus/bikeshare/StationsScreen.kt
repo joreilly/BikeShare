@@ -9,7 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -28,7 +27,7 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
-    val stationsState = bikeShareViewModel.stations.observeAsState(emptyList())
+    val stationsState = bikeShareViewModel.stations.collectAsState(emptyList())
 
     bikeShareViewModel.setCity(networkId)
 

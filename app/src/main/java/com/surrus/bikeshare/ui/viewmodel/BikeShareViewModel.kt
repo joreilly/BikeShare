@@ -15,8 +15,8 @@ class BikeShareViewModel(
     private val logger: Kermit
 ) : ViewModel() {
 
-    val network = MutableLiveData<String>("")
-    val stations = network.switchMap { cityBikesRepository.pollNetworkUpdates(it).asLiveData() }
+    val network = MutableStateFlow<String>("")
+    val stations = network.flatMapLatest { cityBikesRepository.pollNetworkUpdates(it) }
 
     val groupedNetworks = cityBikesRepository.groupedNetworkList.map {
         it.mapKeys {
