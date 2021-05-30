@@ -6,13 +6,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
-
+    compileSdk = AndroidSdk.compile
     defaultConfig {
         applicationId = "com.surrus.bikeshare"
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdk = AndroidSdk.min
+        targetSdk = AndroidSdk.target
 
         versionCode = 1
         versionName = "1.0"
@@ -20,6 +18,14 @@ android {
 
         // see https://api.citybik.es/v2/networks/ for possible network values
         buildConfigField("String", "BIKE_NETWORK", "\"\"")
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
     }
 
     buildTypes {
@@ -50,13 +56,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    add(PLUGIN_CLASSPATH_CONFIGURATION_NAME, "androidx.compose.compiler:compiler:${Versions.compose}")
-    implementation("androidx.compose.runtime:runtime:${Versions.compose}")
-
-    implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.activity:activity-compose:1.3.0-alpha07")
 
     implementation(Compose.ui)
     implementation(Compose.uiGraphics)

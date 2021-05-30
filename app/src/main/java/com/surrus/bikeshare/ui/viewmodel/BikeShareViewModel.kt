@@ -2,7 +2,6 @@ package com.surrus.bikeshare.ui.viewmodel
 
 import androidx.lifecycle.*
 import co.touchlab.kermit.Kermit
-import com.surrus.common.remote.Station
 import com.surrus.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.map
