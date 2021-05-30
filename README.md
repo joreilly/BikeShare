@@ -11,9 +11,7 @@ Running on
 ![BikeShare Screenshot](/art/screenshot1.png?raw=true )
 ![BikeShare Screenshot](/art/screenshot2.png?raw=true )
 
-Note that, due to use of Jetpack Compose, Android Studio Canary is required to build/run Android client
-(**UPDATE**: now also works in stable version of Android Studio). 
-The iOS and macOS clients have been tested in latest released version of XCode (currently 12.4).
+Note that, due to use of Jetpack Compose, Android Studio Arctic Fox is required to build/run the Android client. The iOS and macOS clients have been tested in latest released version of XCode (currently 12.4).
 When opening iOS and macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)
 
 ### Compose for Desktop client
