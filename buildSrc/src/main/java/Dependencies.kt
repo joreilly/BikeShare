@@ -18,6 +18,12 @@ object Versions {
     const val junit = "4.12"
 }
 
+object AndroidSdk {
+    const val min = 21
+    const val compile = 30
+    const val target = compile
+}
+
 object Deps {
     const val kermit = "co.touchlab:kermit:${Versions.kermit}"
 }
@@ -41,6 +47,12 @@ object Koin {
 
 object Serialization {
     val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
+}
+
+object Kodein {
+    val db = "org.kodein.db:kodein-db:${Versions.kodein_db}"
+    val dbSerializer = "org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}"
+
 }
 
 

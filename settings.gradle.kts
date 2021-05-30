@@ -9,7 +9,5 @@ pluginManagement {
 
 rootProject.name = "BikeShare"
 
-enableFeaturePreview("GRADLE_METADATA")
-
 include(":app", ":common", ":compose-desktop")
 

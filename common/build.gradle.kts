@@ -1,36 +1,24 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
+    id("kotlinx-serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
-
+    compileSdk = AndroidSdk.compile
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AndroidSdk.min
+        targetSdk = AndroidSdk.target
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
-
-    buildTypes {
-        getByName("release") {
-            minifyEnabled(false)
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -39,6 +27,20 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         useIR = true
     }
 }
+
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-43944
+android {
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
+}
+
 
 // CocoaPods requires the podspec to have a version.
 version = "1.0"
@@ -82,8 +84,8 @@ kotlin {
                 implementation(Serialization.core)
 
                 // Kodein-DB
-                api("org.kodein.db:kodein-db:${Versions.kodein_db}")
-                api("org.kodein.db:kodein-db-serializer-kotlinx:${Versions.kodein_db}")
+                api(Kodein.db)
+                api(Kodein.dbSerializer)
 
                 // kermit
                 api(Deps.kermit)
