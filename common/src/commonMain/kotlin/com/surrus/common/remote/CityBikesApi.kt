@@ -1,16 +1,9 @@
 package com.surrus.common.remote
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.DEFAULT
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlin.native.concurrent.ThreadLocal
+
 
 @Serializable
 data class NetworkResult(val network: Network)
@@ -36,24 +29,12 @@ fun Station.slots(): Int {
     return (empty_slots ?: 0) + (free_bikes ?: 0)
 }
 
-@ThreadLocal
-object CityBikesApi {
-    private val baseUrl = "https://api.citybik.es/v2/networks"
-
-    private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
-
-    private val client = HttpClient {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(nonStrictJson)
-        }
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
-        }
-    }
+class CityBikesApi(private val client: HttpClient,
+    private val baseUrl: String = "https://api.citybik.es/v2/networks"
+) {
 
     suspend fun fetchNetworkList(): NetworkListResult {
-        return client.get("$baseUrl")
+        return client.get(baseUrl)
     }
 
     suspend fun fetchBikeShareInfo(network: String): NetworkResult {

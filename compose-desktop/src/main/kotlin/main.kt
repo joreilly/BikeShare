@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.surrus.common.di.initKoin
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
 import com.surrus.common.remote.Station
@@ -68,9 +69,11 @@ fun createMap() : JXMapViewer {
     return mapViewer
 }
 
+private val koin = initKoin().koin
+
 @Composable
 fun BikeShareView()  {
-    val cityBikesApi = CityBikesApi
+    val cityBikesApi = koin.get<CityBikesApi>()
 
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
     var selectedNetwork by remember { mutableStateOf<Network?>(null) }

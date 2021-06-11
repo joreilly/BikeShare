@@ -3,9 +3,9 @@ package com.surrus.bikeshare
 import android.app.Application
 import com.surrus.bikeshare.di.appModule
 import com.surrus.common.appContext
+import com.surrus.common.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
 
 class BikeShareApplication : Application() {
 
@@ -14,7 +14,7 @@ class BikeShareApplication : Application() {
 
         appContext = this
 
-        startKoin {
+        initKoin {
             androidLogger()
             androidContext(this@BikeShareApplication)
             modules(appModule)

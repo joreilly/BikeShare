@@ -73,7 +73,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // Coroutines
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}") {
+                    isForce = true
+                }
 
                 implementation(Ktor.clientCore)
                 implementation(Ktor.clientJson)
@@ -86,6 +88,10 @@ kotlin {
                 // Kodein-DB
                 api(Kodein.db)
                 api(Kodein.dbSerializer)
+
+                // koin
+                api(Koin.core)
+                api(Koin.test)
 
                 // kermit
                 api(Deps.kermit)
@@ -103,6 +109,8 @@ kotlin {
                 implementation(Ktor.clientIos)
             }
         }
+        val iOSTest by getting {
+        }
 
         val macOSMain by getting {
             dependencies {
@@ -119,6 +127,11 @@ kotlin {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
 
 multiplatformSwiftPackage {
     packageName("BikeShareKit")

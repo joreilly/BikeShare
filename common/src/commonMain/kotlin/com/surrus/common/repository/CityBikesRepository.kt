@@ -7,6 +7,8 @@ import com.surrus.common.remote.Station
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.Serializable
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import org.kodein.db.*
 import org.kodein.db.impl.inDir
 import org.kodein.db.model.orm.Metadata
@@ -14,11 +16,11 @@ import org.kodein.db.orm.kotlinx.KotlinxSerializer
 
 
 @Serializable
-data class NetworkList(override val id: String, val networks: List<Network>) : Metadata
+data class NetworkList(override val id: String, val networks: List<Network>): Metadata
 
 @ExperimentalCoroutinesApi
-class CityBikesRepository  {
-    private val cityBikesApi = CityBikesApi
+class CityBikesRepository: KoinComponent {
+    private val cityBikesApi: CityBikesApi by inject()
     private var db: DB
     private val coroutineScope: CoroutineScope = MainScope()
 

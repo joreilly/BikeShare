@@ -19,7 +19,7 @@ class BikeShareViewModel(
 
     val groupedNetworks = cityBikesRepository.groupedNetworkList.map {
         it.mapKeys {
-            val countryCode = it.key.toLowerCase()
+            val countryCode = it.key.lowercase(Locale.getDefault())
             val locale = Locale("", countryCode)
             val countryName = locale.displayCountry
             Country(countryCode, countryName)
