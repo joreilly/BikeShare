@@ -56,6 +56,11 @@ class CityBikesRepository: KoinComponent {
         db.put(networkListData)
     }
 
+    /**
+     * Fetch bike share station information (e.g. availability) for the given network.
+     * @param network the bike network
+     * @return list of bike [Station] info
+     */
     @Throws(Exception::class)
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {
         val result = cityBikesApi.fetchBikeShareInfo(network)

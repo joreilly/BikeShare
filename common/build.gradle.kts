@@ -133,6 +133,12 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
+kotlin {
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        compilations.get("main").kotlinOptions.freeCompilerArgs += "-Xexport-kdoc"
+    }
+}
+
 multiplatformSwiftPackage {
     packageName("BikeShareKit")
     swiftToolsVersion("5.3")
