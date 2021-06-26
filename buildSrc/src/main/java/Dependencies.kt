@@ -4,7 +4,7 @@ object Versions {
     const val kotlinCoroutines = "1.5.0-native-mt"
     const val ktor = "1.6.0"
     const val kotlinxSerialization = "1.2.1"
-    const val koin = "3.1.0"
+    const val koin = "3.1.1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-beta09"
