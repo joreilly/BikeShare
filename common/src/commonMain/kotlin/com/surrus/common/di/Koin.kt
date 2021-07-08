@@ -29,7 +29,7 @@ fun commonModule() = module {
 }
 
 
-fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
+fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true; useAlternativeNames = false }
 
 fun createHttpClient(json: Json,) = HttpClient {
     install(JsonFeature) {
