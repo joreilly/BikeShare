@@ -56,9 +56,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.activity:activity-compose:1.3.0-rc01")
+    implementation("androidx.activity:activity-compose:1.3.0-rc02")
 
     implementation(Compose.ui)
     implementation(Compose.uiGraphics)
