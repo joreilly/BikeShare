@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    id("com.rickclephas.kmp.nativecoroutines") version "0.4.0-kotlin-1.5.10"
 }
 
 android {
@@ -66,6 +67,7 @@ kotlin {
         // Configure fields required by CocoaPods.
         summary = "BikeShare common module"
         homepage = "homepage placeholder"
+        ios.deploymentTarget = "15.0"
     }
 
 

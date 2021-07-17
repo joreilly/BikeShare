@@ -1,5 +1,6 @@
 package com.surrus.common.repository
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.surrus.common.getApplicationFilesDirectoryPath
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
@@ -22,12 +23,16 @@ data class NetworkList(override val id: String, val networks: List<Network>): Me
 class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
     private var db: DB
-    private val coroutineScope: CoroutineScope = MainScope()
+    //private val coroutineScope: CoroutineScope = MainScope()
 
-    private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+    @NativeCoroutineScope
+    internal val coroutineScope: CoroutineScope = MainScope()
+
+
+    private val _groupedNetworkList: MutableStateFlow<Map<String,List<Network>>> = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
     val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
 
-    private val _networkList = MutableStateFlow<List<Network>>(emptyList())
+    private val _networkList: MutableStateFlow<List<Network>> = MutableStateFlow<List<Network>>(emptyList())
     val networkList: StateFlow<List<Network>> = _networkList
 
     init {
@@ -45,7 +50,7 @@ class CityBikesRepository: KoinComponent {
             didDelete { }
         }
 
-        coroutineScope.launch { 
+        coroutineScope.launch {
             fetchAndStoreNetworkList()
         }
     }
@@ -53,7 +58,7 @@ class CityBikesRepository: KoinComponent {
     private suspend fun fetchAndStoreNetworkList() {
         val networkList = cityBikesApi.fetchNetworkList().networks
         val networkListData = NetworkList("networkList", networkList)
-        db.put(networkListData)
+        //db.put(networkListData)
     }
 
     /**
@@ -85,6 +90,9 @@ class CityBikesRepository: KoinComponent {
         }
     }
 
+
+
+
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
             val stations = cityBikesApi.fetchBikeShareInfo(network).network.stations
@@ -94,6 +102,6 @@ class CityBikesRepository: KoinComponent {
     }
 
     companion object {
-        private const val POLL_INTERVAL = 10000L
+        private const val POLL_INTERVAL: Long = 10000L
     }
 }

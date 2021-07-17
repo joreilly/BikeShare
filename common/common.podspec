@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
     spec.libraries                = "c++"
     spec.module_name              = "#{spec.name}_umbrella"
 
-                
+    spec.ios.deployment_target = '15.0'
 
                 
 
