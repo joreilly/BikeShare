@@ -66,14 +66,13 @@ dependencies {
     implementation(Compose.foundationLayout)
     implementation(Compose.material)
     implementation(Compose.navigation)
-    implementation(Compose.accompanist)
 
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.compose)
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:runner:1.4.0")
 
     implementation(project(":common"))
 }
