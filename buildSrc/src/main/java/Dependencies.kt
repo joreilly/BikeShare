@@ -5,11 +5,9 @@ object Versions {
     const val ktor = "1.6.2"
     const val kotlinxSerialization = "1.2.2"
     const val koin = "3.1.2"
-    const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.1"
-    const val nav_compose = "2.4.0-alpha06"
-    const val accompanist = "0.16.0"
+    const val compose = "1.0.2"
+    const val nav_compose = "2.4.0-alpha08"
     const val slf4j = "1.7.30"
 
     const val kermit = "0.1.8"
@@ -20,7 +18,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 30
+    const val compile = 31
     const val target = compile
 }
 
@@ -65,7 +63,5 @@ object Ktor {
     val clientApache = "io.ktor:ktor-client-apache:${Versions.ktor}"
     val slf4j = "org.slf4j:slf4j-simple:${Versions.slf4j}"
     val clientIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
-    val clientCio = "io.ktor:ktor-client-cio:${Versions.ktor}"
-    val clientJs = "io.ktor:ktor-client-js:${Versions.ktor}"
 }
 
