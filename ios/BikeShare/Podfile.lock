@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../../common"
 
 SPEC CHECKSUMS:
-  common: 71b0c52c1eec02792ae942ca52e7e05066dbe4af
+  common: 8ad42eef31288761720e98db2059735237a5ec68
   Introspect: 50c17d6b1f091f4cfd678ea8a4157ac071808fe3
   SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
 
