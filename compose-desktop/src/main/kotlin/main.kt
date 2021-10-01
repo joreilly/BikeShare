@@ -1,6 +1,4 @@
-import androidx.compose.animation.core.animate
 import androidx.compose.desktop.AppManager
-import androidx.compose.desktop.ComposePanel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.surrus.common.di.initKoin
@@ -43,12 +42,12 @@ fun SwingComposeWindow() = SwingUtilities.invokeLater {
     window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
     window.title = "BikeShare"
 
-    map = createMap()
+    //map = createMap()
 
     val composePanel = ComposePanel()
     window.layout = GridLayout(1, 2)
     window.add(composePanel)
-    window.add(map)
+    //window.add(map)
 
     composePanel.setContent {
         BikeShareView()
@@ -73,6 +72,7 @@ private val koin = initKoin().koin
 
 @Composable
 fun BikeShareView()  {
+
     val cityBikesApi = koin.get<CityBikesApi>()
 
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
@@ -95,7 +95,7 @@ fun BikeShareView()  {
         }
 
         countryList = groupedNetworkList.keys.toList().sortedBy { it.displayName }
-        println(countryList)
+        //println(countryList)
     }
 
     LaunchedEffect(selectedNetwork) {
@@ -123,10 +123,14 @@ fun BikeShareView()  {
         Row {
             Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
 
+
                 LazyColumn {
                     items(countryList) { country ->
+
+
                         Row(
                             Modifier.clickable(onClick = {
+                                println("JFOR")
                                 selectedCountry = country
                                 networkList = groupedNetworkList[country]!!
                             }).padding(8.dp),
@@ -137,6 +141,7 @@ fun BikeShareView()  {
                                 style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
                             )
                         }
+
                     }
                 }
             }
@@ -145,7 +150,6 @@ fun BikeShareView()  {
                     .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
 
             Box {
-
                 LazyColumn {
                     items(networkList) { network ->
                         Row(
@@ -162,7 +166,6 @@ fun BikeShareView()  {
                     }
                 }
             }
-
         }
     }
 }
