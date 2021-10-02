@@ -1,4 +1,3 @@
-import androidx.compose.desktop.AppManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,7 +28,6 @@ import javax.swing.WindowConstants
 data class Country(val code: String, val displayName: String)
 
 fun main() {
-    AppManager.setEvents(onAppStart = null, onAppExit = null, onWindowsEmpty = null)
     SwingComposeWindow()
 }
 
@@ -42,12 +40,12 @@ fun SwingComposeWindow() = SwingUtilities.invokeLater {
     window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
     window.title = "BikeShare"
 
-    //map = createMap()
+    map = createMap()
 
     val composePanel = ComposePanel()
     window.layout = GridLayout(1, 2)
     window.add(composePanel)
-    //window.add(map)
+    window.add(map)
 
     composePanel.setContent {
         BikeShareView()
@@ -77,8 +75,8 @@ fun BikeShareView()  {
 
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
     var selectedNetwork by remember { mutableStateOf<Network?>(null) }
-
     var networkList by remember { mutableStateOf(emptyList<Network>()) }
+
     var stationList by remember { mutableStateOf(emptyList<Station>()) }
     var groupedNetworkList: Map<Country, List<Network>> by remember { mutableStateOf(emptyMap()) }
     var countryList by remember { mutableStateOf(emptyList<Country>()) }
@@ -94,8 +92,13 @@ fun BikeShareView()  {
             Country(countryCode, countryName)
         }
 
+
         countryList = groupedNetworkList.keys.toList().sortedBy { it.displayName }
-        //println(countryList)
+        selectedCountry = countryList.first()
+        groupedNetworkList[selectedCountry]?.let {
+            networkList = it
+            selectedNetwork = networkList.first()
+        }
     }
 
     LaunchedEffect(selectedNetwork) {
@@ -123,25 +126,25 @@ fun BikeShareView()  {
         Row {
             Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
 
+                // workaround for https://github.com/JetBrains/compose-jb/issues/1157
+                if (countryList.isNotEmpty()) {
+                    LazyColumn {
+                        items(countryList) { country ->
+                            Row(
+                                Modifier.clickable(onClick = {
+                                    selectedCountry = country
+                                    networkList = groupedNetworkList[country]!!
+                                }).padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    country.displayName,
+                                    color = Color.White,
+                                    style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                                )
+                            }
 
-                LazyColumn {
-                    items(countryList) { country ->
-
-
-                        Row(
-                            Modifier.clickable(onClick = {
-                                println("JFOR")
-                                selectedCountry = country
-                                networkList = groupedNetworkList[country]!!
-                            }).padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(country.displayName,
-                                color = Color.White,
-                                style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                            )
                         }
-
                     }
                 }
             }
@@ -150,18 +153,22 @@ fun BikeShareView()  {
                     .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
 
             Box {
-                LazyColumn {
-                    items(networkList) { network ->
-                        Row(
-                            Modifier.clickable(onClick = {
-                                selectedNetwork = network
-                            }).padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text("${network.name} (${network.location.city})",
-                                color = Color.Black,
-                                style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                            )
+                // workaround for https://github.com/JetBrains/compose-jb/issues/1157
+                if (networkList.isNotEmpty()) {
+                    LazyColumn {
+                        items(networkList) { network ->
+                            Row(
+                                Modifier.clickable(onClick = {
+                                    selectedNetwork = network
+                                }).padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    "${network.name} (${network.location.city})",
+                                    color = Color.Black,
+                                    style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                                )
+                            }
                         }
                     }
                 }
