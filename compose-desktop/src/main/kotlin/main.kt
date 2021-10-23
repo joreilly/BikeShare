@@ -126,25 +126,22 @@ fun BikeShareView()  {
         Row {
             Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
 
-                // workaround for https://github.com/JetBrains/compose-jb/issues/1157
-                if (countryList.isNotEmpty()) {
-                    LazyColumn {
-                        items(countryList) { country ->
-                            Row(
-                                Modifier.clickable(onClick = {
-                                    selectedCountry = country
-                                    networkList = groupedNetworkList[country]!!
-                                }).padding(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    country.displayName,
-                                    color = Color.White,
-                                    style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                                )
-                            }
-
+                LazyColumn {
+                    items(countryList) { country ->
+                        Row(
+                            Modifier.clickable(onClick = {
+                                selectedCountry = country
+                                networkList = groupedNetworkList[country]!!
+                            }).padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                country.displayName,
+                                color = Color.White,
+                                style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            )
                         }
+
                     }
                 }
             }
@@ -153,22 +150,19 @@ fun BikeShareView()  {
                     .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
 
             Box {
-                // workaround for https://github.com/JetBrains/compose-jb/issues/1157
-                if (networkList.isNotEmpty()) {
-                    LazyColumn {
-                        items(networkList) { network ->
-                            Row(
-                                Modifier.clickable(onClick = {
-                                    selectedNetwork = network
-                                }).padding(8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    "${network.name} (${network.location.city})",
-                                    color = Color.Black,
-                                    style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
-                                )
-                            }
+                LazyColumn {
+                    items(networkList) { network ->
+                        Row(
+                            Modifier.clickable(onClick = {
+                                selectedNetwork = network
+                            }).padding(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "${network.name} (${network.location.city})",
+                                color = Color.Black,
+                                style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            )
                         }
                     }
                 }

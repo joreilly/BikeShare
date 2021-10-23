@@ -1,13 +1,13 @@
 
 object Versions {
-    const val kotlin = "1.5.30"
+    const val kotlin = "1.5.31"
     const val kotlinCoroutines = "1.5.2-native-mt"
     const val ktor = "1.6.4"
     const val kotlinxSerialization = "1.2.2"
     const val koin = "3.1.2"
     const val lifecycle = "2.2.0-alpha01"
 
-    const val compose = "1.0.3"
+    const val compose = "1.0.4"
     const val nav_compose = "2.4.0-alpha10"
     const val slf4j = "1.7.30"
 
