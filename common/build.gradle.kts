@@ -3,6 +3,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
+    id("com.rickclephas.kmp.nativecoroutines") version "0.7.0"
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
@@ -24,20 +25,6 @@ android {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        useIR = true
-    }
-}
-
-
-// workaround for https://youtrack.jetbrains.com/issue/KT-43944
-android {
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
     }
 }
 
@@ -66,6 +53,7 @@ kotlin {
         // Configure fields required by CocoaPods.
         summary = "BikeShare common module"
         homepage = "homepage placeholder"
+        noPodspec()
     }
 
 
@@ -124,12 +112,6 @@ kotlin {
                 implementation(Ktor.slf4j)
             }
         }
-    }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 }
 

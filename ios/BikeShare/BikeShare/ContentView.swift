@@ -1,5 +1,4 @@
 import SwiftUI
-import SwiftUIRefresh
 import common
 
 
@@ -8,66 +7,40 @@ struct ContentView : View {
     @State private var selection = 0
     
     var body: some View {
-        TabView(selection: $selection) {
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway", tag: 0, selection: $selection)
+        TabView {
+            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway")
                 .tabItem {
                     VStack {
                         Image(systemName: "location")
                         Text("Galway")
                     }
                 }.tag(0)
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "oslo-bysykkel", tag: 1, selection: $selection)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "location")
-                        Text("Oslo")
-                    }
-                }.tag(1)
             NetworkListView(cityBikesViewModel: cityBikesViewModel)
                 .tabItem {
                     VStack {
                         Image(systemName: "location")
                         Text("Networks")
                     }
-                }.tag(2)
+                }.tag(1)
 
             }
-        
     }
 }
 
-// see https://stackoverflow.com/questions/63978584/tabview-lifecycle-issue-if-views-are-the-same/63981763#63981763
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
     var network: String
-    var tag: Int
-    @Binding var selection: Int
-    @State private var isShowing = false
  
     var body: some View {
-        NavigationView {
-            List(cityBikesViewModel.stationList, id: \.id) { station in
-                StationView(station: station)
-            }
-            .navigationBarTitle(Text("Bike Share"))
-            .onChange(of: selection) { _ in
-                refreshData()
-            }
-            .onAppear {
-                refreshData()
-            }
-            .pullToRefresh(isShowing: $isShowing) {
-                refreshData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self.isShowing = false
-                }
-            }
+        List(cityBikesViewModel.stationList, id: \.id) { station in
+            StationView(station: station)
         }
-    }
-    
-    func refreshData() {
-        if tag == selection {
-            cityBikesViewModel.fetchBikeShareInfo(network: self.network)
+        .navigationBarTitle(Text("Bike Stations"))
+        .onAppear {
+            cityBikesViewModel.startObservingBikeShareInfo(network: network)
+        }
+        .onDisappear {
+            cityBikesViewModel.stopObservingBikeShareInfo()
         }
     }
 }
@@ -104,14 +77,12 @@ struct NetworkListView : View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
 
     var body: some View {
-        NavigationView {
-            List(cityBikesViewModel.networkList, id: \.id) { network in
-                Text(network.name + " (" + network.location.city + ")")
-            }
-            .navigationBarTitle(Text("Networks"))
-            .onAppear {
-                cityBikesViewModel.fetchNetworks()
-            }
+        List(cityBikesViewModel.networkList, id: \.id) { network in
+            Text(network.name + " (" + network.location.city + ")")
+        }
+        .navigationBarTitle(Text("Networks"))
+        .onAppear {
+            cityBikesViewModel.fetchNetworks()
         }
     }
 }

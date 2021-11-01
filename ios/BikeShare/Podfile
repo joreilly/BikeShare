@@ -2,5 +2,6 @@
 target 'BikeShare' do
     pod 'common', :path => '../../common'
     pod "SwiftUIRefresh"
+    pod 'KMPNativeCoroutinesAsync'
 end
 

@@ -1,5 +1,6 @@
 package com.surrus.common.repository
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import com.surrus.common.getApplicationFilesDirectoryPath
 import com.surrus.common.remote.CityBikesApi
 import com.surrus.common.remote.Network
@@ -21,7 +22,9 @@ data class NetworkList(override val id: String, val networks: List<Network>): Me
 @ExperimentalCoroutinesApi
 class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
-    private var db: DB
+    private lateinit var db: DB
+
+    @NativeCoroutineScope
     private val coroutineScope: CoroutineScope = MainScope()
 
     private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
@@ -31,62 +34,37 @@ class CityBikesRepository: KoinComponent {
     val networkList: StateFlow<List<Network>> = _networkList
 
     init {
-        db = DB
-            .inDir(getApplicationFilesDirectoryPath())
-            .open("bikeshare_db", TypeTable {
-                root<NetworkList>()
-            }, KotlinxSerializer())
+        coroutineScope.launch {
+            db = DB.inDir(getApplicationFilesDirectoryPath())
+                .open("bikeshare_db", TypeTable {
+                    root<NetworkList>()
+                }, KotlinxSerializer())
 
-        db.on<NetworkList>().register {
-            didPut { networkListData ->
-                _networkList.value = networkListData.networks
-                _groupedNetworkList.value = networkListData.networks.groupBy { it.location.country }
+            db.on<NetworkList>().register {
+                didPut { networkListData ->
+                    _networkList.value = networkListData.networks
+                    _groupedNetworkList.value =
+                        networkListData.networks.groupBy { it.location.country }
+                }
+                didDelete { }
             }
-            didDelete { }
-        }
-
-        coroutineScope.launch { 
-            fetchAndStoreNetworkList()
         }
     }
 
-    private suspend fun fetchAndStoreNetworkList() {
-        val networkList = cityBikesApi.fetchNetworkList().networks
+    suspend fun fetchAndStoreNetworkList() {
+        val networkList = fetchNetworkList()
         val networkListData = NetworkList("networkList", networkList)
         db.put(networkListData)
     }
 
-    /**
-     * Fetch bike share station information (e.g. availability) for the given network.
-     * @param network the bike network
-     * @return list of bike [Station] info
-     */
-    @Throws(Exception::class)
-    suspend fun fetchBikeShareInfo(network: String) : List<Station> {
-        val result = cityBikesApi.fetchBikeShareInfo(network)
-        return result.network.stations
-    }
 
-    @Throws(Exception::class)
-    suspend fun fetchGroupedNetworkList(success: (Map<String, List<Network>>) -> Unit)  {
-        coroutineScope.launch {
-            groupedNetworkList.collect {
-                success(it)
-            }
-        }
-    }
-
-    @Throws(Exception::class)
-    suspend fun fetchNetworkList(success: (List<Network>) -> Unit)  {
-        coroutineScope.launch {
-            networkList.collect {
-                success(it)
-            }
-        }
+    suspend fun fetchNetworkList(): List<Network> {
+        return cityBikesApi.fetchNetworkList().networks
     }
 
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
+            println("pollNetworkUpdates, network = $network")
             val stations = cityBikesApi.fetchBikeShareInfo(network).network.stations
             emit(stations)
             delay(POLL_INTERVAL)

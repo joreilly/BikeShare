@@ -12,7 +12,7 @@ Running on
 ![BikeShare Screenshot](/art/screenshot2.png?raw=true )
 
 Note that, due to use of Jetpack Compose, Android Studio Arctic Fox is required to build/run the Android client. The iOS and macOS clients have been tested in latest released version of XCode (currently 12.4).
-When opening iOS and macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)
+Minimum of XCode 13.2 beta is required for iOS project as it now uses Swift 5.5 concurrency capabilities. When opening iOS and macOS projects remember to open `.xcworkspace` file (and not `.xcodeproj` one)
 
 ### Compose for Desktop client
 
