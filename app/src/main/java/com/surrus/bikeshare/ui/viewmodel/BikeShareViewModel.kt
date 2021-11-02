@@ -5,6 +5,7 @@ import co.touchlab.kermit.Kermit
 import com.surrus.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.util.*
 
 data class Country(val code: String, val displayName: String)
@@ -16,6 +17,12 @@ class BikeShareViewModel(
 
     val network = MutableStateFlow<String>("")
     val stations = network.flatMapLatest { cityBikesRepository.pollNetworkUpdates(it) }
+
+    init {
+        viewModelScope.launch {
+            cityBikesRepository.fetchAndStoreNetworkList()
+        }
+    }
 
     val groupedNetworks = cityBikesRepository.groupedNetworkList.map {
         it.mapKeys {
