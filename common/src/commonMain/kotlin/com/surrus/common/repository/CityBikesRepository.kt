@@ -14,6 +14,7 @@ import org.kodein.db.*
 import org.kodein.db.impl.inDir
 import org.kodein.db.model.orm.Metadata
 import org.kodein.db.orm.kotlinx.KotlinxSerializer
+import kotlin.native.concurrent.SharedImmutable
 
 
 @Serializable
@@ -65,10 +66,16 @@ class CityBikesRepository: KoinComponent {
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
             println("pollNetworkUpdates, network = $network")
-            val stations = cityBikesApi.fetchBikeShareInfo(network).network.stations
+            val stations = fetchBikeShareInfo(network)
             emit(stations)
             delay(POLL_INTERVAL)
         }
+    }
+
+
+    suspend fun fetchBikeShareInfo(network: String) : List<Station> {
+        val result = cityBikesApi.fetchBikeShareInfo(network)
+        return result.network.stations
     }
 
     companion object {

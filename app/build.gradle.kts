@@ -66,6 +66,8 @@ dependencies {
     implementation(Compose.material)
     implementation(Compose.navigation)
 
+    implementation("androidx.glance:glance-appwidget:1.0.0-SNAPSHOT")
+
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.compose)

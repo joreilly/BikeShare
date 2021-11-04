@@ -1,0 +1,7 @@
+module KMPNativeCoroutinesAsync {
+  umbrella header "KMPNativeCoroutinesAsync-iOS15.2-umbrella.h"
+  exclude header "KMPNativeCoroutinesAsync-iOS14.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

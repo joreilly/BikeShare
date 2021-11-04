@@ -1,0 +1,6 @@
+module Pods_BikeShareWidgetExtension {
+  umbrella header "Pods-BikeShareWidgetExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

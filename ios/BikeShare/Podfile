@@ -5,3 +5,8 @@ target 'BikeShare' do
     pod 'KMPNativeCoroutinesAsync'
 end
 
+
+target 'BikeShareWidgetExtension' do
+    pod 'common', :path => '../../common'
+    pod 'KMPNativeCoroutinesAsync'
+end
