@@ -23,7 +23,7 @@ allprojects {
         maven {
             url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
         }
-        maven(url = "https://androidx.dev/snapshots/latest/artifacts/repository")
+        maven(url = "https://androidx.dev/snapshots/builds/7888785/artifacts/repository")
     }
 }
 
