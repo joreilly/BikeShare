@@ -7,8 +7,8 @@ object Versions {
     const val koin = "3.1.2"
     const val lifecycle = "2.2.0-alpha01"
 
-    const val compose = "1.0.4"
-    const val nav_compose = "2.4.0-alpha10"
+    const val compose = "1.0.5"
+    const val navCompose = "2.4.0-beta02"
     const val slf4j = "1.7.30"
 
     const val kermit = "0.1.8"
@@ -33,7 +33,7 @@ object Compose {
     const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
-    const val navigation = "androidx.navigation:navigation-compose:${Versions.nav_compose}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
 }
 
 object Koin {
