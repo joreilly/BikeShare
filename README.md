@@ -8,6 +8,12 @@ Running on
 * Android (Jetpack Compose)
 * Desktop (Compose for Desktop)
 
+Related posts:
+* [Using SwiftUI and Compose to develop App Widgets on iOS and Android](https://johnoreilly.dev/posts/ios-android-widget-kmp/)
+* [Bridging the gap between Swift 5.5 concurrency and Kotlin Coroutines with KMP-NativeCoroutines](https://johnoreilly.dev/posts/kmp-native-coroutines/)
+
+
+
 ![BikeShare Screenshot](/art/screenshot1.png?raw=true )
 ![BikeShare Screenshot](/art/screenshot2.png?raw=true )
 
