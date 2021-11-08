@@ -78,7 +78,7 @@ struct NetworkListView : View {
 
     var body: some View {
         List(cityBikesViewModel.networkList, id: \.id) { network in
-            Text(network.name + " (" + network.location.city + ")")
+            Text("\(network.name)  (\(network.location.city)) - \(network.stations.count) stations")
         }
         .navigationBarTitle(Text("Networks"))
         .onAppear {

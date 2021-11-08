@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A014DB42739902600002E38 /* CollectionConcurrencyKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A014DB32739902600002E38 /* CollectionConcurrencyKit */; };
 		1A11F7982732AE86006E20C5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A11F7972732AE86006E20C5 /* WidgetKit.framework */; };
 		1A11F79A2732AE86006E20C5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A11F7992732AE86006E20C5 /* SwiftUI.framework */; };
 		1A11F79D2732AE86006E20C5 /* BikeShareWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */; };
@@ -87,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */,
+				1A014DB42739902600002E38 /* CollectionConcurrencyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +207,9 @@
 				1A11F7A22732AE87006E20C5 /* PBXTargetDependency */,
 			);
 			name = BikeShare;
+			packageProductDependencies = (
+				1A014DB32739902600002E38 /* CollectionConcurrencyKit */,
+			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +241,9 @@
 				Base,
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
+			packageReferences = (
+				1A014DB22739902600002E38 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */,
+			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -468,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -522,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -543,7 +551,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -566,7 +574,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -609,6 +617,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A014DB22739902600002E38 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/CollectionConcurrencyKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A014DB32739902600002E38 /* CollectionConcurrencyKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A014DB22739902600002E38 /* XCRemoteSwiftPackageReference "CollectionConcurrencyKit" */;
+			productName = CollectionConcurrencyKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A56764024D351FC0047F88F /* Project object */;
 }

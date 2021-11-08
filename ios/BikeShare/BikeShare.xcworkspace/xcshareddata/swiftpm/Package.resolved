@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CollectionConcurrencyKit",
+        "repositoryURL": "https://github.com/JohnSundell/CollectionConcurrencyKit",
+        "state": {
+          "branch": null,
+          "revision": "2e4984dcaed6432f4eff175f6616ba463428cd8a",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

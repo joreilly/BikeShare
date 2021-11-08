@@ -72,6 +72,10 @@ class CityBikesRepository: KoinComponent {
         }
     }
 
+    suspend fun fetchNetwork(network: String) : Network {
+        val result = cityBikesApi.fetchBikeShareInfo(network)
+        return result.network
+    }
 
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {
         val result = cityBikesApi.fetchBikeShareInfo(network)

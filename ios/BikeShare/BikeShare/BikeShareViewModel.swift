@@ -1,6 +1,7 @@
 import Foundation
 import common
 import KMPNativeCoroutinesAsync
+import CollectionConcurrencyKit
 
 @MainActor
 class CityBikesViewModel: ObservableObject {
@@ -18,7 +19,14 @@ class CityBikesViewModel: ObservableObject {
         Task {
             let result = await asyncResult(for: repository.fetchNetworkListNative())
             if case let .success(networkList) = result {
-                self.networkList = networkList
+                self.networkList = await networkList.concurrentMap { network -> Network? in
+                    let result = await asyncResult(for: self.repository.fetchNetworkNative(network: network.id))
+                    if case let .success(network) = result {
+                        return network
+                    } else {
+                        return nil
+                    }
+                }.compactMap { $0 }
             }
         }
     }
