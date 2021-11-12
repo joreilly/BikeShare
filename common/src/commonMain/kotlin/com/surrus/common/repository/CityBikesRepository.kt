@@ -14,7 +14,6 @@ import org.kodein.db.*
 import org.kodein.db.impl.inDir
 import org.kodein.db.model.orm.Metadata
 import org.kodein.db.orm.kotlinx.KotlinxSerializer
-import kotlin.native.concurrent.SharedImmutable
 
 
 @Serializable

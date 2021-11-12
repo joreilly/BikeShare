@@ -4,27 +4,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.glance.GlanceModifier
+import androidx.glance.*
 import androidx.glance.appwidget.GlanceAppWidget
-import androidx.glance.appwidget.GlanceId
-import androidx.glance.appwidget.LocalGlanceId
-import androidx.glance.background
 import androidx.glance.layout.*
 import androidx.glance.text.FontWeight
+import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.surrus.common.remote.Station
 import com.surrus.common.remote.freeBikes
 import com.surrus.bikeshare.R
 import com.surrus.common.remote.slots
 
-class BikeShareAppWidget : GlanceAppWidget() {
-    var glanceId: GlanceId? = null
-    var station by mutableStateOf<Station?>(null)
+class BikeShareAppWidget(val station: Station? = null) : GlanceAppWidget() {
 
     @Composable
     override fun Content() {
-        glanceId = LocalGlanceId.current
-
         Column(
             modifier = GlanceModifier
                 .fillMaxSize().background(Color.White).padding(8.dp),
