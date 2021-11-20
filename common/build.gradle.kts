@@ -3,7 +3,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("org.jetbrains.kotlin.native.cocoapods")
-    id("com.rickclephas.kmp.nativecoroutines") version "0.7.0"
+    id("com.rickclephas.kmp.nativecoroutines")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
@@ -25,6 +25,7 @@ android {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs = listOf("-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
 }
 
