@@ -48,19 +48,17 @@ class CityBikesRepository: KoinComponent {
                 }
                 didDelete { }
             }
+
+            fetchAndStoreNetworkList()
         }
     }
 
     suspend fun fetchAndStoreNetworkList() {
-        val networkList = fetchNetworkList()
+        val networkList = cityBikesApi.fetchNetworkList().networks
         val networkListData = NetworkList("networkList", networkList)
         db.put(networkListData)
     }
 
-
-    suspend fun fetchNetworkList(): List<Network> {
-        return cityBikesApi.fetchNetworkList().networks
-    }
 
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
@@ -70,7 +68,6 @@ class CityBikesRepository: KoinComponent {
             delay(POLL_INTERVAL)
         }
     }
-
 
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {
         val result = cityBikesApi.fetchBikeShareInfo(network)

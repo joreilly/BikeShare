@@ -81,8 +81,8 @@ struct NetworkListView : View {
             Text(network.name + " (" + network.location.city + ")")
         }
         .navigationBarTitle(Text("Networks"))
-        .onAppear {
-            cityBikesViewModel.fetchNetworks()
-        }
+//        .onAppear {
+//            cityBikesViewModel.fetchNetworks()
+//        }
     }
 }

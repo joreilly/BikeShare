@@ -12,13 +12,19 @@ class CityBikesViewModel: ObservableObject {
     private let repository: CityBikesRepository
     init(repository: CityBikesRepository) {
         self.repository = repository
+        
+        fetchNetworks()
     }
  
     func fetchNetworks() {
         Task {
-            let result = await asyncResult(for: repository.fetchNetworkListNative())
-            if case let .success(networkList) = result {
-                self.networkList = networkList
+            do {
+                let stream = asyncStream(for: repository.networkListNative)
+                for try await data in stream {
+                    self.networkList = data
+                }
+            } catch {
+                print("Failed with error: \(error)")
             }
         }
     }
