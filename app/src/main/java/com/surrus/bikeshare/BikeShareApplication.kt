@@ -6,6 +6,7 @@ import com.surrus.common.appContext
 import com.surrus.common.di.initKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.core.logger.Level
 
 class BikeShareApplication : Application() {
 
@@ -15,7 +16,8 @@ class BikeShareApplication : Application() {
         appContext = this
 
         initKoin {
-            androidLogger()
+            // https://github.com/InsertKoinIO/koin/issues/1188
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@BikeShareApplication)
             modules(appModule)
         }
