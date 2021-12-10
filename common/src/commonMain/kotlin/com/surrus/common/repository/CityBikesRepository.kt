@@ -1,31 +1,35 @@
 package com.surrus.common.repository
 
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
-import com.surrus.common.getApplicationFilesDirectoryPath
+import com.surrus.common.model.Network
 import com.surrus.common.remote.CityBikesApi
-import com.surrus.common.remote.Network
 import com.surrus.common.remote.Station
+import io.realm.*
+import io.realm.annotations.PrimaryKey
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.serialization.Serializable
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.kodein.db.*
-import org.kodein.db.impl.inDir
-import org.kodein.db.model.orm.Metadata
-import org.kodein.db.orm.kotlinx.KotlinxSerializer
 
 
-@Serializable
-data class NetworkList(override val id: String, val networks: List<Network>): Metadata
+
+class NetworkDb: RealmObject {
+    @PrimaryKey
+    var id: String = ""
+    var name: String = ""
+    var city: String = ""
+    var country: String = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+}
 
 @ExperimentalCoroutinesApi
 class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
-    private lateinit var db: DB
+    private val realm: Realm by inject()
 
     @NativeCoroutineScope
-    private val coroutineScope: CoroutineScope = MainScope()
+    private val mainScope: CoroutineScope = MainScope()
 
     private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
     val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
@@ -34,29 +38,39 @@ class CityBikesRepository: KoinComponent {
     val networkList: StateFlow<List<Network>> = _networkList
 
     init {
-        coroutineScope.launch {
-            db = DB.inDir(getApplicationFilesDirectoryPath())
-                .open("bikeshare_db", TypeTable {
-                    root<NetworkList>()
-                }, KotlinxSerializer())
-
-            db.on<NetworkList>().register {
-                didPut { networkListData ->
-                    _networkList.value = networkListData.networks
-                    _groupedNetworkList.value =
-                        networkListData.networks.groupBy { it.location.country }
-                }
-                didDelete { }
+        mainScope.launch {
+            launch {
+                realm.query<NetworkDb>().asFlow()
+                    .map { it.list }
+                    .collect { it: RealmResults<NetworkDb> ->
+                        _networkList.value = it.toList().map {
+                            Network(it.id, it.name, it.city, it.country, it.latitude, it.longitude)
+                        }
+                        _groupedNetworkList.value =
+                            _networkList.value.groupBy { it.country }
+                    }
             }
 
             fetchAndStoreNetworkList()
         }
     }
 
-    suspend fun fetchAndStoreNetworkList() {
+    private suspend fun fetchAndStoreNetworkList() {
         val networkList = cityBikesApi.fetchNetworkList().networks
-        val networkListData = NetworkList("networkList", networkList)
-        db.put(networkListData)
+        println(networkList)
+
+        realm.write {
+            networkList.forEach { networkDto ->
+                copyToRealm(NetworkDb().apply {
+                    id = networkDto.id
+                    name = networkDto.name
+                    city = networkDto.location.city
+                    country = networkDto.location.country
+                    latitude = networkDto.location.latitude
+                    longitude = networkDto.location.longitude
+                }, updatePolicy = MutableRealm.UpdatePolicy.ALL)
+            }
+        }
     }
 
 

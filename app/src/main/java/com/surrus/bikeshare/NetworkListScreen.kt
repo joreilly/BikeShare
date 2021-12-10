@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.surrus.bikeshare.ui.viewmodel.BikeShareViewModel
 import com.surrus.bikeshare.ui.viewmodel.Country
-import com.surrus.common.remote.Network
+import com.surrus.common.model.Network
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -60,7 +60,7 @@ fun NetworkView(network: Network, networkSelected: (network: String) -> Unit) {
         verticalAlignment = Alignment.CenterVertically) {
 
         Text(text = network.name, style = MaterialTheme.typography.h6)
-        Text(text = " (${network.location.city})", style = MaterialTheme.typography.h6)
+        Text(text = " (${network.city})", style = MaterialTheme.typography.h6)
     }
     Divider()
 }

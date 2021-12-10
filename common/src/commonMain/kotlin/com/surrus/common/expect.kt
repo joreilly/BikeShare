@@ -1,4 +1,5 @@
 package com.surrus.common
 
-expect fun getApplicationFilesDirectoryPath(): String
+import org.koin.core.module.Module
 
+expect fun platformModule(): Module

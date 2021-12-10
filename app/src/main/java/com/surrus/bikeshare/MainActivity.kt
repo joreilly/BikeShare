@@ -29,14 +29,14 @@ class MainActivity : ComponentActivity() {
 
         // adding this here just as test for now....need to see where best place to do
         // this would be
-        lifecycleScope.launch {
-            cityBikesRepository.pollNetworkUpdates("galway").collect {
-                manager.getGlanceIds(BikeShareAppWidget::class.java).forEach { id ->
-                    // use first station for now
-                    BikeShareAppWidget(it[0]).update(this@MainActivity, id)
-                }
-            }
-        }
+//        lifecycleScope.launch {
+//            cityBikesRepository.pollNetworkUpdates("galway").collect {
+//                manager.getGlanceIds(BikeShareAppWidget::class.java).forEach { id ->
+//                    // use first station for now
+//                    BikeShareAppWidget(it[0]).update(this@MainActivity, id)
+//                }
+//            }
+//        }
 
         setContent {
             MainLayout()
