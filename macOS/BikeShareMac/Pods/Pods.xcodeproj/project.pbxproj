@@ -9,9 +9,9 @@
 /* Begin PBXAggregateTarget section */
 		8217FBB9D1218C346C0781D0B8F2BBE8 /* common */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */;
+			buildConfigurationList = EA096F597D80BB0D913F0FE4279EC0E1 /* Build configuration list for PBXAggregateTarget "common" */;
 			buildPhases = (
-				1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */,
+				B1BF98AE8F6EE2A3D1FB38C53F124287 /* [CP-User] Build common */,
 			);
 			dependencies = (
 			);
@@ -20,11 +20,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		AB88C9E02DE086EF6F55347239D44406 /* Pods-BikeShareMac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 01992B312F558C39DB9477C2A41FEC26 /* Pods-BikeShareMac-dummy.m */; };
+		9CAECA53FCF7A8E5939B74BD5A84E30A /* Pods-BikeShareMac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 01992B312F558C39DB9477C2A41FEC26 /* Pods-BikeShareMac-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		33BA2383F789FD411D47B2549B414780 /* PBXContainerItemProxy */ = {
+		407E24451D833A16FB4290947A132CBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -35,19 +35,20 @@
 
 /* Begin PBXFileReference section */
 		01992B312F558C39DB9477C2A41FEC26 /* Pods-BikeShareMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BikeShareMac-dummy.m"; sourceTree = "<group>"; };
-		0A6B703E54612EFF67927A22D6096EB1 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
-		112EA206AD2AF7BF6710F6FB6F9B49B1 /* common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.xcconfig; sourceTree = "<group>"; };
+		0CAFEF54D21BFACDD186A82892D14E13 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
+		141837F0FAD3496BCAFD54EC94EDC842 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
 		1601DE5DD3E4B9EF80FC55901F52033E /* Pods-BikeShareMac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BikeShareMac-acknowledgements.plist"; sourceTree = "<group>"; };
-		3CCDA0D5ADCEDEA0800F311246F1AC35 /* libPods-BikeShareMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-BikeShareMac.a"; path = "libPods-BikeShareMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DD573790F0BD52AC37218BA8067A72F /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3764DC094F115830B1141717F86F9585 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
+		3CCDA0D5ADCEDEA0800F311246F1AC35 /* Pods-BikeShareMac */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-BikeShareMac"; path = "libPods-BikeShareMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AB63881F4951B294084B005E7CE5AAA8 /* Pods-BikeShareMac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BikeShareMac-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B235CA9B62A9120AE8F25E966F4EE73B /* Pods-BikeShareMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShareMac.debug.xcconfig"; sourceTree = "<group>"; };
+		B8BC452A2682CDC5D90F256157CB8B1B /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA8C862C4253506E476571AAC4F8EEC6 /* Pods-BikeShareMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BikeShareMac.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E941A08EF40E29CF91A4C613D766893F /* Frameworks */ = {
+		6314CEB087C48F88C9474E7BEAD5BDFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,37 +58,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6125C0744739DB8954F18EAFB5A044BE /* Support Files */ = {
+		0C659539B127740A987C12E1A652016D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				112EA206AD2AF7BF6710F6FB6F9B49B1 /* common.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../macOS/BikeShareMac/Pods/Target Support Files/common";
-			sourceTree = "<group>";
-		};
-		71FB460F94F3E98C9791584B3678E588 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5DD573790F0BD52AC37218BA8067A72F /* common.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		7CB7A84A746D54885C024634EFD8A840 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3CCDA0D5ADCEDEA0800F311246F1AC35 /* libPods-BikeShareMac.a */,
+				3CCDA0D5ADCEDEA0800F311246F1AC35 /* Pods-BikeShareMac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		99051B40B814974F62D1A034E688DDA2 /* Frameworks */ = {
+		284AFB6A14C3E7B062288C66B16C0B44 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				0A6B703E54612EFF67927A22D6096EB1 /* common.framework */,
+				B8BC452A2682CDC5D90F256157CB8B1B /* common.podspec */,
 			);
-			name = Frameworks;
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		53237ACBD023107F08F5D2832E00D4B6 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				FF5930F46AE6038927BCEA59BB021FA9 /* Frameworks */,
+				284AFB6A14C3E7B062288C66B16C0B44 /* Pod */,
+				D35E0B8C21B425B4661DDED7C50FAFB1 /* Support Files */,
+			);
+			name = common;
+			path = ../../../common;
 			sourceTree = "<group>";
 		};
 		BB57A957D7CE82F83532C601C37A49D4 /* Targets Support Files */ = {
@@ -98,26 +93,25 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		CD230ACFCDC6E560C15135DD4A296A88 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				99051B40B814974F62D1A034E688DDA2 /* Frameworks */,
-				71FB460F94F3E98C9791584B3678E588 /* Pod */,
-				6125C0744739DB8954F18EAFB5A044BE /* Support Files */,
-			);
-			name = common;
-			path = ../../../common;
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				7CB7A84A746D54885C024634EFD8A840 /* Products */,
+				0C659539B127740A987C12E1A652016D /* Products */,
 				BB57A957D7CE82F83532C601C37A49D4 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		D35E0B8C21B425B4661DDED7C50FAFB1 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3764DC094F115830B1141717F86F9585 /* common.debug.xcconfig */,
+				141837F0FAD3496BCAFD54EC94EDC842 /* common.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../macOS/BikeShareMac/Pods/Target Support Files/common";
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -130,7 +124,7 @@
 		E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CD230ACFCDC6E560C15135DD4A296A88 /* common */,
+				53237ACBD023107F08F5D2832E00D4B6 /* common */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -148,10 +142,18 @@
 			path = "Target Support Files/Pods-BikeShareMac";
 			sourceTree = "<group>";
 		};
+		FF5930F46AE6038927BCEA59BB021FA9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CAFEF54D21BFACDD186A82892D14E13 /* common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		09ABB5A37E5D49805FE11D715338ACDF /* Headers */ = {
+		8492A893BA6DBDBE21F330A9A315CD08 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -163,20 +165,20 @@
 /* Begin PBXNativeTarget section */
 		451F9711A3252B860C73AC27645A5AD4 /* Pods-BikeShareMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B866DD2DA6D3E0B2E649BCFBA3FEF156 /* Build configuration list for PBXNativeTarget "Pods-BikeShareMac" */;
+			buildConfigurationList = 64F3EEF39F7DF71378531F47902A8EC3 /* Build configuration list for PBXNativeTarget "Pods-BikeShareMac" */;
 			buildPhases = (
-				09ABB5A37E5D49805FE11D715338ACDF /* Headers */,
-				EA2094340930A1EB8C043FB0CB7EA451 /* Sources */,
-				E941A08EF40E29CF91A4C613D766893F /* Frameworks */,
+				8492A893BA6DBDBE21F330A9A315CD08 /* Headers */,
+				CC54CACD86D3BE70F0C2074A5B042D5E /* Sources */,
+				6314CEB087C48F88C9474E7BEAD5BDFD /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				70CE3B7E8D4F8621BE8D1E5D51F86597 /* PBXTargetDependency */,
+				72D48BD5D860980047A7C3B4BA5B2466 /* PBXTargetDependency */,
 			);
 			name = "Pods-BikeShareMac";
 			productName = "Pods-BikeShareMac";
-			productReference = 3CCDA0D5ADCEDEA0800F311246F1AC35 /* libPods-BikeShareMac.a */;
+			productReference = 3CCDA0D5ADCEDEA0800F311246F1AC35 /* Pods-BikeShareMac */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -185,19 +187,19 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 7CB7A84A746D54885C024634EFD8A840 /* Products */;
+			productRefGroup = 0C659539B127740A987C12E1A652016D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -208,7 +210,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1507B811A92121AABDBE5909D1BD0742 /* [CP-User] Build common */ = {
+		B1BF98AE8F6EE2A3D1FB38C53F124287 /* [CP-User] Build common */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,35 +218,75 @@
 			name = "[CP-User] Build common";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" :common:syncFramework                     -Pkotlin.native.cocoapods.target=$KOTLIN_TARGET                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n";
+			shellScript = "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA2094340930A1EB8C043FB0CB7EA451 /* Sources */ = {
+		CC54CACD86D3BE70F0C2074A5B042D5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB88C9E02DE086EF6F55347239D44406 /* Pods-BikeShareMac-dummy.m in Sources */,
+				9CAECA53FCF7A8E5939B74BD5A84E30A /* Pods-BikeShareMac-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		70CE3B7E8D4F8621BE8D1E5D51F86597 /* PBXTargetDependency */ = {
+		72D48BD5D860980047A7C3B4BA5B2466 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = common;
 			target = 8217FBB9D1218C346C0781D0B8F2BBE8 /* common */;
-			targetProxy = 33BA2383F789FD411D47B2549B414780 /* PBXContainerItemProxy */;
+			targetProxy = 407E24451D833A16FB4290947A132CBD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0253CCDEE11BB2E876CF8C6EBDC6E1A8 /* Release */ = {
+		1F913EC84431B22D505172EE28605CE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B235CA9B62A9120AE8F25E966F4EE73B /* Pods-BikeShareMac.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3B77253EAE8B724A50DDBD905E53BD65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3764DC094F115830B1141717F86F9585 /* common.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		82E73717A2562031D5E1F4D85DD1A982 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -267,6 +309,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -289,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,14 +344,14 @@
 			};
 			name = Release;
 		};
-		4378E0E922D349595C61062955029C5F /* Release */ = {
+		9A77059F9B2FE9F0B08EA4E5193AA4EA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 112EA206AD2AF7BF6710F6FB6F9B49B1 /* common.xcconfig */;
+			baseConfigurationReference = 141837F0FAD3496BCAFD54EC94EDC842 /* common.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -319,10 +362,32 @@
 			};
 			name = Release;
 		};
-		6DC6BBF7D2A721A4E91A75A28EEB8E83 /* Debug */ = {
+		D21C2D480D937EB8BFF7A0F23BC51F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA8C862C4253506E476571AAC4F8EEC6 /* Pods-BikeShareMac.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D39E634FC2CFF97419EB3682DD2807FA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -345,6 +410,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -370,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -383,96 +449,32 @@
 			};
 			name = Debug;
 		};
-		B6B4BB774EB449EA7DB0AF3688C0176A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA8C862C4253506E476571AAC4F8EEC6 /* Pods-BikeShareMac.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		E3FF1EE3FB15D973B5ED020A464BB4E2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B235CA9B62A9120AE8F25E966F4EE73B /* Pods-BikeShareMac.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		E5DED7EB022DACA148D8CEC01BD2C67B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 112EA206AD2AF7BF6710F6FB6F9B49B1 /* common.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22394E93158CF2B7CD93BED2C7C16E84 /* Build configuration list for PBXAggregateTarget "common" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E5DED7EB022DACA148D8CEC01BD2C67B /* Debug */,
-				4378E0E922D349595C61062955029C5F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6DC6BBF7D2A721A4E91A75A28EEB8E83 /* Debug */,
-				0253CCDEE11BB2E876CF8C6EBDC6E1A8 /* Release */,
+				D39E634FC2CFF97419EB3682DD2807FA /* Debug */,
+				82E73717A2562031D5E1F4D85DD1A982 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B866DD2DA6D3E0B2E649BCFBA3FEF156 /* Build configuration list for PBXNativeTarget "Pods-BikeShareMac" */ = {
+		64F3EEF39F7DF71378531F47902A8EC3 /* Build configuration list for PBXNativeTarget "Pods-BikeShareMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E3FF1EE3FB15D973B5ED020A464BB4E2 /* Debug */,
-				B6B4BB774EB449EA7DB0AF3688C0176A /* Release */,
+				1F913EC84431B22D505172EE28605CE7 /* Debug */,
+				D21C2D480D937EB8BFF7A0F23BC51F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA096F597D80BB0D913F0FE4279EC0E1 /* Build configuration list for PBXAggregateTarget "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B77253EAE8B724A50DDBD905E53BD65 /* Debug */,
+				9A77059F9B2FE9F0B08EA4E5193AA4EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

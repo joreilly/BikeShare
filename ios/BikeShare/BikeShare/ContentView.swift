@@ -36,11 +36,8 @@ struct StationListView: View {
             StationView(station: station)
         }
         .navigationBarTitle(Text("Bike Stations"))
-        .onAppear {
-            cityBikesViewModel.startObservingBikeShareInfo(network: network)
-        }
-        .onDisappear {
-            cityBikesViewModel.stopObservingBikeShareInfo()
+        .task {
+            await cityBikesViewModel.startObservingBikeShareInfo(network: network)
         }
     }
 }
@@ -78,11 +75,8 @@ struct NetworkListView : View {
 
     var body: some View {
         List(cityBikesViewModel.networkList, id: \.id) { network in
-            Text(network.name + " (" + network.location.city + ")")
+            Text(network.name + " (" + network.city + ")")
         }
         .navigationBarTitle(Text("Networks"))
-//        .onAppear {
-//            cityBikesViewModel.fetchNetworks()
-//        }
     }
 }

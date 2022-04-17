@@ -1,9 +1,10 @@
 package com.surrus.common
 
-import android.content.Context
+import io.ktor.client.engine.android.*
+import org.koin.dsl.module
 
-lateinit var appContext: Context
+actual fun platformModule() = module {
+    single { Android.create() }
+}
 
-actual fun getApplicationFilesDirectoryPath(): String =
-    appContext.filesDir.absolutePath
 

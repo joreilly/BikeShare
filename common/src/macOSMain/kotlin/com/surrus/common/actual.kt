@@ -1,11 +1,12 @@
 package com.surrus.common
 
-import platform.Foundation.NSSearchPathForDirectoriesInDomains
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSUserDomainMask
+import io.ktor.client.engine.ios.*
+import org.koin.dsl.module
 
-actual fun getApplicationFilesDirectoryPath(): String =
-    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true)[0] as String
+
+actual fun platformModule() = module {
+    single { Ios.create() }
+}
 
 
 
