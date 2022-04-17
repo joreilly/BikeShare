@@ -27,12 +27,14 @@ struct ContentView : View {
     }
 }
 
+extension Station: Identifiable { }
+
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    var network: String
+    let network: String
  
     var body: some View {
-        List(cityBikesViewModel.stationList, id: \.id) { station in
+        List(cityBikesViewModel.stationList) { station in
             StationView(station: station)
         }
         .navigationBarTitle(Text("Bike Stations"))
