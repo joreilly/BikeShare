@@ -14,7 +14,7 @@ Related posts:
 
 
 ![BikeShare Screenshot](/art/screenshot1.png?raw=true )
-![BikeShare Screenshot](/art/screenshot2.png?raw=true )
+![BikeShare Screenshot](/art/screenshot_ios_swiftui.png?raw=true )
 
 
 ### Building
