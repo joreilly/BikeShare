@@ -11,6 +11,7 @@ object Versions {
     const val compose = "1.1.0"
     const val navCompose = "2.4.1"
     const val slf4j = "1.7.30"
+    const val composeDesktop = "1.0.1"
 
     const val realm = "0.10.2"
 

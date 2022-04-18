@@ -1,4 +1,5 @@
 import SwiftUI
+import MapKit
 import common
 
 
@@ -7,40 +8,64 @@ struct ContentView : View {
     @State private var selection = 0
     
     var body: some View {
-        TabView {
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: "galway")
-                .tabItem {
-                    VStack {
-                        Image(systemName: "location")
-                        Text("Galway")
+        NavigationView {
+            List {
+                ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
+                    NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
+                                        country: countryName(from: countryCode),
+                                        networks: cityBikesViewModel.networkList[countryCode]!))
+                    {
+                        HStack {
+                            Text(countryFlag(from: countryCode))
+                            Text(countryName(from: countryCode)).font(.headline)
+                        }
                     }
-                }.tag(0)
-            NetworkListView(cityBikesViewModel: cityBikesViewModel)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "location")
-                        Text("Networks")
-                    }
-                }.tag(1)
-
+                }
             }
+            .navigationTitle("Bike Share")
+        }
+        
+    }
+}
+    
+func countryName(from countryCode: String) -> String {
+    if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: countryCode) {
+        // Country name was found
+        return name
+    } else {
+        // Country name cannot be found
+        return countryCode
     }
 }
 
+func countryFlag(from countryCode: String) -> String {
+  let base = 127397
+  var tempScalarView = String.UnicodeScalarView()
+  for i in countryCode.utf16 {
+    if let scalar = UnicodeScalar(base + Int(i)) {
+      tempScalarView.append(scalar)
+    }
+  }
+  return String(tempScalarView)
+}
+    
+
 extension Station: Identifiable { }
+
 
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    let network: String
- 
+    let country: String
+    let networks: [Network]
+
     var body: some View {
-        List(cityBikesViewModel.stationList) { station in
-            StationView(station: station)
+        List(networks.sorted(by: { $0.city < $1.city }), id: \.id) { network in
+            NavigationLink(destination: BikeNetworkView(cityBikesViewModel: cityBikesViewModel,network: network)) {
+                Text("\(network.name) (\(network.city))").font(.subheadline)
+            }
+
         }
-        .navigationBarTitle(Text("Bike Stations"))
-        .task {
-            await cityBikesViewModel.startObservingBikeShareInfo(network: network)
-        }
+        .navigationTitle(country)
     }
 }
 
@@ -68,17 +93,35 @@ struct StationView : View {
                 }
             }
         }
+        .navigationTitle(station.name)
     }
 }
 
 
-struct NetworkListView : View {
+struct BikeNetworkView : View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var network: Network
+    @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
+                                           latitudinalMeters: 5000, longitudinalMeters: 5000)
 
     var body: some View {
-        List(cityBikesViewModel.networkList, id: \.id) { network in
-            Text(network.name + " (" + network.city + ")")
+        VStack {
+            Text(network.city)
+            Map(coordinateRegion: $region,
+                interactionModes: MapInteractionModes.all,
+                showsUserLocation: true,
+                annotationItems: self.cityBikesViewModel.stationList) { (station) -> MapPin in
+                    let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
+                                                            longitude: station.longitude)
+                return MapPin(coordinate: coordinate, tint: station.freeBikes() < 5 ? Color.red : Color.green)
+            }
         }
-        .navigationBarTitle(Text("Networks"))
+        .onAppear(perform: {
+            region.center = CLLocationCoordinate2D(latitude: network.latitude,
+                                                   longitude: network.longitude)
+        })
+        .task {
+            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+        }
     }
 }

@@ -5,7 +5,8 @@ import KMPNativeCoroutinesAsync
 @MainActor
 class CityBikesViewModel: ObservableObject {
     @Published var stationList = [Station]()
-    @Published var networkList = [Network]()
+    @Published var networkList = [String: [Network]]()
+    
     
     private let repository: CityBikesRepository
     init(repository: CityBikesRepository) {
@@ -17,7 +18,7 @@ class CityBikesViewModel: ObservableObject {
     func fetchNetworks() {
         Task {
             do {
-                let stream = asyncStream(for: repository.networkListNative)
+                let stream = asyncStream(for: repository.groupedNetworkListNative)
                 for try await data in stream {
                     self.networkList = data
                 }

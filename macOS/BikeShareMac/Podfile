@@ -1,5 +1,0 @@
-
-target 'BikeShareMac' do
-    pod 'common', :path => '../../common'
-end
-

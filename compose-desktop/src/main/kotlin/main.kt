@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.surrus.common.di.initKoin
 import com.surrus.common.remote.CityBikesApi
-import com.surrus.common.remote.Network
+import com.surrus.common.remote.NetworkDTO
 import com.surrus.common.remote.Station
 import org.jxmapviewer.JXMapViewer
 import org.jxmapviewer.OSMTileFactoryInfo
@@ -74,11 +74,11 @@ fun BikeShareView()  {
     val cityBikesApi = koin.get<CityBikesApi>()
 
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
-    var selectedNetwork by remember { mutableStateOf<Network?>(null) }
-    var networkList by remember { mutableStateOf(emptyList<Network>()) }
+    var selectedNetwork by remember { mutableStateOf<NetworkDTO?>(null) }
+    var networkList by remember { mutableStateOf(emptyList<NetworkDTO>()) }
 
     var stationList by remember { mutableStateOf(emptyList<Station>()) }
-    var groupedNetworkList: Map<Country, List<Network>> by remember { mutableStateOf(emptyMap()) }
+    var groupedNetworkList: Map<Country, List<NetworkDTO>> by remember { mutableStateOf(emptyMap()) }
     var countryList by remember { mutableStateOf(emptyList<Country>()) }
 
 

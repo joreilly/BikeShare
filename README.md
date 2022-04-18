@@ -4,7 +4,6 @@ Jetpack Compose and SwiftUI based Kotlin Multiplatform sample project (based on 
 
 Running on
 * iOS (SwiftUI)
-* macOS (SwiftUI)
 * Android (Jetpack Compose)
 * Desktop (Compose for Desktop)
 
