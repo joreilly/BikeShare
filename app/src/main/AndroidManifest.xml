@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.surrus.bikeshare">
+    package="dev.johnoreilly.bikeshare">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.surrus.bikeshare.glance.BikeShareAppWidgetReceiver"
+        <receiver android:name="dev.johnoreilly.bikeshare.glance.BikeShareAppWidgetReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

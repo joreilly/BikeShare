@@ -1,17 +1,17 @@
 
 object Versions {
-    const val kotlinCoroutines = "1.6.0"
-    const val ktor = "1.6.7"
+    const val kotlinCoroutines = "1.6.1"
+    const val ktor = "2.0.0"
     const val kotlinxSerialization = "1.3.1"
-    const val koin = "3.1.4"
+    const val koin = "3.1.6"
     const val lifecycle = "2.2.0-alpha01"
 
-    const val kmpNativeCoroutinesVersion = "0.11.4-new-mm"
+    const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
 
-    const val compose = "1.1.0"
-    const val navCompose = "2.4.1"
+    const val compose = "1.2.0-alpha08"
+    const val navCompose = "2.4.2"
     const val slf4j = "1.7.30"
-    const val composeDesktop = "1.0.1"
+    const val composeDesktop = "0.0.0-master-dev673"
 
     const val realm = "0.10.2"
 
@@ -55,6 +55,8 @@ object Deps {
         const val clientJson = "io.ktor:ktor-client-json:${Versions.ktor}"
         const val clientLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+        const val json = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
 
         const val clientAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
         const val clientJava = "io.ktor:ktor-client-java:${Versions.ktor}"
