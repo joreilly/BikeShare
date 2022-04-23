@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.surrus.common.di.initKoin
-import com.surrus.common.remote.CityBikesApi
-import com.surrus.common.remote.NetworkDTO
-import com.surrus.common.remote.Station
+import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.remote.CityBikesApi
+import dev.johnoreilly.common.remote.NetworkDTO
+import dev.johnoreilly.common.remote.Station
 import org.jxmapviewer.JXMapViewer
 import org.jxmapviewer.OSMTileFactoryInfo
 import org.jxmapviewer.viewer.*

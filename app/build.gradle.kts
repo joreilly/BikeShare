@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk = AndroidSdk.compile
     defaultConfig {
-        applicationId = "com.surrus.bikeshare"
+        applicationId = "dev.johnoreilly.bikeshare"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
 

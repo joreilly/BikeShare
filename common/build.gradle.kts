@@ -64,6 +64,8 @@ kotlin {
                     implementation(clientJson)
                     implementation(clientLogging)
                     implementation(clientSerialization)
+                    implementation(contentNegotiation)
+                    implementation(json)
                 }
 
                 with(Deps.Kotlinx) {
