@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A11F7982732AE86006E20C5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A11F7972732AE86006E20C5 /* WidgetKit.framework */; };
-		1A11F79A2732AE86006E20C5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A11F7992732AE86006E20C5 /* SwiftUI.framework */; };
-		1A11F79D2732AE86006E20C5 /* BikeShareWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */; };
-		1A11F79F2732AE87006E20C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A11F79E2732AE87006E20C5 /* Assets.xcassets */; };
-		1A11F7A32732AE87006E20C5 /* BikeShareWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A11F7962732AE86006E20C5 /* BikeShareWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
@@ -19,19 +14,8 @@
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
 		1A56766024D352FA0047F88F /* BikeShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */; };
-		55DA182342F8C4CBAA714DE7 /* libPods-BikeShareWidgetExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A394810C26BD31F4E7565E6 /* libPods-BikeShareWidgetExtension.a */; };
 		E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		1A11F7A12732AE87006E20C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1A56764024D351FC0047F88F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1A11F7952732AE86006E20C5;
-			remoteInfo = BikeShareWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1A11F7A42732AE87006E20C5 /* Embed App Extensions */ = {
@@ -40,7 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1A11F7A32732AE87006E20C5 /* BikeShareWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +33,6 @@
 /* Begin PBXFileReference section */
 		14A14EEA56EA3264B7C718B5 /* Pods-BikeShareWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A11F7962732AE86006E20C5 /* BikeShareWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeShareWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A11F7972732AE86006E20C5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1A11F7992732AE86006E20C5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareWidget.swift; sourceTree = "<group>"; };
@@ -72,16 +54,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1A11F7932732AE86006E20C5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A11F79A2732AE86006E20C5 /* SwiftUI.framework in Frameworks */,
-				1A11F7982732AE86006E20C5 /* WidgetKit.framework in Frameworks */,
-				55DA182342F8C4CBAA714DE7 /* libPods-BikeShareWidgetExtension.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A56764524D351FC0047F88F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				1A56764824D351FC0047F88F /* BikeShare.app */,
-				1A11F7962732AE86006E20C5 /* BikeShareWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,24 +142,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A11F7952732AE86006E20C5 /* BikeShareWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1A11F7A72732AE87006E20C5 /* Build configuration list for PBXNativeTarget "BikeShareWidgetExtension" */;
-			buildPhases = (
-				F345C9F7F82E664C37564BFE /* [CP] Check Pods Manifest.lock */,
-				1A11F7922732AE86006E20C5 /* Sources */,
-				1A11F7932732AE86006E20C5 /* Frameworks */,
-				1A11F7942732AE86006E20C5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BikeShareWidgetExtension;
-			productName = BikeShareWidgetExtension;
-			productReference = 1A11F7962732AE86006E20C5 /* BikeShareWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		1A56764724D351FC0047F88F /* BikeShare */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A56765C24D351FF0047F88F /* Build configuration list for PBXNativeTarget "BikeShare" */;
@@ -202,7 +155,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1A11F7A22732AE87006E20C5 /* PBXTargetDependency */,
 			);
 			name = BikeShare;
 			productName = BikeShare;
@@ -219,9 +171,6 @@
 				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = "John O'Reilly";
 				TargetAttributes = {
-					1A11F7952732AE86006E20C5 = {
-						CreatedOnToolsVersion = 13.2;
-					};
 					1A56764724D351FC0047F88F = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -241,20 +190,11 @@
 			projectRoot = "";
 			targets = (
 				1A56764724D351FC0047F88F /* BikeShare */,
-				1A11F7952732AE86006E20C5 /* BikeShareWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1A11F7942732AE86006E20C5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A11F79F2732AE87006E20C5 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A56764624D351FC0047F88F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,39 +230,9 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F345C9F7F82E664C37564BFE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BikeShareWidgetExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1A11F7922732AE86006E20C5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A11F79D2732AE86006E20C5 /* BikeShareWidget.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1A56764424D351FC0047F88F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,14 +246,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		1A11F7A22732AE87006E20C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1A11F7952732AE86006E20C5 /* BikeShareWidgetExtension */;
-			targetProxy = 1A11F7A12732AE87006E20C5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		1A56765624D351FF0047F88F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -356,68 +258,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1A11F7A52732AE87006E20C5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 243FA330F5FD8E9D0DEE843D /* Pods-BikeShareWidgetExtension.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NT77748GS8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BikeShareWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BikeShareWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare.BikeShareWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1A11F7A62732AE87006E20C5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14A14EEA56EA3264B7C718B5 /* Pods-BikeShareWidgetExtension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NT77748GS8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BikeShareWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BikeShareWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 John O'Reilly. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare.BikeShareWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		1A56765A24D351FF0047F88F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -539,6 +379,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
@@ -548,7 +389,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare;
+				MARKETING_VERSION = 1.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -562,6 +404,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
@@ -571,7 +414,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.surrus.BikeShare;
+				MARKETING_VERSION = 1.0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -581,15 +425,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A11F7A72732AE87006E20C5 /* Build configuration list for PBXNativeTarget "BikeShareWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1A11F7A52732AE87006E20C5 /* Debug */,
-				1A11F7A62732AE87006E20C5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1A56764324D351FC0047F88F /* Build configuration list for PBXProject "BikeShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
