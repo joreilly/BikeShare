@@ -32,3 +32,8 @@ gradle-app.setting
 xcschememanagement.plist
 *.xcbkptlist
 
+fastlane/report.xml
+
+keystore.properties
+api-*.json
+

@@ -1,19 +1,65 @@
-import org.jetbrains.kotlin.gradle.plugin.PLUGIN_CLASSPATH_CONFIGURATION_NAME
+import java.io.FileInputStream
+import java.util.*
+
 
 plugins {
     id("com.android.application")
     kotlin("android")
 }
 
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+try {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+catch(e: Exception) {
+}
+
+val versionMajor = 1
+val versionMinor = 0
+
+val versionNum: String? by project
+
+fun versionCode(): Int {
+    versionNum?.let {
+        val code: Int = (versionMajor * 1000000) + (versionMinor * 1000) + it.toInt()
+        println("versionCode is set to $code")
+        return code
+    } ?: return 1
+}
+
+fun versionName(): String {
+    versionNum?.let {
+        val name = "${versionMajor}.${versionMinor}.${versionNum}"
+        println("versionName is set to $name")
+        return name
+    } ?: return "1.0"
+}
+
 android {
     compileSdk = AndroidSdk.compile
+
+    signingConfigs {
+
+        create("release") {
+            storeFile = file("/Users/joreilly/dev/keystore/galwaybus_android.jks")
+            keyAlias = keystoreProperties["keyAlias"] as String?
+            keyPassword = keystoreProperties["keyPassword"] as String?
+            storePassword = keystoreProperties["storePassword"] as String?
+            isV2SigningEnabled = true
+        }
+    }
+
+
     defaultConfig {
         applicationId = "dev.johnoreilly.bikeshare"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
 
-        versionCode = 1
-        versionName = "1.0"
+        this.versionCode = versionCode()
+        this.versionName = versionName()
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // see https://api.citybik.es/v2/networks/ for possible network values
@@ -29,9 +75,13 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        buildTypes {
+            getByName("release") {
+                //isShrinkResources = true
+                //isMinifyEnabled = true
+                //proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
     }
 
