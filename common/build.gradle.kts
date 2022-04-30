@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -5,7 +7,7 @@ plugins {
     id("io.realm.kotlin") version Versions.realm
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    //id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 android {
@@ -35,18 +37,41 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 version = "1.0"
 
 kotlin {
-    targets {
-        val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
-            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
-            else -> ::iosX64
-        }
-        iosTarget("iOS") {}
+    //val xcf = XCFramework()
 
-        macosX64("macOS")
+
+    //targets {
+//        val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
+//            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+//            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
+//            else -> ::iosX64
+//        }
+//        iosTarget("iOS") {
+//            binaries.framework {
+//                baseName = "BikeShareKit"
+//                xcf.add(this)
+//            }
+//        }
+
+        val xcf = XCFramework("BikeShareKit")
+        listOf(iosX64(), iosArm64(), iosSimulatorArm64())
+            .forEach {
+                it.binaries.framework {
+                    baseName = "BikeShareKit"
+                    isStatic = false
+                    xcf.add(this)
+                }
+            }
+
+        macosArm64("macOS") {
+            binaries.framework {
+                baseName = "BikeShareKit"
+                xcf.add(this)
+            }
+        }
         android()
         jvm()
-    }
+    //}
 
 
     cocoapods {
@@ -90,12 +115,25 @@ kotlin {
             }
         }
 
-        val iOSMain by getting {
+//        val iOSMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientIos)
+//            }
+//        }
+//        val iOSTest by getting {
+//        }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
             dependencies {
                 implementation(Deps.Ktor.clientIos)
             }
-        }
-        val iOSTest by getting {
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
 
         val macOSMain by getting {
@@ -119,11 +157,11 @@ kotlin {
     }
 }
 
-multiplatformSwiftPackage {
-    packageName("BikeShareKit")
-    swiftToolsVersion("5.3")
-    targetPlatforms {
-        iOS { v("13") }
-        macOS{ v("10_15") }
-    }
-}
+//multiplatformSwiftPackage {
+//    packageName("BikeShareKit")
+//    swiftToolsVersion("5.3")
+//    targetPlatforms {
+//        iOS { v("13") }
+//        macOS{ v("10_15") }
+//    }
+//}
