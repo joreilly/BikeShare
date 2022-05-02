@@ -13,7 +13,7 @@ object Versions {
     const val slf4j = "1.7.30"
     const val composeDesktop = "0.0.0-master-dev673"
 
-    const val realm = "0.10.2"
+    const val realm = "0.11.0"
 
     const val junit = "4.12"
 }
