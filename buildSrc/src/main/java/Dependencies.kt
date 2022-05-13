@@ -1,20 +1,19 @@
 
 object Versions {
     const val kotlinCoroutines = "1.6.1"
-    const val ktor = "2.0.0"
-    const val kotlinxSerialization = "1.3.1"
-    const val koin = "3.1.6"
-    const val lifecycle = "2.2.0-alpha01"
+    const val ktor = "2.0.1"
+    const val kotlinxSerialization = "1.3.3"
+    const val koin = "3.2.0"
 
     const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
 
-    const val compose = "1.2.0-alpha08"
+    const val compose = "1.2.0-beta01"
     const val navCompose = "2.4.2"
-    const val slf4j = "1.7.30"
-    const val composeDesktop = "0.0.0-master-dev673"
+    const val composeDesktop = "1.2.0-alpha01-dev683"
 
     const val realm = "0.11.0"
 
+    const val slf4j = "1.7.30"
     const val junit = "4.12"
 }
 
