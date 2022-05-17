@@ -1,5 +1,6 @@
 package dev.johnoreilly.bikeshare
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,9 +30,9 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
 
     val countryCodeList = groupedNetworkListState.value.keys.toList().sortedBy { it.displayName }
 
-    Scaffold(topBar = { TopAppBar(title = { Text("BikeShare - Countries") }) }) {
+    Scaffold(topBar = { TopAppBar(title = { Text("BikeShare - Countries") }) }) { paddingValues ->
 
-        Column {
+        Column(Modifier.padding(paddingValues)) {
             Box(Modifier.weight(1f)) {
                 val listState = rememberLazyListState()
                 CountryList(countryCodeList, listState, countrySelected)

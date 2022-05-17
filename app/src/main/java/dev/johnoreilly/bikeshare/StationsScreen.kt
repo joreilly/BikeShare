@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.bikeshare.ui.highAvailabilityColor
@@ -29,7 +28,9 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val stationsState = bikeShareViewModel.stations.collectAsState(emptyList())
 
-    bikeShareViewModel.setCity(networkId)
+    LaunchedEffect(networkId) {
+        bikeShareViewModel.setCity(networkId)
+    }
 
     var navigationIcon:  @Composable() (() -> Unit)? = null
     if (popBack != null) { navigationIcon =  {
@@ -39,8 +40,8 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("BikeShare - $networkId") }, navigationIcon = navigationIcon)
-        }) { innerPadding ->
-            LazyColumn(contentPadding = innerPadding) {
+        }) { paddingValues ->
+            LazyColumn(Modifier.padding(paddingValues)) {
                 items(stationsState.value) { station ->
                     StationView(station)
                 }

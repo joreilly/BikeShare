@@ -24,6 +24,7 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
 
+    // TODO refactor/clean up this
     var networkList: List<Network>? = null
     var country: Country? = null
     val countryKeys = groupedNetworkListState.value.filterKeys { it.code == countryCode }
@@ -42,9 +43,9 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                     }
                 }
             )
-        }) {
+        }) { paddingValues ->
             networkList?.let {
-                LazyColumn {
+                LazyColumn(Modifier.padding(paddingValues)) {
                     items(networkList) { network ->
                         NetworkView(network, networkSelected)
                     }
@@ -59,8 +60,7 @@ fun NetworkView(network: Network, networkSelected: (network: String) -> Unit) {
             .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically) {
 
-        Text(text = network.name, style = MaterialTheme.typography.h6)
-        Text(text = " (${network.city})", style = MaterialTheme.typography.h6)
+        Text(text = "${network.name} (${network.city})", style = MaterialTheme.typography.h6)
     }
     Divider()
 }
