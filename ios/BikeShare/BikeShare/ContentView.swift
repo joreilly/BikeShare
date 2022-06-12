@@ -4,27 +4,27 @@ import common
 
 
 struct ContentView : View {
-    @ObservedObject var cityBikesViewModel = CityBikesViewModel(repository: CityBikesRepository())
-    @State private var selection = 0
-    
+    @ObservedObject var viewModel = CityBikesViewModel()
+    @State private var columnVisibility = NavigationSplitViewVisibility.all
+        
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
-                    NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
-                                        country: countryName(from: countryCode),
-                                        networks: cityBikesViewModel.networkList[countryCode]!))
-                    {
-                        HStack {
-                            Text(countryFlag(from: countryCode))
-                            Text(countryName(from: countryCode)).font(.headline)
-                        }
-                    }
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            SideBar(viewModel: viewModel)
+                .navigationSplitViewColumnWidth(200)
+        } content: {
+            if let selectedCountry = $viewModel.selectedCountry {
+                ZStack { // workaround for 91311311
+                    StationListView(selectedCountry: selectedCountry, viewModel: viewModel)
+                }
+                .navigationSplitViewColumnWidth(250)
+            }
+        } detail: {
+            if let selectedNetwork = $viewModel.selectedNetwork {
+                ZStack { // workaround for 91311311
+                    BikeNetworkView(viewModel: viewModel, selectedNtwork: selectedNetwork)
                 }
             }
-            .navigationTitle("Bike Share")
         }
-        
     }
 }
     
@@ -50,22 +50,34 @@ func countryFlag(from countryCode: String) -> String {
 }
     
 
-extension Station: Identifiable { }
-
+struct SideBar: View {
+    @ObservedObject var viewModel : CityBikesViewModel
+    
+    var body: some View {
+        List(viewModel.countryList, id: \.self, selection: $viewModel.selectedCountry) { countryCode in
+            HStack {
+                Text(countryFlag(from: countryCode))
+                Text(countryName(from: countryCode)).font(.headline)
+            }
+        }
+    }
+}
 
 struct StationListView: View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    let country: String
-    let networks: [Network]
+    @Binding var selectedCountry: String?
+    @ObservedObject var viewModel : CityBikesViewModel
 
     var body: some View {
-        List(networks.sorted(by: { $0.city < $1.city }), id: \.id) { network in
-            NavigationLink(destination: BikeNetworkView(cityBikesViewModel: cityBikesViewModel,network: network)) {
-                Text("\(network.name) (\(network.city))").font(.subheadline)
+        if let selectedCountry {
+            let networkList = viewModel.getSortedNetworks(countryCode: selectedCountry)!
+            
+            List(networkList, id: \.self, selection: $viewModel.selectedNetwork) { network in
+                HStack {
+                    Text("\(network.name) (\(network.city))").font(.subheadline)
+                }
             }
-
+            .navigationTitle(countryName(from: selectedCountry))
         }
-        .navigationTitle(country)
     }
 }
 
@@ -99,29 +111,31 @@ struct StationView : View {
 
 
 struct BikeNetworkView : View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    var network: Network
+    @ObservedObject var viewModel : CityBikesViewModel
+    @Binding var selectedNtwork: Network?
     @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
                                            latitudinalMeters: 5000, longitudinalMeters: 5000)
 
     var body: some View {
-        VStack {
-            Text(network.city)
-            Map(coordinateRegion: $region,
-                interactionModes: MapInteractionModes.all,
-                showsUserLocation: true,
-                annotationItems: self.cityBikesViewModel.stationList) { (station) -> MapPin in
+        if let selectedNtwork {
+            VStack {
+                Text(selectedNtwork.city)
+                Map(coordinateRegion: $region,
+                    interactionModes: MapInteractionModes.all,
+                    showsUserLocation: true,
+                    annotationItems: self.viewModel.stationList) { (station) -> MapPin in
                     let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
                                                             longitude: station.longitude)
-                return MapPin(coordinate: coordinate, tint: station.freeBikes() < 5 ? Color.red : Color.green)
+                    return MapPin(coordinate: coordinate, tint: station.freeBikes() < 5 ? Color.red : Color.green)
+                }
             }
-        }
-        .onAppear(perform: {
-            region.center = CLLocationCoordinate2D(latitude: network.latitude,
-                                                   longitude: network.longitude)
-        })
-        .task {
-            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+            .onAppear(perform: {
+                region.center = CLLocationCoordinate2D(latitude: selectedNtwork.latitude,
+                                                       longitude: selectedNtwork.longitude)
+            })
+            .task {
+                await viewModel.startObservingBikeShareInfo(network: selectedNtwork.id)
+            }
         }
     }
 }

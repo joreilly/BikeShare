@@ -9,8 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,13 +23,14 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
     val bikeShareViewModel = getViewModel<BikeShareViewModel>()
     val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
 
-    // TODO refactor/clean up this
-    var networkList: List<Network>? = null
-    var country: Country? = null
+    var networkList by remember { mutableStateOf<List<Network>>(emptyList()) }
+    var country by remember { mutableStateOf<Country?>(null) }
     val countryKeys = groupedNetworkListState.value.filterKeys { it.code == countryCode }
     if (countryKeys.isNotEmpty()) {
         country = countryKeys.keys.toList()[0]
-        networkList = groupedNetworkListState.value[country]
+        groupedNetworkListState.value[country]?.let {
+            networkList = it
+        }
     }
 
     Scaffold(

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A2232002836B27200967504 /* iOSMain in Resources */ = {isa = PBXBuildFile; fileRef = 1A2231FE2836B27200967504 /* iOSMain */; };
+		1A2232012836B27200967504 /* commonMain in Resources */ = {isa = PBXBuildFile; fileRef = 1A2231FF2836B27200967504 /* commonMain */; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
@@ -38,6 +40,8 @@
 		1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareWidget.swift; sourceTree = "<group>"; };
 		1A11F79E2732AE87006E20C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A11F7A02732AE87006E20C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A2231FE2836B27200967504 /* iOSMain */ = {isa = PBXFileReference; lastKnownFileType = folder; name = iOSMain; path = ../../../common/src/iOSMain; sourceTree = "<group>"; };
+		1A2231FF2836B27200967504 /* commonMain */ = {isa = PBXFileReference; lastKnownFileType = folder; name = commonMain; path = ../../../common/src/commonMain; sourceTree = "<group>"; };
 		1A56764824D351FC0047F88F /* BikeShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A56764B24D351FC0047F88F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A56764D24D351FC0047F88F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,9 +79,19 @@
 			path = BikeShareWidget;
 			sourceTree = "<group>";
 		};
+		1A2231FD2836B1F700967504 /* Kotlin Debug */ = {
+			isa = PBXGroup;
+			children = (
+				1A2231FF2836B27200967504 /* commonMain */,
+				1A2231FE2836B27200967504 /* iOSMain */,
+			);
+			path = "Kotlin Debug";
+			sourceTree = "<group>";
+		};
 		1A56763F24D351FC0047F88F = {
 			isa = PBXGroup;
 			children = (
+				1A2231FD2836B1F700967504 /* Kotlin Debug */,
 				1A56764A24D351FC0047F88F /* BikeShare */,
 				1A11F79B2732AE86006E20C5 /* BikeShareWidget */,
 				1A56764924D351FC0047F88F /* Products */,
@@ -202,6 +216,8 @@
 				1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */,
 				1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */,
 				1A56765224D351FF0047F88F /* Assets.xcassets in Resources */,
+				1A2232002836B27200967504 /* iOSMain in Resources */,
+				1A2232012836B27200967504 /* commonMain in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -362,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -384,7 +400,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,7 +425,7 @@
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
