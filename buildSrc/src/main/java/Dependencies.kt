@@ -7,7 +7,7 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
 
-    const val compose = "1.2.0-beta01"
+    const val compose = "1.2.0-rc01"
     const val navCompose = "2.4.2"
     const val composeDesktop = "1.2.0-alpha01-dev683"
 
@@ -19,7 +19,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 31
+    const val compile = 32
     const val target = compile
 }
 
