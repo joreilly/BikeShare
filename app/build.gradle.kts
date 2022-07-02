@@ -71,7 +71,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
     buildTypes {
@@ -105,11 +105,12 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.6.0")
+    implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.activity:activity-compose:1.5.0")
 
     with (Deps.Compose) {
+        implementation(compiler)
         implementation(ui)
         implementation(uiGraphics)
         implementation(uiTooling)
@@ -118,7 +119,7 @@ dependencies {
         implementation(navigation)
     }
 
-    implementation("androidx.glance:glance-appwidget:1.0.0-alpha01")
+    implementation("androidx.glance:glance-appwidget:1.0.0-alpha03")
 
     with(Deps.Koin) {
         implementation(core)

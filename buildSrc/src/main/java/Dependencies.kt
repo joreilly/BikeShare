@@ -1,17 +1,18 @@
 
 object Versions {
-    const val kotlinCoroutines = "1.6.1"
-    const val ktor = "2.0.1"
+    const val kotlinCoroutines = "1.6.3"
+    const val ktor = "2.0.3"
     const val kotlinxSerialization = "1.3.3"
     const val koin = "3.2.0"
 
-    const val kmpNativeCoroutinesVersion = "0.12.1-new-mm"
+    const val kmpNativeCoroutinesVersion = "0.12.5-new-mm"
 
-    const val compose = "1.2.0-rc01"
+    const val compose = "1.2.0-rc03"
+    const val composeCompiler = "1.2.0"
     const val navCompose = "2.4.2"
-    const val composeDesktop = "1.2.0-alpha01-dev683"
+    const val composeDesktop = "1.2.0-alpha01-dev731"
 
-    const val realm = "0.11.0"
+    const val realm = "1.0.0"
 
     const val slf4j = "1.7.30"
     const val junit = "4.12"
@@ -28,11 +29,11 @@ object Deps {
 
 
     object Compose {
+        const val compiler = "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
         const val ui = "androidx.compose.ui:ui:${Versions.compose}"
         const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-        const val foundationLayout =
-            "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
     }
