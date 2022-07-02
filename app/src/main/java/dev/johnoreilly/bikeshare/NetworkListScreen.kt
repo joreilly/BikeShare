@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.bikeshare.ui.viewmodel.BikeShareViewModel
 import dev.johnoreilly.bikeshare.ui.viewmodel.Country
@@ -30,7 +31,7 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
     val countryKeys = groupedNetworkListState.value.filterKeys { it.code == countryCode }
     if (countryKeys.isNotEmpty()) {
         country = countryKeys.keys.toList()[0]
-        networkList = groupedNetworkListState.value[country]
+        networkList = groupedNetworkListState.value[country]?.sortedBy { it.city }
     }
 
     Scaffold(
@@ -60,7 +61,8 @@ fun NetworkView(network: Network, networkSelected: (network: String) -> Unit) {
             .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically) {
 
-        Text(text = "${network.name} (${network.city})", style = MaterialTheme.typography.h6)
+        Text(text = "${network.city} (${network.name})",
+            style = MaterialTheme.typography.h6, maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
     Divider()
 }
