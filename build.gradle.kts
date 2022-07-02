@@ -24,3 +24,12 @@ allprojects {
     }
 }
 
+allprojects {
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
+                using(module("androidx.compose.compiler:compiler:1.2.0"))
+            }
+        }
+    }
+}

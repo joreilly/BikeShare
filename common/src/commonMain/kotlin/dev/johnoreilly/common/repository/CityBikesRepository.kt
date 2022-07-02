@@ -4,8 +4,12 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.Station
-import io.realm.*
-import io.realm.annotations.PrimaryKey
+import io.realm.kotlin.Realm
+import io.realm.kotlin.UpdatePolicy
+import io.realm.kotlin.ext.query
+import io.realm.kotlin.query.RealmResults
+import io.realm.kotlin.types.RealmObject
+import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
@@ -68,7 +72,7 @@ class CityBikesRepository: KoinComponent {
                     country = networkDto.location.country
                     latitude = networkDto.location.latitude
                     longitude = networkDto.location.longitude
-                }, updatePolicy = MutableRealm.UpdatePolicy.ALL)
+                }, updatePolicy = UpdatePolicy.ALL)
             }
         }
     }

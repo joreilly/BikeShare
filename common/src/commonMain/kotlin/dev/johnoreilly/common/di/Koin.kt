@@ -9,9 +9,9 @@ import io.ktor.client.engine.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
-import io.realm.Configuration
-import io.realm.Realm
-import io.realm.RealmConfiguration
+import io.realm.kotlin.Configuration
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -30,7 +30,7 @@ fun commonModule() = module {
     single { createJson() }
     single { createHttpClient(get(), get()) }
 
-    single<Configuration> { RealmConfiguration.with(schema = setOf(NetworkDb::class)) }
+    single<Configuration> { RealmConfiguration.create(schema = setOf(NetworkDb::class)) }
     single { Realm.open(get()) }
 
     single { CityBikesRepository() }
