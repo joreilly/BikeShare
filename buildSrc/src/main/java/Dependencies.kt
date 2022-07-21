@@ -1,6 +1,6 @@
 
 object Versions {
-    const val kotlinCoroutines = "1.6.3"
+    const val kotlinCoroutines = "1.6.4"
     const val ktor = "2.0.3"
     const val kotlinxSerialization = "1.3.3"
     const val koin = "3.2.0"
@@ -8,9 +8,9 @@ object Versions {
     const val kmpNativeCoroutinesVersion = "0.12.5-new-mm"
 
     const val compose = "1.2.0-rc03"
-    const val composeCompiler = "1.2.0"
+    const val composeCompiler = "1.3.0-beta01"
     const val navCompose = "2.4.2"
-    const val composeDesktop = "1.2.0-alpha01-dev731"
+    const val composeDesktop = "1.2.0-alpha01-dev748"
 
     const val realm = "1.0.0"
 
