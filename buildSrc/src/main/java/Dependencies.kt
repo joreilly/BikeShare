@@ -7,8 +7,8 @@ object Versions {
 
     const val kmpNativeCoroutinesVersion = "0.12.5-new-mm"
 
-    const val compose = "1.2.0-rc03"
-    const val composeCompiler = "1.3.0-beta01"
+    const val compose = "1.2.0"
+    const val composeCompiler = "1.3.0-rc01"
     const val navCompose = "2.4.2"
     const val composeDesktop = "1.2.0-alpha01-dev748"
 
