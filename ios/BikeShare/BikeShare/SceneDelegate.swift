@@ -8,6 +8,12 @@
 
 import UIKit
 import SwiftUI
+import common
+import KMPNativeCoroutinesAsync
+import os
+
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SceneDelegate")
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -54,11 +60,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        print("sceneDidEnterBackground")
+
+        BackgroundTaskManager.shared.scheduleAppRefresh()
     }
 
-
+    
 }
 

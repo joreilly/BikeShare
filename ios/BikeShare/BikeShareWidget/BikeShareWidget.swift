@@ -77,7 +77,7 @@ struct BikeShareWidgetEntryView : View {
     }
 }
 
-@main
+//@main
 struct BikeShareWidget: Widget {
     let kind: String = "BikeShareWidget"
 
@@ -91,3 +91,60 @@ struct BikeShareWidget: Widget {
     }
 }
 
+
+
+@main
+struct BikeShareWidgets: WidgetBundle {
+    var body: some Widget {
+        // Any other widgets
+        BikeShareWidget()
+        BikeShareActivityWidget()
+    }
+}
+
+
+struct BikeShareActivityWidget: Widget {
+    var body: some WidgetConfiguration {
+        ActivityConfiguration(attributesType: BikeShareAttributes.self) { context in
+            BikeShareActivityWidgetView(
+                attributes: context.attributes,
+                state: context.state
+            )
+        }
+    }
+}
+
+
+
+struct BikeShareActivityWidgetView: View {
+    let attributes: BikeShareAttributes
+    let state: BikeShareAttributes.ContentState
+
+    var body: some View {        
+        VStack {
+            Text(state.stationName).font(.headline)
+            HStack {
+                Spacer()
+                Image("ic_bike").resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(state.numberFreeBikes < 5 ? .orange : .green)
+                    .frame(width: 48.0, height: 48.0)
+                
+                Spacer().frame(width: 32)
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Free:").font(.subheadline).frame(width: 80, alignment: .leading)
+                        Text("\(state.numberFreeBikes)").font(.subheadline)
+                    }
+                    HStack {
+                        Text("Slots:").font(.subheadline).frame(width: 80, alignment: .leading)
+                        Text("\(state.numberOfSlots)").font(.subheadline)
+                    }
+                }
+                Spacer()
+            }
+        }
+        .padding()
+    }
+}

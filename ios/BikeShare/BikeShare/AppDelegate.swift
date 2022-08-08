@@ -7,16 +7,66 @@
 //
 
 import UIKit
+import ActivityKit
 import common
+import KMPNativeCoroutinesAsync
+import BackgroundTasks
+import os
+
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "AppDelegate")
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KoinKt.doInitKoin()
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            
+            if let error = error {
+                print(error)
+            }
+        }
+
+        //UNUserNotificationCenter.current().delegate = self
+
+        BackgroundTaskManager.shared.register()
+        
+        
         return true
+    }
+    
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            print("hi")
+            
+            Task {
+                let repository = CityBikesRepository()
+                
+                do {
+                    let stream = asyncStream(for: repository.pollNetworkUpdatesNative(network: "galway"))
+                    for try await data in stream {
+                        //self.stationList = data
+                        
+                        let station = data[0]
+                        print(station)
+                        //updateStationInfo(station: station)
+                        
+                    }
+                } catch {
+                    print("Failed with error: \(error)")
+                }
+                
+            }
+            
+            //self?.endBackgroundTask()
+        }
+        //assert(backgroundTask != UIBackgroundTaskInvalid)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -33,6 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
 }
+
+
+
+
 

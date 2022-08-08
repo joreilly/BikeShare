@@ -1,4 +1,5 @@
 import SwiftUI
+import ActivityKit
 import MapKit
 import common
 
@@ -8,21 +9,39 @@ struct ContentView : View {
     @State private var selection = 0
     
     var body: some View {
+
         NavigationView {
-            List {
-                ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
-                    NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
-                                        country: countryName(from: countryCode),
-                                        networks: cityBikesViewModel.networkList[countryCode]!))
-                    {
-                        HStack {
-                            Text(countryFlag(from: countryCode))
-                            Text(countryName(from: countryCode)).font(.headline)
+            VStack {
+                
+//                Button("Start") {
+//                    cityBikesViewModel.start(stationName: "Headford Road")
+//                }
+
+//                Button("Update") {
+//                    cityBikesViewModel.updateNumberFreeBikes(numberFreeBikes: 2, numberOfSlots: 10)
+//                }
+
+                
+                List {
+                    ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
+                        NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
+                                                                    country: countryName(from: countryCode),
+                                                                    networks: cityBikesViewModel.networkList[countryCode]!))
+                        {
+                            HStack {
+                                Text(countryFlag(from: countryCode))
+                                Text(countryName(from: countryCode)).font(.headline)
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Bike Share")
+//            .backgroundTask(.appRefresh("myapprefresh")) {
+//
+//                cityBikesViewModel.startObservingBikeShareInfo(network: "galway")
+//                
+//            }
         }
         
     }
@@ -120,8 +139,15 @@ struct BikeNetworkView : View {
             region.center = CLLocationCoordinate2D(latitude: network.latitude,
                                                    longitude: network.longitude)
         })
+        .onAppear {
+            //cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+        }
         .task {
-            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+            // temp hack to ensure this doesn't get cancelled when lock screen shown (using for testing live activities)
+            //await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
         }
     }
 }
+
+
+
