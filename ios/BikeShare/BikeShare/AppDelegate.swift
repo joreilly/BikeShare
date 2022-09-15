@@ -41,33 +41,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func registerBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            print("hi")
-            
-            Task {
-                let repository = CityBikesRepository()
-                
-                do {
-                    let stream = asyncStream(for: repository.pollNetworkUpdatesNative(network: "galway"))
-                    for try await data in stream {
-                        //self.stationList = data
-                        
-                        let station = data[0]
-                        print(station)
-                        //updateStationInfo(station: station)
-                        
-                    }
-                } catch {
-                    print("Failed with error: \(error)")
-                }
-                
-            }
-            
-            //self?.endBackgroundTask()
-        }
-        //assert(backgroundTask != UIBackgroundTaskInvalid)
-    }
+//    func registerBackgroundTask() {
+//        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+//            print("hi")
+//
+//            Task {
+//                let repository = CityBikesRepository()
+//
+//                do {
+//                    let stream = asyncStream(for: repository.pollNetworkUpdatesNative(network: "galway"))
+//                    for try await data in stream {
+//                        //self.stationList = data
+//
+//                        let station = data[0]
+//                        print(station)
+//                        //updateStationInfo(station: station)
+//
+//                    }
+//                } catch {
+//                    print("Failed with error: \(error)")
+//                }
+//
+//            }
+//
+//            //self?.endBackgroundTask()
+//        }
+//        //assert(backgroundTask != UIBackgroundTaskInvalid)
+//    }
 
     // MARK: UISceneSession Lifecycle
 

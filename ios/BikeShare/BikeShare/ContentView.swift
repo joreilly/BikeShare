@@ -13,9 +13,9 @@ struct ContentView : View {
         NavigationView {
             VStack {
                 
-//                Button("Start") {
-//                    cityBikesViewModel.start(stationName: "Headford Road")
-//                }
+                Button("Start") {
+                    cityBikesViewModel.startActivity(stationName: "Headford Road")
+                }
 
 //                Button("Update") {
 //                    cityBikesViewModel.updateNumberFreeBikes(numberFreeBikes: 2, numberOfSlots: 10)
@@ -40,7 +40,7 @@ struct ContentView : View {
 //            .backgroundTask(.appRefresh("myapprefresh")) {
 //
 //                cityBikesViewModel.startObservingBikeShareInfo(network: "galway")
-//                
+//
 //            }
         }
         
@@ -139,12 +139,12 @@ struct BikeNetworkView : View {
             region.center = CLLocationCoordinate2D(latitude: network.latitude,
                                                    longitude: network.longitude)
         })
-        .onAppear {
-            //cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
-        }
+//        .onAppear {
+//            cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+//        }
         .task {
             // temp hack to ensure this doesn't get cancelled when lock screen shown (using for testing live activities)
-            //await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
         }
     }
 }

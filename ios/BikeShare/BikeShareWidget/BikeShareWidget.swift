@@ -105,11 +105,53 @@ struct BikeShareWidgets: WidgetBundle {
 
 struct BikeShareActivityWidget: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(attributesType: BikeShareAttributes.self) { context in
+        return ActivityConfiguration(for: BikeShareAttributes.self) { context in
             BikeShareActivityWidgetView(
                 attributes: context.attributes,
                 state: context.state
             )
+        } dynamicIsland: { context in
+            DynamicIsland {
+                DynamicIslandExpandedRegion(.center, priority: .greatestFiniteMagnitude, content: {
+                    HStack(alignment: .center) {
+                        VStack {
+                            Text("\(context.state.stationName)")
+                                .font(.caption.weight(.bold))
+                                .lineLimit(nil)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                            Text("Free bikes: \(context.state.numberFreeBikes)")
+                                .font(.caption.weight(.semibold))
+                                .lineLimit(nil)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        }
+                        Image("ic_bike").resizable()
+                            .renderingMode(.template)
+                            .foregroundColor(context.state.numberFreeBikes < 5 ? .orange : .green)
+                            .frame(width: 48.0, height: 48.0)
+
+                    }
+                })
+            } compactLeading: {
+                Image("ic_bike").resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(context.state.numberFreeBikes < 5 ? .orange : .green)
+                    .padding(6)
+            } compactTrailing: {
+                ZStack {
+                    Text("\(context.state.numberFreeBikes)")
+                        .font(.caption.weight(.semibold))
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                }
+                .padding(.vertical, 6)
+                
+            } minimal: {
+                
+            }
         }
     }
 }
