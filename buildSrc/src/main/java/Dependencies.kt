@@ -12,7 +12,7 @@ object Versions {
     const val navCompose = "2.5.2"
     const val composeDesktop = "1.2.0"
 
-    const val realm = "1.4.0-SNAPSHOT"
+    const val realm = "1.4.0"
 
     const val slf4j = "1.7.30"
     const val junit = "4.12"
