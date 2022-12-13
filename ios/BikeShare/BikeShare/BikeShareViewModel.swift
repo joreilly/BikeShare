@@ -18,7 +18,7 @@ class CityBikesViewModel: ObservableObject {
     func fetchNetworks() {
         Task {
             do {
-                let stream = asyncStream(for: repository.groupedNetworkListNative)
+                let stream = asyncSequence(for: repository.groupedNetworkList)
                 for try await data in stream {
                     self.networkList = data
                 }
@@ -30,8 +30,8 @@ class CityBikesViewModel: ObservableObject {
     
     
     func startObservingBikeShareInfo(network: String) async {
-                do {
-            let stream = asyncStream(for: repository.pollNetworkUpdatesNative(network: network))
+        do {
+            let stream = asyncSequence(for: repository.pollNetworkUpdates(network: network))
             for try await data in stream {
                 self.stationList = data
             }

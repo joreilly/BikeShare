@@ -5,14 +5,14 @@ object Versions {
     const val kotlinxSerialization = "1.3.3"
     const val koin = "3.2.1"
 
-    const val kmpNativeCoroutinesVersion = "0.13.1"
+    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-2"
 
-    const val compose = "1.3.0-rc01"
-    const val composeCompiler = "1.3.2"
+    const val compose = "1.4.0-alpha03"
+    const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
     const val navCompose = "2.5.2"
-    const val composeDesktop = "1.2.0"
+    const val composeDesktop = "1.3.0-beta03"
 
-    const val realm = "1.4.0"
+    const val realm = "1.5.1"
 
     const val slf4j = "1.7.30"
     const val junit = "4.12"
