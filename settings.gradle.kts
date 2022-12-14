@@ -9,5 +9,6 @@ pluginManagement {
 
 rootProject.name = "BikeShare"
 
-include(":app", ":common", ":compose-desktop")
+include(":app", ":common")
+include(":compose-desktop")
 

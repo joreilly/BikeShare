@@ -1,6 +1,7 @@
 package dev.johnoreilly.common.repository
 
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutineScope
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.Station
@@ -33,9 +34,11 @@ class CityBikesRepository: KoinComponent {
     private val realm: Realm by inject()
 
     @NativeCoroutineScope
-    private val mainScope: CoroutineScope = MainScope()
+    val mainScope: CoroutineScope = MainScope()
 
     private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+
+    @NativeCoroutines
     val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
@@ -78,6 +81,7 @@ class CityBikesRepository: KoinComponent {
     }
 
 
+    @NativeCoroutines
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
             println("pollNetworkUpdates, network = $network")

@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     id("io.realm.kotlin")
     id("org.jetbrains.kotlin.native.cocoapods")
+    id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
@@ -127,4 +128,8 @@ multiplatformSwiftPackage {
         iOS { v("13") }
         macOS{ v("10_15") }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
