@@ -50,9 +50,6 @@ func countryFlag(from countryCode: String) -> String {
 }
     
 
-extension Station: Identifiable { }
-
-
 struct StationListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
     let country: String
@@ -98,7 +95,7 @@ struct StationView : View {
 }
 
 
-struct BikeNetworkView : View {
+struct BikeNetworkView2 : View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
     var network: Network
     @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
@@ -124,4 +121,74 @@ struct BikeNetworkView : View {
             await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
         }
     }
+}
+
+
+struct Place: Identifiable {
+  let id = UUID()
+  var name: String
+  var coordinate: CLLocationCoordinate2D
+}
+
+struct BikeNetworkView: View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var network: Network
+    @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
+                                           latitudinalMeters: 5000, longitudinalMeters: 5000)
+
+    var empireStateBuilding =
+    Place(name: "Empire State Building", coordinate: CLLocationCoordinate2D(latitude: 40.748433, longitude: -73.985656))
+  
+    var body: some View {
+        VStack {
+            Map(coordinateRegion: $region,
+                annotationItems: cityBikesViewModel.stationList
+            ) { station in
+                
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: station.latitude,
+                                                                 longitude: station.longitude)) {
+                    PlaceAnnotationView(station: station)
+                }
+                
+            }
+        }
+        .onAppear(perform: {
+            region.center = CLLocationCoordinate2D(latitude: network.latitude,
+                                                   longitude: network.longitude)
+        })
+        .task {
+            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+        }
+
+    }
+}
+
+struct PlaceAnnotationView: View {
+    let station: Station
+    @State var clicked = false
+    
+    
+    var body: some View {
+        if !clicked {
+            return AnyView(
+                Button(action: {
+                    clicked = true
+                }) {
+                    Image(systemName: "bicycle")
+                        .font(.system(size: 24.0))
+                        .foregroundColor(station.freeBikes() < 5 ? Color.red : Color.green)
+                }
+            )
+        } else {
+            return AnyView (
+                VStack {
+                    Text(station.name)
+                        .frame(width: 140, height: 40)
+                        .padding()
+                        .font(.system(size: 20.0))
+                        .background(Color.white)
+                        .border(Color.black, width: 2)
+                }
+            )
+        }    }
 }

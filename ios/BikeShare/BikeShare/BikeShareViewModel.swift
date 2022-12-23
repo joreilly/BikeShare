@@ -2,6 +2,9 @@ import Foundation
 import common
 import KMPNativeCoroutinesAsync
 
+
+extension Station: Identifiable { }
+
 @MainActor
 class CityBikesViewModel: ObservableObject {
     @Published var stationList = [Station]()
