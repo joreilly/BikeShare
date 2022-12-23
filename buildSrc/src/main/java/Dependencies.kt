@@ -12,6 +12,7 @@ object Versions {
     const val compose = "1.4.0-alpha03"
     const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
     const val navCompose = "2.5.2"
+    const val composeMaterial3 = "1.0.0"
     const val composeDesktop = "1.3.0-beta03"
 
     const val realm = "1.5.1"
@@ -38,6 +39,9 @@ object Deps {
         const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
+
+        const val material3 = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
+        const val material3WindowSizeClass = "androidx.compose.material3:material3-window-size-class:${Versions.composeMaterial3}"
     }
 
     object Koin {

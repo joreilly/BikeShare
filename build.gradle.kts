@@ -1,4 +1,5 @@
 buildscript {
+    val compose_version by extra("1.2.0")
     val kotlinVersion: String by project
     println(kotlinVersion)
 
