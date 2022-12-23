@@ -11,7 +11,7 @@ struct ContentView : View {
         NavigationView {
             List {
                 ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
-                    NavigationLink(destination: StationListView(cityBikesViewModel: cityBikesViewModel,
+                    NavigationLink(destination: CityListView(cityBikesViewModel: cityBikesViewModel,
                                         country: countryName(from: countryCode),
                                         networks: cityBikesViewModel.networkList[countryCode]!))
                     {
@@ -53,19 +53,56 @@ func countryFlag(from countryCode: String) -> String {
 extension Station: Identifiable { }
 
 
-struct StationListView: View {
+struct CityListView: View {
     @ObservedObject var cityBikesViewModel : CityBikesViewModel
     let country: String
     let networks: [Network]
 
     var body: some View {
         List(networks.sorted(by: { $0.city < $1.city }), id: \.id) { network in
-            NavigationLink(destination: BikeNetworkView(cityBikesViewModel: cityBikesViewModel,network: network)) {
+            NavigationLink(destination: StationListTabView(cityBikesViewModel: cityBikesViewModel,network: network)) {
                 Text("\(network.name) (\(network.city))").font(.subheadline)
             }
-
         }
         .navigationTitle(country)
+    }
+}
+
+
+struct StationListTabView: View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var network: Network
+
+    
+    var body: some View {
+        TabView {
+            StationListView(cityBikesViewModel: cityBikesViewModel, network: network)
+                .tabItem {
+                    Label("List", systemImage: "list.dash")
+                }
+            BikeNetworkView(cityBikesViewModel: cityBikesViewModel, network: network)
+                .tabItem {
+                    Label("Map", systemImage: "location")
+                }
+        }
+        .navigationTitle(network.name)
+        .task {
+            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+        }
+    }
+}
+
+
+struct StationListView: View {
+    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var network: Network
+
+    
+    var body: some View {
+        List(cityBikesViewModel.stationList) { station in
+            StationView(station: station)
+        }
+        .navigationTitle(network.name)
     }
 }
 
@@ -120,8 +157,5 @@ struct BikeNetworkView : View {
             region.center = CLLocationCoordinate2D(latitude: network.latitude,
                                                    longitude: network.longitude)
         })
-        .task {
-            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
-        }
     }
 }
