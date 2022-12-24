@@ -28,7 +28,6 @@ class NetworkDb: RealmObject {
     var longitude: Double = 0.0
 }
 
-@ExperimentalCoroutinesApi
 class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
     private val realm: Realm by inject()
