@@ -1,20 +1,18 @@
 import SwiftUI
 import MapKit
 import common
+import KMMViewModelCore
+import KMMViewModelSwiftUI
 
 
 struct ContentView : View {
-    @ObservedObject var cityBikesViewModel = CityBikesViewModel(repository: CityBikesRepository())
-    @State private var selection = 0
+    @StateViewModel var viewModel = CountriesViewModelShared()
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(cityBikesViewModel.networkList.keys.sorted(by: { countryName(from: $0) < countryName(from: $1)}) ), id: \.self) { countryCode in
-                    NavigationLink(destination: CityListView(cityBikesViewModel: cityBikesViewModel,
-                                        country: countryName(from: countryCode),
-                                        networks: cityBikesViewModel.networkList[countryCode]!))
-                    {
+                ForEach(viewModel.countryList.sorted { countryName(from: $0) < countryName(from: $1) }, id: \.self) { countryCode in
+                    NavigationLink(destination: NetworkListView(countryCode: countryCode)) {
                         HStack {
                             Text(countryFlag(from: countryCode))
                             Text(countryName(from: countryCode)).font(.headline)
@@ -24,82 +22,58 @@ struct ContentView : View {
             }
             .navigationTitle("Bike Share")
         }
-        
     }
 }
     
-func countryName(from countryCode: String) -> String {
-    if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: countryCode) {
-        // Country name was found
-        return name
-    } else {
-        // Country name cannot be found
-        return countryCode
-    }
-}
-
-func countryFlag(from countryCode: String) -> String {
-  let base = 127397
-  var tempScalarView = String.UnicodeScalarView()
-  for i in countryCode.utf16 {
-    if let scalar = UnicodeScalar(base + Int(i)) {
-      tempScalarView.append(scalar)
-    }
-  }
-  return String(tempScalarView)
-}
-    
-
-extension Station: Identifiable { }
 
 
-struct CityListView: View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
-    let country: String
-    let networks: [Network]
+struct NetworkListView: View {
+    @StateViewModel var viewModel = NetworksViewModelShared()
+    let countryCode: String
 
     var body: some View {
-        List(networks.sorted(by: { $0.city < $1.city }), id: \.id) { network in
-            NavigationLink(destination: StationListTabView(cityBikesViewModel: cityBikesViewModel,network: network)) {
+        List(viewModel.networkList) { network in
+            NavigationLink(destination: StationListTabView(network: network)) {
                 Text("\(network.name) (\(network.city))").font(.subheadline)
             }
         }
-        .navigationTitle(country)
+        .navigationTitle(countryName(from: countryCode))
+        .onAppear {
+            viewModel.setCountryCode(countryCode: countryCode)
+        }
     }
 }
 
 
 struct StationListTabView: View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    @StateViewModel var viewModel = StationsViewModelShared()
     var network: Network
 
-    
     var body: some View {
         TabView {
-            StationListView(cityBikesViewModel: cityBikesViewModel, network: network)
+            StationListView(stations: viewModel.stations, network: network)
                 .tabItem {
                     Label("List", systemImage: "list.dash")
                 }
-            BikeNetworkView(cityBikesViewModel: cityBikesViewModel, network: network)
+            StationMapView(stations: viewModel.stations, network: network)
                 .tabItem {
                     Label("Map", systemImage: "location")
                 }
         }
         .navigationTitle(network.name)
-        .task {
-            await cityBikesViewModel.startObservingBikeShareInfo(network: network.id)
+        .onAppear {
+            viewModel.setNetwork(networkId: network.id)
         }
     }
 }
 
 
 struct StationListView: View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+    var stations : [Station]
     var network: Network
-
     
     var body: some View {
-        List(cityBikesViewModel.stationList) { station in
+        List(stations) { station in
             StationView(station: station)
         }
         .navigationTitle(network.name)
@@ -135,8 +109,8 @@ struct StationView : View {
 }
 
 
-struct BikeNetworkView : View {
-    @ObservedObject var cityBikesViewModel : CityBikesViewModel
+struct StationMapView : View {
+    var stations : [Station]
     var network: Network
     @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
                                            latitudinalMeters: 5000, longitudinalMeters: 5000)
@@ -147,7 +121,7 @@ struct BikeNetworkView : View {
             Map(coordinateRegion: $region,
                 interactionModes: MapInteractionModes.all,
                 showsUserLocation: true,
-                annotationItems: self.cityBikesViewModel.stationList) { (station) -> MapPin in
+                annotationItems: stations) { (station) -> MapPin in
                     let coordinate = CLLocationCoordinate2D(latitude: station.latitude,
                                                             longitude: station.longitude)
                 return MapPin(coordinate: coordinate, tint: station.freeBikes() < 5 ? Color.red : Color.green)
@@ -159,3 +133,28 @@ struct BikeNetworkView : View {
         })
     }
 }
+
+
+func countryName(from countryCode: String) -> String {
+    if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: countryCode) {
+        return name
+    } else {
+        return countryCode
+    }
+}
+
+func countryFlag(from countryCode: String) -> String {
+  let base = 127397
+  var tempScalarView = String.UnicodeScalarView()
+  for i in countryCode.utf16 {
+    if let scalar = UnicodeScalar(base + Int(i)) {
+      tempScalarView.append(scalar)
+    }
+  }
+  return String(tempScalarView)
+}
+    
+
+extension Station: Identifiable { }
+extension Network: Identifiable { }
+                                   

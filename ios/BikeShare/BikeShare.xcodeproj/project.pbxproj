@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,9 @@
 		1A56765224D351FF0047F88F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765124D351FF0047F88F /* Assets.xcassets */; };
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
-		1A56766024D352FA0047F88F /* BikeShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */; };
+		1A59905529578D34006DD8F2 /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A59905429578D34006DD8F2 /* KMMViewModelCore */; };
+		1A59905729578D34006DD8F2 /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */; };
+		1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59905829579788006DD8F2 /* KMMiewModel.swift */; };
 		E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +48,7 @@
 		1A56765424D351FF0047F88F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A56765724D351FF0047F88F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A56765924D351FF0047F88F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareViewModel.swift; sourceTree = "<group>"; };
+		1A59905829579788006DD8F2 /* KMMiewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMiewModel.swift; sourceTree = "<group>"; };
 		243FA330F5FD8E9D0DEE843D /* Pods-BikeShareWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		8A394810C26BD31F4E7565E6 /* libPods-BikeShareWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShareWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.debug.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A59905529578D34006DD8F2 /* KMMViewModelCore in Frameworks */,
+				1A59905729578D34006DD8F2 /* KMMViewModelSwiftUI in Frameworks */,
 				E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +108,7 @@
 				1A56765624D351FF0047F88F /* LaunchScreen.storyboard */,
 				1A56765924D351FF0047F88F /* Info.plist */,
 				1A56765324D351FF0047F88F /* Preview Content */,
-				1A56765F24D352FA0047F88F /* BikeShareViewModel.swift */,
+				1A59905829579788006DD8F2 /* KMMiewModel.swift */,
 			);
 			path = BikeShare;
 			sourceTree = "<group>";
@@ -158,6 +162,10 @@
 			dependencies = (
 			);
 			name = BikeShare;
+			packageProductDependencies = (
+				1A59905429578D34006DD8F2 /* KMMViewModelCore */,
+				1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */,
+			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +194,9 @@
 				Base,
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
+			packageReferences = (
+				1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
+			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -256,9 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */,
-				1A56766024D352FA0047F88F /* BikeShareViewModel.swift in Sources */,
 				1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */,
 				1A56765024D351FC0047F88F /* ContentView.swift in Sources */,
+				1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +473,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel";
+			requirement = {
+				kind = revision;
+				revision = 130e9306add31ce9beaba4d8d45dbbc8b67587da;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A59905429578D34006DD8F2 /* KMMViewModelCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelCore;
+		};
+		1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A56764024D351FC0047F88F /* Project object */;
 }

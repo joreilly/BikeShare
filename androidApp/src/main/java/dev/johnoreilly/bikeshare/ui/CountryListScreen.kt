@@ -2,17 +2,14 @@
 
 package dev.johnoreilly.bikeshare.ui
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -26,25 +23,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import dev.johnoreilly.bikeshare.ui.viewmodel.BikeShareViewModel
-import dev.johnoreilly.bikeshare.ui.viewmodel.Country
+import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
+import java.util.*
 
 
 @Composable
 fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
-    val bikeShareViewModel = getViewModel<BikeShareViewModel>()
-    val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
-
-    val countryCodeList = groupedNetworkListState.value.keys.toList().sortedBy { it.displayName }
+    val viewModel = getViewModel<CountriesViewModelShared>()
+    val countryList by viewModel.countryList.collectAsState()
 
     Scaffold(topBar = { TopAppBar(title = { Text("BikeShare - Countries") }) }) { paddingValues ->
 
         Column(Modifier.padding(paddingValues)) {
             Box(Modifier.weight(1f)) {
                 val listState = rememberLazyListState()
-                CountryList(countryCodeList, listState, countrySelected)
+
+                LazyColumn(state = listState) {
+                    items(countryList.sortedBy { getCountryName(it) }) { countryCode ->
+                        CountryView(countryCode, countrySelected)
+                    }
+                }
 
                 val showButton by remember {
                     derivedStateOf {
@@ -54,7 +54,6 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
                 if (showButton) {
                     val coroutineScope = rememberCoroutineScope()
                     FloatingActionButton(
-                        //backgroundColor = MaterialTheme.colors.primary,
                         modifier = Modifier
                             .align(Alignment.BottomEnd)
                             .padding(bottom = 16.dp, end = 16.dp),
@@ -73,39 +72,29 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
 }
 
 @Composable
-fun CountryList(
-    countryCodeList: List<Country>,
-    listState: LazyListState,
-    countrySelected: (countryCode: String) -> Unit
-) {
-    LazyColumn(state = listState) {
-        items(countryCodeList) { country ->
-            CountryView(country, countrySelected)
-        }
-    }
-
-}
-
-@Composable
-fun CountryView(country: Country, countrySelected: (countryCode: String) -> Unit) {
+fun CountryView(countryCode: String, countrySelected: (countryCode: String) -> Unit) {
     val context = LocalContext.current
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { countrySelected(country.code) })
+            .clickable(onClick = { countrySelected(countryCode) })
             .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        val flagResourceId = context.resources.getIdentifier("flag_${country.code}", "drawable", context.getPackageName())
+        val countryName = getCountryName(countryCode)
+        val flagResourceId = context.resources.getIdentifier("flag_${countryCode.lowercase(Locale.getDefault())}", "drawable", context.getPackageName())
         if (flagResourceId != 0) {
-            Image(painterResource(flagResourceId), modifier = Modifier.size(32.dp), contentDescription = country.displayName)
+            Image(painterResource(flagResourceId), modifier = Modifier.size(32.dp), contentDescription = countryName)
         }
 
         Spacer(modifier = Modifier.size(16.dp))
-        Text(text = country.displayName, style = MaterialTheme.typography.bodyLarge)
+        Text(text = countryName, style = MaterialTheme.typography.bodyLarge)
     }
-    //Divider()
 }
 
+fun getCountryName(countryCode: String): String {
+    val locale = Locale("", countryCode)
+    return locale.displayCountry
+}
