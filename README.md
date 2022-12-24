@@ -12,8 +12,10 @@ Related posts:
 * [Bridging the gap between Swift 5.5 concurrency and Kotlin Coroutines with KMP-NativeCoroutines](https://johnoreilly.dev/posts/kmp-native-coroutines/)
 
 
+<img width="668" alt="Screenshot 2022-12-24 at 15 16 22" src="https://user-images.githubusercontent.com/6302/209442335-862ecb89-8b22-454c-b7a8-d10dcd4deeda.png">
 
-![BikeShare Screenshot](/art/screenshot1.png?raw=true )
+
+
 ![BikeShare Screenshot](/art/screenshot_ios_swiftui.png?raw=true )
 
 
