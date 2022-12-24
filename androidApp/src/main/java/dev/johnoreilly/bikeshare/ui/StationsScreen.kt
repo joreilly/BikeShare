@@ -14,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -63,31 +64,38 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
 
 @Composable
 fun StationView(station: Station) {
-    //Card(elevation = 12.dp, shape = RoundedCornerShape(4.dp), modifier = Modifier.fillMaxWidth()) {
 
-        Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
-            verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp).fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically) {
 
-            Image(painterResource(R.drawable.ic_bike),
-                colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-                modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
+        Column(modifier = Modifier.weight(1.0f)) {
+            Text(text = station.name, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
 
-            Spacer(modifier = Modifier.size(16.dp))
+            ProvideTextStyle(MaterialTheme.typography.bodyLarge) {
+                Row(modifier = Modifier.padding(top = 4.dp)) {
+                    Column(modifier = Modifier.width(100.dp)) {
+                        Text("Bikes")
+                        Text(station.freeBikes().toString(),
+                            color = if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor)
+                    }
 
-            Column {
-                Text(text = station.name, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
-
-                val textStyle = MaterialTheme.typography.bodyLarge
-                Row {
-                    Text("Free:", style = textStyle, textAlign = TextAlign.Justify, modifier = Modifier.width(48.dp))
-                    Text(text = station.freeBikes().toString(), style = textStyle)
-                }
-                Row {
-                    Text("Slots:", style = textStyle, textAlign = TextAlign.Justify, modifier = Modifier.width(48.dp), )
-                    Text(text = station.slots().toString(), style = textStyle)
+                    Column {
+                        Text("Stands")
+                        Text(station.empty_slots.toString(),
+                            color = if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor)
+                    }
                 }
             }
         }
-    //}
+
+        Column {
+            Image(
+                painterResource(R.drawable.ic_bike),
+                colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
+                modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
+        }
+
+    }
 }
+
 
