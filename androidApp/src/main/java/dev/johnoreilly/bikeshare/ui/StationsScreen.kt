@@ -6,10 +6,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,24 +22,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.bikeshare.R
 import dev.johnoreilly.bikeshare.ui.theme.highAvailabilityColor
 import dev.johnoreilly.bikeshare.ui.theme.lowAvailabilityColor
-import dev.johnoreilly.bikeshare.ui.viewmodel.BikeShareViewModel
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
-import dev.johnoreilly.common.remote.slots
+import dev.johnoreilly.common.viewmodel.StationsViewModelShared
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
-    val bikeShareViewModel = getViewModel<BikeShareViewModel>()
-    val stationsState = bikeShareViewModel.stations.collectAsState(emptyList())
+    val viewModel = getViewModel<StationsViewModelShared>()
+    val stationsState = viewModel.stations.collectAsState()
 
     LaunchedEffect(networkId) {
-        bikeShareViewModel.setCity(networkId)
+        viewModel.setNetwork(networkId)
     }
 
     var navigationIcon:  @Composable() (() -> Unit)? = null
@@ -51,7 +47,7 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("BikeShare - $networkId") }, navigationIcon = navigationIcon!!)
+            TopAppBar(title = { Text(networkId) }, navigationIcon = navigationIcon!!)
         }) { paddingValues ->
             LazyColumn(Modifier.padding(paddingValues)) {
                 items(stationsState.value) { station ->
@@ -94,7 +90,6 @@ fun StationView(station: Station) {
                 colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
                 modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
         }
-
     }
 }
 

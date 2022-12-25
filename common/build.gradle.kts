@@ -70,6 +70,8 @@ kotlin {
                     implementation(json)
                 }
 
+                implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
+
                 with(Deps.Kotlinx) {
                     implementation(coroutinesCore)
                     implementation(serializationCore)
@@ -89,6 +91,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Deps.Ktor.clientAndroid)
+                implementation(Deps.androidXLifecycleViewModel)
             }
         }
 

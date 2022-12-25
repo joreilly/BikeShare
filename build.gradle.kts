@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.0-rc01")
+        classpath("com.android.tools.build:gradle:7.4.0-rc02")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
         classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.8.0-RC-1.0.8")

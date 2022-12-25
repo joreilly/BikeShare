@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,34 +18,31 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import dev.johnoreilly.bikeshare.ui.viewmodel.BikeShareViewModel
-import dev.johnoreilly.bikeshare.ui.viewmodel.Country
 import dev.johnoreilly.common.model.Network
+import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun NetworkListScreen(countryCode: String, networkSelected: (network: String) -> Unit,  popBack: () -> Unit) {
-    val bikeShareViewModel = getViewModel<BikeShareViewModel>()
-    val groupedNetworkListState = bikeShareViewModel.groupedNetworks.collectAsState(initial = emptyMap())
+    val viewModel = getViewModel<NetworksViewModelShared>()
+    val networkList = viewModel.networkList.collectAsState()
+    val countryName = remember { getCountryName(countryCode) }
 
-    // TODO refactor/clean up this
-    var networkList: List<Network>? = null
-    var country: Country? = null
-    val countryKeys = groupedNetworkListState.value.filterKeys { it.code == countryCode }
-    if (countryKeys.isNotEmpty()) {
-        country = countryKeys.keys.toList()[0]
-        networkList = groupedNetworkListState.value[country]?.sortedBy { it.city }
+    LaunchedEffect(countryCode) {
+        viewModel.setCountryCode(countryCode)
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("BikeShare - ${country?.displayName}") },
+                title = { Text(countryName) },
                 navigationIcon = {
                     IconButton(onClick = { popBack() }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
@@ -54,11 +50,9 @@ fun NetworkListScreen(countryCode: String, networkSelected: (network: String) ->
                 }
             )
         }) { paddingValues ->
-            networkList?.let {
-                LazyColumn(Modifier.padding(paddingValues)) {
-                    items(networkList) { network ->
-                        NetworkView(network, networkSelected)
-                    }
+            LazyColumn(Modifier.padding(paddingValues)) {
+                items(networkList.value) { network ->
+                    NetworkView(network, networkSelected)
                 }
             }
         }
@@ -73,5 +67,4 @@ fun NetworkView(network: Network, networkSelected: (network: String) -> Unit) {
         Text(text = "${network.city} (${network.name})",
             style = MaterialTheme.typography.bodyLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
-    //Divider()
 }
