@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A444B61295DBE14004A0605 /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A444B60295DBE14004A0605 /* KMMViewModelCore */; };
+		1A444B63295DBE14004A0605 /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
 		1A56765224D351FF0047F88F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765124D351FF0047F88F /* Assets.xcassets */; };
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
-		1A59905529578D34006DD8F2 /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A59905429578D34006DD8F2 /* KMMViewModelCore */; };
-		1A59905729578D34006DD8F2 /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */; };
 		1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59905829579788006DD8F2 /* KMMiewModel.swift */; };
 		E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */; };
 /* End PBXBuildFile section */
@@ -60,8 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A59905529578D34006DD8F2 /* KMMViewModelCore in Frameworks */,
-				1A59905729578D34006DD8F2 /* KMMViewModelSwiftUI in Frameworks */,
+				1A444B61295DBE14004A0605 /* KMMViewModelCore in Frameworks */,
+				1A444B63295DBE14004A0605 /* KMMViewModelSwiftUI in Frameworks */,
 				E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,8 +163,8 @@
 			);
 			name = BikeShare;
 			packageProductDependencies = (
-				1A59905429578D34006DD8F2 /* KMMViewModelCore */,
-				1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */,
+				1A444B60295DBE14004A0605 /* KMMViewModelCore */,
+				1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */,
 			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
@@ -195,7 +195,7 @@
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
 			packageReferences = (
-				1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
+				1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
 			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
@@ -475,25 +475,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+		1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel";
 			requirement = {
 				kind = revision;
-				revision = 130e9306add31ce9beaba4d8d45dbbc8b67587da;
+				revision = 144e2f717a45afd4982d061706479dcb3746c15b;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A59905429578D34006DD8F2 /* KMMViewModelCore */ = {
+		1A444B60295DBE14004A0605 /* KMMViewModelCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			package = 1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
 			productName = KMMViewModelCore;
 		};
-		1A59905629578D34006DD8F2 /* KMMViewModelSwiftUI */ = {
+		1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A59905329578D34006DD8F2 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			package = 1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
 			productName = KMMViewModelSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */

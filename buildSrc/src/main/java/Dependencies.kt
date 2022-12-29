@@ -1,20 +1,21 @@
 
 object Versions {
+    const val kotlin = "1.8.0"
     const val kotlinCoroutines = "1.6.4"
     const val ktor = "2.1.0"
     const val kotlinxSerialization = "1.3.3"
-    const val koinCore = "3.3.0"
-    const val koinAndroid = "3.3.1"
-    const val koinAndroidCompose = "3.4.0"
+    const val koinCore = "3.3.2"
+    const val koinAndroid = "3.3.2"
+    const val koinAndroidCompose = "3.4.1"
 
-    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-2"
-    const val kmmViewModel = "1.0.0-ALPHA-2-kotlin-1.8.0-RC"
+    const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-4"
+    const val kmmViewModel = "1.0.0-ALPHA-3"
 
     const val compose = "1.4.0-alpha03"
     const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
     const val navCompose = "2.5.2"
     const val composeMaterial3 = "1.0.0"
-    const val composeDesktop = "1.3.0-beta03"
+    const val composeDesktop = "1.3.0-rc01"
 
     const val realm = "1.5.1"
 

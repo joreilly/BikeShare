@@ -47,7 +47,7 @@ kotlin {
 
         macosX64("macOS")
         android()
-        jvm()
+        //jvm()
     }
 
 
@@ -109,12 +109,12 @@ kotlin {
             }
         }
 
-        val jvmMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientJava)
-                implementation(Deps.Ktor.slf4j)
-            }
-        }
+//        val jvmMain by getting {
+//            dependencies {
+//                implementation(Deps.Ktor.clientJava)
+//                implementation(Deps.Ktor.slf4j)
+//            }
+//        }
     }
 }
 
