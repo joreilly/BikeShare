@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
+options: "a40b1d55992bdf60e625cfab8a0b72aa8c73d900c1b959f3c9d278ef03e44f50"
+build_start_time: [1658765353, 555608034]
+build_end_time: [1658765355, 576530933]
+inputs:
+  "/Users/joreilly/dev/github/BikeShare/ios/BikeShare/BikeShare/AppDelegate.swift": !dirty [1639164929, 632438659]
+  "/Users/joreilly/dev/github/BikeShare/ios/BikeShare/BikeShare/BikeShareViewModel.swift": !dirty [1655513933, 298627614]
+  "/Users/joreilly/dev/github/BikeShare/ios/BikeShare/BikeShare/ContentView.swift": !dirty [1657838617, 339570045]
+  "/Users/joreilly/dev/github/BikeShare/ios/BikeShare/BikeShare/SceneDelegate.swift": !dirty [1639164929, 633578300]
