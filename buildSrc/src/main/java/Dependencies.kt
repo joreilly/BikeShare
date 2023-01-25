@@ -17,7 +17,7 @@ object Versions {
     const val composeMaterial3 = "1.0.0"
     const val composeDesktop = "1.3.0-rc01"
 
-    const val realm = "1.5.1"
+    const val realm = "1.6.0"
 
     const val androidxLifecycle = "2.5.1"
 
@@ -42,7 +42,6 @@ object Deps {
         const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
         const val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
         const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
-        const val material = "androidx.compose.material:material:${Versions.compose}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navCompose}"
 
         const val material3 = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
