@@ -15,7 +15,7 @@ object Versions {
     const val composeCompiler = "1.4.0-dev-k1.8.0-RC-4c1865595ed"
     const val navCompose = "2.5.2"
     const val composeMaterial3 = "1.0.0"
-    const val composeDesktop = "1.3.0-rc01"
+    const val composeDesktop = "1.3.0"
 
     const val realm = "1.6.0"
 

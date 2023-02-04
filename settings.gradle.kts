@@ -11,5 +11,5 @@ rootProject.name = "BikeShare"
 
 include(":androidApp")
 include(":common")
-//include(":compose-desktop")
+include(":compose-desktop")
 
