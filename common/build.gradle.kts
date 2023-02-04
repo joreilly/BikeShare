@@ -47,7 +47,7 @@ kotlin {
 
         macosX64("macOS")
         android()
-        //jvm()
+        jvm()
     }
 
 
@@ -69,8 +69,6 @@ kotlin {
                     implementation(contentNegotiation)
                     implementation(json)
                 }
-
-                implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
 
                 with(Deps.Kotlinx) {
                     implementation(coroutinesCore)
@@ -109,12 +107,22 @@ kotlin {
             }
         }
 
-//        val jvmMain by getting {
-//            dependencies {
-//                implementation(Deps.Ktor.clientJava)
-//                implementation(Deps.Ktor.slf4j)
-//            }
-//        }
+        val mobileMain by creating {
+            dependsOn(commonMain)
+            androidMain.dependsOn(this)
+            iOSMain.dependsOn(this)
+            dependencies {
+                implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
+            }
+        }
+
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(Deps.Ktor.clientJava)
+                implementation(Deps.Ktor.slf4j)
+            }
+        }
     }
 }
 
