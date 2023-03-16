@@ -129,7 +129,7 @@ dependencies {
     implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.5.1")
+    androidTestImplementation("androidx.test:runner:1.5.2")
 
     implementation(project(":common"))
 
