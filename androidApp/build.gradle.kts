@@ -117,7 +117,7 @@ dependencies {
         implementation(material3WindowSizeClass)
     }
 
-    implementation("androidx.glance:glance-appwidget:1.0.0-alpha03")
+    implementation("androidx.glance:glance-appwidget:1.0.0-alpha05")
 
 
     with(Deps.Koin) {
