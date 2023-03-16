@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("org.jxmapviewer:jxmapviewer2:2.5")
+    implementation("org.jxmapviewer:jxmapviewer2:2.6")
     implementation(project(":common"))
 }
 
