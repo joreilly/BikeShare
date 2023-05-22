@@ -16,14 +16,10 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -32,29 +28,11 @@ import dev.johnoreilly.bikeshare.ui.NetworkListScreen
 import dev.johnoreilly.bikeshare.ui.StationsScreen
 import dev.johnoreilly.bikeshare.ui.theme.BikeShareBackground
 import dev.johnoreilly.bikeshare.ui.theme.BikeShareTheme
-import dev.johnoreilly.common.repository.CityBikesRepository
-import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
 
-    lateinit var manager: GlanceAppWidgetManager
-    private val cityBikesRepository: CityBikesRepository by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        manager = GlanceAppWidgetManager(this)
-
-        // adding this here just as test for now....need to see where best place to do
-        // this would be
-//        lifecycleScope.launch {
-//            cityBikesRepository.pollNetworkUpdates("galway").collect {
-//                manager.getGlanceIds(BikeShareAppWidget::class.java).forEach { id ->
-//                    // use first station for now
-//                    BikeShareAppWidget(it[0]).update(this@MainActivity, id)
-//                }
-//            }
-//        }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
