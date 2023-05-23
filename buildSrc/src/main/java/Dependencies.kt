@@ -2,7 +2,7 @@
 object Versions {
     const val kotlin = "1.8.21"
     const val kotlinCoroutines = "1.7.1"
-    const val ktor = "2.3.0"
+    const val ktor = "2.3.1-eap-680"
     const val kotlinxSerialization = "1.5.1"
     const val koinCore = "3.4.0"
     const val koinAndroid = "3.4.0"
