@@ -17,7 +17,7 @@ object Versions {
     const val composeMaterial3 = "1.1.0"
     const val composeDesktop = "1.4.0"
 
-    const val realm = "1.7.1"
+    const val realm = "1.8.0"
 
     const val androidxLifecycle = "2.5.1"
 
