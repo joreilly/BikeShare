@@ -1,6 +1,7 @@
 
 object Versions {
-    const val kotlin = "1.8.21"
+    const val kotlin = "1.9.0-Beta"
+    const val kspPlugin = "1.9.0-Beta-1.0.11"
     const val kotlinCoroutines = "1.7.1"
     const val ktor = "2.3.0"
     const val kotlinxSerialization = "1.5.1"
@@ -12,12 +13,12 @@ object Versions {
     const val kmmViewModel = "1.0.0-ALPHA-9"
 
     const val compose = "1.4.3"
-    const val composeCompiler = "1.4.7"
+    const val composeCompiler = "1.4.7-dev-k1.9.0-Beta-bb7dc8b44eb"
     const val navCompose = "2.5.3"
     const val composeMaterial3 = "1.1.0"
     const val composeDesktop = "1.4.0"
 
-    const val realm = "1.8.0"
+    const val realm = "1.9.0"
 
     const val androidxLifecycle = "2.5.1"
 

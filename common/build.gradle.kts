@@ -21,12 +21,6 @@ android {
     namespace = "dev.johnoreilly.bikeshare.common"
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi")
-    }
-}
-
 
 // CocoaPods requires the podspec to have a version.
 version = "1.0"

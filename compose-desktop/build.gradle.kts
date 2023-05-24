@@ -27,5 +27,5 @@ application {
 
 compose {
     kotlinCompilerPlugin.set(Versions.composeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.0-Beta")
 }
