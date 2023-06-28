@@ -3,7 +3,7 @@ object Versions {
     const val kotlin = "1.9.0-RC"
     const val kspPlugin = "1.9.0-RC-1.0.11"
     const val kotlinCoroutines = "1.7.1"
-    const val ktor = "2.3.0"
+    const val ktor = "2.3.2"
     const val kotlinxSerialization = "1.5.1"
     const val koinCore = "3.4.0"
     const val koinAndroid = "3.4.0"
