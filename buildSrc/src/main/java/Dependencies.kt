@@ -10,7 +10,7 @@ object Versions {
     const val koinAndroidCompose = "3.4.5"
 
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-13"
-    const val kmmViewModel = "1.0.0-ALPHA-9"
+    const val kmmViewModel = "1.0.0-ALPHA-12"
 
     const val compose = "1.4.3"
     const val composeCompiler = "1.5.0-dev-k1.9.0-6a60475e07f"
