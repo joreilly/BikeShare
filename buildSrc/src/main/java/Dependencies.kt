@@ -17,7 +17,7 @@ object Versions {
     const val jbComposeCompiler = "1.4.8-beta"
     const val navCompose = "2.6.0"
     const val composeMaterial3 = "1.1.1"
-    const val composeDesktop = "1.4.1"
+    const val composeDesktop = "1.4.3"
 
     const val realm = "1.10.1"
 
