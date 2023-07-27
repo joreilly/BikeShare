@@ -28,30 +28,35 @@ import javax.swing.JPanel
 
 data class Country(val code: String, val displayName: String)
 
-fun main() = singleWindowApplication(
-    title = "BikeShare",
-    state = WindowState(size = DpSize(1000.dp, 600.dp))
-) {
-    Row(
-        modifier = Modifier.fillMaxSize()
+fun main() {
+    // see https://github.com/JetBrains/compose-multiplatform-core/pull/601
+    System.setProperty("compose.swing.render.on.graphics", "true")
+
+    return singleWindowApplication(
+        title = "BikeShare",
+        state = WindowState(size = DpSize(1000.dp, 600.dp))
     ) {
-        Column(Modifier.weight(1f)) {
-            BikeShareView()
-        }
+        Row(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(Modifier.weight(1f)) {
+                BikeShareView()
+            }
 
-        Column(Modifier.weight(1f)) {
-            SwingPanel(
-                background = Color.White,
-                modifier = Modifier.fillMaxSize(),
-                factory = {
-                    map = createMap()
+            Column(Modifier.weight(1f)) {
+                SwingPanel(
+                    background = Color.White,
+                    modifier = Modifier.fillMaxSize(),
+                    factory = {
+                        map = createMap()
 
-                    JPanel().apply {
-                        layout = BorderLayout()
-                        add(map)
+                        JPanel().apply {
+                            layout = BorderLayout()
+                            add(map)
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
