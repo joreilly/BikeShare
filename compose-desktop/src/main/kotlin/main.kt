@@ -8,9 +8,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.awt.ComposePanel
+import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.WindowState
+import androidx.compose.ui.window.singleWindowApplication
 import dev.johnoreilly.common.di.initKoin
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.NetworkDTO
@@ -18,42 +21,44 @@ import dev.johnoreilly.common.remote.Station
 import org.jxmapviewer.JXMapViewer
 import org.jxmapviewer.OSMTileFactoryInfo
 import org.jxmapviewer.viewer.*
-import java.awt.GridLayout
+import java.awt.BorderLayout
 import java.util.*
-import javax.swing.JFrame
-import javax.swing.SwingUtilities
-import javax.swing.WindowConstants
+import javax.swing.JPanel
 
 
 data class Country(val code: String, val displayName: String)
 
-fun main() {
-    SwingComposeWindow()
+fun main() = singleWindowApplication(
+    title = "BikeShare",
+    state = WindowState(size = DpSize(1000.dp, 600.dp))
+) {
+    Row(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Column(Modifier.weight(1f)) {
+            BikeShareView()
+        }
+
+        Column(Modifier.weight(1f)) {
+            SwingPanel(
+                background = Color.White,
+                modifier = Modifier.fillMaxSize(),
+                factory = {
+                    map = createMap()
+
+                    JPanel().apply {
+                        layout = BorderLayout()
+                        add(map)
+                    }
+                }
+            )
+        }
+    }
 }
+
 
 
 var map: JXMapViewer? = null
-
-
-fun SwingComposeWindow() = SwingUtilities.invokeLater {
-    val window = JFrame()
-    window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
-    window.title = "BikeShare"
-
-    map = createMap()
-
-    val composePanel = ComposePanel()
-    window.layout = GridLayout(1, 2)
-    window.add(composePanel)
-    window.add(map)
-
-    composePanel.setContent {
-        BikeShareView()
-    }
-
-    window.setSize(900, 600)
-    window.isVisible = true
-}
 
 fun createMap() : JXMapViewer {
     val mapViewer = JXMapViewer()
@@ -86,7 +91,7 @@ fun BikeShareView()  {
         val allNetworks = cityBikesApi.fetchNetworkList().networks
         val groupedNetworkListByCountryCode = allNetworks.groupBy { it.location.country }
         groupedNetworkList = groupedNetworkListByCountryCode.mapKeys {
-            val countryCode = it.key.toLowerCase()
+            val countryCode = it.key.lowercase(Locale.getDefault())
             val locale = Locale("", countryCode)
             val countryName = locale.displayCountry
             Country(countryCode, countryName)
@@ -111,20 +116,20 @@ fun BikeShareView()  {
             val wpp = WaypointPainter<Waypoint>()
             val wpSet = mutableSetOf<Waypoint>()
             stationList.forEach {
-                val wp = Waypoint() {
+                val wp = Waypoint {
                     GeoPosition(it.latitude, it.longitude)
                 }
                 wpSet.add(wp)
             }
 
-            wpp.setWaypoints(wpSet)
+            wpp.waypoints = wpSet
             map?.overlayPainter = wpp
         }
     }
 
     MaterialTheme {
         Row {
-            Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color(0xff100c08))) {
+            Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color.DarkGray)) {
 
                 LazyColumn {
                     items(countryList) { country ->
