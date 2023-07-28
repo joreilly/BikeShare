@@ -1,7 +1,7 @@
 
 object Versions {
     const val kotlin = "1.9.0"
-    const val kspPlugin = "1.9.0-1.0.11"
+    const val kspPlugin = "1.9.0-1.0.12"
     const val kotlinCoroutines = "1.7.3"
     const val ktor = "2.3.2"
     const val kotlinxSerialization = "1.5.1"
