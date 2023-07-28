@@ -3,7 +3,6 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("io.realm.kotlin")
-    id("org.jetbrains.kotlin.native.cocoapods")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
@@ -36,20 +35,22 @@ kotlin {
             System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
             else -> ::iosX64
         }
-        iosTarget("iOS") {}
+        iosTarget("iOS") {
 
-        macosX64("macOS")
+            binaries.framework {
+                baseName = "common"
+
+                // re. https://youtrack.jetbrains.com/issue/KT-60230/Native-unknown-options-iossimulatorversionmin-sdkversion-with-Xcode-15-beta-3
+                // due to be fixed in Kotlin 1.9.10
+                if (System.getenv("XCODE_VERSION_MAJOR") == "1500") {
+                    linkerOpts += "-ld64"
+                }
+            }
+        }
+
         androidTarget()
         jvm()
     }
-
-
-    cocoapods {
-        // Configure fields required by CocoaPods.
-        summary = "BikeShare common module"
-        homepage = "homepage placeholder"
-    }
-
 
     sourceSets {
         val commonMain by getting {
@@ -92,12 +93,6 @@ kotlin {
             }
         }
         val iOSTest by getting {
-        }
-
-        val macOSMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientIos)
-            }
         }
 
         val mobileMain by creating {

@@ -1,5 +1,0 @@
-
-target 'BikeShare' do
-    pod 'common', :path => '../../common'
-    pod "SwiftUIRefresh"
-end

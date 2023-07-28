@@ -18,5 +18,3 @@ jobs:
       run: ./gradlew assembleDebug
     - name: Build iOS shared code
       run: ./gradlew :common:compileKotlinIOS
-    - name: Build macOS shared code
-      run: ./gradlew :common:compileKotlinMacOS
