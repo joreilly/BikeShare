@@ -5,7 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rickclephas/KMM-ViewModel",
       "state" : {
-        "revision" : "144e2f717a45afd4982d061706479dcb3746c15b"
+        "branch" : "master",
+        "revision" : "96f4b0a50f61f74eea6265b08a6cd3f7dc42828c"
       }
     }
   ],

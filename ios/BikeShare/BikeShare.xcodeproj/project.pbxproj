@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A444B61295DBE14004A0605 /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A444B60295DBE14004A0605 /* KMMViewModelCore */; };
-		1A444B63295DBE14004A0605 /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */; };
+		1A16DE772A743E4C001241FA /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A16DE762A743E4C001241FA /* KMMViewModelCore */; };
+		1A16DE792A743E4C001241FA /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
@@ -16,7 +16,6 @@
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
 		1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59905829579788006DD8F2 /* KMMiewModel.swift */; };
-		E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,8 +32,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14A14EEA56EA3264B7C718B5 /* Pods-BikeShareWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
-		1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A11F7972732AE86006E20C5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1A11F7992732AE86006E20C5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareWidget.swift; sourceTree = "<group>"; };
@@ -49,10 +46,6 @@
 		1A56765724D351FF0047F88F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A56765924D351FF0047F88F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A59905829579788006DD8F2 /* KMMiewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMiewModel.swift; sourceTree = "<group>"; };
-		243FA330F5FD8E9D0DEE843D /* Pods-BikeShareWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShareWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-BikeShareWidgetExtension/Pods-BikeShareWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		8A394810C26BD31F4E7565E6 /* libPods-BikeShareWidgetExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BikeShareWidgetExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.debug.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
-		DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.release.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A444B61295DBE14004A0605 /* KMMViewModelCore in Frameworks */,
-				1A444B63295DBE14004A0605 /* KMMViewModelSwiftUI in Frameworks */,
-				E466735D144D5438384AFD1B /* libPods-BikeShare.a in Frameworks */,
+				1A16DE772A743E4C001241FA /* KMMViewModelCore in Frameworks */,
+				1A16DE792A743E4C001241FA /* KMMViewModelSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +77,6 @@
 				1A56764A24D351FC0047F88F /* BikeShare */,
 				1A11F79B2732AE86006E20C5 /* BikeShareWidget */,
 				1A56764924D351FC0047F88F /* Products */,
-				2B16266B2E9C4220CA269D49 /* Pods */,
 				3E7F7EC3ABE0A3DAE509A197 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -121,24 +112,11 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2B16266B2E9C4220CA269D49 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */,
-				DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */,
-				243FA330F5FD8E9D0DEE843D /* Pods-BikeShareWidgetExtension.debug.xcconfig */,
-				14A14EEA56EA3264B7C718B5 /* Pods-BikeShareWidgetExtension.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		3E7F7EC3ABE0A3DAE509A197 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1533B9C56F40FE633B732A38 /* libPods-BikeShare.a */,
 				1A11F7972732AE86006E20C5 /* WidgetKit.framework */,
 				1A11F7992732AE86006E20C5 /* SwiftUI.framework */,
-				8A394810C26BD31F4E7565E6 /* libPods-BikeShareWidgetExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,12 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A56765C24D351FF0047F88F /* Build configuration list for PBXNativeTarget "BikeShare" */;
 			buildPhases = (
-				9D61C20E261DD7716D4163C7 /* [CP] Check Pods Manifest.lock */,
+				1AAF64D12A73FFD000257C10 /* ShellScript */,
 				1A56764424D351FC0047F88F /* Sources */,
 				1A56764524D351FC0047F88F /* Frameworks */,
 				1A56764624D351FC0047F88F /* Resources */,
 				1A11F7A42732AE87006E20C5 /* Embed App Extensions */,
-				ADC5F6990D65C56F0D3C4F3A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,8 +140,8 @@
 			);
 			name = BikeShare;
 			packageProductDependencies = (
-				1A444B60295DBE14004A0605 /* KMMViewModelCore */,
-				1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */,
+				1A16DE762A743E4C001241FA /* KMMViewModelCore */,
+				1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */,
 			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
@@ -195,7 +172,7 @@
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
 			packageReferences = (
-				1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
+				1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
 			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
@@ -220,7 +197,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9D61C20E261DD7716D4163C7 /* [CP] Check Pods Manifest.lock */ = {
+		1AAF64D12A73FFD000257C10 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -228,36 +205,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BikeShare-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ADC5F6990D65C56F0D3C4F3A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BikeShare/Pods-BikeShare-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BikeShare/Pods-BikeShare-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BikeShare/Pods-BikeShare-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "cd \"$SRCROOT/../..\"\n./gradlew :common:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -403,7 +358,6 @@
 		};
 		1A56765D24D351FF0047F88F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A8FCC3473D7601FE87B783E /* Pods-BikeShare.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -412,6 +366,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = BikeShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -419,6 +374,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					common,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -428,7 +388,6 @@
 		};
 		1A56765E24D351FF0047F88F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE076D81A3256E7A067D36F4 /* Pods-BikeShare.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -437,6 +396,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../.../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = BikeShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -444,6 +404,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					common,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -475,25 +440,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+		1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel";
 			requirement = {
-				kind = revision;
-				revision = 144e2f717a45afd4982d061706479dcb3746c15b;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A444B60295DBE14004A0605 /* KMMViewModelCore */ = {
+		1A16DE762A743E4C001241FA /* KMMViewModelCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			package = 1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
 			productName = KMMViewModelCore;
 		};
-		1A444B62295DBE14004A0605 /* KMMViewModelSwiftUI */ = {
+		1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A444B5F295DBE14004A0605 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			package = 1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
 			productName = KMMViewModelSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
