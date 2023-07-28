@@ -18,6 +18,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
     namespace = "dev.johnoreilly.bikeshare.common"
 }
 
@@ -35,7 +39,7 @@ kotlin {
         iosTarget("iOS") {}
 
         macosX64("macOS")
-        android()
+        androidTarget()
         jvm()
     }
 
@@ -130,45 +134,11 @@ multiplatformSwiftPackage {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "17"
+}
+
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
-}
-
-
-// workaround for https://youtrack.jetbrains.com/issue/KT-55751 - should be fixed in Kotlin 1.9
-val myAttribute = Attribute.of("myOwnAttribute", String::class.java)
-
-if (configurations.findByName("podDebugFrameworkIosFat") != null) {
-    configurations.named("podDebugFrameworkIosFat").configure {
-        attributes {
-            // put a unique attribute
-            attribute(myAttribute, "podDebugFrameworkIosFat")
-        }
-
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkIosFat") != null) {
-    configurations.named("podReleaseFrameworkIosFat").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkIosFat")
-        }
-    }
-}
-
-if (configurations.findByName("podDebugFrameworkMacOS") != null) {
-    configurations.named("podDebugFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podDebugFrameworkMacOS")
-        }
-    }
-}
-
-if (configurations.findByName("podReleaseFrameworkMacOS") != null) {
-    configurations.named("podReleaseFrameworkMacOS").configure {
-        attributes {
-            attribute(myAttribute, "podReleaseFrameworkMacOS")
-        }
-    }
 }
 

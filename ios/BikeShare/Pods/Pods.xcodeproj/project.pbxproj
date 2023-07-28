@@ -3,16 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
 		8217FBB9D1218C346C0781D0B8F2BBE8 /* common */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 84E397BFDC76F32D58BC0D3E8A5D386E /* Build configuration list for PBXAggregateTarget "common" */;
+			buildConfigurationList = 1D5F1C893FEB1534A938215715B55EDF /* Build configuration list for PBXAggregateTarget "common" */;
 			buildPhases = (
-				948B37A722351DC1FDC6816B7F7B6D73 /* [CP-User] Build common */,
-				319DF2F32A1F52FA6C612FBA5169387B /* [CP] Copy dSYMs */,
+				7117138631DE463A2F0FAF7227B3ADA6 /* [CP-User] Build common */,
 			);
 			dependencies = (
 			);
@@ -68,23 +67,21 @@
 
 /* Begin PBXFileReference section */
 		0348785A9F6002353DA7D3FF3957EE9F /* SwiftUIRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftUIRefresh-dummy.m"; sourceTree = "<group>"; };
+		049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
 		0BF13E4C134627CAC1D3907A9BA5F45E /* ViewExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewExtensions.swift; path = Introspect/ViewExtensions.swift; sourceTree = "<group>"; };
+		0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
 		13F45E63EDC6E4CA97D56D426170F57B /* Pods-BikeShare.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BikeShare.modulemap"; sourceTree = "<group>"; };
 		1A51D11253F07C844A54B76E7D0F37EF /* AppKitIntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppKitIntrospectionView.swift; path = Introspect/AppKitIntrospectionView.swift; sourceTree = "<group>"; };
-		1EA52DA779FC36301CA66623A3861CA8 /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2216AEE85455EADE863085687DFA2495 /* SwiftUIRefresh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftUIRefresh.release.xcconfig; sourceTree = "<group>"; };
-		32B360B5691E429E84D66526051523E5 /* common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.release.xcconfig; sourceTree = "<group>"; };
 		3D5362FBBCB2A35285C263084B874B14 /* UIKitIntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitIntrospectionView.swift; path = Introspect/UIKitIntrospectionView.swift; sourceTree = "<group>"; };
-		4054BEBBAFD37AC1E447B164695EFDF4 /* common-copy-dsyms.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "common-copy-dsyms.sh"; sourceTree = "<group>"; };
-		414510BAB952C1050100B0E0832D2041 /* common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = common.debug.xcconfig; sourceTree = "<group>"; };
 		44C0196BCB0F3A475AF3CDEC7A62045C /* Pods-BikeShare-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BikeShare-dummy.m"; sourceTree = "<group>"; };
+		4D68C6CAD8E0DCB3BF1D35BCD921150E /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
 		5222BF2828E0E9EC0392B83A881FA590 /* Introspect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Introspect.modulemap; sourceTree = "<group>"; };
 		572A8F9EC78EFAE56E6A752625B4BF2A /* PullToRefresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PullToRefresh.swift; path = Sources/PullToRefresh.swift; sourceTree = "<group>"; };
 		59EC07D162EFABED2BD6DABD4A6B1E02 /* SwiftUIRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftUIRefresh-prefix.pch"; sourceTree = "<group>"; };
 		6605002323490E695009C49B8C115E65 /* Introspect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Introspect.release.xcconfig; sourceTree = "<group>"; };
 		6FF34C96CDA0F57C6AE6F782CF7D4C34 /* UIKitIntrospectionViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitIntrospectionViewController.swift; path = Introspect/UIKitIntrospectionViewController.swift; sourceTree = "<group>"; };
 		7FB86C9B5FFA7AE1F8A3810D68ECABEA /* SwiftUIRefresh */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = SwiftUIRefresh; path = libSwiftUIRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9ABC40F36B5CAC1052ECCC55AFACBB90 /* common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = common.framework; path = build/cocoapods/framework/common.framework; sourceTree = "<group>"; };
 		9C93F0C5CFE550D65CA14344BE577D95 /* Pods-BikeShare-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BikeShare-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EF1870FED1E36C58D28D38D598229EA /* Introspect-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Introspect-umbrella.h"; sourceTree = "<group>"; };
@@ -101,6 +98,7 @@
 		C6D408C7CFB6C685AFBE4236CA1059C3 /* Introspect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Introspect.debug.xcconfig; sourceTree = "<group>"; };
 		D0A70003FD5E49B30CA83DAAFE03116B /* Introspect */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = Introspect; path = libIntrospect.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B7F71C0130EBBB6A5884AF15119332 /* Pods-BikeShare-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BikeShare-umbrella.h"; sourceTree = "<group>"; };
+		F1FEE9BE4C0814C5BCB00A88F2D1D5AD /* common.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = common.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F29AA0F358264A11F2B7D7A6A0ADB51F /* Introspect-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Introspect-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,26 +127,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E79A8A93D2F76E732A5498656ED98F9 /* common */ = {
+		076C1D8476FAC5B0FC5723A04CA29692 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				9F9B5B086C987DDDE903BEAD467F16D1 /* Frameworks */,
-				CE8C7BCC4AE1D8D084858EED384683A2 /* Pod */,
-				36ABF88B9575BC23E38B5786CF96FF0D /* Support Files */,
+				7EA81EDCC1894A83742442426A8EF4A6 /* Frameworks */,
+				306BF0C9F644F9E3C60AC852D6C66DD4 /* Pod */,
+				958A8BC9E551453743F380CFE79A2E5A /* Support Files */,
 			);
 			name = common;
 			path = ../../../common;
 			sourceTree = "<group>";
 		};
-		36ABF88B9575BC23E38B5786CF96FF0D /* Support Files */ = {
+		306BF0C9F644F9E3C60AC852D6C66DD4 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				4054BEBBAFD37AC1E447B164695EFDF4 /* common-copy-dsyms.sh */,
-				414510BAB952C1050100B0E0832D2041 /* common.debug.xcconfig */,
-				32B360B5691E429E84D66526051523E5 /* common.release.xcconfig */,
+				F1FEE9BE4C0814C5BCB00A88F2D1D5AD /* common.podspec */,
 			);
-			name = "Support Files";
-			path = "../ios/BikeShare/Pods/Target Support Files/common";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		43E2055CCA8AB8C38C0F08E6BEAA3CFA /* Products */ = {
@@ -194,6 +189,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7EA81EDCC1894A83742442426A8EF4A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D68C6CAD8E0DCB3BF1D35BCD921150E /* common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		85BC17875E9BD0921B7AC51BCEB1D343 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,12 +211,14 @@
 			path = "../Target Support Files/SwiftUIRefresh";
 			sourceTree = "<group>";
 		};
-		9F9B5B086C987DDDE903BEAD467F16D1 /* Frameworks */ = {
+		958A8BC9E551453743F380CFE79A2E5A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9ABC40F36B5CAC1052ECCC55AFACBB90 /* common.framework */,
+				0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */,
+				049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../ios/BikeShare/Pods/Target Support Files/common";
 			sourceTree = "<group>";
 		};
 		A02B31E0369BF8387274CBB776E1754E /* Targets Support Files */ = {
@@ -238,14 +243,6 @@
 			path = Introspect;
 			sourceTree = "<group>";
 		};
-		CE8C7BCC4AE1D8D084858EED384683A2 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				1EA52DA779FC36301CA66623A3861CA8 /* common.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +265,7 @@
 		E363132CB4A8517D710D319A73DD8CB9 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2E79A8A93D2F76E732A5498656ED98F9 /* common */,
+				076C1D8476FAC5B0FC5723A04CA29692 /* common */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -382,11 +379,11 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -407,23 +404,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		319DF2F32A1F52FA6C612FBA5169387B /* [CP] Copy dSYMs */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/common/common-copy-dsyms-input-files.xcfilelist",
-			);
-			name = "[CP] Copy dSYMs";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/common/common-copy-dsyms-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/common/common-copy-dsyms.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4ACFD50D78AE9AE981C946319E2A841B /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,7 +452,7 @@
 			shellPath = /bin/sh;
 			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Introspect/Introspect.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Introspect/Introspect-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
 		};
-		948B37A722351DC1FDC6816B7F7B6D73 /* [CP-User] Build common */ = {
+		7117138631DE463A2F0FAF7227B3ADA6 /* [CP-User] Build common */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -571,6 +551,23 @@
 			};
 			name = Release;
 		};
+		32135EAD0B259EE60F8BE942370C965E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F3F3D8B720EA8446A3FFA6CC7D017D6 /* common.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		3A0926C30A702168D4AC556899551404 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B55463C969CAC5FE8BDC11CF16904E71 /* SwiftUIRefresh.debug.xcconfig */;
@@ -640,6 +637,24 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		55229197A5024EB4D32F47136D0818C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 049A62BA71C9759A81E599890BD82642 /* common.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -820,44 +835,18 @@
 			};
 			name = Debug;
 		};
-		C27582C938B2E372325E61D841BA1F71 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 414510BAB952C1050100B0E0832D2041 /* common.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C5918376588C720ACF3A129DFF8B0504 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32B360B5691E429E84D66526051523E5 /* common.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1D5F1C893FEB1534A938215715B55EDF /* Build configuration list for PBXAggregateTarget "common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32135EAD0B259EE60F8BE942370C965E /* Debug */,
+				55229197A5024EB4D32F47136D0818C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3499D8064D16E11A47ED838D8D1C60B7 /* Build configuration list for PBXNativeTarget "Introspect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -881,15 +870,6 @@
 			buildConfigurations = (
 				76F59BF3BB7E4FD3BA040807673DD40C /* Debug */,
 				4798B305AD0B48B7D6BAD1ECC2DF9383 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		84E397BFDC76F32D58BC0D3E8A5D386E /* Build configuration list for PBXAggregateTarget "common" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C27582C938B2E372325E61D841BA1F71 /* Debug */,
-				C5918376588C720ACF3A129DFF8B0504 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
