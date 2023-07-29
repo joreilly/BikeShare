@@ -115,12 +115,13 @@ dependencies {
         implementation(uiTooling)
         implementation(foundationLayout)
         implementation(navigation)
+        implementation(glance)
 
         implementation(material3)
         implementation(material3WindowSizeClass)
     }
 
-    implementation("androidx.glance:glance-appwidget:1.0.0-beta01")
+
 
 
     with(Deps.Koin) {

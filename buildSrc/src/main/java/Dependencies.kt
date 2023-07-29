@@ -18,6 +18,7 @@ object Versions {
     const val navCompose = "2.6.0"
     const val composeMaterial3 = "1.1.1"
     const val composeDesktop = "1.5.0-beta01"
+    const val glance = "1.0.0-rc01"
 
     const val realm = "1.10.2"
 
@@ -29,7 +30,7 @@ object Versions {
 
 object AndroidSdk {
     const val min = 21
-    const val compile = 33
+    const val compile = 34
     const val target = compile
 }
 
@@ -48,6 +49,8 @@ object Deps {
 
         const val material3 = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
         const val material3WindowSizeClass = "androidx.compose.material3:material3-window-size-class:${Versions.composeMaterial3}"
+
+        const val glance = "androidx.glance:glance-appwidget:${Versions.glance}"
     }
 
     object Koin {
