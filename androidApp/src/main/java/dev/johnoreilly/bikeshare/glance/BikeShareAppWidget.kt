@@ -36,10 +36,15 @@ class BikeShareAppWidget : GlanceAppWidget(), KoinComponent {
                     horizontalAlignment = Alignment.Horizontal.CenterHorizontally,
                     verticalAlignment = Alignment.Vertical.CenterVertically
                 ) {
-                    Text(
-                        text = station.name,
-                        style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                    )
+                    Row(
+                        GlanceModifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.Horizontal.CenterHorizontally
+                    ) {
+                        Text(
+                            text = station.name,
+                            style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                        )
+                    }
                     Spacer(modifier = GlanceModifier.size(8.dp))
 
                     Image(
