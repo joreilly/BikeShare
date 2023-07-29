@@ -2,6 +2,7 @@
 
 package dev.johnoreilly.bikeshare.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,13 +25,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
+import dev.johnoreilly.common.viewmodel.Country
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import java.util.*
 
 
 @Composable
-fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
+fun CountryListScreen(countrySelected: (country: Country) -> Unit) {
     val viewModel = getViewModel<CountriesViewModelShared>()
     val countryList by viewModel.countryList.collectAsState()
 
@@ -41,8 +43,8 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
                 val listState = rememberLazyListState()
 
                 LazyColumn(state = listState) {
-                    items(countryList.sortedBy { getCountryName(it) }) { countryCode ->
-                        CountryView(countryCode, countrySelected)
+                    items(countryList) { country ->
+                        CountryView(country, countrySelected)
                     }
                 }
 
@@ -71,30 +73,26 @@ fun CountryListScreen(countrySelected: (countryCode: String) -> Unit) {
     }
 }
 
+@SuppressLint("DiscouragedApi")
 @Composable
-fun CountryView(countryCode: String, countrySelected: (countryCode: String) -> Unit) {
+fun CountryView(country: Country, countrySelected: (country: Country) -> Unit) {
     val context = LocalContext.current
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { countrySelected(countryCode) })
+            .clickable(onClick = { countrySelected(country) })
             .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        val countryName = getCountryName(countryCode)
-        val flagResourceId = context.resources.getIdentifier("flag_${countryCode.lowercase(Locale.getDefault())}", "drawable", context.getPackageName())
+        val flagResourceId = context.resources.getIdentifier("flag_${country.code.lowercase(Locale.getDefault())}", "drawable", context.packageName)
         if (flagResourceId != 0) {
-            Image(painterResource(flagResourceId), modifier = Modifier.size(32.dp), contentDescription = countryName)
+            Image(painterResource(flagResourceId), modifier = Modifier.size(32.dp), contentDescription = country.displayName)
         }
 
         Spacer(modifier = Modifier.size(16.dp))
-        Text(text = countryName, style = MaterialTheme.typography.bodyLarge)
+        Text(text = country.displayName, style = MaterialTheme.typography.bodyLarge)
     }
 }
 
-fun getCountryName(countryCode: String): String {
-    val locale = Locale("", countryCode)
-    return locale.displayCountry
-}

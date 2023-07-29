@@ -11,11 +11,11 @@ struct ContentView : View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.countryList.sorted { countryName(from: $0) < countryName(from: $1) }, id: \.self) { countryCode in
-                    NavigationLink(destination: NetworkListView(countryCode: countryCode)) {
+                ForEach(viewModel.countryList, id: \.self) { country in
+                    NavigationLink(destination: NetworkListView(countryCode: country.code)) {
                         HStack {
-                            Text(countryFlag(from: countryCode))
-                            Text(countryName(from: countryCode)).font(.headline)
+                            Text(countryFlag(from: country.code))
+                            Text(country.displayName).font(.headline)
                         }
                     }
                 }

@@ -30,13 +30,12 @@ class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
     private val realm: Realm by inject()
 
-    val mainScope: CoroutineScope = MainScope()
+    private val mainScope: CoroutineScope = MainScope()
 
     private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
     val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
-    val networkList: StateFlow<List<Network>> = _networkList
 
     init {
         mainScope.launch {

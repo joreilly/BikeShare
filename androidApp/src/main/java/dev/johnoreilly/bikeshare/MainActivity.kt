@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package dev.johnoreilly.bikeshare
 
 import android.os.Bundle
@@ -13,7 +11,6 @@ import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -47,9 +44,9 @@ class MainActivity : ComponentActivity() {
 }
 
 sealed class Screen(val title: String) {
-    object CountryListScreen : Screen("CountryList")
-    object NetworkListScreen : Screen("NetworkList")
-    object StationsScreen : Screen("Stations")
+    data object CountryListScreen : Screen("CountryList")
+    data object NetworkListScreen : Screen("NetworkList")
+    data object StationsScreen : Screen("Stations")
 }
 
 
@@ -80,16 +77,16 @@ fun BikeShareApp() {
                 NavHost(navController, startDestination = Screen.CountryListScreen.title) {
                     composable(Screen.CountryListScreen.title) {
                         CountryListScreen {
-                            navController.navigate(Screen.NetworkListScreen.title + "/$it")
+                            navController.navigate(Screen.NetworkListScreen.title + "/${it.code}")
                         }
                     }
                     composable(Screen.NetworkListScreen.title + "/{countryCode}") { backStackEntry ->
-                        NetworkListScreen(backStackEntry.arguments?.get("countryCode") as String,
+                        NetworkListScreen(backStackEntry.arguments?.getString("countryCode") as String,
                             networkSelected = { navController.navigate(Screen.StationsScreen.title + "/$it") },
                             popBack = { navController.popBackStack() })
                     }
                     composable(Screen.StationsScreen.title + "/{networkId}") { backStackEntry ->
-                        StationsScreen(backStackEntry.arguments?.get("networkId") as String,
+                        StationsScreen(backStackEntry.arguments?.getString("networkId") as String,
                             popBack = { navController.popBackStack() })
                     }
                 }

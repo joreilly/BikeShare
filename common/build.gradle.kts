@@ -77,6 +77,8 @@ kotlin {
                     api(core)
                     api(test)
                 }
+
+                api("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
             }
         }
 
@@ -95,18 +97,11 @@ kotlin {
         val iOSTest by getting {
         }
 
-        val mobileMain by creating {
-            dependsOn(commonMain)
-            androidMain.dependsOn(this)
-            iOSMain.dependsOn(this)
-            dependencies {
-                implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
-            }
-        }
-
-
         val jvmMain by getting {
             dependencies {
+                // hack to allow use of MainScope() in shared code used by JVM console app
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:${Versions.kotlinCoroutines}")
+
                 implementation(Deps.Ktor.clientJava)
                 implementation(Deps.Ktor.slf4j)
             }
