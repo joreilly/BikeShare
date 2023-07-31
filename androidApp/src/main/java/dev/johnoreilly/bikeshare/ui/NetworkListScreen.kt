@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import dev.johnoreilly.common.getCountryName
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
 import org.koin.androidx.compose.getViewModel

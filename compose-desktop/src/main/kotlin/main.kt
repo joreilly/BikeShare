@@ -15,18 +15,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import dev.johnoreilly.common.di.initKoin
-import dev.johnoreilly.common.remote.CityBikesApi
-import dev.johnoreilly.common.remote.NetworkDTO
-import dev.johnoreilly.common.remote.Station
+import dev.johnoreilly.common.model.Network
+import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
+import dev.johnoreilly.common.viewmodel.Country
+import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
+import dev.johnoreilly.common.viewmodel.StationsViewModelShared
 import org.jxmapviewer.JXMapViewer
 import org.jxmapviewer.OSMTileFactoryInfo
 import org.jxmapviewer.viewer.*
 import java.awt.BorderLayout
-import java.util.*
 import javax.swing.JPanel
 
-
-data class Country(val code: String, val displayName: String)
 
 fun main() {
     // see https://github.com/JetBrains/compose-multiplatform-core/pull/601
@@ -80,47 +79,40 @@ private val koin = initKoin().koin
 
 @Composable
 fun BikeShareView()  {
-
-    val cityBikesApi = koin.get<CityBikesApi>()
-
+    val countriesViewModel = remember { CountriesViewModelShared() }
+    val countryList by countriesViewModel.countryList.collectAsState()
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
-    var selectedNetwork by remember { mutableStateOf<NetworkDTO?>(null) }
-    var networkList by remember { mutableStateOf(emptyList<NetworkDTO>()) }
 
-    var stationList by remember { mutableStateOf(emptyList<Station>()) }
-    var groupedNetworkList: Map<Country, List<NetworkDTO>> by remember { mutableStateOf(emptyMap()) }
-    var countryList by remember { mutableStateOf(emptyList<Country>()) }
+    val networksViewModel= remember { NetworksViewModelShared() }
+    val networkList by networksViewModel.networkList.collectAsState()
+    var selectedNetwork by remember { mutableStateOf<Network?>(null) }
 
+    val stationsViewModel= remember { StationsViewModelShared() }
+    val stations by stationsViewModel.stations.collectAsState()
 
-    LaunchedEffect(true) {
-        val allNetworks = cityBikesApi.fetchNetworkList().networks
-        val groupedNetworkListByCountryCode = allNetworks.groupBy { it.location.country }
-        groupedNetworkList = groupedNetworkListByCountryCode.mapKeys {
-            val countryCode = it.key.lowercase(Locale.getDefault())
-            val locale = Locale("", countryCode)
-            val countryName = locale.displayCountry
-            Country(countryCode, countryName)
-        }
-
-
-        countryList = groupedNetworkList.keys.toList().sortedBy { it.displayName }
-        selectedCountry = countryList.first()
-        groupedNetworkList[selectedCountry]?.let {
-            networkList = it
-            selectedNetwork = networkList.first()
+    // probably cleaner way of doing this....
+    LaunchedEffect(networkList) {
+        selectedNetwork = networkList.firstOrNull()
+        selectedNetwork?.let {
+            stationsViewModel.setNetwork(it.id)
         }
     }
 
-    LaunchedEffect(selectedNetwork) {
-        selectedNetwork?.let {
-            val city = GeoPosition(it.location.latitude, it.location.longitude)
-            map?.addressLocation = city
+    LaunchedEffect(countryList) {
+        selectedCountry = countryList.firstOrNull()
+        selectedCountry?.let {
+            networksViewModel.setCountryCode(it.code)
+        }
+    }
 
-            stationList = cityBikesApi.fetchBikeShareInfo(it.id).network.stations
+    LaunchedEffect(stations) {
+        selectedNetwork?.let {
+            val city = GeoPosition(it.latitude, it.longitude)
+            map?.addressLocation = city
 
             val wpp = WaypointPainter<Waypoint>()
             val wpSet = mutableSetOf<Waypoint>()
-            stationList.forEach {
+            stations.forEach {
                 val wp = Waypoint {
                     GeoPosition(it.latitude, it.longitude)
                 }
@@ -135,13 +127,12 @@ fun BikeShareView()  {
     MaterialTheme {
         Row {
             Box(Modifier.width(200.dp).fillMaxHeight().background(color = Color.DarkGray)) {
-
                 LazyColumn {
                     items(countryList) { country ->
                         Row(
                             Modifier.clickable(onClick = {
                                 selectedCountry = country
-                                networkList = groupedNetworkList[country]!!
+                                networksViewModel.setCountryCode(country.code)
                             }).padding(8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -151,7 +142,6 @@ fun BikeShareView()  {
                                 style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
                             )
                         }
-
                     }
                 }
             }
@@ -165,11 +155,12 @@ fun BikeShareView()  {
                         Row(
                             Modifier.clickable(onClick = {
                                 selectedNetwork = network
+                                stationsViewModel.setNetwork(network.id)
                             }).padding(8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "${network.name} (${network.location.city})",
+                                "${network.name} (${network.city})",
                                 color = Color.Black,
                                 style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
                             )

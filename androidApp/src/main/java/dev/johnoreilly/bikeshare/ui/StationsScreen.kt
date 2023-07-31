@@ -34,13 +34,13 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
     val viewModel = getViewModel<StationsViewModelShared>()
-    val stationsState = viewModel.stations.collectAsState()
+    val stations by viewModel.stations.collectAsState()
 
     LaunchedEffect(networkId) {
         viewModel.setNetwork(networkId)
     }
 
-    var navigationIcon:  @Composable() (() -> Unit)? = null
+    var navigationIcon:  @Composable (() -> Unit)? = null
     if (popBack != null) { navigationIcon =  {
         IconButton(onClick = { popBack() }) { Icon(Icons.Filled.ArrowBack, contentDescription = "Back") } }
     }
@@ -50,7 +50,7 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
             TopAppBar(title = { Text(networkId) }, navigationIcon = navigationIcon!!)
         }) { paddingValues ->
             LazyColumn(Modifier.padding(paddingValues)) {
-                items(stationsState.value) { station ->
+                items(stations) { station ->
                     StationView(station)
                 }
             }
