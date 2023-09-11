@@ -12,7 +12,7 @@ object Versions {
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-18"
     const val kmmViewModel = "1.0.0-ALPHA-14"
 
-    const val compose = "1.5.0"
+    const val compose = "1.5.1"
     const val composeCompiler = "1.5.3"
     const val jbComposeCompiler = "1.5.2-beta01"
     const val navCompose = "2.7.2"
