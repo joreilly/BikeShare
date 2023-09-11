@@ -20,7 +20,7 @@ object Versions {
     const val composeDesktop = "1.5.0"
     const val glance = "1.0.0"
 
-    const val realm = "1.10.2"
+    const val realm = "1.11.1"
 
     const val androidxLifecycle = "2.5.1"
 
