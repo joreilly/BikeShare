@@ -24,7 +24,7 @@ object Versions {
 
     const val androidxLifecycle = "2.5.1"
 
-    const val slf4j = "2.0.7"
+    const val slf4j = "2.0.9"
     const val junit = "4.12"
 }
 
