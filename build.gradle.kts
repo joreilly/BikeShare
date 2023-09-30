@@ -2,6 +2,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
+        maven("https://androidx.dev/storage/compose-compiler/repository")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
     }
     dependencies {
         classpath("com.android.tools.build:gradle:8.1.1")
@@ -17,16 +21,26 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://androidx.dev/storage/compose-compiler/repository")
+        maven("https://androidx.dev/storage/compose-compiler/repository")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
+        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute(module("org.jetbrains.kotlin:kotlin-stdlib-wasm:1.9.0"))
+                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20-Beta2"))
+            }
+
+            eachDependency {
+                if (requested.module.name.startsWith("kotlin-stdlib")) {
+                    useVersion("1.9.20-RC")
+                }
+            }
+        }
     }
 }
 
-//allprojects {
-//    configurations.all {
-//        resolutionStrategy.dependencySubstitution {
-//            substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
-//                using(module("androidx.compose.compiler:compiler:${Versions.composeCompiler}"))
-//            }
-//        }
-//    }
-//}
+
