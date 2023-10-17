@@ -18,6 +18,9 @@ open class StationsViewModelShared : KMMViewModel(), KoinComponent {
         cityBikesRepository.pollNetworkUpdates(it)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
+    /**
+     * Set bike share network
+     */
     fun setNetwork(networkId: String) {
         network.value = networkId
     }

@@ -14,6 +14,9 @@ data class Country(val code: String, val displayName: String)
 open class CountriesViewModelShared : KMMViewModel(), KoinComponent {
     private val cityBikesRepository: CityBikesRepository by inject()
 
+    /**
+     * List of countries for which there are bike networks
+     */
     @NativeCoroutinesState
     val countryList: StateFlow<List<Country>> = cityBikesRepository.groupedNetworkList.map {
         it.keys.toList().map { countryCode ->
