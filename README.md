@@ -8,6 +8,7 @@ Running on
 * iOS (SwiftUI)
 * Android (Jetpack Compose)
 * Desktop (Compose for Desktop)
+* Web (Wasm based Compose for Web)
 
 Related posts:
 * [Using SwiftUI and Compose to develop App Widgets on iOS and Android](https://johnoreilly.dev/posts/ios-android-widget-kmp/)
