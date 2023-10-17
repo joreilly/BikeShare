@@ -19,6 +19,9 @@ open class NetworksViewModelShared : KMMViewModel(), KoinComponent {
         groupedNetworkList[countryCode]?.sortedBy { it.city }
     }.filterNotNull().stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
+    /**
+     * Set country code to show bike networks for
+     */
     fun setCountryCode(countryCode: String) {
         this.countryCode.value = countryCode
     }

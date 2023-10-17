@@ -13,7 +13,7 @@ object Versions {
     const val kmmViewModel = "1.0.0-ALPHA-14"
 
     const val compose = "1.5.1"
-    const val composeCompiler = "1.5.4-dev-k1.9.20-Beta-692cbee7ddd"
+    const val composeCompiler = "1.5.4-dev-k1.9.20-RC-1edce5fd625"
     const val jbComposeCompiler = "1.5.2.1-Beta"
     const val navCompose = "2.7.2"
     const val composeMaterial3 = "1.1.1"

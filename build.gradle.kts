@@ -31,7 +31,7 @@ allprojects {
         resolutionStrategy {
             dependencySubstitution {
                 substitute(module("org.jetbrains.kotlin:kotlin-stdlib-wasm:1.9.0"))
-                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20-Beta2"))
+                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20-RC"))
             }
 
             eachDependency {
