@@ -36,7 +36,7 @@ allprojects {
 
             eachDependency {
                 if (requested.module.name.startsWith("kotlin-stdlib")) {
-                    useVersion("1.9.20-RC")
+                    useVersion("1.9.20")
                 }
             }
         }

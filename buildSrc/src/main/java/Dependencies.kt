@@ -1,7 +1,7 @@
 
 object Versions {
-    const val kotlin = "1.9.20-RC"
-    const val kspPlugin = "1.9.20-RC-1.0.13"
+    const val kotlin = "1.9.20"
+    const val kspPlugin = "1.9.20-1.0.13"
     const val kotlinCoroutines = "1.7.3"
     const val ktor = "2.3.4"
     const val kotlinxSerialization = "1.6.0"
@@ -12,12 +12,12 @@ object Versions {
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-18"
     const val kmmViewModel = "1.0.0-ALPHA-14"
 
-    const val compose = "1.5.1"
-    const val composeCompiler = "1.5.4-dev-k1.9.20-RC-1edce5fd625"
-    const val jbComposeCompiler = "1.5.2.1-Beta"
+    const val compose = "1.5.3"
+    const val composeCompiler = "1.5.4-dev-k1.9.20-50f08dfa4b4"
+    const val jbComposeCompiler = "1.5.3"
     const val navCompose = "2.7.2"
     const val composeMaterial3 = "1.1.1"
-    const val composeDesktop = "1.5.1"
+    const val composeDesktop = "1.5.10"
     const val glance = "1.0.0"
 
     const val realm = "1.11.1"
