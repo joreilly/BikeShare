@@ -17,4 +17,4 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug
     - name: Build iOS shared code
-      run: ./gradlew :common:compileKotlinIOS
+      run: ./gradlew :common:compileKotlinIosArm64

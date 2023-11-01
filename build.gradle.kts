@@ -8,12 +8,12 @@ buildscript {
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}")
-        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${Versions.kspPlugin}")
-        classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${Versions.kmpNativeCoroutinesVersion}")
-        classpath("io.realm.kotlin:gradle-plugin:${Versions.realm}")
+        classpath("com.android.tools.build:gradle:8.1.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:${libs.versions.kotlin.get()}")
+        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${libs.versions.ksp.get()}")
+        classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${libs.versions.kmpNativeCoroutines.get()}")
+        classpath("io.realm.kotlin:gradle-plugin:${libs.versions.realm.get()}")
     }
 }
 
@@ -31,7 +31,7 @@ allprojects {
         resolutionStrategy {
             dependencySubstitution {
                 substitute(module("org.jetbrains.kotlin:kotlin-stdlib-wasm:1.9.0"))
-                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20-RC"))
+                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20"))
             }
 
             eachDependency {

@@ -29,82 +29,45 @@ android {
 version = "1.0"
 
 kotlin {
-    targets {
-        val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget = when {
-            System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
-            System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64 // available to KT 1.5.30
-            else -> ::iosX64
+    androidTarget()
+    jvm()
+
+    listOf(
+        iosArm64(), iosX64(), iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
         }
-        iosTarget("iOS") {
-
-            binaries.framework {
-                baseName = "common"
-
-                // re. https://youtrack.jetbrains.com/issue/KT-60230/Native-unknown-options-iossimulatorversionmin-sdkversion-with-Xcode-15-beta-3
-                // due to be fixed in Kotlin 1.9.10
-                if (System.getenv("XCODE_VERSION_MAJOR") == "1500") {
-                    linkerOpts += "-ld64"
-                }
-            }
-        }
-
-        androidTarget()
-        jvm()
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                with(Deps.Ktor) {
-                    implementation(clientCore)
-                    implementation(clientJson)
-                    implementation(clientLogging)
-                    implementation(clientSerialization)
-                    implementation(contentNegotiation)
-                    implementation(json)
-                }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.serialization)
 
-                with(Deps.Kotlinx) {
-                    implementation(coroutinesCore)
-                    implementation(serializationCore)
-                }
+            api(libs.koin.core)
+            implementation(libs.koin.test)
 
-                // Realm
-                implementation(Deps.realm)
-
-                // koin
-                with(Deps.Koin) {
-                    api(core)
-                    api(test)
-                }
-
-                api("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
-            }
+            implementation(libs.bundles.ktor.common)
+            implementation(libs.realm)
+            api(libs.kmmViewModel)
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientAndroid)
-                implementation(Deps.androidXLifecycleViewModel)
-            }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+            implementation(Deps.androidXLifecycleViewModel)
         }
 
-        val iOSMain by getting {
-            dependencies {
-                implementation(Deps.Ktor.clientIos)
-            }
-        }
-        val iOSTest by getting {
+        iosMain.dependencies {
+            implementation(libs.ktor.client.ios)
         }
 
-        val jvmMain by getting {
-            dependencies {
-                // hack to allow use of MainScope() in shared code used by JVM console app
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:${Versions.kotlinCoroutines}")
+        jvmMain.dependencies {
+            // hack to allow use of MainScope() in shared code used by JVM console app
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:${Versions.kotlinCoroutines}")
 
-                implementation(Deps.Ktor.clientJava)
-                implementation(Deps.Ktor.slf4j)
-            }
+            implementation(libs.ktor.client.java)
+            implementation(libs.slf4j)
         }
     }
 }

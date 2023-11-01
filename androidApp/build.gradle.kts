@@ -42,7 +42,7 @@ fun versionName(): String {
 
 android {
     namespace = "dev.johnoreilly.bikeshare"
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     signingConfigs {
 
@@ -60,8 +60,8 @@ android {
 
     defaultConfig {
         applicationId = "dev.johnoreilly.bikeshare"
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         this.versionCode = versionCode()
         this.versionName = versionName()
@@ -81,12 +81,12 @@ android {
         }
     }
 
-    kotlinOptions {
-        freeCompilerArgs += listOf(
-            "-P",
-            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-        )
-    }
+//    kotlinOptions {
+//        freeCompilerArgs += listOf(
+//            "-P",
+//            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+//        )
+//    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -98,7 +98,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
     packaging {
         resources {
