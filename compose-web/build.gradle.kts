@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("org.jetbrains.compose") version "1.5.10-dev-wasm01"
+    id("org.jetbrains.compose") version "1.5.10"
 }
 
 group = "com.example"
