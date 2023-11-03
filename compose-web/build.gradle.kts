@@ -1,12 +1,10 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
-import org.jetbrains.compose.compose
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
-    id("org.jetbrains.compose") version "1.5.10-dev-wasm01"
+    id("org.jetbrains.compose") version Versions.composeMultiplatform
 }
 
 group = "com.example"
@@ -37,9 +35,10 @@ kotlin {
         binaries.executable()
 //        applyBinaryen()
     }
+
     sourceSets {
         @OptIn(ExperimentalComposeLibrary::class)
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -54,19 +53,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm1")
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
     }
 }
 
 compose.experimental {
     web.application {}
-}
-
-compose {
-    kotlinCompilerPlugin.set("1.5.2.1-rc01")
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
 }

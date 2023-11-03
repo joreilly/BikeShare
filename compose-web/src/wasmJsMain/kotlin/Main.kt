@@ -1,5 +1,9 @@
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -10,9 +14,15 @@ fun main() {
     CanvasBasedWindow("BikeShare", canvasElementId = "bikeShareCanvas") {
         val cityBikesApi = remember { CityBikesApi() }
 
-        val stationList by pollNetworkUpdates("velib", cityBikesApi)
-            .collectAsState(emptyList())
-        StationsScreen(stationList)
+        var networkName by remember { mutableStateOf("nextbike-berlin") }
+
+        Column(Modifier.padding(16.dp)) {
+            if (networkName.isNotEmpty()) {
+                val stationList by pollNetworkUpdates(networkName, cityBikesApi)
+                    .collectAsState(emptyList())
+                StationsScreen(stationList)
+            }
+        }
     }
 }
 
