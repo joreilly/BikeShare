@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version Versions.composeDesktop
+    id("org.jetbrains.compose") version Versions.composeMultiplatform
     application
 }
 
@@ -20,9 +20,4 @@ dependencies {
 
 application {
     mainClass.set("MainKt")
-}
-
-compose {
-    kotlinCompilerPlugin.set(Versions.jbComposeCompiler)
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20-RC")
 }
