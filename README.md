@@ -26,7 +26,7 @@ Related posts:
 
 Need to use at least Android Studio Arctic Fox to build/run the Android client. 
 
-Requires XCode 13.2 or later (due to use of new Swift 5.5 concurrency APIs). When opening iOS project remember to open `.xcworkspace` file (and not `.xcodeproj` one)
+Requires Xcode 13.2 or later (due to use of new Swift 5.5 concurrency APIs). When opening iOS project remember to open `.xcworkspace` file (and not `.xcodeproj` one)
 
 ### Compose for Desktop client
 
