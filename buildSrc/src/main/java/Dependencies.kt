@@ -21,7 +21,7 @@ object Versions {
     const val composeMultiplatform = "1.5.10-dev-wasm02"
     const val glance = "1.0.0"
 
-    const val realm = "1.11.1"
+    const val realm = "1.12.0"
 
     const val androidxLifecycle = "2.5.1"
 
