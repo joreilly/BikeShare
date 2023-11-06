@@ -7,7 +7,7 @@ object Versions {
     const val ktor = "2.3.5"
     const val kotlinxSerialization = "1.6.0"
     const val koinCore = "3.4.3"
-    const val koinAndroid = "3.4.3"
+    const val koinAndroid = "3.5.0"
     const val koinAndroidCompose = "3.4.6"
 
     const val kmpNativeCoroutinesVersion = "1.0.0-ALPHA-19"
