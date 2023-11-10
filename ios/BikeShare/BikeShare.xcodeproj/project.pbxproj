@@ -78,6 +78,7 @@
 				1A11F79B2732AE86006E20C5 /* BikeShareWidget */,
 				1A56764924D351FC0047F88F /* Products */,
 				3E7F7EC3ABE0A3DAE509A197 /* Frameworks */,
+				BB596E49F0FEA759A9A58A30 /* xcschemes */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +120,14 @@
 				1A11F7992732AE86006E20C5 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB596E49F0FEA759A9A58A30 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xcschemes;
+			path = BikeShare.xcodeproj/project.xcworkspace/xcuserdata/joreilly.xcuserdatad/xcschemes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,7 +386,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					common,
+					BikeShareKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -407,7 +416,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					common,
+					BikeShareKit,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.johnoreilly.BikeShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";

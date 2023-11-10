@@ -1,6 +1,6 @@
 import SwiftUI
 import MapKit
-import common
+import BikeShareKit
 import KMMViewModelCore
 import KMMViewModelSwiftUI
 
