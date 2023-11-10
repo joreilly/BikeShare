@@ -5,7 +5,7 @@ plugins {
     id("io.realm.kotlin")
     id("com.google.devtools.ksp")
     id("com.rickclephas.kmp.nativecoroutines")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.0"
 }
 
 android {
@@ -33,10 +33,10 @@ kotlin {
     jvm()
 
     listOf(
-        iosArm64(), iosX64(), iosSimulatorArm64()
+        iosArm64(), iosX64(), iosSimulatorArm64(), macosArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "common"
+            baseName = "BikeShareKit"
         }
     }
 
@@ -58,7 +58,7 @@ kotlin {
             implementation(Deps.androidXLifecycleViewModel)
         }
 
-        iosMain.dependencies {
+        appleMain.dependencies {
             implementation(libs.ktor.client.ios)
         }
 
@@ -80,10 +80,10 @@ kotlin {
 
 multiplatformSwiftPackage {
     packageName("BikeShareKit")
-    swiftToolsVersion("5.3")
+    swiftToolsVersion("5.9")
     targetPlatforms {
-        iOS { v("13") }
-        macOS{ v("10_15") }
+        iOS { v("14") }
+        macOS { v("12")}
     }
 }
 

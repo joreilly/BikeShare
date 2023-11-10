@@ -1,4 +1,4 @@
 import KMMViewModelCore
-import common
+import BikeShareKit
 
 extension Kmm_viewmodel_coreKMMViewModel: KMMViewModel { }
