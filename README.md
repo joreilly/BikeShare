@@ -14,6 +14,7 @@ Running on
 Related posts:
 * [Using SwiftUI and Compose to develop App Widgets on iOS and Android](https://johnoreilly.dev/posts/ios-android-widget-kmp/)
 * [Bridging the gap between Swift 5.5 concurrency and Kotlin Coroutines with KMP-NativeCoroutines](https://johnoreilly.dev/posts/kmp-native-coroutines/)
+* [Creating a Swift command line app that consumes Kotlin Multiplatform code - Part 2](https://johnoreilly.dev/posts/swift-command-line-kotlin-multiplatform-part2/)
 
 
 <img width="668" alt="Screenshot 2022-12-24 at 15 16 22" src="https://user-images.githubusercontent.com/6302/209442335-862ecb89-8b22-454c-b7a8-d10dcd4deeda.png">

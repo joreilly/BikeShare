@@ -8,7 +8,6 @@ let package = Package(
     platforms: [.macOS(.v13)],
     dependencies: [
         .package(url: "https://github.com/rickclephas/KMP-NativeCoroutines.git", exact: "1.0.0-ALPHA-18"),
-        .package(url: "https://github.com/joreilly/PeopleInSpacePackage", branch: "main"),
         .package(url: "https://github.com/joreilly/BikeShareSwiftPackage", exact: "1.20.0"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", exact: "1.2.0"),
         .package(url: "https://github.com/pakLebah/ANSITerminal", from: "0.0.3")
@@ -18,7 +17,6 @@ let package = Package(
             name: "bikeshare",
             dependencies: [
                 .product(name: "KMPNativeCoroutinesAsync", package: "KMP-NativeCoroutines"),
-                .product(name: "PeopleInSpaceKit", package: "PeopleInSpacePackage"),
                 .product(name: "BikeShareKit", package: "BikeShareSwiftPackage"),
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "ANSITerminal", package: "ANSITerminal")
