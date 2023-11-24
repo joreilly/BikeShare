@@ -12,9 +12,10 @@ version = "1.0-SNAPSHOT"
 
 kotlin {
     wasmJs {
-        moduleName = "BikeShare"
+        moduleName = "bikeshare"
         browser {
             commonWebpackConfig {
+                outputFileName = "bikeshare.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).copy(
                     open = mapOf(
                         "app" to mapOf(
