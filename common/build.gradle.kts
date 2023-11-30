@@ -64,7 +64,7 @@ kotlin {
 
         jvmMain.dependencies {
             // hack to allow use of MainScope() in shared code used by JVM console app
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:${Versions.kotlinCoroutines}")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:${libs.versions.coroutines}")
 
             implementation(libs.ktor.client.java)
             implementation(libs.slf4j)
