@@ -122,15 +122,11 @@ dependencies {
     }
 
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
 
-    with(Deps.Koin) {
-        implementation(core)
-        implementation(android)
-        implementation(compose)
-    }
-
-    implementation("com.rickclephas.kmm:kmm-viewmodel-core:${Versions.kmmViewModel}")
+    //api(libs.kmmViewModel)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.5.2")

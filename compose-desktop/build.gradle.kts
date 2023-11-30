@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version Versions.composeMultiplatform
+    id("org.jetbrains.compose") version libs.versions.composeMultiplatform
     application
 }
 
