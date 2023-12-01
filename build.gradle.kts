@@ -8,7 +8,7 @@ buildscript {
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.2")
+        classpath("com.android.tools.build:gradle:8.2.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
         classpath("org.jetbrains.kotlin:kotlin-serialization:${libs.versions.kotlin.get()}")
         classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${libs.versions.ksp.get()}")
