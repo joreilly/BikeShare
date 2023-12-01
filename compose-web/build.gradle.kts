@@ -46,9 +46,12 @@ kotlin {
                 implementation(compose.material)
                 implementation(compose.components.resources)
 
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2-wasm3")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization)
+
+//                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2-wasm3")
+//                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.2")
+//                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
                 implementation("io.ktor:ktor-client-core:3.0.0-wasm1")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-wasm1")
                 implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm1")
