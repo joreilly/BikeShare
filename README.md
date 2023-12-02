@@ -17,14 +17,13 @@ Related posts:
 * [Creating a Swift command line app that consumes Kotlin Multiplatform code - Part 2](https://johnoreilly.dev/posts/swift-command-line-kotlin-multiplatform-part2/)
 
 
+
+
 <img width="668" alt="Screenshot 2022-12-24 at 15 16 22" src="https://user-images.githubusercontent.com/6302/209442335-862ecb89-8b22-454c-b7a8-d10dcd4deeda.png">
-
-
 
 ![BikeShare Screenshot](/art/screenshot_ios_swiftui.png?raw=true )
 
-
-<img width="1382" alt="Screenshot 2023-12-02 at 14 00 11" src="https://github.com/joreilly/BikeShare/assets/6302/7c52f1a7-043f-47c3-b7e7-c57a25391e5b">
+<img width="1426" alt="Screenshot 2023-12-02 at 15 01 25" src="https://github.com/joreilly/BikeShare/assets/6302/3e3092cd-261f-49a9-a0b3-bb6631a9d119">
 
 <img width="1293" alt="Screenshot 2023-12-02 at 14 10 34" src="https://github.com/joreilly/BikeShare/assets/6302/db821735-a8eb-4865-8723-4a6bb2de1f9f">
 
