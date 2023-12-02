@@ -24,6 +24,9 @@ Related posts:
 ![BikeShare Screenshot](/art/screenshot_ios_swiftui.png?raw=true )
 
 
+<img width="1382" alt="Screenshot 2023-12-02 at 14 00 11" src="https://github.com/joreilly/BikeShare/assets/6302/7c52f1a7-043f-47c3-b7e7-c57a25391e5b">
+
+
 ### Building
 
 Need to use at least Android Studio Arctic Fox to build/run the Android client. 
