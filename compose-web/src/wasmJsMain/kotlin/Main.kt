@@ -75,7 +75,7 @@ fun BikeShareView()  {
         fullNetworkList = cityBikesApi.fetchNetworkList().networks
 
         countryList = fullNetworkList.groupBy { it.location.country }.keys.toList().map { countryCode ->
-            Country(countryCode, countryCode)
+            Country(countryCode, getCountryName(countryCode))
         }.sortedBy { it.displayName }
     }
 
@@ -93,7 +93,7 @@ fun BikeShareView()  {
     }
 
     Row(Modifier.fillMaxHeight()) {
-        Box(Modifier.width(100.dp).background(color = Color.LightGray)) {
+        Box(Modifier.width(250.dp).background(color = Color.LightGray)) {
             LazyColumn {
                 items(countryList) { country ->
                     Row(
@@ -141,7 +141,13 @@ fun BikeShareView()  {
     }
 }
 
-//fun getCountryName(countryCode: String): String {
-//    val locale = Locale("", countryCode)
-//    return locale.displayCountry
-//}
+
+@JsFun(
+    """ (countryCode) => {
+        const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});        
+        return regionNames.of(countryCode)
+    }
+"""
+)
+external fun getCountryName(countryCode: String): String
+
