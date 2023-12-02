@@ -21,3 +21,8 @@ dependencies {
 application {
     mainClass.set("MainKt")
 }
+
+compose {
+    kotlinCompilerPlugin.set("1.5.4")
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=${libs.versions.kotlin}")
+}
