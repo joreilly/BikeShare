@@ -2,9 +2,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ProvideTextStyle
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,9 +40,9 @@ fun StationView(station: Station) {
         verticalAlignment = Alignment.CenterVertically) {
 
         Column(modifier = Modifier.weight(1.0f)) {
-            Text(text = station.name, style = MaterialTheme.typography.h6, fontWeight = FontWeight.Bold)
+            Text(text = station.name, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
 
-            ProvideTextStyle(MaterialTheme.typography.body1) {
+            ProvideTextStyle(MaterialTheme.typography.bodyLarge) {
                 Row(modifier = Modifier.padding(top = 4.dp)) {
                     Column(modifier = Modifier.width(100.dp)) {
                         Text("Bikes")
