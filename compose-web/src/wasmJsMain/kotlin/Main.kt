@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -37,7 +37,7 @@ fun main() {
                     .padding(8.dp),
                 textAlign = TextAlign.Center,
                 color = Color.White,
-                style = MaterialTheme.typography.h5)
+                style = MaterialTheme.typography.headlineSmall)
 
             BikeShareView()
         }
@@ -105,7 +105,7 @@ fun BikeShareView()  {
                         Text(
                             country.displayName,
                             color = Color.Black,
-                            style = if (country == selectedCountry) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            style = if (country == selectedCountry) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
                         )
                     }
                 }
@@ -113,7 +113,7 @@ fun BikeShareView()  {
         }
 
         Spacer(modifier = Modifier.width(1.dp).fillMaxHeight()
-            .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
+            .background(color = MaterialTheme.colorScheme.onSurface.copy(0.25f)))
 
         Box(Modifier.width(400.dp)) {
             LazyColumn {
@@ -127,7 +127,7 @@ fun BikeShareView()  {
                         Text(
                             "${network.location.city} (${network.name})",
                             color = Color.Black,
-                            style = if (network == selectedNetwork) MaterialTheme.typography.h6 else MaterialTheme.typography.body1
+                            style = if (network == selectedNetwork) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
                         )
                     }
                 }
@@ -135,7 +135,7 @@ fun BikeShareView()  {
         }
 
         Spacer(modifier = Modifier.width(1.dp).fillMaxHeight()
-            .background(color = MaterialTheme.colors.onSurface.copy(0.25f)))
+            .background(color = MaterialTheme.colorScheme.onSurface.copy(0.25f)))
 
         StationsScreen(stationList)
     }
