@@ -7,11 +7,12 @@ import KMMViewModelSwiftUI
 
 struct ContentView : View {
     @StateViewModel var viewModel = CountriesViewModelShared()
+    @State var query: String = ""
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.countryList, id: \.self) { country in
+                ForEach(viewModel.countryList.filter { query.isEmpty ||  $0.displayName.contains(query)}, id: \.self) { country in
                     NavigationLink(destination: NetworkListView(countryCode: country.code)) {
                         HStack {
                             Text(countryFlag(from: country.code))
@@ -20,6 +21,7 @@ struct ContentView : View {
                     }
                 }
             }
+            .searchable(text: $query)
             .navigationTitle("Bike Share")
         }
     }
