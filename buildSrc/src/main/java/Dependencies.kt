@@ -3,7 +3,7 @@
 object Versions {
     const val compose = "1.5.4"
     const val composeCompiler = "1.5.4-dev-k1.9.20-50f08dfa4b4"
-    const val navCompose = "2.7.5"
+    const val navCompose = "2.7.7"
     const val composeMaterial3 = "1.1.2"
     const val glance = "1.0.0"
     const val androidxLifecycle = "2.5.1"
