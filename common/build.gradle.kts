@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+
 plugins {
     kotlin("multiplatform")
     id("kotlinx-serialization")
@@ -25,8 +27,9 @@ android {
 }
 
 
-// CocoaPods requires the podspec to have a version.
-version = "1.0"
+kotlin {
+    jvmToolchain(17)
+}
 
 kotlin {
     androidTarget()
@@ -38,6 +41,10 @@ kotlin {
         it.binaries.framework {
             baseName = "BikeShareKit"
         }
+    }
+
+    compilerOptions {
+        languageVersion.set(KOTLIN_1_9)
     }
 
     sourceSets {
