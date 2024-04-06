@@ -28,12 +28,13 @@ import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
 import dev.johnoreilly.common.viewmodel.Country
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import java.util.*
 
 
 @Composable
 fun CountryListScreen(countrySelected: (country: Country) -> Unit) {
-    val viewModel = getViewModel<CountriesViewModelShared>()
+    val viewModel = koinViewModel<CountriesViewModelShared>()
     val countryList by viewModel.countryList.collectAsState()
 
     Scaffold(topBar = { TopAppBar(title = { Text("BikeShare - Countries") }) }) { paddingValues ->
