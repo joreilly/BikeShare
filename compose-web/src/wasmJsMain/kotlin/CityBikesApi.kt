@@ -14,7 +14,7 @@ data class NetworkResult(val network: NetworkDTO)
 data class NetworkListResult(val networks: List<NetworkDTO>)
 
 @Serializable
-data class NetworkDTO(val id: String, val name: String, val location: Location, val stations: List<Station> = emptyList())
+data class NetworkDTO(val id: String, val name: String, val location: Location?, val stations: List<Station> = emptyList())
 
 @Serializable
 data class Location(val city: String, val country: String, val latitude: Double, val longitude: Double)
