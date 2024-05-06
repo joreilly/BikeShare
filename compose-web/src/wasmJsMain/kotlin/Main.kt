@@ -74,16 +74,16 @@ fun BikeShareView()  {
     LaunchedEffect(Unit) {
         fullNetworkList = cityBikesApi.fetchNetworkList().networks
 
-        countryList = fullNetworkList.groupBy { it.location.country }.keys.toList().map { countryCode ->
-            Country(countryCode, getCountryName(countryCode))
+        countryList = fullNetworkList.groupBy { it.location?.country }.keys.toList().map { countryCode ->
+            Country(countryCode ?: "", getCountryName(countryCode ?: ""))
         }.sortedBy { it.displayName }
     }
 
 
     LaunchedEffect(selectedCountry) {
         networkList = fullNetworkList
-            .filter { it.location.country == selectedCountry?.code }
-            .sortedBy { it.location.city }
+            .filter { it.location?.country == selectedCountry?.code }
+            .sortedBy { it.location?.city }
     }
 
     LaunchedEffect(selectedNetwork) {
@@ -125,7 +125,7 @@ fun BikeShareView()  {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            "${network.location.city} (${network.name})",
+                            "${network.location?.city} (${network.name})",
                             color = Color.Black,
                             style = if (network == selectedNetwork) MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
                         )

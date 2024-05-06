@@ -40,15 +40,15 @@ class CityBikesRepository: KoinComponent {
     init {
         mainScope.launch {
             launch {
-                realm.query<NetworkDb>().asFlow()
-                    .map { it.list }
-                    .collect { it: RealmResults<NetworkDb> ->
-                        _networkList.value = it.toList().map {
-                            Network(it.id, it.name, it.city, it.country, it.latitude, it.longitude)
-                        }
-                        _groupedNetworkList.value =
-                            _networkList.value.groupBy { it.country }
+            realm.query<NetworkDb>().asFlow()
+                .map { it.list }
+                .collect { it: RealmResults<NetworkDb> ->
+                    _networkList.value = it.toList().map {
+                        Network(it.id, it.name, it.city, it.country, it.latitude, it.longitude)
                     }
+                    _groupedNetworkList.value =
+                        _networkList.value.groupBy { it.country }
+                }
             }
 
             fetchAndStoreNetworkList()
