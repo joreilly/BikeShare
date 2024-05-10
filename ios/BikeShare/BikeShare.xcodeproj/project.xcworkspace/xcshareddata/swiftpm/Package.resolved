@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "kmm-viewmodel",
+      "identity" : "kmp-observableviewmodel",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/rickclephas/KMM-ViewModel",
+      "location" : "https://github.com/rickclephas/KMP-ObservableViewModel.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "96f4b0a50f61f74eea6265b08a6cd3f7dc42828c"
+        "revision" : "f18dcd23199915f7134db9ef5b0d4425bf4edb91",
+        "version" : "1.0.0-BETA-1"
       }
     }
   ],

@@ -1,17 +1,19 @@
 package dev.johnoreilly.common.viewmodel
 
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.*
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.stateIn
 import dev.johnoreilly.common.getCountryName
 import dev.johnoreilly.common.repository.CityBikesRepository
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 data class Country(val code: String, val displayName: String)
 
-open class CountriesViewModelShared : KMMViewModel(), KoinComponent {
+open class CountriesViewModelShared : ViewModel(), KoinComponent {
     private val cityBikesRepository: CityBikesRepository by inject()
 
     /**
