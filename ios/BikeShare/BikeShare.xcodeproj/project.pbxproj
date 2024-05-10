@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A16DE772A743E4C001241FA /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A16DE762A743E4C001241FA /* KMMViewModelCore */; };
-		1A16DE792A743E4C001241FA /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
@@ -16,6 +14,8 @@
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
 		1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59905829579788006DD8F2 /* KMMiewModel.swift */; };
+		1A68CB7B2BEEAD6600F4AA1B /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */; };
+		1A68CB7D2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,8 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A16DE772A743E4C001241FA /* KMMViewModelCore in Frameworks */,
-				1A16DE792A743E4C001241FA /* KMMViewModelSwiftUI in Frameworks */,
+				1A68CB7B2BEEAD6600F4AA1B /* KMPObservableViewModelCore in Frameworks */,
+				1A68CB7D2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +149,8 @@
 			);
 			name = BikeShare;
 			packageProductDependencies = (
-				1A16DE762A743E4C001241FA /* KMMViewModelCore */,
-				1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */,
+				1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */,
+				1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */,
 			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
@@ -181,7 +181,7 @@
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
 			packageReferences = (
-				1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
+				1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */,
 			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
@@ -449,26 +449,26 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+		1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel";
+			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = exactVersion;
+				version = "1.0.0-BETA-1";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A16DE762A743E4C001241FA /* KMMViewModelCore */ = {
+		1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
-			productName = KMMViewModelCore;
+			package = 1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			productName = KMPObservableViewModelCore;
 		};
-		1A16DE782A743E4C001241FA /* KMMViewModelSwiftUI */ = {
+		1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A16DE752A743E4C001241FA /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
-			productName = KMMViewModelSwiftUI;
+			package = 1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			productName = KMPObservableViewModelSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

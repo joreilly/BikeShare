@@ -61,7 +61,7 @@ kotlin {
 
             implementation(libs.bundles.ktor.common)
             implementation(libs.realm)
-            api(libs.kmmViewModel)
+            api(libs.kmpObservableViewModel)
         }
 
         androidMain.dependencies {

@@ -1,8 +1,8 @@
 import SwiftUI
 import MapKit
 import BikeShareKit
-import KMMViewModelCore
-import KMMViewModelSwiftUI
+import KMPObservableViewModelCore
+import KMPObservableViewModelSwiftUI
 
 
 struct ContentView : View {

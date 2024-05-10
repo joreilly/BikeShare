@@ -11,7 +11,7 @@ ktor = "2.3.8"
 slf4j = "2.0.9"
 realm = "1.13.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-22"
-kmmViewModel = "1.0.0-ALPHA-16"
+kmpObservableViewModel = "1.0.0-BETA-1"
 
 androidxActivity = "1.8.2"
 androidxComposeCompiler = "1.5.8"
@@ -79,7 +79,7 @@ ktor-client-java = { group = "io.ktor", name = "ktor-client-java", version.ref =
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 
-kmmViewModel = { group = "com.rickclephas.kmm", name = "kmm-viewmodel-core", version.ref = "kmmViewModel" }
+kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
 realm = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }
 
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
