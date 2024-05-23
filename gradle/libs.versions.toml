@@ -10,7 +10,7 @@ koinCompose = "3.5.3"
 ktor = "2.3.8"
 slf4j = "2.0.9"
 realm = "1.13.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-22"
+kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-1"
 
 androidxActivity = "1.8.2"
