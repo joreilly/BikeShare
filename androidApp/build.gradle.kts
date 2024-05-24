@@ -7,6 +7,7 @@ import java.util.*
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.compose.compiler)
 }
 
 
@@ -81,13 +82,6 @@ android {
         }
     }
 
-//    kotlinOptions {
-//        freeCompilerArgs += listOf(
-//            "-P",
-//            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
-//        )
-//    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -97,9 +91,7 @@ android {
         compose = true
         buildConfig = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -108,29 +100,24 @@ android {
 }
 
 dependencies {
-    with (Deps.Compose) {
-        implementation(compiler)
-        implementation(ui)
-        implementation(uiGraphics)
-        implementation(uiTooling)
-        implementation(foundationLayout)
-        implementation(navigation)
-        implementation(glance)
+    implementation(libs.androidx.activity.compose)
 
-        implementation(material3)
-        implementation(material3WindowSizeClass)
-    }
-
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.glance)
 
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-
-
-    //api(libs.kmmViewModel)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.5.2")
 
     implementation(project(":common"))
-
 }

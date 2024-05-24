@@ -1,34 +1,37 @@
 [versions]
-kotlin = "1.9.22"
-ksp = "1.9.22-1.0.17"
-coroutines = "1.8.0"
+kotlin = "2.0.0"
+ksp = "2.0.0-1.0.21"
+
+coroutines = "1.8.1"
 kotlinxSerialization = "1.6.3"
-kotlinxDateTime = "0.5.0"
-androidGradlePlugin = "8.2.2"
-koin = "3.5.3"
-koinCompose = "3.5.3"
-ktor = "2.3.8"
-slf4j = "2.0.9"
-realm = "1.13.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-22"
-kmpObservableViewModel = "1.0.0-BETA-1"
+kotlinxDateTime = "0.6.0"
 
-androidxActivity = "1.8.2"
-androidxComposeCompiler = "1.5.8"
-jbComposeCompiler = "1.5.4"
-androidxComposeBom = "2024.02.01"
+androidGradlePlugin = "8.4.1"
+koin = "3.6.0-Beta4"
+koin-android-compose = "3.6.0-Beta4"
+koin-compose-multiplatform = "1.2.0-Beta4"
+ktor = "2.3.11"
+slf4j = "2.0.12"
+realm = "2.0.0-SNAPSHOT"
+#realm = "1.15.0"
+kmpNativeCoroutines = "1.0.0-ALPHA-31"
+kmpObservableViewModel = "1.0.0-BETA-3"
+
+compose-multiplatform = "1.6.10"
+androidxActivity = "1.9.0"
+androidxComposeBom = "2024.05.00"
 androidxNavigationCompose = "2.7.7"
-androidxLifecycle = "2.7.0"
+androidxLifecycle = "2.8.0"
+glance = "1.0.0"
 
-composeMultiplatform = "1.6.0"
 accompanist = "0.32.0"
 coilCompose = "2.6.0"
-image-loader = "1.7.7"
+image-loader = "1.7.8"
 
 junit = "4.13.2"
 
 multiplatformSettings = "1.1.1"
-kermit = "2.0.2"
+kermit = "2.0.3"
 
 minSdk = "24"
 targetSdk = "34"
@@ -45,7 +48,6 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -58,13 +60,14 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-glance = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 
 coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
 accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material3", version.ref = "accompanist" }
 image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-android-compose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
@@ -81,6 +84,7 @@ slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 
 kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
 realm = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }
+realm-plugin = { group = "io.realm.kotlin", name = "gradle-plugin" ,version.ref = "realm"}
 
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
@@ -97,6 +101,9 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm"}
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

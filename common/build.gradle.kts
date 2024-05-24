@@ -1,22 +1,22 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
-    kotlin("multiplatform")
-    id("kotlinx-serialization")
-    id("com.android.library")
-    id("io.realm.kotlin")
-    id("com.google.devtools.ksp")
-    id("com.rickclephas.kmp.nativecoroutines")
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kmpNativeCoroutines)
+    //alias(libs.plugins.realm.kotlin)
+    id(libs.plugins.realm.kotlin.get().pluginId)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.0"
 }
 
+
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = libs.versions.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = AndroidSdk.min
-        targetSdk = AndroidSdk.target
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -44,7 +44,7 @@ kotlin {
     }
 
     compilerOptions {
-        languageVersion.set(KOTLIN_1_9)
+        languageVersion.set(KotlinVersion.KOTLIN_1_9)
     }
 
     sourceSets {
@@ -66,7 +66,7 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
-            implementation(Deps.androidXLifecycleViewModel)
+            //implementation(Deps.androidXLifecycleViewModel)
         }
 
         appleMain.dependencies {
