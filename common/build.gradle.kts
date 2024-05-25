@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.library)
@@ -41,10 +39,6 @@ kotlin {
         it.binaries.framework {
             baseName = "BikeShareKit"
         }
-    }
-
-    compilerOptions {
-        languageVersion.set(KotlinVersion.KOTLIN_1_9)
     }
 
     sourceSets {
