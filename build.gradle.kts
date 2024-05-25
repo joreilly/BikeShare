@@ -1,46 +1,19 @@
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.jetbrainsCompose) apply false
+    alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.kmpNativeCoroutines) apply false
+    //alias(libs.plugins.realm.kotlin) apply false
+}
+
+// Explicitly adding the plugin to the classpath as it makes it easier to control the version
+// centrally (don't need version in the 'plugins' block). Further, snapshots are not published with
+// marker interface so would need to be added to the classpath manually anyway.
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
-        maven("https://androidx.dev/storage/compose-compiler/repository")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
-    }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.2.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:${libs.versions.kotlin.get()}")
-        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${libs.versions.ksp.get()}")
-        classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:${libs.versions.kmpNativeCoroutines.get()}")
-        classpath("io.realm.kotlin:gradle-plugin:${libs.versions.realm.get()}")
+        classpath(libs.realm.plugin)
     }
 }
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://androidx.dev/storage/compose-compiler/repository")
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/wasm/experimental")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            dependencySubstitution {
-                substitute(module("org.jetbrains.kotlin:kotlin-stdlib-wasm:1.9.0"))
-                    .using(module("org.jetbrains.kotlin:kotlin-stdlib-wasm-js:1.9.20"))
-            }
-
-            eachDependency {
-                if (requested.module.name.startsWith("kotlin-stdlib")) {
-                    useVersion("1.9.20")
-                }
-            }
-        }
-    }
-}
-
-

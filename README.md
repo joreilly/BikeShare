@@ -18,7 +18,6 @@ Related posts:
 
 
 
-
 <img width="668" alt="Screenshot 2022-12-24 at 15 16 22" src="https://user-images.githubusercontent.com/6302/209442335-862ecb89-8b22-454c-b7a8-d10dcd4deeda.png">
 
 ![BikeShare Screenshot](/art/screenshot_ios_swiftui.png?raw=true )
@@ -40,3 +39,18 @@ Requires Xcode 13.2 or later (due to use of new Swift 5.5 concurrency APIs). Whe
 This client is available in `compose-desktop` module. Note that you need to use appropriate version of JVM when running (works for example with Java 11)
 
 Note that this makes use of https://github.com/Shusshu/android-flags for flag images shown.
+
+
+## Full set of Kotlin Multiplatform/Compose/SwiftUI samples
+
+*  PeopleInSpace (https://github.com/joreilly/PeopleInSpace)
+*  GalwayBus (https://github.com/joreilly/GalwayBus)
+*  Confetti (https://github.com/joreilly/Confetti)
+*  BikeShare (https://github.com/joreilly/BikeShare)
+*  FantasyPremierLeague (https://github.com/joreilly/FantasyPremierLeague)
+*  ClimateTrace (https://github.com/joreilly/ClimateTraceKMP)
+*  GeminiKMP (https://github.com/joreilly/GeminiKMP)
+*  MortyComposeKMM (https://github.com/joreilly/MortyComposeKMM)
+*  StarWars (https://github.com/joreilly/StarWars)
+*  WordMasterKMP (https://github.com/joreilly/WordMasterKMP)
+*  Chip-8 (https://github.com/joreilly/chip-8)

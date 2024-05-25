@@ -1,9 +1,10 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
-    kotlin("multiplatform")
-    id("kotlinx-serialization")
-    id("org.jetbrains.compose") version libs.versions.composeMultiplatform
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 group = "com.example"
@@ -22,7 +23,6 @@ kotlin {
     }
 
     sourceSets {
-        @OptIn(ExperimentalComposeLibrary::class)
         commonMain {
             dependencies {
                 implementation(compose.runtime)
