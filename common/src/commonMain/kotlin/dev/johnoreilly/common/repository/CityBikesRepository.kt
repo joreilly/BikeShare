@@ -56,29 +56,38 @@ class CityBikesRepository: KoinComponent {
     }
 
     private suspend fun fetchAndStoreNetworkList() {
-        val networkList = cityBikesApi.fetchNetworkList().networks
-        println(networkList)
+        try {
+            val networkList = cityBikesApi.fetchNetworkList().networks
+            println(networkList)
 
-        realm.write {
-            networkList.forEach { networkDto ->
-                copyToRealm(NetworkDb().apply {
-                    id = networkDto.id
-                    name = networkDto.name
-                    city = networkDto.location.city
-                    country = networkDto.location.country
-                    latitude = networkDto.location.latitude
-                    longitude = networkDto.location.longitude
-                }, updatePolicy = UpdatePolicy.ALL)
+            realm.write {
+                networkList.forEach { networkDto ->
+                    copyToRealm(NetworkDb().apply {
+                        id = networkDto.id
+                        name = networkDto.name
+                        city = networkDto.location.city
+                        country = networkDto.location.country
+                        latitude = networkDto.location.latitude
+                        longitude = networkDto.location.longitude
+                    }, updatePolicy = UpdatePolicy.ALL)
+                }
             }
+        } catch (e: Exception) {
+            // TODO report error up to UI
+            println("Exception during fetchAndStorePeople: $e")
         }
     }
 
 
     fun pollNetworkUpdates(network: String): Flow<List<Station>> = flow {
         while (true) {
-            println("pollNetworkUpdates, network = $network")
-            val stations = fetchBikeShareInfo(network)
-            emit(stations)
+            try {
+                println("pollNetworkUpdates, network = $network")
+                val stations = fetchBikeShareInfo(network)
+                emit(stations)
+            } catch (e: Exception) {
+                println("Exception during pollNetworkUpdates: $e")
+            }
             delay(POLL_INTERVAL)
         }
     }
