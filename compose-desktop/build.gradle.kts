@@ -7,7 +7,7 @@ plugins {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("org.jxmapviewer:jxmapviewer2:2.6")
+    implementation("org.jxmapviewer:jxmapviewer2:2.8")
     implementation(project(":common"))
 }
 
