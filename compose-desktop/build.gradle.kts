@@ -14,3 +14,8 @@ dependencies {
 application {
     mainClass.set("MainKt")
 }
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+    languageSettings.enableLanguageFeature("ExplicitBackingFields")
+}

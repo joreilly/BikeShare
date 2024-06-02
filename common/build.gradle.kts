@@ -42,10 +42,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
-        }
-
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.serialization)
@@ -96,6 +92,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 kotlin.sourceSets.all {
+    languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+    languageSettings.enableLanguageFeature("ExplicitBackingFields")
 }
+
 

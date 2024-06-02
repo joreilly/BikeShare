@@ -26,14 +26,16 @@ class NetworkDb: RealmObject {
     var longitude: Double = 0.0
 }
 
+
+
 class CityBikesRepository: KoinComponent {
     private val cityBikesApi: CityBikesApi by inject()
     private val realm: Realm by inject()
 
     private val mainScope: CoroutineScope = MainScope()
 
-    private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
-    val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
+val groupedNetworkList: StateFlow<Map<String,List<Network>>>
+    field = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
 
@@ -46,7 +48,7 @@ class CityBikesRepository: KoinComponent {
                     _networkList.value = it.toList().map {
                         Network(it.id, it.name, it.city, it.country, it.latitude, it.longitude)
                     }
-                    _groupedNetworkList.value =
+                    groupedNetworkList.value =
                         _networkList.value.groupBy { it.country }
                 }
             }
