@@ -60,7 +60,6 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
-            //implementation(Deps.androidXLifecycleViewModel)
         }
 
         appleMain.dependencies {
