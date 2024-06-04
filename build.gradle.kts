@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.kmpNativeCoroutines) apply false
-    //alias(libs.plugins.realm.kotlin) apply false
 }
 
 // Explicitly adding the plugin to the classpath as it makes it easier to control the version
