@@ -62,7 +62,7 @@ struct StationListTabView: View {
                     Label("Map", systemImage: "location")
                 }
         }
-        .navigationTitle(network.name)
+        .navigationTitle(network.id)
         .onAppear {
             viewModel.setNetwork(networkId: network.id)
         }
@@ -75,7 +75,7 @@ struct StationListView: View {
     var network: Network
     
     var body: some View {
-        List(stations) { station in
+        List(stations.sorted { $0.name < $1.name }) { station in
             StationView(station: station)
         }
         .navigationTitle(network.name)
@@ -86,25 +86,35 @@ struct StationView : View {
     var station: Station
 
     var body: some View {
+        
         HStack {
-            Image("ic_bike").resizable()
-                .renderingMode(.template)
-                .foregroundColor(station.freeBikes() < 5 ? .orange : .green)
-                .frame(width: 32.0, height: 32.0)
             
-            Spacer().frame(width: 16)
-            
-            VStack(alignment: .leading) {
-                Text(station.name).font(.headline)
-                HStack {
-                    Text("Free:").font(.subheadline).frame(width: 80, alignment: .leading)
-                    Text("\(station.freeBikes())").font(.subheadline)
-                }
-                HStack {
-                    Text("Slots:").font(.subheadline).frame(width: 80, alignment: .leading)
-                    Text("\(station.slots())").font(.subheadline)
-                }
+            VStack(alignment: .trailing) {
+                Image("ic_bike").resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(station.freeBikes() < 2 ? .orange : .green)
+                    .frame(width: 32.0, height: 32.0)
             }
+
+            Spacer().frame(width: 16)
+
+            VStack(alignment: .leading) {
+                Text(station.name).bold()
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Bikes")
+                        Text("\(station.freeBikes())").font(.subheadline).foregroundColor(station.freeBikes() < 2 ? .orange : .green)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Stands")
+                        Text("\(station.slots())").font(.subheadline).foregroundColor(station.freeBikes() < 2 ? .orange : .green)
+                    }
+                }
+
+            }
+            
         }
         .navigationTitle(station.name)
     }

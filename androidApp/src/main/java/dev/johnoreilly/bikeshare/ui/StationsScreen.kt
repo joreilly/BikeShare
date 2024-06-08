@@ -50,7 +50,7 @@ fun StationsScreen(networkId: String, popBack: (() -> Unit)?) {
             TopAppBar(title = { Text(networkId) }, navigationIcon = navigationIcon!!)
         }) { paddingValues ->
             LazyColumn(Modifier.padding(paddingValues)) {
-                items(stations) { station ->
+                items(stations.sortedBy { it.name }) { station ->
                     StationView(station)
                 }
             }
@@ -64,6 +64,15 @@ fun StationView(station: Station) {
     Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp).fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically) {
 
+        Column {
+            Image(
+                painterResource(R.drawable.ic_bike),
+                colorFilter = ColorFilter.tint(if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor),
+                modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
+        }
+
+        Spacer(modifier = Modifier.width(16.dp))
+
         Column(modifier = Modifier.weight(1.0f)) {
             Text(text = station.name, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
 
@@ -72,24 +81,18 @@ fun StationView(station: Station) {
                     Column(modifier = Modifier.width(100.dp)) {
                         Text("Bikes")
                         Text(station.freeBikes().toString(),
-                            color = if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor)
+                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor)
                     }
 
                     Column {
                         Text("Stands")
                         Text(station.empty_slots.toString(),
-                            color = if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor)
+                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor)
                     }
                 }
             }
         }
 
-        Column {
-            Image(
-                painterResource(R.drawable.ic_bike),
-                colorFilter = ColorFilter.tint(if (station.freeBikes() < 5) lowAvailabilityColor else highAvailabilityColor),
-                modifier = Modifier.size(32.dp), contentDescription = station.freeBikes().toString())
-        }
     }
 }
 
