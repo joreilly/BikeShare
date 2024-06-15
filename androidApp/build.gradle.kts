@@ -121,3 +121,9 @@ dependencies {
 
     implementation(project(":common"))
 }
+
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+    languageSettings.enableLanguageFeature("ExplicitBackingFields")
+}
