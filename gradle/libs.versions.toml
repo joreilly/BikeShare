@@ -25,7 +25,7 @@ glance = "1.0.0"
 
 accompanist = "0.32.0"
 coilCompose = "2.6.0"
-image-loader = "1.7.8"
+image-loader = "1.8.1"
 
 junit = "4.13.2"
 
