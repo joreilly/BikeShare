@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.kmpNativeCoroutines)
     //alias(libs.plugins.realm.kotlin)
     id(libs.plugins.realm.kotlin.get().pluginId)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.0"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.2"
 }
 
 

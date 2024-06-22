@@ -34,8 +34,8 @@ class CityBikesRepository: KoinComponent {
 
     private val mainScope: CoroutineScope = MainScope()
 
-val groupedNetworkList: StateFlow<Map<String,List<Network>>>
-    field = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+    val groupedNetworkList: StateFlow<Map<String,List<Network>>>
+        field = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
 
