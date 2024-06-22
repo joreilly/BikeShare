@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.0.0"
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.0-1.0.22"
 
 coroutines = "1.8.1"
 kotlinxSerialization = "1.6.3"
@@ -11,26 +11,18 @@ koin = "3.6.0-Beta4"
 koin-android-compose = "3.6.0-Beta4"
 koin-compose-multiplatform = "1.2.0-Beta4"
 ktor = "2.3.11"
-slf4j = "2.0.12"
+slf4j = "2.0.13"
 realm = "2.0.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
-compose-multiplatform = "1.6.10"
+compose-multiplatform = "1.6.11"
 androidxActivity = "1.9.0"
-androidxComposeBom = "2024.05.00"
+androidxComposeBom = "2024.06.00"
 androidxNavigationCompose = "2.7.7"
-androidxLifecycle = "2.8.0"
+androidxLifecycle = "2.8.2"
 glance = "1.0.0"
-
-accompanist = "0.32.0"
-coilCompose = "2.6.0"
-image-loader = "1.7.8"
-
 junit = "4.13.2"
-
-multiplatformSettings = "1.1.1"
-kermit = "2.0.3"
 
 minSdk = "24"
 targetSdk = "34"
@@ -40,7 +32,6 @@ compileSdk = "34"
 [libraries]
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDateTime" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
@@ -60,10 +51,6 @@ androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.materi
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-glance = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
-
-coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
-accompanist-placeholder = { group = "com.google.accompanist", name = "accompanist-placeholder-material3", version.ref = "accompanist" }
-image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "image-loader" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-android-compose" }
@@ -85,13 +72,9 @@ kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel
 realm = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }
 realm-plugin = { group = "io.realm.kotlin", name = "gradle-plugin" ,version.ref = "realm"}
 
-multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
-multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 junit = { module = "junit:junit", version.ref = "junit" }
 
 [bundles]
-multiplatformSettings = ["multiplatform-settings", "multiplatform-settings-coroutines"]
 ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-serialization", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]
 
 
