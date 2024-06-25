@@ -3,7 +3,7 @@ kotlin = "2.0.0"
 ksp = "2.0.0-1.0.22"
 
 coroutines = "1.8.1"
-kotlinxSerialization = "1.6.3"
+kotlinxSerialization = "1.7.1"
 kotlinxDateTime = "0.6.0"
 
 androidGradlePlugin = "8.5.0"
