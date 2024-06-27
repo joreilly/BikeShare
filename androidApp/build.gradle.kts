@@ -117,7 +117,7 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:runner:1.6.1")
 
     implementation(project(":common"))
 }
