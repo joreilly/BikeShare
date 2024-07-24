@@ -24,12 +24,9 @@ android {
     namespace = "dev.johnoreilly.bikeshare.common"
 }
 
-
 kotlin {
     jvmToolchain(17)
-}
 
-kotlin {
     androidTarget()
     jvm()
 
