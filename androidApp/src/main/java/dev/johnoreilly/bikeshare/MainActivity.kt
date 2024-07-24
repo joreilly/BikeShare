@@ -3,41 +3,29 @@ package dev.johnoreilly.bikeshare
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.johnoreilly.bikeshare.ui.CountryListScreen
 import dev.johnoreilly.bikeshare.ui.NetworkListScreen
 import dev.johnoreilly.bikeshare.ui.StationsScreen
-import dev.johnoreilly.bikeshare.ui.theme.BikeShareBackground
 import dev.johnoreilly.bikeshare.ui.theme.BikeShareTheme
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
             BikeShareTheme {
-                BikeShareBackground {
-                    BikeShareApp()
-                }
+                BikeShareApp()
             }
         }
     }
@@ -54,22 +42,8 @@ sealed class Screen(val title: String) {
 fun BikeShareApp() {
     val navController = rememberNavController()
 
-
-    Scaffold(
-        containerColor = Color.Transparent,
-        contentColor = MaterialTheme.colorScheme.onBackground,
-        contentWindowInsets = WindowInsets(0, 0, 0, 0)
-    ) { padding ->
-        Row(
-            Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(
-                        WindowInsetsSides.Horizontal
-                    )
-                )
-        ) {
+    Scaffold { innerPadding ->
+        Row(Modifier.padding(innerPadding)) {
             val bikeNetwork = BuildConfig.BIKE_NETWORK
             if (bikeNetwork.isNotEmpty()) {
                 StationsScreen(bikeNetwork, popBack = null)
