@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kmpNativeCoroutines)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     //alias(libs.plugins.realm.kotlin)
     id(libs.plugins.realm.kotlin.get().pluginId)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.2"
@@ -43,12 +45,17 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.serialization)
 
-            api(libs.koin.core)
-            implementation(libs.koin.test)
+            api(libs.kotlininject.runtime)
 
             implementation(libs.bundles.ktor.common)
             implementation(libs.realm)
             api(libs.kmpObservableViewModel)
+
+            implementation(compose.ui)
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.components.resources)
         }
 
         androidMain.dependencies {
@@ -94,4 +101,14 @@ kotlin.sourceSets.all {
     languageSettings.enableLanguageFeature("ExplicitBackingFields")
 }
 
+ksp {
+    arg("me.tatarka.inject.generateCompanionExtensions", "true")
+}
 
+dependencies {
+    add("kspAndroid", libs.kotlininject.compiler)
+    add("kspIosX64", libs.kotlininject.compiler)
+    add("kspIosArm64", libs.kotlininject.compiler)
+    add("kspIosSimulatorArm64", libs.kotlininject.compiler)
+    add("kspJvm", libs.kotlininject.compiler)
+}

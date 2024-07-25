@@ -14,12 +14,11 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
-import dev.johnoreilly.common.di.initKoin
+import dev.johnoreilly.common.di.DesktopApplicationComponent
+import dev.johnoreilly.common.di.SharedApplicationComponent
+import dev.johnoreilly.common.di.create
 import dev.johnoreilly.common.model.Network
-import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
 import dev.johnoreilly.common.viewmodel.Country
-import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
-import dev.johnoreilly.common.viewmodel.StationsViewModelShared
 import org.jxmapviewer.JXMapViewer
 import org.jxmapviewer.OSMTileFactoryInfo
 import org.jxmapviewer.viewer.*
@@ -31,6 +30,9 @@ fun main() {
     // see https://github.com/JetBrains/compose-multiplatform-core/pull/601
     System.setProperty("compose.swing.render.on.graphics", "true")
 
+    val applicationComponent = DesktopApplicationComponent.create()
+
+
     return singleWindowApplication(
         title = "BikeShare",
         state = WindowState(size = DpSize(1000.dp, 600.dp))
@@ -39,7 +41,7 @@ fun main() {
             modifier = Modifier.fillMaxSize()
         ) {
             Column(Modifier.weight(1f)) {
-                BikeShareView()
+                BikeShareView(applicationComponent)
             }
 
             Column(Modifier.weight(1f)) {
@@ -75,19 +77,18 @@ fun createMap() : JXMapViewer {
     return mapViewer
 }
 
-private val koin = initKoin().koin
 
 @Composable
-fun BikeShareView()  {
-    val countriesViewModel = remember { CountriesViewModelShared() }
+fun BikeShareView(applicationComponent: SharedApplicationComponent) {
+    val countriesViewModel = remember { applicationComponent.countriesViewModel }
     val countryList by countriesViewModel.countryList.collectAsState()
     var selectedCountry by remember { mutableStateOf<Country?>(null) }
 
-    val networksViewModel= remember { NetworksViewModelShared() }
+    val networksViewModel= remember { applicationComponent.networksViewModel }
     val networkList by networksViewModel.networkList.collectAsState()
     var selectedNetwork by remember { mutableStateOf<Network?>(null) }
 
-    val stationsViewModel= remember { StationsViewModelShared() }
+    val stationsViewModel= remember { applicationComponent.stationsViewModel }
     val stations by stationsViewModel.stations.collectAsState()
 
     // probably cleaner way of doing this....

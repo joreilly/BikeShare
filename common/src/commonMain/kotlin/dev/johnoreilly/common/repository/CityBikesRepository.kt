@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.repository
 
+import dev.johnoreilly.common.di.Singleton
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.Station
@@ -11,8 +12,7 @@ import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import me.tatarka.inject.annotations.Inject
 
 
 
@@ -27,15 +27,16 @@ class NetworkDb: RealmObject {
 }
 
 
-
-class CityBikesRepository: KoinComponent {
-    private val cityBikesApi: CityBikesApi by inject()
-    private val realm: Realm by inject()
-
+@Inject @Singleton
+class CityBikesRepository(val cityBikesApi: CityBikesApi,val  realm: Realm) {
     private val mainScope: CoroutineScope = MainScope()
 
-    val groupedNetworkList: StateFlow<Map<String,List<Network>>>
-        field = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+//    val groupedNetworkList: StateFlow<Map<String,List<Network>>>
+//        field = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+
+    private val _groupedNetworkList = MutableStateFlow<Map<String,List<Network>>>(emptyMap())
+    val groupedNetworkList: StateFlow<Map<String,List<Network>>> = _groupedNetworkList
+
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
 
@@ -48,7 +49,7 @@ class CityBikesRepository: KoinComponent {
                     _networkList.value = it.toList().map {
                         Network(it.id, it.name, it.city, it.country, it.latitude, it.longitude)
                     }
-                    groupedNetworkList.value =
+                    _groupedNetworkList.value =
                         _networkList.value.groupBy { it.country }
                 }
             }

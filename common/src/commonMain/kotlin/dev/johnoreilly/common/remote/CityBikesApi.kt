@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.*
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
+import me.tatarka.inject.annotations.Inject
 
 
 @Serializable
@@ -30,6 +31,7 @@ fun Station.slots(): Int {
     return (empty_slots ?: 0) + (free_bikes ?: 0)
 }
 
+@Inject
 class CityBikesApi(private val client: HttpClient,
     private val baseUrl: String = "https://api.citybik.es/v2/networks"
 ) {

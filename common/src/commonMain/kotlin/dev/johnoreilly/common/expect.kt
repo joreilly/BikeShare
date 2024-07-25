@@ -1,7 +1,8 @@
 package dev.johnoreilly.common
 
-import org.koin.core.module.Module
+import io.ktor.client.engine.HttpClientEngine
 
-expect fun platformModule(): Module
+
+expect val httpClientEngine: HttpClientEngine
 
 expect fun getCountryName(countryCode: String): String
