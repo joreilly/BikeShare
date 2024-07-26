@@ -15,7 +15,7 @@ kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
 compose-multiplatform = "1.6.11"
-androidxActivity = "1.9.0"
+androidxActivity = "1.9.1"
 androidxComposeBom = "2024.06.00"
 androidxNavigationCompose = "2.7.7"
 androidxLifecycle = "2.8.2"
