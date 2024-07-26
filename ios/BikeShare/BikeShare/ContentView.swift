@@ -6,14 +6,21 @@ import KMPObservableViewModelSwiftUI
 
 
 struct ContentView : View {
-    @StateViewModel var viewModel = CountriesViewModelShared()
+    let applicationCompoonent: IosApplicationComponent
+    
+    @ObservedViewModel var viewModel: CountriesViewModelShared
     @State var query: String = ""
+    
+    init(applicationCompoonent: IosApplicationComponent) {
+        self.applicationCompoonent = applicationCompoonent
+        self.viewModel = applicationCompoonent.countriesViewModel
+    }
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(viewModel.countryList.filter { query.isEmpty ||  $0.displayName.contains(query)}, id: \.self) { country in
-                    NavigationLink(destination: NetworkListView(countryCode: country.code)) {
+                    NavigationLink(destination: NetworkListView(applicationCompoonent: applicationCompoonent, countryCode: country.code)) {
                         HStack {
                             Text(countryFlag(from: country.code))
                             Text(country.displayName).font(.headline)
@@ -30,12 +37,20 @@ struct ContentView : View {
 
 
 struct NetworkListView: View {
-    @StateViewModel var viewModel = NetworksViewModelShared()
+    let applicationCompoonent: IosApplicationComponent
     let countryCode: String
+    
+    @ObservedViewModel var viewModel: NetworksViewModelShared
 
+    init(applicationCompoonent: IosApplicationComponent, countryCode: String) {
+        self.applicationCompoonent = applicationCompoonent
+        self.countryCode = countryCode
+        self.viewModel = applicationCompoonent.networksViewModel
+    }
+    
     var body: some View {
         List(viewModel.networkList) { network in
-            NavigationLink(destination: StationListTabView(network: network)) {
+            NavigationLink(destination: StationListTabView(applicationCompoonent: applicationCompoonent, network: network)) {
                 Text("\(network.name) (\(network.city))").font(.subheadline)
             }
         }
@@ -48,8 +63,16 @@ struct NetworkListView: View {
 
 
 struct StationListTabView: View {
-    @StateViewModel var viewModel = StationsViewModelShared()
+    let applicationCompoonent: IosApplicationComponent
     var network: Network
+    
+    @ObservedViewModel var viewModel: StationsViewModelShared
+
+    init(applicationCompoonent: IosApplicationComponent, network: Network) {
+        self.applicationCompoonent = applicationCompoonent
+        self.network = network
+        self.viewModel = applicationCompoonent.stationsViewModel
+    }
 
     var body: some View {
         TabView {

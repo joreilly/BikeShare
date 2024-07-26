@@ -4,16 +4,15 @@ import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import dev.johnoreilly.common.di.Singleton
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import me.tatarka.inject.annotations.Inject
 
-open class StationsViewModelShared : ViewModel(), KoinComponent {
-    private val cityBikesRepository: CityBikesRepository by inject()
-
+@Inject @Singleton
+open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val network = MutableStateFlow<String?>(viewModelScope, null)
 
     @NativeCoroutinesState

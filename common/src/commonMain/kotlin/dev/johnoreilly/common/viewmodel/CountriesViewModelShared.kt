@@ -8,13 +8,12 @@ import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import me.tatarka.inject.annotations.Inject
 
 data class Country(val code: String, val displayName: String)
 
-open class CountriesViewModelShared : ViewModel(), KoinComponent {
-    private val cityBikesRepository: CityBikesRepository by inject()
+@Inject
+open class CountriesViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
 
     /**
      * List of countries for which there are bike networks
