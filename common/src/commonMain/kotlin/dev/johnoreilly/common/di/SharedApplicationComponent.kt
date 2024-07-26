@@ -1,6 +1,5 @@
 package dev.johnoreilly.common.di
 
-import dev.johnoreilly.common.httpClientEngine
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.repository.CityBikesRepository
 import dev.johnoreilly.common.repository.NetworkDb
@@ -49,7 +48,10 @@ interface SharedApplicationComponent {
         }
 
     @Provides
-    fun httpClient(): HttpClient = createHttpClient(httpClientEngine, json)
+    fun getHttpClientEngine(): HttpClientEngine
+
+    @Provides
+    fun httpClient(): HttpClient = createHttpClient(getHttpClientEngine(), json)
 }
 
 fun createHttpClient(httpClientEngine: HttpClientEngine, json: Json) = HttpClient(httpClientEngine) {
