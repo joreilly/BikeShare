@@ -1,12 +1,12 @@
 [versions]
 kotlin = "2.0.0"
-ksp = "2.0.0-1.0.22"
+ksp = "2.0.0-1.0.23"
 
-coroutines = "1.8.1"
-kotlinxSerialization = "1.6.3"
+coroutines = "1.9.0-RC"
+kotlinxSerialization = "1.7.1"
 kotlinxDateTime = "0.6.0"
 
-androidGradlePlugin = "8.5.0"
+androidGradlePlugin = "8.5.1"
 circuit = "0.22.2"
 kotlininject = "0.7.1"
 ktor = "3.0.0-beta-2"
@@ -15,12 +15,11 @@ realm = "2.0.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
-compose-multiplatform = "1.6.11"
-androidxActivity = "1.9.0"
+compose-multiplatform = "1.7.0-alpha02"
+androidxActivity = "1.9.1"
 androidxComposeBom = "2024.06.00"
 androidxNavigationCompose = "2.7.7"
-androidxLifecycle = "2.8.2"
-glance = "1.0.0"
+androidxLifecycle = "2.8.4"
 junit = "4.13.2"
 
 minSdk = "24"
@@ -49,7 +48,6 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
-androidx-glance = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 
 circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 kotlininject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
