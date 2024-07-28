@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,48 +18,36 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import dev.johnoreilly.common.getCountryName
 import dev.johnoreilly.common.model.Network
-import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
-import me.tatarka.inject.annotations.Assisted
-import me.tatarka.inject.annotations.Inject
+import dev.johnoreilly.common.screens.NetworkListScreen
 
-typealias NetworkListScreen = @Composable (String, (network: String) -> Unit, () -> Unit) -> Unit
-
-@Inject
 @Composable
-fun NetworkListScreen(viewModel: NetworksViewModelShared, @Assisted countryCode: String, @Assisted networkSelected: (network: String) -> Unit, @Assisted popBack: () -> Unit) {
-    val networkList = viewModel.networkList.collectAsState()
-    val countryName = remember { getCountryName(countryCode) }
-
-    LaunchedEffect(countryCode) {
-        viewModel.setCountryCode(countryCode)
-    }
-
+fun NetworkListUi(state: NetworkListScreen.State, modifier: Modifier = Modifier) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TopAppBar(
-                title = { Text(countryName) },
+                title = { Text(state.countryName) },
                 navigationIcon = {
-                    IconButton(onClick = { popBack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = { state.eventSink(NetworkListScreen.Event.BackClicked) }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
-                }
+                },
             )
-        }) { paddingValues ->
-            LazyColumn(Modifier.padding(paddingValues)) {
-                items(networkList.value) { network ->
-                    NetworkView(network, networkSelected)
+        }
+    ) { innerPadding ->
+        LazyColumn(modifier = Modifier.padding(innerPadding)) {
+            items(state.networkList) { network ->
+                NetworkView(network) {
+                    state.eventSink(NetworkListScreen.Event.NetworkClicked(network.id))
                 }
             }
         }
+    }
 }
 
 @Composable

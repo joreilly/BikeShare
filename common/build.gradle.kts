@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kmpNativeCoroutines)
     alias(libs.plugins.jetbrainsCompose)
@@ -33,7 +36,7 @@ kotlin {
     jvm()
 
     listOf(
-        iosArm64(), iosX64(), iosSimulatorArm64(), macosArm64()
+        iosArm64(), iosX64(), iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "BikeShareKit"
@@ -46,6 +49,7 @@ kotlin {
             implementation(libs.kotlinx.serialization)
 
             api(libs.kotlininject.runtime)
+            api(libs.circuit.foundation)
 
             implementation(libs.bundles.ktor.common)
             implementation(libs.realm)
@@ -80,6 +84,22 @@ kotlin {
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
         compilations.get("main").kotlinOptions.freeCompilerArgs += "-Xexport-kdoc"
     }
+
+    targets.configureEach {
+        val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
+        compilations.configureEach {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    if (isAndroidTarget) {
+                        freeCompilerArgs.addAll(
+                            "-P",
+                            "plugin:org.jetbrains.kotlin.parcelize:additionalAnnotation=dev.johnoreilly.common.screens.Parcelize",
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
 
 multiplatformSwiftPackage {
@@ -87,7 +107,6 @@ multiplatformSwiftPackage {
     swiftToolsVersion("5.9")
     targetPlatforms {
         iOS { v("14") }
-        macOS { v("12")}
     }
 }
 
@@ -112,3 +131,5 @@ dependencies {
     add("kspIosSimulatorArm64", libs.kotlininject.compiler)
     add("kspJvm", libs.kotlininject.compiler)
 }
+
+

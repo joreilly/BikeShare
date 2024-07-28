@@ -7,6 +7,7 @@ kotlinxSerialization = "1.6.3"
 kotlinxDateTime = "0.6.0"
 
 androidGradlePlugin = "8.5.0"
+circuit = "0.22.2"
 kotlininject = "0.7.1"
 ktor = "3.0.0-beta-2"
 slf4j = "2.0.13"
@@ -50,6 +51,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-glance = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 
+circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
 kotlininject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
 kotlininject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", version.ref = "kotlininject" }
 
@@ -81,6 +83,7 @@ android-library = { id = "com.android.library", version.ref = "androidGradlePlug
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kmpNativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "kmpNativeCoroutines" }
 realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm"}
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
