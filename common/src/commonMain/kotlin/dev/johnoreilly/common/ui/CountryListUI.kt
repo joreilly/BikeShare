@@ -16,10 +16,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import bikeshare.common.generated.resources.Res
+import bikeshare.common.generated.resources.allDrawableResources
 import dev.johnoreilly.common.screens.CountryListScreen
 import dev.johnoreilly.common.viewmodel.Country
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.InternalResourceApi
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 
@@ -37,6 +38,7 @@ fun CountryListUi(state: CountryListScreen.State, modifier: Modifier = Modifier)
 }
 
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun CountryView(country: Country, countrySelected: (country: Country) -> Unit) {
     Row(
@@ -46,24 +48,16 @@ fun CountryView(country: Country, countrySelected: (country: Country) -> Unit) {
             .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        val flagDrawable = getDrawable("flag_${country.code.lowercase()}")
-        Image(
-            painterResource(flagDrawable),
-            modifier = Modifier.size(32.dp),
-            contentDescription = country.displayName
-        )
+        val flagDrawable = Res.allDrawableResources["flag_${country.code.lowercase()}"]
+        if (flagDrawable != null) {
+            Image(
+                painterResource(flagDrawable),
+                modifier = Modifier.size(32.dp),
+                contentDescription = country.displayName
+            )
+        }
 
         Spacer(modifier = Modifier.size(16.dp))
         Text(text = country.displayName, style = MaterialTheme.typography.bodyLarge)
     }
 }
-
-@OptIn(InternalResourceApi::class)
-private fun getDrawable(id: String): DrawableResource =
-    DrawableResource(
-        "drawable:$id",
-        setOf(
-            org.jetbrains.compose.resources.ResourceItem(setOf(),
-                "composeResources/bikeshare.common.generated.resources/drawable/$id.xml", -1, -1),
-        )
-    )
