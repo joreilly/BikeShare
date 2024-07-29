@@ -11,7 +11,7 @@ circuit = "0.22.2"
 kotlininject = "0.7.1"
 ktor = "3.0.0-beta-2"
 slf4j = "2.0.13"
-realm = "2.0.0"
+realm = "2.1.0"
 kmpNativeCoroutines = "1.0.0-ALPHA-31"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
