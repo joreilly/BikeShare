@@ -6,7 +6,7 @@ coroutines = "1.8.1"
 kotlinxSerialization = "1.6.3"
 kotlinxDateTime = "0.6.0"
 
-androidGradlePlugin = "8.5.0"
+androidGradlePlugin = "8.5.1"
 circuit = "0.22.2"
 kotlininject = "0.7.1"
 ktor = "3.0.0-beta-2"
