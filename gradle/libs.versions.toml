@@ -12,7 +12,7 @@ kotlininject = "0.7.1"
 ktor = "3.0.0-beta-2"
 slf4j = "2.0.13"
 realm = "2.0.0"
-kmpNativeCoroutines = "1.0.0-ALPHA-31"
+kmpNativeCoroutines = "1.0.0-ALPHA-34"
 kmpObservableViewModel = "1.0.0-BETA-3"
 
 compose-multiplatform = "1.7.0-alpha02"
