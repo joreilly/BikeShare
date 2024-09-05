@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.0.10"
-ksp = "2.0.10-1.0.24"
+ksp = "2.0.20-1.0.25"
 
 coroutines = "1.9.0-RC"
 kotlinxSerialization = "1.7.1"
