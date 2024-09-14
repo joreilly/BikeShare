@@ -2,15 +2,14 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kmpNativeCoroutines)
+    alias(libs.plugins.room)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    //alias(libs.plugins.realm.kotlin)
-    id(libs.plugins.realm.kotlin.get().pluginId)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.parcelize)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.3"
 }
 
@@ -52,7 +51,9 @@ kotlin {
             api(libs.circuit.foundation)
 
             implementation(libs.bundles.ktor.common)
-            implementation(libs.realm)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
+
             api(libs.kmpObservableViewModel)
 
             implementation(compose.ui)
@@ -117,19 +118,20 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
     languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
-    languageSettings.enableLanguageFeature("ExplicitBackingFields")
+    //languageSettings.enableLanguageFeature("ExplicitBackingFields")
 }
 
 ksp {
     arg("me.tatarka.inject.generateCompanionExtensions", "true")
 }
 
+
 dependencies {
-    add("kspAndroid", libs.kotlininject.compiler)
-    add("kspIosX64", libs.kotlininject.compiler)
-    add("kspIosArm64", libs.kotlininject.compiler)
-    add("kspIosSimulatorArm64", libs.kotlininject.compiler)
-    add("kspJvm", libs.kotlininject.compiler)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.kotlininject.compiler)
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
 

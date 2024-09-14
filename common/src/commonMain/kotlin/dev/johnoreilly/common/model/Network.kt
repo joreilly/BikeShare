@@ -1,7 +1,11 @@
 package dev.johnoreilly.common.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Network(
-    val id: String,
+    @PrimaryKey val id: String,
     val name: String,
     val city: String,
     val country: String,
