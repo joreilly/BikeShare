@@ -6,10 +6,6 @@ import dev.johnoreilly.common.di.create
 
 class BikeShareApplication : Application() {
     val component: AndroidApplicationComponent by lazy {
-        AndroidApplicationComponent.create()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
+        AndroidApplicationComponent.create(this)
     }
 }
