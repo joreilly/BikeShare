@@ -10,7 +10,7 @@ androidGradlePlugin = "8.5.2"
 circuit = "0.23.1"
 kotlininject = "0.7.2"
 ktor = "3.0.0-rc-1"
-slf4j = "2.0.13"
+slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-34"
 kmpObservableViewModel = "1.0.0-BETA-4"
 
