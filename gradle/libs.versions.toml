@@ -7,7 +7,7 @@ kotlinxSerialization = "1.7.2"
 
 
 androidGradlePlugin = "8.5.2"
-circuit = "0.23.1"
+circuit = "0.24.0"
 kotlininject = "0.7.2"
 ktor = "3.0.0-rc-1"
 slf4j = "2.0.13"
