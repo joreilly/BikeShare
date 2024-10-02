@@ -16,7 +16,7 @@ kmpObservableViewModel = "1.0.0-BETA-5"
 
 compose-multiplatform = "1.7.0-beta02"
 androidxActivity = "1.9.2"
-androidxRoom = "2.7.0-alpha08"
+androidxRoom = "2.7.0-alpha09"
 sqlite = "2.5.0-alpha08"
 androidxComposeBom = "2024.09.02"
 androidxNavigationCompose = "2.8.1"
