@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.database.dbFileName
+import dev.johnoreilly.common.ui.BikeShareContent
 import io.ktor.client.engine.java.Java
 import me.tatarka.inject.annotations.Component
 import java.io.File
@@ -11,6 +12,8 @@ import java.io.File
 @Component
 @Singleton
 abstract class DesktopApplicationComponent: SharedApplicationComponent {
+
+  abstract val bikeShareContent: BikeShareContent
 
   override fun getHttpClientEngine() = Java.create()
 

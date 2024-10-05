@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package dev.johnoreilly.common.ui
+package dev.johnoreilly.common.networklist
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row

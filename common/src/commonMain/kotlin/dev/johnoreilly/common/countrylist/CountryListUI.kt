@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package dev.johnoreilly.common.ui
+package dev.johnoreilly.common.countrylist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

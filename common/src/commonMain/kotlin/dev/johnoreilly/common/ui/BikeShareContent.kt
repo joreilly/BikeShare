@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.ui
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
@@ -19,10 +20,11 @@ typealias BikeShareContent = @Composable () -> Unit
 fun BikeShareContent(circuit: Circuit) {
 
     val backStack = rememberSaveableBackStack(root = CountryListScreen)
-    val navigator = rememberCircuitNavigator(backStack) {
+    val navigator = rememberCircuitNavigator(backStack) {}
 
-    }
-    CircuitCompositionLocals(circuit) {
-        NavigableCircuitContent(navigator = navigator, backStack = backStack)
+    MaterialTheme {
+        CircuitCompositionLocals(circuit) {
+            NavigableCircuitContent(navigator = navigator, backStack = backStack)
+        }
     }
 }

@@ -61,10 +61,14 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.components.resources)
+            implementation(libs.compose.adaptive)
+            implementation(libs.compose.adaptive.layout)
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            // workaround for https://youtrack.jetbrains.com/issue/CMP-5959/Invalid-redirect-in-window-core#focus=Comments-27-10365630.0-0
+            implementation("androidx.window:window-core:1.3.0")
         }
 
         appleMain.dependencies {
@@ -135,3 +139,7 @@ room {
     schemaDirectory("$projectDir/schemas")
 }
 
+
+configurations.configureEach {
+    exclude("androidx.window.core", "window-core")
+}

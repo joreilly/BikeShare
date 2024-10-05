@@ -1,19 +1,18 @@
 package dev.johnoreilly.common.screens
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import com.slack.circuit.runtime.CircuitContext
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
-import com.slack.circuit.runtime.Navigator
-import com.slack.circuit.runtime.presenter.Presenter
 import com.slack.circuit.runtime.screen.Screen
-import dev.johnoreilly.common.getCountryName
+import com.slack.circuit.runtime.ui.Ui
+import com.slack.circuit.runtime.ui.ui
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.Station
-import dev.johnoreilly.common.repository.CityBikesRepository
+import dev.johnoreilly.common.countrylist.CountryListUi
+import dev.johnoreilly.common.networklist.NetworkListUi
+import dev.johnoreilly.common.stationlist.StationListUI
 import dev.johnoreilly.common.viewmodel.Country
+import me.tatarka.inject.annotations.Inject
 
 
 @Target(AnnotationTarget.CLASS)
@@ -62,87 +61,44 @@ data class StationListScreen(val networkId: String) : Screen {
 }
 
 
-// Presenters (TODO: where should we put these?)
 
-class CountryListPresenter(
-    private val navigator: Navigator,
-    private val cityBikesRepository: CityBikesRepository
-) : Presenter<CountryListScreen.State> {
-    @Composable
-    override fun present(): CountryListScreen.State {
-        val groupedNetworkList by cityBikesRepository.groupedNetworkList.collectAsState()
-        val countryCodeList = groupedNetworkList.keys.toList()
-        val countryList = countryCodeList.map { countryCode -> Country(countryCode, getCountryName(countryCode)) }
-            .sortedBy { it.displayName }
-        return CountryListScreen.State(countryList) { event ->
-            when (event) {
-                is CountryListScreen.Event.CountryClicked -> navigator.goTo(NetworkListScreen(event.countryCode))
+// TODO move these somewhere else
+
+@Inject
+class CountryListUiFactory : Ui.Factory {
+    override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
+        is CountryListScreen -> {
+            ui<CountryListScreen.State> { state, modifier ->
+                CountryListUi(state, modifier)
             }
         }
-    }
-
-    class Factory(private val repository: CityBikesRepository) : Presenter.Factory {
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
-            return when (screen) {
-                CountryListScreen -> return CountryListPresenter(navigator, repository)
-                else -> null
-            }
-        }
+        else -> null
     }
 }
 
 
-class NetworkListPresenter(
-    private val screen: NetworkListScreen,
-    private val navigator: Navigator,
-    private val cityBikesRepository: CityBikesRepository
-) : Presenter<NetworkListScreen.State> {
-    @Composable
-    override fun present(): NetworkListScreen.State {
-        val groupedNetworkList by cityBikesRepository.groupedNetworkList.collectAsState()
-        val countryList = groupedNetworkList[screen.countryCode]?.sortedBy { it.city } ?: emptyList()
-        val oountryName = getCountryName(screen.countryCode)
-        return NetworkListScreen.State(screen.countryCode, oountryName, countryList) { event ->
-            when (event) {
-                is NetworkListScreen.Event.NetworkClicked -> navigator.goTo(StationListScreen(event.networkId))
-                NetworkListScreen.Event.BackClicked -> navigator.pop()
+@Inject
+class NetworkListUiFactory : Ui.Factory {
+    override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
+        is NetworkListScreen -> {
+            ui<NetworkListScreen.State> { state, modifier ->
+                NetworkListUi(state, modifier)
             }
         }
-    }
-
-    class Factory(private val repository: CityBikesRepository) : Presenter.Factory {
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
-            return when (screen) {
-                is NetworkListScreen -> return NetworkListPresenter(screen, navigator, repository)
-                else -> null
-            }
-        }
+        else -> null
     }
 }
 
-
-class StationListPresenter(
-    private val screen: StationListScreen,
-    private val navigator: Navigator,
-    private val cityBikesRepository: CityBikesRepository
-) : Presenter<StationListScreen.State> {
-    @Composable
-    override fun present(): StationListScreen.State {
-        val stationList by cityBikesRepository.pollNetworkUpdates(screen.networkId).collectAsState(emptyList())
-        return StationListScreen.State(screen.networkId, stationList) { event ->
-            when (event) {
-                StationListScreen.Event.BackClicked -> navigator.pop()
+@Inject
+class StationListUiFactory : Ui.Factory {
+    override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
+        is StationListScreen -> {
+            ui<StationListScreen.State> { state, modifier ->
+                StationListUI(state, modifier)
             }
         }
-    }
-
-    class Factory(private val repository: CityBikesRepository) : Presenter.Factory {
-        override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
-            return when (screen) {
-                is StationListScreen -> return StationListPresenter(screen, navigator, repository)
-                else -> null
-            }
-        }
+        else -> null
     }
 }
+
 
