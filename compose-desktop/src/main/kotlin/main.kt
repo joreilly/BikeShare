@@ -13,7 +13,7 @@ fun main() {
         title = "BikeShare",
         state = WindowState(size = DpSize(400.dp, 600.dp))
     ) {
-        applicationComponent.bikeShareContent()
+        applicationComponent.bikeShareApp()
     }
 }
 

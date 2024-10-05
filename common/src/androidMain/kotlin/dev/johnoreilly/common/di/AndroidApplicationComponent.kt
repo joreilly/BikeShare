@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.database.dbFileName
-import dev.johnoreilly.common.ui.BikeShareContent
+import dev.johnoreilly.common.ui.BikeShareApp
 import io.ktor.client.engine.android.Android
 import kotlinx.coroutines.Dispatchers
 import me.tatarka.inject.annotations.Component
@@ -15,8 +15,7 @@ import me.tatarka.inject.annotations.Component
 @Component
 @Singleton
 abstract class AndroidApplicationComponent(val application: Application): SharedApplicationComponent {
-
-    abstract val bikeShareContent: BikeShareContent
+    abstract val bikeShareApp: BikeShareApp
 
     override fun getHttpClientEngine() = Android.create()
 

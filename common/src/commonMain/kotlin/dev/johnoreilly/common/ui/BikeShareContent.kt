@@ -12,17 +12,15 @@ import me.tatarka.inject.annotations.Inject
 
 
 
-typealias BikeShareContent = @Composable () -> Unit
-
+typealias BikeShareApp = @Composable () -> Unit
 
 @Inject
 @Composable
-fun BikeShareContent(circuit: Circuit) {
-
-    val backStack = rememberSaveableBackStack(root = CountryListScreen)
-    val navigator = rememberCircuitNavigator(backStack) {}
-
+fun BikeShareApp(circuit: Circuit) {
     MaterialTheme {
+        val backStack = rememberSaveableBackStack(root = CountryListScreen)
+        val navigator = rememberCircuitNavigator(backStack) {}
+
         CircuitCompositionLocals(circuit) {
             NavigableCircuitContent(navigator = navigator, backStack = backStack)
         }
