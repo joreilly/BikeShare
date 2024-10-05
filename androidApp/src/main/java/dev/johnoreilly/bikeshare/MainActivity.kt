@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BikeShareTheme {
-                applicationComponent.bikeShareContent()
+                applicationComponent.bikeShareApp()
             }
         }
     }
