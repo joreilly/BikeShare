@@ -116,7 +116,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test:runner:1.6.2")
 
-    implementation(project(":common"))
+    implementation(projects.common)
 }
 
 

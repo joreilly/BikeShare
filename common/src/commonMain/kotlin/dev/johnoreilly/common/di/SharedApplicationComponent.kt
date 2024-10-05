@@ -25,7 +25,7 @@ import kotlin.annotation.AnnotationTarget.PROPERTY_GETTER
 @Target(CLASS, FUNCTION, PROPERTY_GETTER)
 annotation class Singleton
 
-interface SharedApplicationComponent {
+interface SharedApplicationComponent: SharedUiComponent {
 
     val countriesViewModel: CountriesViewModelShared
     val networksViewModel: NetworksViewModelShared

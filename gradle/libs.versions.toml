@@ -3,10 +3,10 @@ kotlin = "2.0.20"
 ksp = "2.0.20-1.0.25"
 
 coroutines = "1.9.0"
-kotlinxSerialization = "1.7.2"
+kotlinxSerialization = "1.7.3"
 
 
-androidGradlePlugin = "8.5.2"
+androidGradlePlugin = "8.7.0"
 circuit = "0.24.0"
 kotlininject = "0.7.2"
 ktor = "3.0.0-rc-1"
@@ -14,12 +14,13 @@ slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-35"
 kmpObservableViewModel = "1.0.0-BETA-5"
 
-compose-multiplatform = "1.7.0-beta02"
+compose-multiplatform = "1.7.0-rc01"
+composeAdaptiveLayout = "1.0.0-alpha01"
 androidxActivity = "1.9.2"
-androidxRoom = "2.7.0-alpha08"
-sqlite = "2.5.0-alpha08"
-androidxComposeBom = "2024.09.02"
-androidxNavigationCompose = "2.8.1"
+androidxRoom = "2.7.0-alpha09"
+sqlite = "2.5.0-alpha09"
+androidxComposeBom = "2024.09.03"
+androidxNavigationCompose = "2.8.2"
 androidxLifecycle = "2.8.6"
 junit = "4.13.2"
 
@@ -49,6 +50,11 @@ androidx-compose-material3 =  { group = "androidx.compose.material3", name = "ma
 androidx-compose-material3-WindowSizeClass =  { group = "androidx.compose.material3", name="material3-window-size-class" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+
+
+compose-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "composeAdaptiveLayout" }
+compose-adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "composeAdaptiveLayout" }
+
 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }

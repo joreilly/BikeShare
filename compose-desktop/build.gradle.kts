@@ -7,8 +7,7 @@ plugins {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("org.jxmapviewer:jxmapviewer2:2.8")
-    implementation(project(":common"))
+    implementation(projects.common)
 }
 
 application {
@@ -17,5 +16,5 @@ application {
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
-    languageSettings.enableLanguageFeature("ExplicitBackingFields")
+    //languageSettings.enableLanguageFeature("ExplicitBackingFields")
 }

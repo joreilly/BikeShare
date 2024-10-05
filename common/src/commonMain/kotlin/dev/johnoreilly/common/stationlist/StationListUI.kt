@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package dev.johnoreilly.common.ui
+package dev.johnoreilly.common.stationlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -89,13 +89,15 @@ fun StationView(station: Station) {
                     Column(modifier = Modifier.width(100.dp)) {
                         Text("Bikes")
                         Text(station.freeBikes().toString(),
-                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor)
+                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor
+                        )
                     }
 
                     Column {
                         Text("Stands")
                         Text(station.empty_slots.toString(),
-                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor)
+                            color = if (station.freeBikes() < 2) lowAvailabilityColor else highAvailabilityColor
+                        )
                     }
                 }
             }
