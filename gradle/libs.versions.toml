@@ -6,7 +6,7 @@ coroutines = "1.9.0"
 kotlinxSerialization = "1.7.3"
 
 
-androidGradlePlugin = "8.7.0"
+androidGradlePlugin = "8.7.1"
 circuit = "0.24.0"
 kotlininject = "0.7.2"
 ktor = "3.0.0"
