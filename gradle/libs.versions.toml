@@ -14,7 +14,7 @@ slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-35"
 kmpObservableViewModel = "1.0.0-BETA-6"
 
-compose-multiplatform = "1.7.0-rc01"
+compose-multiplatform = "1.7.0"
 composeAdaptiveLayout = "1.0.0-rc01"
 androidxActivity = "1.9.2"
 androidxRoom = "2.7.0-alpha09"
