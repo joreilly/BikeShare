@@ -1,12 +1,12 @@
 [versions]
-kotlin = "2.0.20"
-ksp = "2.0.20-1.0.25"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.25"
 
 coroutines = "1.9.0"
 kotlinxSerialization = "1.7.3"
 
 
-androidGradlePlugin = "8.7.0"
+androidGradlePlugin = "8.7.1"
 circuit = "0.24.0"
 kotlininject = "0.7.2"
 ktor = "3.0.0"
@@ -14,8 +14,8 @@ slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-35"
 kmpObservableViewModel = "1.0.0-BETA-6"
 
-compose-multiplatform = "1.7.0-rc01"
-composeAdaptiveLayout = "1.0.0-rc01"
+compose-multiplatform = "1.7.0"
+composeAdaptiveLayout = "1.0.0"
 androidxActivity = "1.9.2"
 androidxRoom = "2.7.0-alpha09"
 sqlite = "2.5.0-alpha09"
