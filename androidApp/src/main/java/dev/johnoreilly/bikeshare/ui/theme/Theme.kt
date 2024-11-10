@@ -106,7 +106,7 @@ fun BikeShareTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     androidTheme: Boolean = false,
     disableDynamicTheming: Boolean = false,
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
 
     val colorScheme = if (androidTheme) {
