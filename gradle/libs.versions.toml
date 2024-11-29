@@ -1,26 +1,26 @@
 [versions]
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.26"
+kotlin = "2.1.0"
+ksp = "2.1.0-1.0.28"
 
 coroutines = "1.9.0"
 kotlinxSerialization = "1.7.3"
 
 
-androidGradlePlugin = "8.7.2"
+androidGradlePlugin = "8.7.3"
 circuit = "0.24.0"
 kotlininject = "0.7.2"
-ktor = "3.0.0"
+ktor = "3.0.1"
 slf4j = "2.0.16"
-kmpNativeCoroutines = "1.0.0-ALPHA-37"
+kmpNativeCoroutines = "1.0.0-ALPHA-37-kotlin-2.1.0-RC2"
 kmpObservableViewModel = "1.0.0-BETA-7"
 
-compose-multiplatform = "1.7.0"
+compose-multiplatform = "1.7.3"
 composeAdaptiveLayout = "1.0.0"
 androidxActivity = "1.9.3"
-androidxRoom = "2.7.0-alpha11"
-sqlite = "2.5.0-alpha11"
-androidxComposeBom = "2024.10.01"
-androidxNavigationCompose = "2.8.3"
+androidxRoom = "2.7.0-alpha12"
+sqlite = "2.5.0-alpha12"
+androidxComposeBom = "2024.12.01"
+androidxNavigationCompose = "2.8.5"
 androidxLifecycle = "2.8.7"
 junit = "4.13.2"
 

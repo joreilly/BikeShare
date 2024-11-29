@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Build iOS app
-        run: xcodebuild -allowProvisioningUpdates -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -sdk iphoneos -destination name='iPhone 14' build
+        run: xcodebuild -allowProvisioningUpdates -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -sdk iphoneos -destination name='iPhone 15 Pro' build
 
 
 
