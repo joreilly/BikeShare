@@ -20,7 +20,7 @@ androidxActivity = "1.9.3"
 androidxRoom = "2.7.0-alpha11"
 sqlite = "2.5.0-alpha11"
 androidxComposeBom = "2024.10.01"
-androidxNavigationCompose = "2.8.3"
+androidxNavigationCompose = "2.8.5"
 androidxLifecycle = "2.8.7"
 junit = "4.13.2"
 
