@@ -2,7 +2,7 @@
 kotlin = "2.1.0"
 ksp = "2.1.0-1.0.28"
 
-coroutines = "1.9.0"
+coroutines = "1.10.1"
 kotlinxSerialization = "1.7.3"
 
 
