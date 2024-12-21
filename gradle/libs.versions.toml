@@ -12,7 +12,7 @@ kotlininject = "0.7.2"
 ktor = "3.0.1"
 slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-38"
-kmpObservableViewModel = "1.0.0-BETA-7"
+kmpObservableViewModel = "1.0.0-BETA-8"
 
 compose-multiplatform = "1.7.3"
 composeAdaptiveLayout = "1.0.0"
