@@ -9,11 +9,11 @@ import dev.johnoreilly.common.database.dbFileName
 import dev.johnoreilly.common.ui.BikeShareApp
 import io.ktor.client.engine.android.Android
 import kotlinx.coroutines.Dispatchers
-import me.tatarka.inject.annotations.Component
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.MergeComponent
 
 
-@Component
-@Singleton
+@MergeComponent(AppScope::class)
 abstract class AndroidApplicationComponent(val application: Application): SharedApplicationComponent {
     abstract val bikeShareApp: BikeShareApp
 

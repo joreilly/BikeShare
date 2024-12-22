@@ -6,6 +6,6 @@ import dev.johnoreilly.common.di.create
 
 class BikeShareApplication : Application() {
     val component: AndroidApplicationComponent by lazy {
-        AndroidApplicationComponent.create(this)
+        AndroidApplicationComponent::class.create(this)
     }
 }

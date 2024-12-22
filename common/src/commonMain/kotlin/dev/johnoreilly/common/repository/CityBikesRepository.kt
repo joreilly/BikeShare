@@ -1,7 +1,6 @@
 package dev.johnoreilly.common.repository
 
 import dev.johnoreilly.common.database.AppDatabase
-import dev.johnoreilly.common.di.Singleton
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.Station
@@ -10,7 +9,7 @@ import kotlinx.coroutines.flow.*
 import me.tatarka.inject.annotations.Inject
 
 
-@Inject @Singleton
+@Inject
 class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDatabase) {
     private val mainScope: CoroutineScope = MainScope()
 

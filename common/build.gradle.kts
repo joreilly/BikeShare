@@ -47,7 +47,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.serialization)
 
-            api(libs.kotlininject.runtime)
+            api(libs.bundles.kotlinInject)
             api(libs.circuit.foundation)
 
             implementation(libs.bundles.ktor.common)
@@ -125,14 +125,11 @@ kotlin.sourceSets.all {
     //languageSettings.enableLanguageFeature("ExplicitBackingFields")
 }
 
-ksp {
-    arg("me.tatarka.inject.generateCompanionExtensions", "true")
-}
-
 
 dependencies {
     ksp(libs.androidx.room.compiler)
-    ksp(libs.kotlininject.compiler)
+    ksp(libs.kotlinInject.compiler)
+    ksp(libs.kotlinInject.anvil.compiler)
 }
 
 room {

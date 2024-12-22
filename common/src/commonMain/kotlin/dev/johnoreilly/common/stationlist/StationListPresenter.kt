@@ -11,9 +11,12 @@ import dev.johnoreilly.common.screens.StationListScreen
 import dev.johnoreilly.common.repository.CityBikesRepository
 import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
 
 
 @Inject
+@ContributesBinding(AppScope::class, multibinding = true)
 class StationListPresenterFactory(
     private val presenterFactory: (StationListScreen, Navigator) -> StationListPresenter
 ) : Presenter.Factory {

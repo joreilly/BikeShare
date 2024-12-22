@@ -4,7 +4,6 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.stateIn
-import dev.johnoreilly.common.di.Singleton
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,8 +11,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import me.tatarka.inject.annotations.Inject
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
+import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
-@Inject @Singleton
+@Inject
 open class NetworksViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val countryCode = MutableStateFlow<String?>(viewModelScope, null)
 

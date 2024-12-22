@@ -4,16 +4,18 @@ import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import dev.johnoreilly.common.di.Singleton
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import me.tatarka.inject.annotations.Inject
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
+import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@Inject @Singleton
+@Inject
 open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val network = MutableStateFlow<String?>(viewModelScope, null)
 
