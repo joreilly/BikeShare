@@ -9,6 +9,7 @@ kotlinxSerialization = "1.7.3"
 androidGradlePlugin = "8.7.3"
 circuit = "0.24.0"
 kotlininject = "0.7.2"
+kotlin-inject-anvil = "0.1.1"
 ktor = "3.0.1"
 slf4j = "2.0.16"
 kmpNativeCoroutines = "1.0.0-ALPHA-38"
@@ -61,8 +62,12 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 circuit-foundation = { module = "com.slack.circuit:circuit-foundation", version.ref = "circuit" }
-kotlininject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
-kotlininject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", version.ref = "kotlininject" }
+kotlinInject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
+kotlinInject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", version.ref = "kotlininject" }
+
+kotlinInject-anvil-compiler = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "compiler", version.ref = "kotlin-inject-anvil" }
+kotlinInject-anvil-runtime = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "runtime", version.ref = "kotlin-inject-anvil" }
+kotlinInject-anvil-runtime-optional = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "runtime-optional", version.ref = "kotlin-inject-anvil" }
 
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
@@ -82,7 +87,11 @@ junit = { module = "junit:junit", version.ref = "junit" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-serialization", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]
-
+kotlinInject = [
+    "kotlinInject-runtime",
+    "kotlinInject-anvil-runtime",
+    "kotlinInject-anvil-runtime-optional"
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

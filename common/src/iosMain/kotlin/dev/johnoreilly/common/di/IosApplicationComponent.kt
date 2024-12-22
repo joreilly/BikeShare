@@ -7,23 +7,26 @@ import dev.johnoreilly.common.database.dbFileName
 import io.ktor.client.engine.darwin.Darwin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import me.tatarka.inject.annotations.Component
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.MergeComponent
+import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 
-@Component
-@Singleton
+@MergeComponent(AppScope::class)
+@SingleIn(AppScope::class)
 abstract class IosApplicationComponent: SharedApplicationComponent {
 
     override fun getHttpClientEngine() = Darwin.create()
 
     override fun getRoomDatabase() = createRoomDatabase()
-
-    companion object
 }
+
+@MergeComponent.CreateComponent
+expect fun create(): IosApplicationComponent
 
 fun createRoomDatabase(): AppDatabase {
     val dbFile = "${fileDirectory()}/$dbFileName"

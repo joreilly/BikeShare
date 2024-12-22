@@ -16,16 +16,11 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import me.tatarka.inject.annotations.Provides
-import me.tatarka.inject.annotations.Scope
-import kotlin.annotation.AnnotationTarget.CLASS
-import kotlin.annotation.AnnotationTarget.FUNCTION
-import kotlin.annotation.AnnotationTarget.PROPERTY_GETTER
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.ContributesTo
 
-@Scope
-@Target(CLASS, FUNCTION, PROPERTY_GETTER)
-annotation class Singleton
-
-interface SharedApplicationComponent: SharedUiComponent {
+@ContributesTo(AppScope::class)
+interface SharedApplicationComponent {
 
     val countriesViewModel: CountriesViewModelShared
     val networksViewModel: NetworksViewModelShared

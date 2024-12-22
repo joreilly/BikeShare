@@ -13,6 +13,8 @@ import dev.johnoreilly.common.networklist.NetworkListUi
 import dev.johnoreilly.common.stationlist.StationListUI
 import dev.johnoreilly.common.viewmodel.Country
 import me.tatarka.inject.annotations.Inject
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
 
 
 @Target(AnnotationTarget.CLASS)
@@ -65,6 +67,7 @@ data class StationListScreen(val networkId: String) : Screen {
 // TODO move these somewhere else
 
 @Inject
+@ContributesBinding(AppScope::class, multibinding = true)
 class CountryListUiFactory : Ui.Factory {
     override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
         is CountryListScreen -> {
@@ -78,6 +81,7 @@ class CountryListUiFactory : Ui.Factory {
 
 
 @Inject
+@ContributesBinding(AppScope::class, multibinding = true)
 class NetworkListUiFactory : Ui.Factory {
     override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
         is NetworkListScreen -> {
@@ -90,6 +94,7 @@ class NetworkListUiFactory : Ui.Factory {
 }
 
 @Inject
+@ContributesBinding(AppScope::class, multibinding = true)
 class StationListUiFactory : Ui.Factory {
     override fun create(screen: Screen, context: CircuitContext): Ui<*>? = when (screen) {
         is StationListScreen -> {

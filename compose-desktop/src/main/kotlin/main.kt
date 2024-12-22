@@ -7,7 +7,7 @@ import dev.johnoreilly.common.di.create
 
 
 fun main() {
-    val applicationComponent = DesktopApplicationComponent.create()
+    val applicationComponent = DesktopApplicationComponent::class.create()
 
     return singleWindowApplication(
         title = "BikeShare",
