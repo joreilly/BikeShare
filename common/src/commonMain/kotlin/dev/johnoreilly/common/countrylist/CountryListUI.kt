@@ -18,12 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import bikeshare.common.generated.resources.Res
 import bikeshare.common.generated.resources.allDrawableResources
+import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.screens.CountryListScreen
 import dev.johnoreilly.common.viewmodel.Country
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
 
+@CircuitInject(CountryListScreen::class, AppScope::class)
 @Composable
 fun CountryListUi(state: CountryListScreen.State, modifier: Modifier = Modifier) {
     Scaffold(modifier = modifier, topBar = { TopAppBar(title = { Text("Countries") }) }) { innerPadding ->

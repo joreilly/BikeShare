@@ -49,6 +49,7 @@ kotlin {
 
             api(libs.bundles.kotlinInject)
             api(libs.circuit.foundation)
+            api(libs.circuit.codegen.annotations)
 
             implementation(libs.bundles.ktor.common)
             implementation(libs.androidx.room.runtime)
@@ -130,10 +131,17 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     ksp(libs.kotlinInject.compiler)
     ksp(libs.kotlinInject.anvil.compiler)
+    ksp(libs.circuit.codegen)
 }
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+ksp {
+    arg("circuit.codegen.lenient", "true")
+    arg("circuit.codegen.mode", "kotlin_inject_anvil")
+    arg("kotlin-inject-anvil-contributing-annotations", "com.slack.circuit.codegen.annotations.CircuitInject")
 }
 
 

@@ -31,17 +31,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import bikeshare.common.generated.resources.Res
 import bikeshare.common.generated.resources.ic_bike
+import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
 import dev.johnoreilly.common.screens.StationListScreen
-import me.tatarka.inject.annotations.Inject
 import org.jetbrains.compose.resources.painterResource
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
 val lowAvailabilityColor = Color(0xFFFF8C00)
 val highAvailabilityColor = Color(0xFF008000)
 
 
-@Inject
+@CircuitInject(StationListScreen::class, AppScope::class)
 @Composable
 fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier) {
     Scaffold(
