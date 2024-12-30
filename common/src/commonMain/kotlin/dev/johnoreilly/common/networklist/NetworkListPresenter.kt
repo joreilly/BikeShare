@@ -3,32 +3,18 @@ package dev.johnoreilly.common.networklist
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.slack.circuit.runtime.CircuitContext
+import com.slack.circuit.codegen.annotations.CircuitInject
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
-import com.slack.circuit.runtime.screen.Screen
-import dev.johnoreilly.common.screens.NetworkListScreen
-import dev.johnoreilly.common.screens.StationListScreen
 import dev.johnoreilly.common.getCountryName
 import dev.johnoreilly.common.repository.CityBikesRepository
+import dev.johnoreilly.common.screens.NetworkListScreen
+import dev.johnoreilly.common.screens.StationListScreen
 import me.tatarka.inject.annotations.Assisted
 import me.tatarka.inject.annotations.Inject
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
-import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
 
-@Inject
-@ContributesBinding(AppScope::class, multibinding = true)
-class NetworkListPresenterFactory(
-    private val presenterFactory: (NetworkListScreen, Navigator) -> NetworkListPresenter
-) : Presenter.Factory {
-    override fun create(screen: Screen, navigator: Navigator, context: CircuitContext): Presenter<*>? {
-        return when (screen) {
-            is NetworkListScreen -> presenterFactory(screen, navigator)
-            else -> null
-        }
-    }
-}
-
+@CircuitInject(NetworkListScreen::class, AppScope::class)
 @Inject
 class NetworkListPresenter(
     @Assisted private val screen: NetworkListScreen,
