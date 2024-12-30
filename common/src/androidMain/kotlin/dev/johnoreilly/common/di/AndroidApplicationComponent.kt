@@ -11,9 +11,11 @@ import io.ktor.client.engine.android.Android
 import kotlinx.coroutines.Dispatchers
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 import software.amazon.lastmile.kotlin.inject.anvil.MergeComponent
+import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 
 @MergeComponent(AppScope::class)
+@SingleIn(AppScope::class)
 abstract class AndroidApplicationComponent(val application: Application): SharedApplicationComponent {
     abstract val bikeShareApp: BikeShareApp
 
