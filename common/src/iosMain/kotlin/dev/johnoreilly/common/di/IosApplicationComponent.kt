@@ -4,6 +4,9 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.database.dbFileName
+import dev.johnoreilly.common.viewmodel.CountriesViewModelShared
+import dev.johnoreilly.common.viewmodel.NetworksViewModelShared
+import dev.johnoreilly.common.viewmodel.StationsViewModelShared
 import io.ktor.client.engine.darwin.Darwin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -19,6 +22,10 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 @MergeComponent(AppScope::class)
 @SingleIn(AppScope::class)
 abstract class IosApplicationComponent: SharedApplicationComponent {
+
+    abstract val countriesViewModel: CountriesViewModelShared
+    abstract val networksViewModel: NetworksViewModelShared
+    abstract val stationsViewModel: StationsViewModelShared
 
     override fun httpClientEngine() = Darwin.create()
 
