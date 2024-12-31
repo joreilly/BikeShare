@@ -4,7 +4,6 @@ import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.database.dbFileName
-import dev.johnoreilly.common.ui.BikeShareApp
 import io.ktor.client.engine.java.Java
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 import software.amazon.lastmile.kotlin.inject.anvil.MergeComponent
@@ -15,11 +14,9 @@ import java.io.File
 @MergeComponent(AppScope::class)
 @SingleIn(AppScope::class)
 abstract class DesktopApplicationComponent: SharedApplicationComponent {
-  abstract val bikeShareApp: BikeShareApp
+  override fun httpClientEngine() = Java.create()
 
-  override fun getHttpClientEngine() = Java.create()
-
-  override fun getRoomDatabase() = createRoomDatabase()
+  override fun appDatabase() = createRoomDatabase()
 }
 
 fun createRoomDatabase(): AppDatabase {

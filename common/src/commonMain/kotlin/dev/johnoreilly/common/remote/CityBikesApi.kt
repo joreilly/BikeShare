@@ -32,15 +32,13 @@ fun Station.slots(): Int {
 }
 
 @Inject
-class CityBikesApi(private val client: HttpClient,
-    private val baseUrl: String = "https://api.citybik.es/v2/networks"
-) {
+class CityBikesApi(private val client: HttpClient) {
 
     suspend fun fetchNetworkList(): NetworkListResult {
-        return client.get(baseUrl).body()
+        return client.get("/v2/networks").body()
     }
 
     suspend fun fetchBikeShareInfo(network: String): NetworkResult {
-        return client.get("$baseUrl/$network").body()
+        return client.get("/v2/networks/$network").body()
     }
 }

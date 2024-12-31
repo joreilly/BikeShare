@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
@@ -11,6 +9,7 @@ group = "com.example"
 version = "1.0-SNAPSHOT"
 
 kotlin {
+    @Suppress("OPT_IN_USAGE")
     wasmJs {
         moduleName = "bikeshare"
         browser {
@@ -39,8 +38,4 @@ kotlin {
             }
         }
     }
-}
-
-compose.experimental {
-    web.application {}
 }
