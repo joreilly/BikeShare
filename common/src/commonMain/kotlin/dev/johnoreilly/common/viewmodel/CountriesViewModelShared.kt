@@ -16,6 +16,7 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 data class Country(val code: String, val displayName: String)
 
 @Inject
+@SingleIn(AppScope::class)
 open class CountriesViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
 
     /**

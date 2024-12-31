@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import me.tatarka.inject.annotations.Inject
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
-import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
 import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @Inject
+@SingleIn(AppScope::class)
 open class NetworksViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val countryCode = MutableStateFlow<String?>(viewModelScope, null)
 
