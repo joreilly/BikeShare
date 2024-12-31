@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 plugins {
@@ -66,9 +67,11 @@ kotlin {
         }
 
         androidMain.dependencies {
-            implementation(libs.ktor.client.android)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.okhttp.core)
             // workaround for https://youtrack.jetbrains.com/issue/CMP-5959/Invalid-redirect-in-window-core#focus=Comments-27-10365630.0-0
             implementation("androidx.window:window-core:1.3.0")
+            implementation(libs.slf4j.android)
         }
 
         appleMain.dependencies {
@@ -116,7 +119,10 @@ multiplatformSwiftPackage {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "17"
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
 }
 
 kotlin.sourceSets.all {
