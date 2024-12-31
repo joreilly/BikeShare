@@ -16,6 +16,7 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Inject
+@SingleIn(AppScope::class)
 open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val network = MutableStateFlow<String?>(viewModelScope, null)
 
