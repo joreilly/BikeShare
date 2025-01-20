@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.10-RC2"
-ksp = "2.1.0-1.0.29"
+ksp = "2.1.10-RC-1.0.29"
 
 androidGradlePlugin = "8.7.3"
 androidxActivity = "1.9.3"
@@ -8,14 +8,14 @@ androidxComposeBom = "2024.12.01"
 androidxLifecycle = "2.8.7"
 androidxNavigationCompose = "2.8.5"
 androidxRoom = "2.7.0-alpha12"
-circuit = "0.24.0"
+circuit = "0.25.0"
 compose-multiplatform = "1.7.3"
 composeAdaptiveLayout = "1.0.0"
 coroutines = "1.9.0"
 junit = "4.13.2"
 kmpNativeCoroutines = "1.0.0-ALPHA-38"
 kmpObservableViewModel = "1.0.0-BETA-7"
-kotlin-inject-anvil = "0.1.1"
+kotlin-inject-anvil = "0.1.2"
 kotlininject = "0.7.2"
 kotlinxSerialization = "1.7.3"
 ktor = "3.0.1"
@@ -64,8 +64,6 @@ kmpObservableViewModel = { module = "com.rickclephas.kmp:kmp-observableviewmodel
 kotlinInject-anvil-compiler = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "compiler", version.ref = "kotlin-inject-anvil" }
 kotlinInject-anvil-runtime = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "runtime", version.ref = "kotlin-inject-anvil" }
 kotlinInject-anvil-runtime-optional = { group = "software.amazon.lastmile.kotlin.inject.anvil", name = "runtime-optional", version.ref = "kotlin-inject-anvil" }
-kotlinInject-compiler = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp", version.ref = "kotlininject" }
-kotlinInject-runtime = { module = "me.tatarka.inject:kotlin-inject-runtime", version.ref = "kotlininject" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-ios = { group = "io.ktor", name = "ktor-client-ios", version.ref = "ktor" }
