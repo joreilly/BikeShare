@@ -10,8 +10,6 @@ import com.slack.circuit.foundation.rememberCircuitNavigator
 import dev.johnoreilly.common.screens.CountryListScreen
 import me.tatarka.inject.annotations.Inject
 
-
-
 typealias BikeShareApp = @Composable () -> Unit
 
 @Inject

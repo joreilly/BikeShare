@@ -7,9 +7,12 @@ import dev.johnoreilly.common.remote.Station
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import me.tatarka.inject.annotations.Inject
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 
 @Inject
+@SingleIn(AppScope::class)
 class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDatabase) {
     private val mainScope: CoroutineScope = MainScope()
 

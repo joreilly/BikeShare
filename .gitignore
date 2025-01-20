@@ -37,3 +37,4 @@ fastlane/report.xml
 keystore.properties
 api-*.json
 
+/.kotlin/
