@@ -22,9 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.screens.NetworkListScreen
+import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
+@CircuitInject(NetworkListScreen::class, AppScope::class)
 @Composable
 fun NetworkListUi(state: NetworkListScreen.State, modifier: Modifier = Modifier) {
     Scaffold(
