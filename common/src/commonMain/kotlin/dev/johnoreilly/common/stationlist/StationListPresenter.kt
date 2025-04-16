@@ -3,6 +3,8 @@ package dev.johnoreilly.common.stationlist
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.slack.circuit.codegen.annotations.CircuitInject
 import com.slack.circuit.runtime.Navigator
 import com.slack.circuit.runtime.presenter.Presenter
@@ -21,7 +23,8 @@ class StationListPresenter(
 ) : Presenter<StationListScreen.State> {
     @Composable
     override fun present(): StationListScreen.State {
-        val stationList by cityBikesRepository.pollNetworkUpdates(screen.networkId).collectAsState(emptyList())
+        val networkFlow = remember { cityBikesRepository.pollNetworkUpdates(screen.networkId) }
+        val stationList by networkFlow.collectAsStateWithLifecycle(emptyList())
         return StationListScreen.State(screen.networkId, stationList) { event ->
             when (event) {
                 StationListScreen.Event.BackClicked -> navigator.pop()
