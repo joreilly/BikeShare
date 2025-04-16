@@ -9,6 +9,7 @@ androidxLifecycle = "2.8.7"
 androidxNavigationCompose = "2.8.9"
 androidxRoom = "2.7.0"
 circuit = "0.25.0"
+composeLifecyleRuntime="2.8.4"
 compose-multiplatform = "1.7.3"
 composeAdaptiveLayout = "1.0.0"
 coroutines = "1.10.1"
@@ -73,6 +74,7 @@ ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+lifecyle-runtime = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecyleRuntime" }
 okhttp-core = { module = "com.squareup.okhttp3:okhttp", version.ref="okhttp" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 slf4j-android = { module = "uk.uuid.slf4j:slf4j-android", version.ref = "slf4jAndroid" }

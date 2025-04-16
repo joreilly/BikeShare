@@ -65,6 +65,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(libs.compose.adaptive)
             implementation(libs.compose.adaptive.layout)
+            implementation(libs.lifecyle.runtime)
         }
 
         androidMain.dependencies {
