@@ -22,7 +22,7 @@ kotlinxSerialization = "1.8.1"
 ktor = "3.1.2"
 okhttp = "5.0.0-alpha.14"
 slf4j = "2.0.17"
-slf4jAndroid = "2.0.7-0"
+slf4jAndroid = "2.0.17-0"
 sqlite = "2.5.1"
 
 minSdk = "24"
