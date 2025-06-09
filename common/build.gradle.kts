@@ -73,7 +73,7 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.okhttp.core)
             // workaround for https://youtrack.jetbrains.com/issue/CMP-5959/Invalid-redirect-in-window-core#focus=Comments-27-10365630.0-0
-            implementation("androidx.window:window-core:1.3.0")
+            implementation("androidx.window:window-core:1.4.0")
             implementation(libs.slf4j.android)
         }
 
