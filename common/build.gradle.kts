@@ -66,6 +66,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(libs.compose.adaptive)
             implementation(libs.compose.adaptive.layout)
+            implementation(libs.maplibre.compose)
             implementation(libs.lifecyle.runtime)
         }
 
