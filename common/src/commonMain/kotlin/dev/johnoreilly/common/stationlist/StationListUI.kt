@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,9 +22,12 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SecondaryTabRow
+import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,8 +40,15 @@ import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
 import dev.johnoreilly.common.screens.StationListScreen
+import dev.sargunv.maplibrecompose.compose.MaplibreMap
+import dev.sargunv.maplibrecompose.compose.rememberCameraState
+import dev.sargunv.maplibrecompose.compose.source.rememberGeoJsonSource
+import dev.sargunv.maplibrecompose.core.CameraPosition
+import dev.sargunv.maplibrecompose.core.source.GeoJsonData
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
+import io.github.dellisd.spatialk.geojson.Position
 
 val lowAvailabilityColor = Color(0xFFFF8C00)
 val highAvailabilityColor = Color(0xFF008000)
@@ -45,6 +57,10 @@ val highAvailabilityColor = Color(0xFF008000)
 @CircuitInject(StationListScreen::class, AppScope::class)
 @Composable
 fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier) {
+    val pagerState = rememberPagerState(initialPage = 0) { 2 }
+    val titles = listOf("List", "Map")
+    val scope = rememberCoroutineScope()
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -58,9 +74,26 @@ fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier)
             )
         }
     ) { paddingValues ->
-        LazyColumn(Modifier.padding(paddingValues)) {
-            items(state.stationList.sortedBy { it.name }) { station ->
-                StationView(station)
+
+        Column(Modifier.padding(paddingValues)) {
+
+            SecondaryTabRow(selectedTabIndex = pagerState.currentPage,) {
+                titles.forEachIndexed { index, title ->
+                    Tab(
+                        selected = pagerState.currentPage == index,
+                        onClick = {
+                            scope.launch { pagerState.animateScrollToPage(index) }
+                        },
+                        text = { Text(text = title) }
+                    )
+                }
+            }
+
+            HorizontalPager(state = pagerState) { page ->
+                when (page) {
+                    0 -> StationListView(state.stationList)
+                    1 -> MapView(state.stationList)
+                }
             }
         }
     }
@@ -107,4 +140,31 @@ fun StationView(station: Station) {
     }
 }
 
+@Composable
+fun StationListView(stationList: List<Station>) {
+    LazyColumn {
+        items(stationList.sortedBy { it.name }) { station ->
+            StationView(station)
+        }
+    }
+}
 
+
+@Composable
+fun MapView(stationList: List<Station>) {
+    val CHICAGO = Position(latitude = 41.878, longitude = -87.626)
+    val cameraState =
+        rememberCameraState(firstPosition = CameraPosition(target = CHICAGO, zoom = 8.0))
+
+    MaplibreMap(
+        cameraState = cameraState
+    ) {
+
+//        val amtrakRoutes =
+//            rememberGeoJsonSource(
+//                id = "amtrak-routes",
+//                data = GeoJsonData.JsonString  .Uri(Res.getUri("files/data/amtrak_routes.geojson")),
+//            )
+
+    }
+}
