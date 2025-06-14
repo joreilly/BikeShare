@@ -24,6 +24,7 @@ okhttp = "5.0.0-alpha.14"
 slf4j = "2.0.17"
 slf4jAndroid = "2.0.7-0"
 sqlite = "2.5.1"
+maplibre-compose = "0.9.0"
 
 minSdk = "24"
 targetSdk = "35"
@@ -79,6 +80,7 @@ okhttp-core = { module = "com.squareup.okhttp3:okhttp", version.ref="okhttp" }
 slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j" }
 slf4j-android = { module = "uk.uuid.slf4j:slf4j-android", version.ref = "slf4jAndroid" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+maplibre-compose = { module = "dev.sargunv.maplibre-compose:maplibre-compose", version.ref = "maplibre-compose" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-serialization", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]
