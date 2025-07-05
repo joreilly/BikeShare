@@ -1,6 +1,6 @@
 # BikeShare
 
-![kotlin-version](https://img.shields.io/badge/kotlin-2.1.21-blue?logo=kotlin)
+![kotlin-version](https://img.shields.io/badge/kotlin-2.2.0-blue?logo=kotlin)
 
 Jetpack Compose and SwiftUI based Kotlin Multiplatform sample project (based on [CityBikes API](http://api.citybik.es/v2/)).
 

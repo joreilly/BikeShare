@@ -89,13 +89,13 @@ kotlin {
             implementation(libs.slf4j)
         }
     }
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xexport-kdoc")
+    }
 }
 
 kotlin {
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        compilations.get("main").kotlinOptions.freeCompilerArgs += "-Xexport-kdoc"
-    }
-
     targets.configureEach {
         val isAndroidTarget = platformType == KotlinPlatformType.androidJvm
         compilations.configureEach {

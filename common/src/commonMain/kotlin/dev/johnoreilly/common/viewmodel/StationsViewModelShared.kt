@@ -4,9 +4,11 @@ import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.stateIn
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import me.tatarka.inject.annotations.Inject
@@ -21,7 +23,7 @@ open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : V
     private val network = MutableStateFlow<String?>(viewModelScope, null)
 
     @NativeCoroutinesState
-    val stations = network.filterNotNull().flatMapLatest {
+    val stations: StateFlow<List<Station>> = network.filterNotNull().flatMapLatest {
         cityBikesRepository.pollNetworkUpdates(it)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
