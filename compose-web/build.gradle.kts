@@ -11,7 +11,6 @@ version = "1.0-SNAPSHOT"
 kotlin {
     @Suppress("OPT_IN_USAGE")
     wasmJs {
-        moduleName = "bikeshare"
         browser {
             commonWebpackConfig {
                 outputFileName = "bikeshare.js"

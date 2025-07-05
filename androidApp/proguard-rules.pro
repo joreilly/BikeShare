@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class dev.johnoreilly.** { *; }
+-dontwarn okhttp3.internal.Util
