@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.parcelize)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.3"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.4"
 }
 
 
@@ -72,8 +72,6 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.okhttp.core)
-            // workaround for https://youtrack.jetbrains.com/issue/CMP-5959/Invalid-redirect-in-window-core#focus=Comments-27-10365630.0-0
-            implementation("androidx.window:window-core:1.3.0")
             implementation(libs.slf4j.android)
         }
 
