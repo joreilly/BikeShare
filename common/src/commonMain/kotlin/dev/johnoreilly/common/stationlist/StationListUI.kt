@@ -36,6 +36,7 @@ import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
 import dev.johnoreilly.common.screens.StationListScreen
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
 val lowAvailabilityColor = Color(0xFFFF8C00)
@@ -73,6 +74,16 @@ fun StationListContent(stationList: List<Station>) {
         }
     }
 }
+
+
+@Preview
+@Composable
+fun StationViewtPreview() {
+    StationView(
+        Station("1", "Test Bike Station", 5, 20, 0.0, 0.0)
+    )
+}
+
 
 @Composable
 fun StationView(station: Station) {

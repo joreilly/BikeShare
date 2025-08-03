@@ -63,6 +63,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
             implementation(compose.materialIconsExtended)
             implementation(libs.compose.adaptive)
             implementation(libs.compose.adaptive.layout)
@@ -91,6 +92,10 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.add("-Xexport-kdoc")
     }
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
 }
 
 kotlin {
