@@ -113,8 +113,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.navigation.compose)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test:runner:1.6.2")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.runner)
 
     implementation(projects.common)
 }

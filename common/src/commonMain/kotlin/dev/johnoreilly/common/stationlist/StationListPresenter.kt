@@ -1,7 +1,6 @@
 package dev.johnoreilly.common.stationlist
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -23,12 +22,17 @@ class StationListPresenter(
 ) : Presenter<StationListScreen.State> {
     @Composable
     override fun present(): StationListScreen.State {
-        val networkFlow = remember { cityBikesRepository.pollNetworkUpdates(screen.networkId) }
+        val networkFlow = remember(screen) { cityBikesRepository.pollNetworkUpdates(screen.networkId) }
         val stationList by networkFlow.collectAsStateWithLifecycle(emptyList())
-        return StationListScreen.State(screen.networkId, stationList) { event ->
-            when (event) {
-                StationListScreen.Event.BackClicked -> navigator.pop()
-            }
+        return StationListScreen.State(
+            screen.networkId,
+            stationList,
+            stationList.isEmpty()
+        ) {
+            event ->
+                when (event) {
+                    StationListScreen.Event.BackClicked -> navigator.pop()
+                }
         }
     }
 }

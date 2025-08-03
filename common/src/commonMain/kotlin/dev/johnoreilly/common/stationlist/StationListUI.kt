@@ -58,14 +58,21 @@ fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier)
             )
         }
     ) { paddingValues ->
-        LazyColumn(Modifier.padding(paddingValues)) {
-            items(state.stationList.sortedBy { it.name }) { station ->
-                StationView(station)
-            }
+        Column(Modifier.padding(paddingValues)) {
+            StationListContent(state.stationList)
         }
     }
 }
 
+
+@Composable
+fun StationListContent(stationList: List<Station>) {
+    LazyColumn {
+        items(stationList.sortedBy { it.name }) { station ->
+            StationView(station)
+        }
+    }
+}
 
 @Composable
 fun StationView(station: Station) {
