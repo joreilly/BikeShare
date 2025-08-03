@@ -31,11 +31,14 @@ data class NetworkListScreen(val countryCode: String) : Screen {
         val countryCode: String,
         val countryName: String,
         val networkList: List<Network>,
+        val selectedNetworkId: String? = null,
+        val stationListState: StationListScreen.State?,
         val eventSink: (Event) -> Unit
     ) : CircuitUiState
 
     sealed class Event : CircuitUiEvent {
         data class NetworkClicked(val networkId: String) : Event()
+        data class SelectNetwork(val networkId: String) : Event()
         data object BackClicked : Event()
     }
 }
@@ -45,6 +48,7 @@ data class StationListScreen(val networkId: String) : Screen {
     data class State(
         val networkId: String,
         val stationList: List<Station>,
+        val isLoadingStations: Boolean,
         val eventSink: (Event) -> Unit
     ) : CircuitUiState
 
