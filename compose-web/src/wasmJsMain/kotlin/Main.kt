@@ -20,28 +20,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
+import androidx.compose.ui.window.ComposeViewport
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-    CanvasBasedWindow("BikeShare", canvasElementId = "bikeShareCanvas") {
-        Column {
-            Text(
-                text ="Bike Share (powered by CityBikes)",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = Color.Gray)
-                    .align(Alignment.CenterHorizontally)
-                    .padding(8.dp),
-                textAlign = TextAlign.Center,
-                color = Color.White,
-                style = MaterialTheme.typography.headlineSmall)
+    ComposeViewport(content = {
+            Column {
+                Text(
+                    text ="Bike Share (powered by CityBikes)",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = Color.Gray)
+                        .align(Alignment.CenterHorizontally)
+                        .padding(8.dp),
+                    textAlign = TextAlign.Center,
+                    color = Color.White,
+                    style = MaterialTheme.typography.headlineSmall)
 
-            BikeShareView()
-        }
-    }
+                BikeShareView()
+            }
+        })
 }
 
 const val POLL_INTERVAL = 30000L
