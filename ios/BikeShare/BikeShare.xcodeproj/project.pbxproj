@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A47335B2F0DB98000842388 /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A47335A2F0DB98000842388 /* KMPObservableViewModelCore */; };
+		1A47335D2F0DB98000842388 /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A47335C2F0DB98000842388 /* KMPObservableViewModelSwiftUI */; };
+		1A47335F2F0EE25700842388 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47335E2F0EE25400842388 /* Theme.swift */; };
 		1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764B24D351FC0047F88F /* AppDelegate.swift */; };
 		1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764D24D351FC0047F88F /* SceneDelegate.swift */; };
 		1A56765024D351FC0047F88F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A56764F24D351FC0047F88F /* ContentView.swift */; };
@@ -14,8 +17,6 @@
 		1A56765524D351FF0047F88F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765424D351FF0047F88F /* Preview Assets.xcassets */; };
 		1A56765824D351FF0047F88F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A56765624D351FF0047F88F /* LaunchScreen.storyboard */; };
 		1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59905829579788006DD8F2 /* KMMiewModel.swift */; };
-		1A68CB7B2BEEAD6600F4AA1B /* KMPObservableViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */; };
-		1A68CB7D2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		1A11F79C2732AE86006E20C5 /* BikeShareWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareWidget.swift; sourceTree = "<group>"; };
 		1A11F79E2732AE87006E20C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A11F7A02732AE87006E20C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A47335E2F0EE25400842388 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		1A56764824D351FC0047F88F /* BikeShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A56764B24D351FC0047F88F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A56764D24D351FC0047F88F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A68CB7B2BEEAD6600F4AA1B /* KMPObservableViewModelCore in Frameworks */,
-				1A68CB7D2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI in Frameworks */,
+				1A47335B2F0DB98000842388 /* KMPObservableViewModelCore in Frameworks */,
+				1A47335D2F0DB98000842388 /* KMPObservableViewModelSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +95,7 @@
 		1A56764A24D351FC0047F88F /* BikeShare */ = {
 			isa = PBXGroup;
 			children = (
+				1A47335E2F0EE25400842388 /* Theme.swift */,
 				1A56764B24D351FC0047F88F /* AppDelegate.swift */,
 				1A56764D24D351FC0047F88F /* SceneDelegate.swift */,
 				1A56764F24D351FC0047F88F /* ContentView.swift */,
@@ -149,8 +152,8 @@
 			);
 			name = BikeShare;
 			packageProductDependencies = (
-				1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */,
-				1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */,
+				1A47335A2F0DB98000842388 /* KMPObservableViewModelCore */,
+				1A47335C2F0DB98000842388 /* KMPObservableViewModelSwiftUI */,
 			);
 			productName = BikeShare;
 			productReference = 1A56764824D351FC0047F88F /* BikeShare.app */;
@@ -181,7 +184,7 @@
 			);
 			mainGroup = 1A56763F24D351FC0047F88F;
 			packageReferences = (
-				1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */,
+				1A4733592F0DB98000842388 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */,
 			);
 			productRefGroup = 1A56764924D351FC0047F88F /* Products */;
 			projectDirPath = "";
@@ -232,6 +235,7 @@
 			files = (
 				1A56764C24D351FC0047F88F /* AppDelegate.swift in Sources */,
 				1A56764E24D351FC0047F88F /* SceneDelegate.swift in Sources */,
+				1A47335F2F0EE25700842388 /* Theme.swift in Sources */,
 				1A56765024D351FC0047F88F /* ContentView.swift in Sources */,
 				1A59905929579788006DD8F2 /* KMMiewModel.swift in Sources */,
 			);
@@ -371,13 +375,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,13 +405,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"BikeShare/Preview Content\"";
 				DEVELOPMENT_TEAM = NT77748GS8;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../.../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = BikeShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,25 +453,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */ = {
+		1A4733592F0DB98000842388 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel.git";
+			repositoryURL = "https://github.com/rickclephas/KMP-ObservableViewModel";
 			requirement = {
-				kind = exactVersion;
-				version = "1.0.0-BETA-1";
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1A68CB7A2BEEAD6600F4AA1B /* KMPObservableViewModelCore */ = {
+		1A47335A2F0DB98000842388 /* KMPObservableViewModelCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			package = 1A4733592F0DB98000842388 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
 			productName = KMPObservableViewModelCore;
 		};
-		1A68CB7C2BEEAD6600F4AA1B /* KMPObservableViewModelSwiftUI */ = {
+		1A47335C2F0DB98000842388 /* KMPObservableViewModelSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1A68CB792BEEAD6600F4AA1B /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
+			package = 1A4733592F0DB98000842388 /* XCRemoteSwiftPackageReference "KMP-ObservableViewModel" */;
 			productName = KMPObservableViewModelSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */

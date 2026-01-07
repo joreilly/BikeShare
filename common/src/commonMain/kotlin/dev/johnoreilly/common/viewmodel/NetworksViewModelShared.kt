@@ -15,7 +15,6 @@ import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @Inject
-@SingleIn(AppScope::class)
 open class NetworksViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val countryCode = MutableStateFlow<String?>(viewModelScope, null)
 
