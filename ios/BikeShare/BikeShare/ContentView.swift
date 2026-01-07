@@ -4,23 +4,18 @@ import BikeShareKit
 import KMPObservableViewModelCore
 import KMPObservableViewModelSwiftUI
 
-// BikeShare theme colors matching Compose
-let BikeGreen = Color(red: 0x1E/255.0, green: 0x8E/255.0, blue: 0x3E/255.0)
-let BikeGreenLight = Color(red: 0x7C/255.0, green: 0xB3/255.0, blue: 0x42/255.0)
-let BikeGreenDark = Color(red: 0x00/255.0, green: 0x5D/255.0, blue: 0x1B/255.0)
-let BikeBlue = Color(red: 0x19/255.0, green: 0x76/255.0, blue: 0xD2/255.0)
-let BikeBlueDark = Color(red: 0x0D/255.0, green: 0x47/255.0, blue: 0xA1/255.0)
 
-// Availability colors matching Compose
-let lowAvailabilityColor = Color(red: 0xE6/255.0, green: 0x51/255.0, blue: 0x00/255.0)
-let mediumAvailabilityColor = Color(red: 0xFF/255.0, green: 0xA0/255.0, blue: 0x00/255.0)
-let highAvailabilityColor = Color(red: 0x2E/255.0, green: 0x7D/255.0, blue: 0x32/255.0)
+enum Route: Hashable {
+    case networks(countryCode: String)
+    case stations(network: Network)
+}
 
 struct ContentView : View {
     let applicationComponent: IosApplicationComponent
     
     @ObservedViewModel var viewModel: CountriesViewModelShared
     @State var query: String = ""
+    @State private var path = NavigationPath()
     
     init(applicationComponent: IosApplicationComponent) {
         self.applicationComponent = applicationComponent
@@ -28,14 +23,13 @@ struct ContentView : View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             ScrollView {
                 LazyVStack(spacing: 8) {
                     ForEach(viewModel.countryList.filter { query.isEmpty || $0.displayName.contains(query)}, id: \.self) { country in
-                        NavigationLink(destination: NetworkListView(applicationComponent: applicationComponent, countryCode: country.code)) {
+                        NavigationLink(value: Route.networks(countryCode: country.code)) {
                             CountryCardView(country: country)
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding(.horizontal, 12)
@@ -43,10 +37,17 @@ struct ContentView : View {
             }
             .background(Color(UIColor.systemGroupedBackground))
             .searchable(text: $query)
-            .navigationTitle("BikeShare")
+            .navigationTitle("BikeShareLive")
             .navigationBarTitleDisplayMode(.large)
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .networks(let countryCode):
+                    NetworkListView(applicationComponent: applicationComponent, countryCode: countryCode)
+                case .stations(let network):
+                    StationListTabView(applicationComponent: applicationComponent, network: network)
+                }
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -58,7 +59,7 @@ struct CountryCardView: View {
             // Flag
             Text(countryFlag(from: country.code))
                 .font(.system(size: 40))
-                .frame(width: 48, height: 48)
+                .frame(width: 24, height: 24)
                 .background(Color(UIColor.secondarySystemGroupedBackground))
                 .cornerRadius(4)
                 .padding(4)
@@ -97,7 +98,7 @@ struct NetworkListView: View {
         ScrollView {
             LazyVStack(spacing: 8) {
                 ForEach(viewModel.networkList) { network in
-                    NavigationLink(destination: StationListTabView(applicationComponent: applicationComponent, network: network)) {
+                    NavigationLink(value: Route.stations(network: network)) {
                         NetworkCardView(network: network)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -366,6 +367,8 @@ func countryFlag(from countryCode: String) -> String {
 }
     
 
-extension Station: Identifiable { }
-extension Network: Identifiable { }
+extension Station: @retroactive Identifiable { }
+extension Network: @retroactive Identifiable { }
                                    
+
+

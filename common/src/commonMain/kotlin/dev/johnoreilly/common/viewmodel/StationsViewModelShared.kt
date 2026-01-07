@@ -13,12 +13,10 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import me.tatarka.inject.annotations.Inject
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
-import software.amazon.lastmile.kotlin.inject.anvil.ContributesBinding
 import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Inject
-@SingleIn(AppScope::class)
 open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
     private val network = MutableStateFlow<String?>(viewModelScope, null)
 
