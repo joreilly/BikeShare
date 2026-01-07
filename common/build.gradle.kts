@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.parcelize)
-    id("io.github.luca992.multiplatform-swiftpackage") version "2.2.4"
+    id("io.github.luca992.multiplatform-swiftpackage") version "2.3.0"
 }
 
 
