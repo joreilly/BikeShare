@@ -29,6 +29,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -70,7 +71,7 @@ fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier)
                 navigationIcon = {
                     IconButton(onClick = { state.eventSink(StationListScreen.Event.BackClicked) }) {
                         Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack, 
+                            Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
                             tint = MaterialTheme.colorScheme.onPrimary
                         )
@@ -119,7 +120,7 @@ fun StationViewPreview() {
 fun StationView(station: Station) {
     val totalSlots = station.freeBikes() + (station.empty_slots ?: 0)
     val bikePercentage = if (totalSlots > 0) station.freeBikes().toFloat() / totalSlots else 0f
-    
+
     // Determine availability color based on percentage of available bikes
     val availabilityColor = when {
         bikePercentage < 0.2f -> lowAvailabilityColor
@@ -140,28 +141,29 @@ fun StationView(station: Station) {
         ) {
             // Station name
             Text(
-                text = station.name, 
-                style = MaterialTheme.typography.titleMedium, 
+                text = station.name,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
-            
+
             Spacer(modifier = Modifier.height(12.dp))
-            
+
             // Availability progress indicator
             LinearProgressIndicator(
-                progress = bikePercentage,
+                progress = { bikePercentage },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(8.dp)
                     .clip(RoundedCornerShape(4.dp)),
                 color = availabilityColor,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant
+                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                strokeCap = ProgressIndicatorDefaults.LinearStrokeCap,
             )
-            
+
             Spacer(modifier = Modifier.height(12.dp))
-            
+
             // Availability details
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -185,9 +187,9 @@ fun StationView(station: Station) {
                             modifier = Modifier.size(20.dp)
                         )
                     }
-                    
+
                     Spacer(modifier = Modifier.width(8.dp))
-                    
+
                     Column {
                         Text(
                             "Available Bikes",
@@ -202,7 +204,7 @@ fun StationView(station: Station) {
                         )
                     }
                 }
-                
+
                 // Empty slots
                 Row(
                     verticalAlignment = Alignment.CenterVertically
@@ -221,9 +223,9 @@ fun StationView(station: Station) {
                             modifier = Modifier.size(20.dp)
                         )
                     }
-                    
+
                     Spacer(modifier = Modifier.width(8.dp))
-                    
+
                     Column {
                         Text(
                             "Empty Slots",
