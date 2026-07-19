@@ -23,7 +23,7 @@ jobs:
         run: xcodebuild -version
 
       - name: Build iOS app
-        run: xcodebuild -allowProvisioningUpdates -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -sdk iphoneos -destination 'generic/platform=iOS'
+        run: xcodebuild -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
 
 
 
