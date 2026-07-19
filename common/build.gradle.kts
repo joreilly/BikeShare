@@ -9,34 +9,25 @@ plugins {
     alias(libs.plugins.room)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlin.parcelize)
     id("io.github.luca992.multiplatform-swiftpackage") version "2.2.4"
 }
 
 
-android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    namespace = "dev.johnoreilly.bikeshare.common"
-}
-
 kotlin {
     jvmToolchain(17)
 
-    androidTarget()
+    android {
+        namespace = "dev.johnoreilly.bikeshare.common"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        androidResources { enable = true }
+    }
     jvm()
 
     listOf(
-        iosArm64(), iosX64(), iosSimulatorArm64()
+        iosArm64(), iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
             baseName = "BikeShareKit"
@@ -95,7 +86,7 @@ kotlin {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    "androidRuntimeClasspath"(compose.uiTooling)
 }
 
 kotlin {
@@ -139,10 +130,12 @@ kotlin.sourceSets.all {
 
 
 dependencies {
-    ksp(libs.androidx.room.compiler)
-    ksp(libs.kotlinInject.compiler)
-    ksp(libs.kotlinInject.anvil.compiler)
-    ksp(libs.circuit.codegen)
+    listOf("kspAndroid", "kspJvm", "kspIosArm64", "kspIosSimulatorArm64").forEach {
+        add(it, libs.androidx.room.compiler)
+        add(it, libs.kotlinInject.compiler)
+        add(it, libs.kotlinInject.anvil.compiler)
+        add(it, libs.circuit.codegen)
+    }
 }
 
 room {
