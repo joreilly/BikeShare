@@ -6,7 +6,6 @@ import java.util.*
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
 }
@@ -78,7 +77,7 @@ android {
         release {
             isShrinkResources = true
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -120,7 +119,9 @@ dependencies {
 }
 
 
-kotlin.sourceSets.all {
-    languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
-    languageSettings.enableLanguageFeature("ExplicitBackingFields")
+kotlin {
+    compilerOptions {
+        optIn.add("kotlinx.cinterop.ExperimentalForeignApi")
+        freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
+    }
 }
