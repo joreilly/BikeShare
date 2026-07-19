@@ -23,7 +23,8 @@ jobs:
         run: xcodebuild -version
 
       - name: Build iOS app
-        run: xcodebuild -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+        # ARCHS=arm64: the project no longer has an iosX64 target (deps dropped Intel simulator support)
+        run: xcodebuild -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO ARCHS=arm64
 
 
 
