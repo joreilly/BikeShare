@@ -18,13 +18,12 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - name: Set Xcode Version 16.4
+      - name: Show Xcode version
         shell: bash
-        run: |
-          xcodes select 16.4
+        run: xcodebuild -version
 
       - name: Build iOS app
-        run: xcodebuild -allowProvisioningUpdates -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -sdk iphoneos -destination name='iPhone 16' 
+        run: xcodebuild -allowProvisioningUpdates -workspace ios/BikeShare/BikeShare.xcodeproj/project.xcworkspace -configuration Debug -scheme BikeShare -sdk iphoneos -destination 'generic/platform=iOS'
 
 
 
