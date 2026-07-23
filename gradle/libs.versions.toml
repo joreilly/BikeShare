@@ -2,7 +2,7 @@
 kotlin = "2.4.10"
 ksp = "2.3.10"
 
-androidGradlePlugin = "9.1.1"
+androidGradlePlugin = "9.3.1"
 androidxActivity = "1.13.0"
 androidxComposeBom = "2026.06.01"
 androidxLifecycle = "2.11.0"
