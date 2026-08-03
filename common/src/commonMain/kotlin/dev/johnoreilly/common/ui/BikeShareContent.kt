@@ -51,7 +51,11 @@ fun BikeShareApp(circuit: Circuit) {
         colorScheme = colorScheme
     ) {
         val backStack = rememberSaveableBackStack(root = CountryListScreen)
-        val navigator = rememberCircuitNavigator(backStack) {}
+        val navigator = rememberCircuitNavigator(
+            backStack = backStack,
+            onRootPop = {},
+            enableBackHandler = true,
+        )
 
         CircuitCompositionLocals(circuit) {
             NavigableCircuitContent(navigator = navigator, backStack = backStack)
