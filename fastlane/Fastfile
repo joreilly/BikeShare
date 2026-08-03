@@ -94,7 +94,7 @@ platform :android do
     end
 
 
-    desc "Promote app from alpha to production in Play Store"
+    desc "Promote app from internal to production in Play Store"
     lane :promoteAppToProd do |options|
 
         supply(
@@ -104,8 +104,7 @@ platform :android do
             skip_upload_apk: true,
             skip_upload_metadata: true,
             skip_upload_images: true,
-            skip_upload_screenshots: true,
-            version_code: 1001086
+            skip_upload_screenshots: true
         )
     end
 
