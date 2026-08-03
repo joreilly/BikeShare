@@ -104,8 +104,7 @@ platform :android do
             skip_upload_apk: true,
             skip_upload_metadata: true,
             skip_upload_images: true,
-            skip_upload_screenshots: true,
-            version_code: 1000013
+            skip_upload_screenshots: true
         )
     end
 
