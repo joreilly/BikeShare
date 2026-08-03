@@ -61,7 +61,7 @@ Deploy app to play store alpha channel
 [bundle exec] fastlane android promoteAppToProd
 ```
 
-Promote app from alpha to production in Play Store
+Promote app from internal to production in Play Store
 
 ### android screenshots
 
