@@ -28,4 +28,5 @@ include(":androidApp")
 include(":common")
 include(":compose-desktop")
 include(":compose-web")
+include(":sqlite-wasm-worker")
 

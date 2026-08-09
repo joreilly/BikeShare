@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlinx.serialization)
 }
 
 group = "com.example"
@@ -17,24 +16,16 @@ kotlin {
             }
         }
         binaries.executable()
-//        applyBinaryen()
     }
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.components.resources)
+        wasmJsMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.components.resources)
 
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.kotlinx.serialization)
-
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.serialization.kotlinx.json)
-                implementation(libs.ktor.client.content.negotiation)
-            }
+            implementation(projects.common)
         }
     }
 }

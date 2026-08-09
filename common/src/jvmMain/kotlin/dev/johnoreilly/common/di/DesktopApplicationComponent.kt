@@ -1,6 +1,6 @@
 package dev.johnoreilly.common.di
 
-import androidx.room.Room
+import androidx.room3.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.database.dbFileName

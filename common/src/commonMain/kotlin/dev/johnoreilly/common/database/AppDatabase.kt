@@ -1,6 +1,6 @@
 package dev.johnoreilly.common.database
 
-import androidx.room.*
+import androidx.room3.*
 import dev.johnoreilly.common.model.Network
 
 internal expect object AppDatabaseCtor : RoomDatabaseConstructor<AppDatabase> {

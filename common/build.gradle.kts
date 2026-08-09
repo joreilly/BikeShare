@@ -34,6 +34,11 @@ kotlin {
         }
     }
 
+    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
     sourceSets {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines)
@@ -45,7 +50,6 @@ kotlin {
 
             implementation(libs.bundles.ktor.common)
             implementation(libs.androidx.room.runtime)
-            implementation(libs.sqlite.bundled)
 
             api(libs.kmpObservableViewModel)
 
@@ -65,10 +69,12 @@ kotlin {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.okhttp.core)
             implementation(libs.slf4j.android)
+            implementation(libs.sqlite.bundled)
         }
 
         appleMain.dependencies {
             implementation(libs.ktor.client.ios)
+            implementation(libs.sqlite.bundled)
         }
 
         jvmMain.dependencies {
@@ -77,6 +83,13 @@ kotlin {
 
             implementation(libs.ktor.client.java)
             implementation(libs.slf4j)
+            implementation(libs.sqlite.bundled)
+        }
+
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
+            implementation(libs.sqlite.web)
+            implementation(projects.sqliteWasmWorker)
         }
     }
 
@@ -130,7 +143,7 @@ kotlin.sourceSets.all {
 
 
 dependencies {
-    listOf("kspAndroid", "kspJvm", "kspIosArm64", "kspIosSimulatorArm64").forEach {
+    listOf("kspAndroid", "kspJvm", "kspIosArm64", "kspIosSimulatorArm64", "kspWasmJs").forEach {
         add(it, libs.androidx.room.compiler)
         add(it, libs.kotlinInject.compiler)
         add(it, libs.kotlinInject.anvil.compiler)
@@ -138,7 +151,7 @@ dependencies {
     }
 }
 
-room {
+room3 {
     schemaDirectory("$projectDir/schemas")
 }
 
