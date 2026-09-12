@@ -25,7 +25,7 @@ okhttp = "5.5.0"
 runner = "1.7.0"
 slf4j = "2.0.19"
 slf4jAndroid = "2.0.17-0"
-sqlite = "2.7.0"
+sqlite = "2.7.1"
 
 minSdk = "24"
 targetSdk = "36"
