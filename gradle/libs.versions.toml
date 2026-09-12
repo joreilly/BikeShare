@@ -4,7 +4,7 @@ ksp = "2.3.11"
 
 androidGradlePlugin = "9.3.1"
 androidxActivity = "1.13.0"
-androidxComposeBom = "2026.08.00"
+androidxComposeBom = "2026.09.00"
 androidxLifecycle = "2.11.0"
 androidxNavigationCompose = "2.9.8"
 androidxRoom = "3.0.1"
