@@ -2,7 +2,7 @@ package dev.johnoreilly.common.screens
 
 import com.slack.circuit.runtime.CircuitUiEvent
 import com.slack.circuit.runtime.CircuitUiState
-import com.slack.circuit.runtime.screen.Screen
+import com.slack.circuit.runtime.screen.ParcelableScreen
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.viewmodel.Country
@@ -14,7 +14,7 @@ annotation class Parcelize
 
 
 @Parcelize
-data object CountryListScreen : Screen {
+data object CountryListScreen : ParcelableScreen {
     data class State(
         val countryList: List<Country>,
         val eventSink: (Event) -> Unit
@@ -26,7 +26,7 @@ data object CountryListScreen : Screen {
 }
 
 @Parcelize
-data class NetworkListScreen(val countryCode: String) : Screen {
+data class NetworkListScreen(val countryCode: String) : ParcelableScreen {
     data class State(
         val countryCode: String,
         val countryName: String,
@@ -44,7 +44,7 @@ data class NetworkListScreen(val countryCode: String) : Screen {
 }
 
 @Parcelize
-data class StationListScreen(val networkId: String) : Screen {
+data class StationListScreen(val networkId: String) : ParcelableScreen {
     data class State(
         val networkId: String,
         val stationList: List<Station>,
