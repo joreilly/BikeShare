@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.4.10"
-ksp = "2.3.11"
+ksp = "2.3.12"
 
 androidGradlePlugin = "9.1.1"
 androidxActivity = "1.13.0"
