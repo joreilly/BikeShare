@@ -24,7 +24,7 @@ ktor = "3.5.2"
 okhttp = "5.5.0"
 runner = "1.7.0"
 slf4j = "2.0.19"
-slf4jAndroid = "2.0.17-0"
+slf4jAndroid = "2.0.19-0"
 sqlite = "2.7.1"
 
 minSdk = "24"
