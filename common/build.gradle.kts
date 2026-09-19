@@ -73,7 +73,7 @@ kotlin {
         }
 
         appleMain.dependencies {
-            implementation(libs.ktor.client.ios)
+            implementation(libs.ktor.client.darwin)
             implementation(libs.sqlite.bundled)
         }
 
