@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.Circuit
@@ -12,6 +14,9 @@ import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.rememberCircuitNavigator
 import dev.johnoreilly.common.screens.CountryListScreen
+import dev.johnoreilly.common.ui.map.LocalTileLoader
+import dev.johnoreilly.common.ui.map.TileLoader
+import io.ktor.client.HttpClient
 import me.tatarka.inject.annotations.Inject
 
 // BikeShare theme colors
@@ -37,7 +42,7 @@ typealias BikeShareApp = @Composable () -> Unit
 
 @Inject
 @Composable
-fun BikeShareApp(circuit: Circuit) {
+fun BikeShareApp(circuit: Circuit, httpClient: HttpClient) {
     // Determine if we should use dark theme
     val darkTheme = isSystemInDarkTheme()
     
@@ -47,20 +52,26 @@ fun BikeShareApp(circuit: Circuit) {
         else -> LightColorScheme
     }
 
+    // The map basemap goes over the same configured Ktor client as the CityBikes API, so it
+    // picks up each platform's engine without the map code needing to know about any of them.
+    val tileLoader = remember(httpClient) { TileLoader(httpClient) }
+
     MaterialTheme(
         colorScheme = colorScheme
     ) {
-        CircuitCompositionLocals(circuit) {
-            // Must be inside CircuitCompositionLocals: rememberSaveableBackStack reads
-            // LocalCircuitSaver, which CircuitCompositionLocals provides.
-            val backStack = rememberSaveableBackStack(root = CountryListScreen)
-            val navigator = rememberCircuitNavigator(
-                backStack = backStack,
-                onRootPop = {},
-                enableBackHandler = true,
-            )
+        CompositionLocalProvider(LocalTileLoader provides tileLoader) {
+            CircuitCompositionLocals(circuit) {
+                // Must be inside CircuitCompositionLocals: rememberSaveableBackStack reads
+                // LocalCircuitSaver, which CircuitCompositionLocals provides.
+                val backStack = rememberSaveableBackStack(root = CountryListScreen)
+                val navigator = rememberCircuitNavigator(
+                    backStack = backStack,
+                    onRootPop = {},
+                    enableBackHandler = true,
+                )
 
-            NavigableCircuitContent(navigator = navigator, backStack = backStack)
+                NavigableCircuitContent(navigator = navigator, backStack = backStack)
+            }
         }
     }
 }
