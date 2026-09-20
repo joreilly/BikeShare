@@ -28,9 +28,9 @@ Requires JDK 17+ and a recent Android Studio release with AGP 9.x support (the p
 
 ![BikeShare iOS (SwiftUI)](/art/screenshot_ios_swiftui.png?raw=true )
 
-<img width="1132" height="819" alt="BikeShare running on desktop (Compose for Desktop)" src="https://github.com/user-attachments/assets/33d28fbf-112b-4ea9-8d51-5a65d1386a6c" />
+![BikeShare running on desktop (Compose for Desktop)](/art/screenshot_desktop.png?raw=true )
 
-<img width="1426" alt="BikeShare running in the browser (Wasm based Compose for Web)" src="https://github.com/joreilly/BikeShare/assets/6302/3e3092cd-261f-49a9-a0b3-bb6631a9d119">
+![BikeShare running in the browser (Wasm based Compose for Web)](/art/screenshot_web.png?raw=true )
 
 Note that this makes use of https://github.com/Shusshu/android-flags for flag images shown.
 
