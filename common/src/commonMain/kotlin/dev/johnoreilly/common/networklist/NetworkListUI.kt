@@ -50,7 +50,7 @@ import androidx.compose.ui.unit.dp
 import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.screens.NetworkListScreen
-import dev.johnoreilly.common.stationlist.StationListContent
+import dev.johnoreilly.common.stationlist.StationsPane
 import dev.johnoreilly.common.ui.AdaptiveLayout
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
@@ -137,7 +137,10 @@ fun NetworkListUi(state: NetworkListScreen.State, modifier: Modifier = Modifier)
                                         CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                                     }
                                 } else {
-                                    StationListContent(stationListState.stationList)
+                                    StationsPane(
+                                        stations = stationListState.stationList,
+                                        modifier = Modifier.fillMaxSize(),
+                                    )
                                 }
                             }
                         } ?: run {

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -60,6 +61,26 @@ val mediumAvailabilityColor = Color(0xFFFFA000)  // Amber for medium availabilit
 val highAvailabilityColor = Color(0xFF2E7D32)  // Darker green for better contrast
 
 
+/** Fraction of this station's docks that currently hold a bike. */
+fun Station.bikeAvailability(): Float {
+    val totalSlots = freeBikes() + (empty_slots ?: 0)
+    return if (totalSlots > 0) freeBikes().toFloat() / totalSlots else 0f
+}
+
+/**
+ * The colour standing for how well stocked a station is. Shared by the list rows and the map
+ * markers, so a station reads the same way whichever view it is being looked at in.
+ */
+fun Station.availabilityColor(): Color {
+    val availability = bikeAvailability()
+    return when {
+        availability < 0.2f -> lowAvailabilityColor
+        availability < 0.5f -> mediumAvailabilityColor
+        else -> highAvailabilityColor
+    }
+}
+
+
 @CircuitInject(StationListScreen::class, AppScope::class)
 @Composable
 fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier) {
@@ -84,13 +105,13 @@ fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier)
             )
         }
     ) { paddingValues ->
-        Column(
+        StationsPane(
+            stations = state.stationList,
             modifier = Modifier
                 .padding(paddingValues)
                 .padding(horizontal = 12.dp, vertical = 8.dp)
-        ) {
-            StationListContent(state.stationList)
-        }
+                .fillMaxSize()
+        )
     }
 }
 
@@ -118,15 +139,8 @@ fun StationViewPreview() {
 
 @Composable
 fun StationView(station: Station) {
-    val totalSlots = station.freeBikes() + (station.empty_slots ?: 0)
-    val bikePercentage = if (totalSlots > 0) station.freeBikes().toFloat() / totalSlots else 0f
-
-    // Determine availability color based on percentage of available bikes
-    val availabilityColor = when {
-        bikePercentage < 0.2f -> lowAvailabilityColor
-        bikePercentage < 0.5f -> mediumAvailabilityColor
-        else -> highAvailabilityColor
-    }
+    val bikePercentage = station.bikeAvailability()
+    val availabilityColor = station.availabilityColor()
 
     Card(
         modifier = Modifier.fillMaxWidth(),
