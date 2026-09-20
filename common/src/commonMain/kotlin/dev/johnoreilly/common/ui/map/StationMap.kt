@@ -1,12 +1,16 @@
 package dev.johnoreilly.common.ui.map
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -19,96 +23,157 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
 import dev.johnoreilly.common.stationlist.availabilityColor
+import ovh.plrapps.mapcompose.api.BoundingBox
+import ovh.plrapps.mapcompose.api.addClusterer
+import ovh.plrapps.mapcompose.api.addLayer
+import ovh.plrapps.mapcompose.api.addMarker
+import ovh.plrapps.mapcompose.api.disableFadeIn
+import ovh.plrapps.mapcompose.api.onMarkerClick
+import ovh.plrapps.mapcompose.api.removeAllMarkers
+import ovh.plrapps.mapcompose.api.snapScrollTo
+import ovh.plrapps.mapcompose.ui.MapUI
+import ovh.plrapps.mapcompose.ui.state.MapState
+import ovh.plrapps.mapcompose.ui.state.markers.model.RenderingStrategy
 
 /**
  * The stations of a network plotted on an OpenStreetMap basemap, each marker coloured by how
  * many bikes are free there — the same scale the list rows use.
  *
- * The map frames the whole network the first time it has both stations and a size to work with,
- * and then leaves the camera alone so that the thirty-second refresh never yanks the view back
- * from wherever the user has panned to.
+ * MapCompose owns the tile pyramid, camera, gestures and marker layer; this file only supplies
+ * the tile source, converts station coordinates into its unit-square space, and draws the
+ * marker and detail composables.
  */
 @Composable
 fun StationMap(stations: List<Station>, modifier: Modifier = Modifier) {
-    val camera = rememberMapCameraState()
-    var selectedStation by remember { mutableStateOf<Station?>(null) }
+    val httpClient = LocalHttpClient.current
+    var selectedMarkerId by remember { mutableStateOf<String?>(null) }
 
-    BoxWithConstraints(modifier) {
-        val density = LocalDensity.current
-        val viewportSize = with(density) { Size(maxWidth.toPx(), maxHeight.toPx()) }
+    // Markers are added once per network but their composables keep reading the newest station
+    // list, so the thirty-second refresh recolours them without rebuilding the layer.
+    val latestStations by rememberUpdatedState(stations)
 
-        var hasFramedNetwork by remember { mutableStateOf(false) }
-        LaunchedEffect(stations.isNotEmpty(), viewportSize) {
-            if (hasFramedNetwork || camera.movedByUser || stations.isEmpty()) return@LaunchedEffect
-            val bounds = fitBounds(
-                points = stations.map { LatLon(it.latitude, it.longitude) },
-                viewportSize = viewportSize,
-                density = density.density,
-                paddingPx = with(density) { FRAMING_PADDING.toPx() },
-            ) ?: return@LaunchedEffect
-            val (latitude, longitude, zoom) = bounds
-            camera.moveTo(latitude, longitude, zoom.coerceAtMost(MAX_FRAMING_ZOOM))
-            hasFramedNetwork = true
+    val mapState = remember {
+        MapState(
+            levelCount = OSM_LEVEL_COUNT,
+            fullWidth = OSM_FULL_SIZE,
+            fullHeight = OSM_FULL_SIZE,
+            workerCount = OSM_TILE_WORKERS,
+        )
+    }
+
+    DisposableEffect(mapState) {
+        onDispose { mapState.shutdown() }
+    }
+
+    LaunchedEffect(mapState, httpClient) {
+        if (httpClient != null) mapState.addLayer(osmTileStreamProvider(httpClient))
+        mapState.onMarkerClick { id, _, _ -> selectedMarkerId = id }
+        // Tiles fade in by advancing their alpha one step per draw pass. On Wasm the canvas
+        // stops redrawing as soon as the map is idle, which strands freshly loaded tiles
+        // part-way through the fade and leaves the basemap washed out.
+        mapState.disableFadeIn()
+    }
+
+    // Keyed on the station identities rather than the list, so a refresh that only changes bike
+    // counts doesn't tear down and rebuild every marker.
+    val stationIds = remember(stations) { stations.map { it.markerId() } }
+    LaunchedEffect(mapState, stationIds) {
+        mapState.removeAllMarkers()
+        if (stationIds.isEmpty()) return@LaunchedEffect
+
+        mapState.addClusterer(STATION_CLUSTERER, clusteringThreshold = 40.dp) { ids ->
+            { ClusterBubble(count = ids.size) }
         }
 
-        // The selected station is looked up again on every refresh so the card keeps counting
-        // down with the rest of the screen rather than freezing at the moment it was tapped.
-        val selected = remember(stations, selectedStation) {
-            selectedStation?.let { chosen -> stations.firstOrNull { it.isSameStationAs(chosen) } }
-        }
-
-        OsmMap(
-            camera = camera,
-            modifier = Modifier.fillMaxSize(),
-            onTap = { projection, position ->
-                selectedStation = stations.nearestTo(position, projection, with(density) { TAP_RADIUS.toPx() })
-            },
-        ) { projection ->
-            val markerRadius = MARKER_RADIUS.toPx()
-            val cullMargin = markerRadius * 3f
-
-            fun drawStation(station: Station, isSelected: Boolean) {
-                val position = projection.project(station.latitude, station.longitude)
-                if (position.x < -cullMargin || position.x > size.width + cullMargin) return
-                if (position.y < -cullMargin || position.y > size.height + cullMargin) return
-
-                val radius = if (isSelected) markerRadius * 1.45f else markerRadius
-                drawCircle(Color.Black.copy(alpha = 0.18f), radius + 1.5f, position.copy(y = position.y + 1f))
-                drawCircle(Color.White, radius, position)
-                drawCircle(station.availabilityColor(), radius - MARKER_RING_WIDTH.toPx(), position)
+        stations.forEach { station ->
+            val markerId = station.markerId()
+            mapState.addMarker(
+                id = markerId,
+                x = lonToUnitX(station.longitude),
+                y = latToUnitY(station.latitude),
+                relativeOffset = Offset(-0.5f, -0.5f),
+                renderingStrategy = RenderingStrategy.Clustering(STATION_CLUSTERER),
+            ) {
+                val current = latestStations.firstOrNull { it.markerId() == markerId } ?: station
+                StationMarker(color = current.availabilityColor())
             }
-
-            stations.forEach { station ->
-                if (!station.isSameStationAs(selected)) drawStation(station, isSelected = false)
-            }
-            // Drawn last so it sits above its neighbours in a dense city centre.
-            selected?.let { drawStation(it, isSelected = true) }
         }
 
+        mapState.snapScrollTo(stations.boundingBox(), padding = FRAMING_PADDING)
+    }
+
+    Box(modifier) {
+        MapUI(modifier = Modifier.fillMaxSize(), state = mapState)
+
+        // OpenStreetMap's licence requires the basemap to be credited wherever it is shown.
+        Text(
+            text = "© OpenStreetMap contributors",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(4.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.75f))
+                .padding(horizontal = 6.dp, vertical = 2.dp),
+        )
+
+        val selected = selectedMarkerId?.let { id -> stations.firstOrNull { it.markerId() == id } }
         selected?.let { station ->
             SelectedStationCard(
                 station = station,
-                onDismiss = { selectedStation = null },
+                onDismiss = { selectedMarkerId = null },
                 modifier = Modifier.align(Alignment.BottomStart).padding(12.dp).fillMaxWidth(0.8f),
             )
         }
+    }
+}
+
+@Composable
+private fun StationMarker(color: Color) {
+    Box(
+        modifier = Modifier
+            .size(MARKER_SIZE)
+            .clip(CircleShape)
+            .background(color)
+            .border(MARKER_RING_WIDTH, Color.White, CircleShape),
+    )
+}
+
+@Composable
+private fun ClusterBubble(count: Int) {
+    Box(
+        modifier = Modifier
+            .size(CLUSTER_SIZE)
+            .clip(CircleShape)
+            .background(MaterialTheme.colorScheme.primary)
+            .border(MARKER_RING_WIDTH, Color.White, CircleShape),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = count.toString(),
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.Bold,
+        )
     }
 }
 
@@ -168,43 +233,39 @@ private fun SelectedStationCard(station: Station, onDismiss: () -> Unit, modifie
 }
 
 /**
- * The station whose marker is closest to [position], or null if the tap landed on open map.
+ * The smallest box in MapCompose's unit-square space containing every station.
  *
- * Stations are matched in screen space rather than by geography so the touch target stays the
- * same size however far the map is zoomed out.
+ * A network with a single station has no extent, which would ask MapCompose to scale in
+ * infinitely, so such a box is given a small margin.
  */
-private fun List<Station>.nearestTo(
-    position: Offset,
-    projection: MapProjection,
-    radiusPx: Float,
-): Station? {
-    var nearest: Station? = null
-    var nearestDistanceSquared = radiusPx * radiusPx
-    forEach { station ->
-        val marker = projection.project(station.latitude, station.longitude)
-        val distanceSquared = (marker - position).getDistanceSquared()
-        if (distanceSquared <= nearestDistanceSquared) {
-            nearest = station
-            nearestDistanceSquared = distanceSquared
-        }
-    }
-    return nearest
+private fun List<Station>.boundingBox(): BoundingBox {
+    val xs = map { lonToUnitX(it.longitude) }
+    val ys = map { latToUnitY(it.latitude) }
+    val margin = SINGLE_STATION_MARGIN
+    val left = xs.min()
+    val right = xs.max()
+    val top = ys.min()
+    val bottom = ys.max()
+    return BoundingBox(
+        xLeft = if (right - left > 0) left else left - margin,
+        yTop = if (bottom - top > 0) top else top - margin,
+        xRight = if (right - left > 0) right else right + margin,
+        yBottom = if (bottom - top > 0) bottom else bottom + margin,
+    )
 }
 
 /**
  * The polled station feed hands back fresh [Station] instances every thirty seconds, so identity
  * is taken from the station's id — falling back to its name for the networks that omit ids.
  */
-private fun Station.isSameStationAs(other: Station?): Boolean {
-    if (other == null) return false
-    val id = id
-    return if (!id.isNullOrEmpty()) id == other.id else name == other.name
-}
+private fun Station.markerId(): String = id?.takeIf { it.isNotEmpty() } ?: name
 
-private val MARKER_RADIUS = 7.dp
+private const val STATION_CLUSTERER = "stations"
+private val MARKER_SIZE = 14.dp
+private val CLUSTER_SIZE = 28.dp
 private val MARKER_RING_WIDTH = 2.dp
-private val TAP_RADIUS = 20.dp
-private val FRAMING_PADDING = 32.dp
 
-/** Even a compact network should not open zoomed further in than a few streets. */
-private const val MAX_FRAMING_ZOOM = 16f
+/** Fraction of the viewport left as margin when framing a whole network. */
+private val FRAMING_PADDING = Offset(0.15f, 0.15f)
+
+private const val SINGLE_STATION_MARGIN = 0.0005

@@ -63,6 +63,7 @@ kotlin {
             implementation(libs.compose.adaptive)
             implementation(libs.compose.adaptive.layout)
             implementation(libs.lifecyle.runtime)
+            implementation(libs.mapcompose)
         }
 
         androidMain.dependencies {
