@@ -1,5 +1,6 @@
 package dev.johnoreilly.common.ui.map
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -49,6 +50,7 @@ import ovh.plrapps.mapcompose.api.disableFadeIn
 import ovh.plrapps.mapcompose.api.onMarkerClick
 import ovh.plrapps.mapcompose.api.removeAllMarkers
 import ovh.plrapps.mapcompose.api.snapScrollTo
+import ovh.plrapps.mapcompose.api.updateMarkerZ
 import ovh.plrapps.mapcompose.ui.MapUI
 import ovh.plrapps.mapcompose.ui.state.MapState
 import ovh.plrapps.mapcompose.ui.state.markers.model.RenderingStrategy
@@ -113,11 +115,23 @@ fun StationMap(stations: List<Station>, modifier: Modifier = Modifier) {
                 renderingStrategy = RenderingStrategy.Clustering(STATION_CLUSTERER),
             ) {
                 val current = latestStations.firstOrNull { it.markerId() == markerId } ?: station
-                StationMarker(color = current.availabilityColor())
+                StationMarker(
+                    color = current.availabilityColor(),
+                    isSelected = selectedMarkerId == markerId,
+                )
             }
         }
 
         mapState.snapScrollTo(stations.boundingBox(), padding = FRAMING_PADDING)
+    }
+
+    // Lift the selected marker above its neighbours so the enlarged one is not hidden behind
+    // them in a dense city centre — the canvas renderer did this by drawing it last.
+    var raisedMarkerId by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(mapState, selectedMarkerId) {
+        raisedMarkerId?.let { mapState.updateMarkerZ(it, 0f) }
+        selectedMarkerId?.let { mapState.updateMarkerZ(it, 1f) }
+        raisedMarkerId = selectedMarkerId
     }
 
     Box(modifier) {
@@ -148,10 +162,14 @@ fun StationMap(stations: List<Station>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun StationMarker(color: Color) {
+private fun StationMarker(color: Color, isSelected: Boolean) {
+    val size by animateDpAsState(
+        targetValue = if (isSelected) MARKER_SIZE * SELECTED_MARKER_SCALE else MARKER_SIZE,
+        label = "stationMarkerSize",
+    )
     Box(
         modifier = Modifier
-            .size(MARKER_SIZE)
+            .size(size)
             .clip(CircleShape)
             .background(color)
             .border(MARKER_RING_WIDTH, Color.White, CircleShape),
@@ -262,6 +280,9 @@ private fun Station.markerId(): String = id?.takeIf { it.isNotEmpty() } ?: name
 
 private const val STATION_CLUSTERER = "stations"
 private val MARKER_SIZE = 14.dp
+
+/** How much the selected marker grows, matching the canvas renderer this replaced. */
+private const val SELECTED_MARKER_SCALE = 1.45f
 private val CLUSTER_SIZE = 28.dp
 private val MARKER_RING_WIDTH = 2.dp
 
