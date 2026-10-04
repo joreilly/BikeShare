@@ -11,6 +11,16 @@
         "/^com\\.android\\.[a-z.]+:com\\.android\\.[a-z.]+\\.gradle\\.plugin$/"
       ],
       "enabled": false
+    },
+    {
+      "description": "Gradle 9.7+ doesn't work with the current IntelliJ, so the wrapper is pinned to 9.6.x. Still allows 9.6 patch releases; lift this once IntelliJ supports 9.7.",
+      "matchManagers": [
+        "gradle-wrapper"
+      ],
+      "matchPackageNames": [
+        "gradle"
+      ],
+      "allowedVersions": "<9.7"
     }
   ]
 }
