@@ -12,10 +12,14 @@ Running on
 * Swift Executable Package
 
 Related posts:
+* [Using Kodein-DB NoSQL database in a Kotlin Multiplatform project](https://johnoreilly.dev/posts/kodein-db-multiplatform/)
+* [Exploring use of StateFlow in a Kotlin Multiplatform project](https://johnoreilly.dev/posts/state-flow-multiplatform/)
+* [Creating SwiftUI Multiplatform project (iOS and macOS) that consumes shared Kotlin Multiplatform non-UI code!](https://johnoreilly.dev/posts/swiftui-multiplatform-kotlin-multiplatform/)
 * [Using SwiftUI and Compose to develop App Widgets on iOS and Android](https://johnoreilly.dev/posts/ios-android-widget-kmp/)
 * [Bridging the gap between Swift 5.5 concurrency and Kotlin Coroutines with KMP-NativeCoroutines](https://johnoreilly.dev/posts/kmp-native-coroutines/)
 * [Creating a Swift command line app that consumes Kotlin Multiplatform code - Part 2](https://johnoreilly.dev/posts/swift-command-line-kotlin-multiplatform-part2/)
 * [Using kotlin-inject in a Kotlin/Compose Multiplatform project](https://johnoreilly.dev/posts/kotlin-inject-kmp/)
+* [Using Circuit with kotlin-inject in a Kotlin/Compose Multiplatform project](https://johnoreilly.dev/posts/circuit-cmp-kmp/)
 
 ## Building and running
 
