@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 ksp = "2.3.12"
 
 androidGradlePlugin = "9.1.1"
@@ -10,8 +10,8 @@ androidxNavigationCompose = "2.10.2"
 androidxRoom = "3.0.3"
 circuit = "0.39.0"
 composeLifecyleRuntime="2.11.0"
-compose-multiplatform = "1.12.1"
-composeAdaptiveLayout = "1.2.0"
+compose-multiplatform = "1.12.2"
+composeAdaptiveLayout = "1.3.0"
 coroutines = "1.11.0"
 junit = "4.13.2"
 kmpNativeCoroutines = "1.0.6"
