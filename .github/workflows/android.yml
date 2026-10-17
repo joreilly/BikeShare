@@ -73,12 +73,13 @@ jobs:
             adb install androidApp/build/outputs/apk/debug/androidApp-debug.apk
             maestro test --debug-output maestro-debug -e APP_ID=dev.johnoreilly.bikeshare maestro/BikeShare.flow
 
+      # takeScreenshot output: Maestro saves it under --debug-output's hidden .maestro directory
       - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: maestro-screenshot-android
-          path: BikeShare.png
-          if-no-files-found: ignore
+          path: maestro-debug/**/takeScreenshot/*.png
+          include-hidden-files: true
 
       # Maestro's logs, screenshots and view hierarchy, to diagnose failures
       # (Maestro writes under a hidden .maestro directory, hence include-hidden-files)
