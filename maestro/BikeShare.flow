@@ -1,0 +1,21 @@
+# Shared by the Android and iOS apps: CI passes APP_ID with -e
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+
+# Countries, networks and stations come from the live CityBikes API, so allow for a slow network
+- scrollUntilVisible:
+    element: "Ireland"
+    timeout: 30000
+- tapOn: "Ireland"
+
+- extendedWaitUntil:
+    visible: "Galway"
+    timeout: 30000
+- tapOn: "Galway"
+
+- extendedWaitUntil:
+    visible: "Available Bikes"
+    timeout: 30000
+- takeScreenshot: BikeShare
