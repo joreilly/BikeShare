@@ -39,6 +39,11 @@ Requires JDK 17+ and a recent Android Studio release with AGP 9.x support (the p
 Note that this makes use of https://github.com/Shusshu/android-flags for flag images shown.
 
 
+### UI tests
+
+There's a [Maestro](https://maestro.mobile.dev/) UI test flow shared by the Android and iOS clients, run by CI on
+an emulator and a simulator (e.g. `maestro test -e APP_ID=dev.johnoreilly.bikeshare maestro/BikeShare.flow`).
+
 ## Full set of Kotlin Multiplatform/Compose/SwiftUI samples
 
 *  PeopleInSpace (https://github.com/joreilly/PeopleInSpace)
