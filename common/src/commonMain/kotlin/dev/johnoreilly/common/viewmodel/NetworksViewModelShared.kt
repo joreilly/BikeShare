@@ -1,9 +1,9 @@
 package dev.johnoreilly.common.viewmodel
 
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
-import com.rickclephas.kmp.observableviewmodel.stateIn
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.stateIn
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,9 +16,8 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 
 @Inject
 open class NetworksViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
-    private val countryCode = MutableStateFlow<String?>(viewModelScope, null)
+    private val countryCode = MutableStateFlow<String?>(null)
 
-    @NativeCoroutinesState
     val networkList: StateFlow<List<Network>> = combine(countryCode, cityBikesRepository.groupedNetworkList) { countryCode, groupedNetworkList ->
         groupedNetworkList[countryCode]?.sortedBy { it.city }
     }.filterNotNull().stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
