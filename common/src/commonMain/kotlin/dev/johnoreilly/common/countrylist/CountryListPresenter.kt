@@ -24,12 +24,14 @@ class CountryListPresenter(
     @Composable
     override fun present(): CountryListScreen.State {
         val groupedNetworkList by cityBikesRepository.groupedNetworkList.collectAsState()
+        val loadError by cityBikesRepository.networkListLoadError.collectAsState()
         val countryCodeList = groupedNetworkList.keys.toList()
         val countryList = countryCodeList.map { countryCode -> Country(countryCode, getCountryName(countryCode)) }
             .sortedBy { it.displayName }
-        return CountryListScreen.State(countryList) { event ->
+        return CountryListScreen.State(countryList, loadError) { event ->
             when (event) {
                 is CountryListScreen.Event.CountryClicked -> navigator.goTo(NetworkListScreen(event.countryCode))
+                CountryListScreen.Event.Retry -> cityBikesRepository.refreshNetworkList()
             }
         }
     }

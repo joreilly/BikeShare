@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -48,15 +50,34 @@ fun CountryListUi(state: CountryListScreen.State, modifier: Modifier = Modifier)
             ) 
         }
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(horizontal = 12.dp, vertical = 8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(state.countryList) { country ->
-                CountryView(country) {
-                    state.eventSink(CountryListScreen.Event.CountryClicked(country.code))
+        if (state.countryList.isEmpty()) {
+            // Nothing cached yet: show the first load, or why it failed, rather than an empty screen
+            Column(
+                modifier = Modifier.padding(innerPadding).fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (state.loadError != null) {
+                    Text(state.loadError, style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.height(16.dp))
+                    Button(onClick = { state.eventSink(CountryListScreen.Event.Retry) }) {
+                        Text("Retry")
+                    }
+                } else {
+                    CircularProgressIndicator()
+                }
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(state.countryList) { country ->
+                    CountryView(country) {
+                        state.eventSink(CountryListScreen.Event.CountryClicked(country.code))
+                    }
                 }
             }
         }

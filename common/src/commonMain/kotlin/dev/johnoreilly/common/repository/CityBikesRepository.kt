@@ -25,6 +25,10 @@ class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDataba
 
     private val _networkList = MutableStateFlow<List<Network>>(emptyList())
 
+    // Set once fetching the network list has failed on every attempt; cleared when a fetch starts
+    private val _networkListLoadError = MutableStateFlow<String?>(null)
+    val networkListLoadError: StateFlow<String?> = _networkListLoadError
+
     init {
         mainScope.launch {
             launch {
@@ -42,19 +46,31 @@ class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDataba
         }
     }
 
-    private suspend fun fetchAndStoreNetworkList() {
-        try {
-            val networkList = cityBikesApi.fetchNetworkList().networks
-            println(networkList)
+    fun refreshNetworkList() {
+        mainScope.launch { fetchAndStoreNetworkList() }
+    }
 
-            database.bikeShareDao().insertNetworkList(networkList.map {
-                Network(it.id, it.name, it.location.city,
-                    it.location.country, it.location.latitude, it.location.longitude)
-            })
-        } catch (e: Exception) {
-            // TODO report error up to UI
-            println("Exception during fetchAndStorePeople: $e")
+    // Retries with a growing delay, as the network list is only fetched at startup and a single
+    // failed request (e.g. a slow or rate-limited API) would otherwise leave the list empty
+    private suspend fun fetchAndStoreNetworkList() {
+        _networkListLoadError.value = null
+        repeat(FETCH_ATTEMPTS) { attempt ->
+            try {
+                val networkList = cityBikesApi.fetchNetworkList().networks
+
+                database.bikeShareDao().insertNetworkList(networkList.map {
+                    Network(it.id, it.name, it.location.city,
+                        it.location.country, it.location.latitude, it.location.longitude)
+                })
+                return
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                println("Exception during fetchAndStoreNetworkList (attempt ${attempt + 1}): $e")
+                if (attempt < FETCH_ATTEMPTS - 1) delay(FETCH_RETRY_DELAY * (attempt + 1))
+            }
         }
+        _networkListLoadError.value = "Could not load bike networks"
     }
 
 
@@ -78,5 +94,7 @@ class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDataba
 
     companion object {
         private const val POLL_INTERVAL = 30000L
+        private const val FETCH_ATTEMPTS = 3
+        private const val FETCH_RETRY_DELAY = 3000L
     }
 }
