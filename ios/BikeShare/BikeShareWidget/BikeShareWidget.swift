@@ -2,7 +2,6 @@ import WidgetKit
 import SwiftUI
 import common
 import Combine
-import KMPNativeCoroutinesAsync
 
 
 final class Provider: TimelineProvider {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BikeShareKit
+import Common
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

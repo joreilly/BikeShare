@@ -1,39 +1,39 @@
 import SwiftUI
 import MapKit
-import BikeShareKit
-import KMPObservableViewModelCore
-import KMPObservableViewModelSwiftUI
+import Common
 
 
 enum Route: Hashable {
     case networks(countryCode: String)
-    case stations(network: Network)
+    case stations(network: model.Network)
 }
 
 struct ContentView : View {
-    let applicationComponent: IosApplicationComponent
+    let applicationComponent: di.IosApplicationComponent
     
-    @ObservedViewModel var viewModel: CountriesViewModelShared
+    @State private var viewModel: viewmodel.CountriesViewModelShared
     @State var query: String = ""
     @State private var path = NavigationPath()
     
-    init(applicationComponent: IosApplicationComponent) {
+    init(applicationComponent: di.IosApplicationComponent) {
         self.applicationComponent = applicationComponent
-        self.viewModel = applicationComponent.countriesViewModel
+        self._viewModel = State(initialValue: applicationComponent.countriesViewModel)
     }
     
     var body: some View {
         NavigationStack(path: $path) {
-            ScrollView {
-                LazyVStack(spacing: 8) {
-                    ForEach(viewModel.countryList.filter { query.isEmpty || $0.displayName.contains(query)}, id: \.self) { country in
-                        NavigationLink(value: Route.networks(countryCode: country.code)) {
-                            CountryCardView(country: country)
+            Observing(viewModel.countryList) { countryList in
+                ScrollView {
+                    LazyVStack(spacing: 8) {
+                        ForEach(countryList.filter { query.isEmpty || $0.displayName.contains(query)}, id: \.self) { country in
+                            NavigationLink(value: Route.networks(countryCode: country.code)) {
+                                CountryCardView(country: country)
+                            }
                         }
                     }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
             }
             .background(Color(UIColor.systemGroupedBackground))
             .searchable(text: $query)
@@ -52,7 +52,7 @@ struct ContentView : View {
 }
 
 struct CountryCardView: View {
-    let country: Country
+    let country: viewmodel.Country
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
@@ -83,29 +83,31 @@ struct CountryCardView: View {
 
 
 struct NetworkListView: View {
-    let applicationComponent: IosApplicationComponent
+    let applicationComponent: di.IosApplicationComponent
     let countryCode: String
     
-    @ObservedViewModel var viewModel: NetworksViewModelShared
+    @State private var viewModel: viewmodel.NetworksViewModelShared
 
-    init(applicationComponent: IosApplicationComponent, countryCode: String) {
+    init(applicationComponent: di.IosApplicationComponent, countryCode: String) {
         self.applicationComponent = applicationComponent
         self.countryCode = countryCode
-        self.viewModel = applicationComponent.networksViewModel
+        self._viewModel = State(initialValue: applicationComponent.networksViewModel)
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 8) {
-                ForEach(viewModel.networkList) { network in
-                    NavigationLink(value: Route.stations(network: network)) {
-                        NetworkCardView(network: network)
+        Observing(viewModel.networkList) { networkList in
+            ScrollView {
+                LazyVStack(spacing: 8) {
+                    ForEach(networkList) { network in
+                        NavigationLink(value: Route.stations(network: network)) {
+                            NetworkCardView(network: network)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
         }
         .background(Color(UIColor.systemGroupedBackground))
         .navigationTitle(countryName(from: countryCode))
@@ -117,7 +119,7 @@ struct NetworkListView: View {
 }
 
 struct NetworkCardView: View {
-    let network: Network
+    let network: model.Network
     
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
@@ -152,27 +154,29 @@ struct NetworkCardView: View {
 
 
 struct StationListTabView: View {
-    let applicationComponent: IosApplicationComponent
-    var network: Network
+    let applicationComponent: di.IosApplicationComponent
+    var network: model.Network
     
-    @ObservedViewModel var viewModel: StationsViewModelShared
+    @State private var viewModel: viewmodel.StationsViewModelShared
 
-    init(applicationComponent: IosApplicationComponent, network: Network) {
+    init(applicationComponent: di.IosApplicationComponent, network: model.Network) {
         self.applicationComponent = applicationComponent
         self.network = network
-        self.viewModel = applicationComponent.stationsViewModel
+        self._viewModel = State(initialValue: applicationComponent.stationsViewModel)
     }
 
     var body: some View {
-        TabView {
-            StationListView(stations: viewModel.stations, network: network)
-                .tabItem {
-                    Label("List", systemImage: "list.dash")
-                }
-            StationMapView(stations: viewModel.stations, network: network)
-                .tabItem {
-                    Label("Map", systemImage: "location")
-                }
+        Observing(viewModel.stations) { stations in
+            TabView {
+                StationListView(stations: stations, network: network)
+                    .tabItem {
+                        Label("List", systemImage: "list.dash")
+                    }
+                StationMapView(stations: stations, network: network)
+                    .tabItem {
+                        Label("Map", systemImage: "location")
+                    }
+            }
         }
         .navigationTitle(network.id)
         .onAppear {
@@ -183,8 +187,8 @@ struct StationListTabView: View {
 
 
 struct StationListView: View {
-    var stations : [Station]
-    var network: Network
+    var stations : [remote.Station]
+    var network: model.Network
     
     var body: some View {
         ScrollView {
@@ -203,7 +207,7 @@ struct StationListView: View {
 }
 
 struct StationView : View {
-    var station: Station
+    var station: remote.Station
 
     var body: some View {
         let totalSlots = station.freeBikes() + station.slots()
@@ -306,8 +310,8 @@ struct StationView : View {
 
 
 struct StationMapView : View {
-    var stations : [Station]
-    var network: Network
+    var stations : [remote.Station]
+    var network: model.Network
     @State var region = MKCoordinateRegion(center: .init(latitude: 0, longitude: 0),
                                            latitudinalMeters: 5000, longitudinalMeters: 5000)
 
@@ -367,8 +371,14 @@ func countryFlag(from countryCode: String) -> String {
 }
     
 
-extension Station: @retroactive Identifiable { }
-extension Network: @retroactive Identifiable { }
+extension remote.Station: @retroactive Identifiable { }
+extension model.Network: @retroactive Identifiable { }
+
+// Kotlin extension functions are exported as package-level functions taking the receiver
+extension remote.Station {
+    func freeBikes() -> Int32 { remote.freeBikes(self) }
+    func slots() -> Int32 { remote.slots(self) }
+}
                                    
 
 

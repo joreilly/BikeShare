@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.kmpNativeCoroutines)
     alias(libs.plugins.room)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
@@ -51,7 +50,7 @@ kotlin {
             implementation(libs.bundles.ktor.common)
             implementation(libs.androidx.room.runtime)
 
-            api(libs.kmpObservableViewModel)
+            implementation(libs.lifecycle.viewmodel)
 
             implementation(compose.ui)
             implementation(compose.runtime)

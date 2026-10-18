@@ -1,9 +1,9 @@
 package dev.johnoreilly.common.viewmodel
 
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
-import com.rickclephas.kmp.observableviewmodel.stateIn
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.stateIn
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,9 +18,8 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 @OptIn(ExperimentalCoroutinesApi::class)
 @Inject
 open class StationsViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
-    private val network = MutableStateFlow<String?>(viewModelScope, null)
+    private val network = MutableStateFlow<String?>(null)
 
-    @NativeCoroutinesState
     val stations: StateFlow<List<Station>> = network.filterNotNull().flatMapLatest {
         cityBikesRepository.pollNetworkUpdates(it)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())

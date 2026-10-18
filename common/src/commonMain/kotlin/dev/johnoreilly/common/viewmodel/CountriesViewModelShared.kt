@@ -1,8 +1,8 @@
 package dev.johnoreilly.common.viewmodel
 
-import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
-import com.rickclephas.kmp.observableviewmodel.ViewModel
-import com.rickclephas.kmp.observableviewmodel.stateIn
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.stateIn
 import dev.johnoreilly.common.getCountryName
 import dev.johnoreilly.common.repository.CityBikesRepository
 import kotlinx.coroutines.flow.SharingStarted
@@ -21,7 +21,6 @@ open class CountriesViewModelShared(cityBikesRepository: CityBikesRepository) : 
     /**
      * List of countries for which there are bike networks
      */
-    @NativeCoroutinesState
     val countryList: StateFlow<List<Country>> = cityBikesRepository.groupedNetworkList.map {
         it.keys.toList().map { countryCode ->
             Country(countryCode, getCountryName(countryCode))
