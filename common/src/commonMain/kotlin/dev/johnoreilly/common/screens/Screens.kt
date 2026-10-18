@@ -17,11 +17,13 @@ annotation class Parcelize
 data object CountryListScreen : ParcelableScreen {
     data class State(
         val countryList: List<Country>,
+        val loadError: String? = null,
         val eventSink: (Event) -> Unit
     ) : CircuitUiState
 
     sealed class Event : CircuitUiEvent {
         data class CountryClicked(val countryCode: String) : Event()
+        data object Retry : Event()
     }
 }
 

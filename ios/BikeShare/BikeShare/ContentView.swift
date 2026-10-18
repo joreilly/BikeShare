@@ -23,16 +23,34 @@ struct ContentView : View {
     var body: some View {
         NavigationStack(path: $path) {
             Observing(viewModel.countryList) { countryList in
-                ScrollView {
-                    LazyVStack(spacing: 8) {
-                        ForEach(countryList.filter { query.isEmpty || $0.displayName.contains(query)}, id: \.self) { country in
-                            NavigationLink(value: Route.networks(countryCode: country.code)) {
-                                CountryCardView(country: country)
+                if countryList.isEmpty {
+                    // Nothing cached yet: show the first load, or why it failed, rather than an empty screen
+                    Observing(viewModel.loadError) { loadError in
+                        if let loadError {
+                            VStack(spacing: 16) {
+                                Text(loadError)
+                                    .font(.headline)
+                                Button("Retry") { viewModel.retry() }
+                                    .buttonStyle(.borderedProminent)
                             }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        } else {
+                            ProgressView()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
+                } else {
+                    ScrollView {
+                        LazyVStack(spacing: 8) {
+                            ForEach(countryList.filter { query.isEmpty || $0.displayName.contains(query)}, id: \.self) { country in
+                                NavigationLink(value: Route.networks(countryCode: country.code)) {
+                                    CountryCardView(country: country)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                    }
                 }
             }
             .background(Color(UIColor.systemGroupedBackground))

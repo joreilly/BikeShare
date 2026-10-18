@@ -4,10 +4,12 @@ appId: ${APP_ID}
 - launchApp:
     clearState: true
 
-# Countries, networks and stations come from the live CityBikes API, so allow for a slow network
+# Countries, networks and stations come from the live CityBikes API, so allow for a slow network.
+# The first load is the slowest: the app fetches the whole network list (retrying on failure)
+# before any country shows, and shows "Could not load bike networks" if every attempt fails.
 - scrollUntilVisible:
     element: "Ireland"
-    timeout: 30000
+    timeout: 90000
 - tapOn: "Ireland"
 
 - extendedWaitUntil:

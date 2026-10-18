@@ -16,7 +16,7 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 data class Country(val code: String, val displayName: String)
 
 @Inject
-open class CountriesViewModelShared(cityBikesRepository: CityBikesRepository) : ViewModel() {
+open class CountriesViewModelShared(private val cityBikesRepository: CityBikesRepository) : ViewModel() {
 
     /**
      * List of countries for which there are bike networks
@@ -26,4 +26,13 @@ open class CountriesViewModelShared(cityBikesRepository: CityBikesRepository) : 
             Country(countryCode, getCountryName(countryCode))
         }.sortedBy { it.displayName }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+
+    /**
+     * Set when the network list couldn't be loaded, so an empty list can show why
+     */
+    val loadError: StateFlow<String?> = cityBikesRepository.networkListLoadError
+
+    fun retry() {
+        cityBikesRepository.refreshNetworkList()
+    }
 }
