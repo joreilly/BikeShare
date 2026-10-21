@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.5.0-Beta2-58"
+kotlin = "2.5.0-Beta2-207"
 ksp = "2.3.12"
 
 androidGradlePlugin = "9.1.1"
