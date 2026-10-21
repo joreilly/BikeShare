@@ -25,10 +25,6 @@ kotlin {
         swift {
             moduleName = "BikeShareKit"
             xcodeIntegration {
-                configure(projects.common) {
-                    moduleName = "Common"
-                    rootPackage = "dev.johnoreilly.common"
-                }
                 // Everything :common's public API drags in that Swift doesn't use (Circuit, Compose,
                 // Ktor, Room, ...). Only the stdlib and coroutines (for StateFlow) stay exposed.
                 listOf(
