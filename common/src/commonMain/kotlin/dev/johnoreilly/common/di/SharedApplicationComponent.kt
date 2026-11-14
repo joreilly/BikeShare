@@ -1,6 +1,7 @@
 package dev.johnoreilly.common.di
 
 import dev.johnoreilly.common.database.AppDatabase
+import dev.johnoreilly.common.repository.CityBikesRepository
 import dev.johnoreilly.common.ui.BikeShareApp
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
@@ -21,6 +22,7 @@ import software.amazon.lastmile.kotlin.inject.anvil.SingleIn
 @SingleIn(AppScope::class)
 interface SharedApplicationComponent {
     val bikeShareApp: BikeShareApp
+    val cityBikesRepository: CityBikesRepository
 
     @Provides
     fun json(): Json = Json { isLenient = true; ignoreUnknownKeys = true; useAlternativeNames = false }

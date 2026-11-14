@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BikeShare</string>
+    <string name="app_functions_display_description">Lets assistants find bike share schemes and check live bike and dock availability at their stations.</string>
 </resources>

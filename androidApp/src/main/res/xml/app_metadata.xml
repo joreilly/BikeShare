@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AppFunctionAppMetadata xmlns:appfn="http://schemas.android.com/apk/androidx.appfunctions"
+    appfn:displayDescription="@string/app_functions_display_description"
+    appfn:instructions="BikeShare shows public bike share schemes worldwide, from the CityBikes service, and the live number of free bikes and empty docks at each scheme's stations.
+Operational patterns:
+- The station functions take a 'networkId'. Get it from 'listNetworks', searching by city, scheme name or country code (for example 'Dublin').
+- To find stations near a place, pass its coordinates to 'findNearbyStations'. Use 'minFreeBikes' when the user wants to take a bike, and 'minEmptyDocks' when they want to return one.
+- To look up a station by name, use 'listStations' with a 'query' such as a street or landmark.
+- Stations include their coordinates, for directions.
+Constraints:
+- Bike and dock counts are live and change minute to minute; fetch them again rather than reusing earlier results." />
