@@ -4,6 +4,7 @@ ksp = "2.3.13"
 
 androidGradlePlugin = "9.1.1"
 androidxActivity = "1.13.0"
+androidxAppFunctions = "1.0.0-rc01"
 androidxComposeBom = "2026.09.00"
 androidxLifecycle = "2.11.0"
 androidxNavigationCompose = "2.10.2"
@@ -37,6 +38,8 @@ kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutin
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 
+androidx-appfunctions = { module = "androidx.appfunctions:appfunctions", version.ref = "androidxAppFunctions" }
+androidx-appfunctions-compiler = { module = "androidx.appfunctions:appfunctions-compiler", version.ref = "androidxAppFunctions" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }

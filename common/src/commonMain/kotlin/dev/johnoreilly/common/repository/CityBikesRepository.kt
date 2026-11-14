@@ -4,6 +4,8 @@ import dev.johnoreilly.common.database.AppDatabase
 import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.remote.CityBikesApi
 import dev.johnoreilly.common.remote.Station
+import io.ktor.client.plugins.ClientRequestException
+import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import me.tatarka.inject.annotations.Inject
@@ -87,10 +89,30 @@ class CityBikesRepository(val cityBikesApi: CityBikesApi,val database: AppDataba
         }
     }
 
+    // The stored network list, fetching it first if it hasn't been stored yet (e.g. when read
+    // before the app's startup fetch has finished). Throws if it can't be fetched.
+    suspend fun getNetworkList(): List<Network> {
+        val stored = database.bikeShareDao().getNetworkListAsFlow().first()
+        if (stored.isNotEmpty()) return stored
+        return cityBikesApi.fetchNetworkList().networks.map {
+            Network(it.id, it.name, it.location.city,
+                it.location.country, it.location.latitude, it.location.longitude)
+        }
+    }
+
     suspend fun fetchBikeShareInfo(network: String) : List<Station> {
         val result = cityBikesApi.fetchBikeShareInfo(network)
         return result.network.stations
     }
+
+    // Like fetchBikeShareInfo, but null when there's no network with that ID (the API answers
+    // 404) rather than throwing, so callers can tell an unknown network from a failed request.
+    suspend fun fetchBikeShareInfoOrNull(network: String): List<Station>? =
+        try {
+            fetchBikeShareInfo(network)
+        } catch (e: ClientRequestException) {
+            if (e.response.status == HttpStatusCode.NotFound) null else throw e
+        }
 
     companion object {
         private const val POLL_INTERVAL = 30000L
