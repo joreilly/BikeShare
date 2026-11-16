@@ -13,6 +13,7 @@ import com.google.mlkit.genai.common.DownloadStatus
 import com.google.mlkit.genai.common.FeatureStatus
 import com.google.mlkit.genai.prompt.Content
 import com.google.mlkit.genai.prompt.Generation
+import com.google.mlkit.genai.prompt.GenerativeModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -71,8 +72,12 @@ class BikeShareAgentViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private suspend fun prepareModel() {
-        val model = Generation.getClient()
+        // Everything ML Kit, getClient() included, stays inside the try: this runs at app start,
+        // and a failure here must hide "Ask", never crash the app (1.0.17 did, when R8 broke
+        // ML Kit's initialisation).
+        var model: GenerativeModel? = null
         try {
+            model = Generation.getClient()
             when (val status = model.checkStatus()) {
                 FeatureStatus.AVAILABLE -> _availability.value = Availability.Ready
                 FeatureStatus.DOWNLOADABLE, FeatureStatus.DOWNLOADING -> {
@@ -98,7 +103,7 @@ class BikeShareAgentViewModel(application: Application) : AndroidViewModel(appli
         } catch (e: Exception) {
             unsupported("Couldn't check for Gemini Nano: ${e.message}")
         } finally {
-            model.close()
+            model?.close()
         }
     }
 
