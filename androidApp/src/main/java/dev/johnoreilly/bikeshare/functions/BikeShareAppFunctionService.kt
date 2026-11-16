@@ -22,6 +22,7 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlin.math.sqrt
+import java.util.Locale
 
 /**
  * AppFunctions for BikeShare. KSP generates the concrete [BikeShareAppFunctionService]
@@ -40,21 +41,16 @@ abstract class BaseBikeShareAppFunctionService : AppFunctionService() {
     /**
      * Lists the bike share networks (schemes) that BikeShare knows about, worldwide.
      *
-     * @param query Text to match against a network's name, city or country code (for example
-     *   "Dublin", "Velib" or "FR"), ignoring case. Omit it to list every network.
+     * @param query Text to match against a network's name or city, or a country's name or code
+     *   (for example "Dublin", "Velib", "France" or "FR"), ignoring case. Omit it to list every network.
      * @return The matching networks, with the ID that the station functions take.
      */
     @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun listNetworks(query: String? = null): List<NetworkResponse> =
         withContext(Dispatchers.IO) {
             val networks = load("the list of bike share networks") { repository.getNetworkList() }
-            val text = query?.trim().orEmpty()
             networks
-                .filter {
-                    text.isEmpty() || it.name.contains(text, ignoreCase = true) ||
-                        it.city.contains(text, ignoreCase = true) ||
-                        it.country.equals(text, ignoreCase = true)
-                }
+                .filter { it.matchesQuery(query) }
                 .sortedWith(compareBy({ it.country }, { it.city }))
                 .map { it.toResponse() }
         }
@@ -66,15 +62,22 @@ abstract class BaseBikeShareAppFunctionService : AppFunctionService() {
      * @param networkId ID of the network, as returned in [NetworkResponse.id].
      * @param query Text to match against a station's name, ignoring case, such as a street or
      *   landmark. Omit it to list every station in the network.
-     * @return The matching stations, sorted by name.
+     * @param sortBy "freeBikes" or "emptyDocks" to list the stations with the most of those first,
+     *   for questions like "which stations have the most bikes". Omit it to sort by name.
+     * @param limit Maximum number of stations to return. Omit it to return them all; use a small
+     *   limit, such as 5, with sortBy.
+     * @return The matching stations.
      */
     @AppFunctionDeclaration(isDescribedByKDoc = true)
-    suspend fun listStations(networkId: String, query: String? = null): List<StationResponse> =
+    suspend fun listStations(
+        networkId: String,
+        query: String? = null,
+        sortBy: String? = null,
+        limit: Int = 0,
+    ): List<StationResponse> =
         withContext(Dispatchers.IO) {
-            val text = query?.trim().orEmpty()
             stations(networkId)
-                .filter { text.isEmpty() || it.name.contains(text, ignoreCase = true) }
-                .sortedBy { it.name }
+                .selectStations(query, sortBy, limit)
                 .map { it.toResponse(distanceMetres = null) }
         }
 
@@ -218,3 +221,42 @@ data class StationResponse(
     /** Distance from the searched location in metres, or null when no location was searched. */
     val distanceMetres: Int?,
 )
+
+/**
+ * Whether a network matches [listNetworks]' query, written for how models phrase them:
+ * - countries by code ("IE") or English name ("Ireland"). A two-letter query is a country code
+ *   only, so "IE" doesn't also match every city containing "ie" (Wien, Kiel);
+ * - names and cities ignoring spaces and punctuation, so "Dublin Bikes" finds "dublinbikes";
+ * - a city named as one word of a longer query ("Galway bikes").
+ */
+internal fun Network.matchesQuery(query: String?): Boolean {
+    val text = query?.trim().orEmpty()
+    if (text.isEmpty()) return true
+    if (country.equals(text, ignoreCase = true) || countryName(country).equals(text, ignoreCase = true)) return true
+    if (text.length <= 2) return false
+    val wanted = text.normalized()
+    if (name.normalized().contains(wanted) || city.normalized().contains(wanted)) return true
+    return text.split(' ', ',').any { word -> word.length > 2 && city.equals(word, ignoreCase = true) }
+}
+
+private fun String.normalized() = lowercase().filter { it.isLetterOrDigit() }
+
+private fun countryName(code: String): String? =
+    runCatching { Locale.Builder().setRegion(code).build().getDisplayCountry(Locale.ENGLISH) }.getOrNull()
+
+/**
+ * [listStations]' filtering, ordering and limit. Ranking happens here rather than in the model:
+ * Gemini Nano, handed all 113 Dublin stations, named the wrong "top five" and misquoted two counts.
+ */
+internal fun List<Station>.selectStations(query: String?, sortBy: String?, limit: Int): List<Station> {
+    val text = query?.trim().orEmpty()
+    val matching = filter { text.isEmpty() || it.name.contains(text, ignoreCase = true) }
+    val sorted = when (sortBy?.trim()?.lowercase()) {
+        "freebikes", "free_bikes", "bikes" -> matching.sortedWith(compareByDescending<Station> { it.freeBikes() }.thenBy { it.name })
+        "emptydocks", "empty_docks", "docks", "emptyslots" ->
+            matching.sortedWith(compareByDescending<Station> { it.empty_slots ?: 0 }.thenBy { it.name })
+        else -> matching.sortedBy { it.name }
+    }
+    // An omitted limit arrives as 0, not the declared default.
+    return if (limit > 0) sorted.take(limit) else sorted
+}
