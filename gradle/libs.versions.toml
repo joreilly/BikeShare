@@ -4,7 +4,10 @@ ksp = "2.3.13"
 
 androidGradlePlugin = "9.1.1"
 androidxActivity = "1.13.0"
-androidxAppFunctions = "1.0.0-rc01"
+# Held at alpha13: ML Kit genai-agent 1.0.0-alpha1 calls into AppFunctions and was built against
+# alpha13. rc01 moved AppFunctionName out of the metadata package, so agent tool discovery fails
+# at runtime (NoSuchMethodError) with it. Move on when genai-agent does.
+androidxAppFunctions = "1.0.0-alpha13"
 androidxComposeBom = "2026.09.00"
 androidxLifecycle = "2.11.0"
 androidxNavigationCompose = "2.10.2"
@@ -19,6 +22,8 @@ kotlin-inject-anvil = "0.1.7"
 kotlininject = "0.9.0"
 kotlinxBrowser = "0.5.0"
 kotlinxSerialization = "1.12.0"
+mlkitGenaiAgent = "1.0.0-alpha1"
+markdownRenderer = "0.46.0"
 mapcompose = "1.1.6"
 ktor = "3.6.1"
 okhttp = "5.5.1"
@@ -40,6 +45,8 @@ kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seria
 
 androidx-appfunctions = { module = "androidx.appfunctions:appfunctions", version.ref = "androidxAppFunctions" }
 androidx-appfunctions-compiler = { module = "androidx.appfunctions:appfunctions-compiler", version.ref = "androidxAppFunctions" }
+markdown-renderer-m3 = { module = "com.mikepenz:multiplatform-markdown-renderer-m3", version.ref = "markdownRenderer" }
+mlkit-genai-agent = { module = "com.google.mlkit:genai-agent", version.ref = "mlkitGenaiAgent" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }

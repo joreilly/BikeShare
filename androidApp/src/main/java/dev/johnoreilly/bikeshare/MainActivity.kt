@@ -4,10 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import dev.johnoreilly.bikeshare.agent.AskBikeShareOverlay
+import dev.johnoreilly.bikeshare.agent.BikeShareAgentViewModel
 import dev.johnoreilly.bikeshare.ui.theme.BikeShareTheme
 
 
 class MainActivity : ComponentActivity() {
+
+    private val agentViewModel: BikeShareAgentViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -17,7 +22,9 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BikeShareTheme {
-                applicationComponent.bikeShareApp()
+                AskBikeShareOverlay(agentViewModel) {
+                    applicationComponent.bikeShareApp()
+                }
             }
         }
     }
