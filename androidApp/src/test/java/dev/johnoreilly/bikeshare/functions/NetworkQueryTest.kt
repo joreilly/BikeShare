@@ -11,6 +11,7 @@ class NetworkQueryTest {
         Network("bleeperbike", "Bleeper", "Dublin", "IE", 53.35, -6.26),
         Network("wienmobil-rad", "WienMobil Rad", "Wien", "AT", 48.2, 16.37),
         Network("velib", "Velib' Métropole", "Paris", "FR", 48.86, 2.35),
+        Network("citi-bike-nyc", "Citi Bike", "New York, NY", "US", 40.71, -74.0),
     )
 
     private fun matching(query: String?) = networks.filter { it.matchesQuery(query) }.map { it.id }
@@ -38,8 +39,11 @@ class NetworkQueryTest {
     }
 
     @Test
-    fun aCityNamedInALongerQueryMatches() {
+    fun aNameOrCityWithinALongerQueryMatches() {
         assertEquals(listOf("velib"), matching("bikes in Paris"))
+        // Gemini Nano asked for "Citi Bike New York"
+        assertEquals(listOf("citi-bike-nyc"), matching("Citi Bike New York"))
+        assertEquals(listOf("citi-bike-nyc"), matching("New York"))
     }
 
     @Test

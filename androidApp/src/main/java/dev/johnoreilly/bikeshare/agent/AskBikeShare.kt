@@ -148,7 +148,7 @@ private fun AskBikeShareSheet(viewModel: BikeShareAgentViewModel, onDismiss: () 
                 OutlinedTextField(
                     value = input,
                     onValueChange = { input = it },
-                    placeholder = { Text("Any free bikes near Galway Cathedral?") },
+                    placeholder = { Text("Which Paris stations have the most free bikes?") },
                     enabled = availability == BikeShareAgentViewModel.Availability.Ready,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = { send() }),
@@ -179,9 +179,11 @@ private fun Suggestions(onPick: (String) -> Unit) {
     Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text("Try", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         listOf(
-            "Which bike share networks are there in Ireland?",
-            "Which Dublin Bikes stations have the most free bikes?",
-            "Any free docks near Trinity College Dublin?",
+            // None name a landmark: Gemini Nano doesn't reliably know where they are, so
+            // findNearbyStations got central-London coordinates for "near Tower Bridge".
+            "Which bike share networks are there in Spain?",
+            "Which Citi Bike stations in New York have the most free bikes?",
+            "Which London stations have the most empty docks?",
         ).forEach { suggestion ->
             AssistChip(onClick = { onPick(suggestion) }, label = { Text(suggestion) })
         }

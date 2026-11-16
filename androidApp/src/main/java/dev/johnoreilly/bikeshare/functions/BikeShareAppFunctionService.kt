@@ -227,7 +227,8 @@ data class StationResponse(
  * - countries by code ("IE") or English name ("Ireland"). A two-letter query is a country code
  *   only, so "IE" doesn't also match every city containing "ie" (Wien, Kiel);
  * - names and cities ignoring spaces and punctuation, so "Dublin Bikes" finds "dublinbikes";
- * - a city named as one word of a longer query ("Galway bikes").
+ * - a name or city within a longer query: "Citi Bike New York" finds Citi Bike (city
+ *   "New York, NY"), "bikes in Paris" finds Paris's networks.
  */
 internal fun Network.matchesQuery(query: String?): Boolean {
     val text = query?.trim().orEmpty()
@@ -236,7 +237,10 @@ internal fun Network.matchesQuery(query: String?): Boolean {
     if (text.length <= 2) return false
     val wanted = text.normalized()
     if (name.normalized().contains(wanted) || city.normalized().contains(wanted)) return true
-    return text.split(' ', ',').any { word -> word.length > 2 && city.equals(word, ignoreCase = true) }
+    // "New York, NY" -> "newyork"; short names are skipped so they don't match by accident
+    return listOf(name, city.substringBefore(','))
+        .map { it.normalized() }
+        .any { it.length >= 4 && wanted.contains(it) }
 }
 
 private fun String.normalized() = lowercase().filter { it.isLetterOrDigit() }
