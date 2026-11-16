@@ -61,7 +61,8 @@ android {
 
     defaultConfig {
         applicationId = "dev.johnoreilly.bikeshare"
-        minSdk = libs.versions.minSdk.get().toInt()
+        // 26 rather than the shared minSdk: ML Kit genai-agent requires it
+        minSdk = 26
         targetSdk = libs.versions.targetSdk.get().toInt()
 
         this.versionCode = versionCode()
@@ -106,6 +107,9 @@ ksp {
 dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appfunctions)
+    implementation(libs.mlkit.genai.agent)
+    implementation(libs.markdown.renderer.m3)
+    implementation(libs.androidx.lifecycle.compose)
     ksp(libs.androidx.appfunctions.compiler)
 
     implementation(platform(libs.androidx.compose.bom))
@@ -120,6 +124,7 @@ dependencies {
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.junit)
 
     implementation(projects.common)
 }
