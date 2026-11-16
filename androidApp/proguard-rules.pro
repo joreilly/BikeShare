@@ -22,3 +22,9 @@
 
 -keep class dev.johnoreilly.** { *; }
 -dontwarn okhttp3.internal.Util
+
+# ML Kit (its bundled firebase-components) creates component registrars by reflection from
+# manifest metadata, so R8 sees their no-arg constructors as unused and removes them. ML Kit then
+# starts with no components, and Generation.getClient() throws on Android 16+ (1.0.17 crashed
+# at launch: "Could not instantiate com.google.mlkit.common.internal.CommonComponentRegistrar").
+-keep class * implements com.google.firebase.components.ComponentRegistrar { <init>(); }
