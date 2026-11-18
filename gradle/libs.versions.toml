@@ -7,7 +7,7 @@ androidxActivity = "1.13.0"
 # Held at alpha13: ML Kit genai-agent 1.0.0-alpha1 calls into AppFunctions and was built against
 # alpha13. rc01 moved AppFunctionName out of the metadata package, so agent tool discovery fails
 # at runtime (NoSuchMethodError) with it. Move on when genai-agent does.
-androidxAppFunctions = "1.0.0-alpha13"
+androidxAppFunctions = "1.0.0"
 androidxComposeBom = "2026.09.00"
 androidxLifecycle = "2.11.0"
 androidxNavigationCompose = "2.10.2"
