@@ -52,6 +52,7 @@ import dev.johnoreilly.common.model.Network
 import dev.johnoreilly.common.screens.NetworkListScreen
 import dev.johnoreilly.common.stationlist.StationsPane
 import dev.johnoreilly.common.ui.AdaptiveLayout
+import dev.johnoreilly.common.ui.theme.LocalBikeShareColors
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
 
@@ -68,13 +69,13 @@ fun NetworkListUi(state: NetworkListScreen.State, modifier: Modifier = Modifier)
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack, 
                             contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onPrimary
+                            tint = LocalBikeShareColors.current.onAppBar
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = LocalBikeShareColors.current.appBar,
+                    titleContentColor = LocalBikeShareColors.current.onAppBar
                 )
             )
         }
@@ -199,8 +200,8 @@ fun NetworkView(network: Network, networkSelected: (network: String) -> Unit) {
     val backgroundColor by animateColorAsState(
         targetValue = if (isPressed) 
             MaterialTheme.colorScheme.primaryContainer 
-        else 
-            MaterialTheme.colorScheme.surface,
+        else
+            LocalBikeShareColors.current.card,
         animationSpec = tween(durationMillis = 200),
         label = "backgroundColorAnimation"
     )

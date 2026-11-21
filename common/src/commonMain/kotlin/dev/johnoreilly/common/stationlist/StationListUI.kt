@@ -37,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,14 +52,12 @@ import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.remote.Station
 import dev.johnoreilly.common.remote.freeBikes
 import dev.johnoreilly.common.screens.StationListScreen
+import dev.johnoreilly.common.ui.theme.LocalAvailabilityColors
+import dev.johnoreilly.common.ui.theme.LocalBikeShareColors
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
 
-// Updated colors with better accessibility
-val lowAvailabilityColor = Color(0xFFE65100)  // Darker orange for better contrast
-val mediumAvailabilityColor = Color(0xFFFFA000)  // Amber for medium availability
-val highAvailabilityColor = Color(0xFF2E7D32)  // Darker green for better contrast
 
 
 /** Fraction of this station's docks that currently hold a bike. */
@@ -71,12 +70,15 @@ fun Station.bikeAvailability(): Float {
  * The colour standing for how well stocked a station is. Shared by the list rows and the map
  * markers, so a station reads the same way whichever view it is being looked at in.
  */
+@Composable
+@ReadOnlyComposable
 fun Station.availabilityColor(): Color {
+    val colors = LocalAvailabilityColors.current
     val availability = bikeAvailability()
     return when {
-        availability < 0.2f -> lowAvailabilityColor
-        availability < 0.5f -> mediumAvailabilityColor
-        else -> highAvailabilityColor
+        availability < 0.2f -> colors.low
+        availability < 0.5f -> colors.medium
+        else -> colors.high
     }
 }
 
@@ -94,13 +96,13 @@ fun StationListUI(state: StationListScreen.State, modifier: Modifier = Modifier)
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onPrimary
+                            tint = LocalBikeShareColors.current.onAppBar
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = LocalBikeShareColors.current.appBar,
+                    titleContentColor = LocalBikeShareColors.current.onAppBar
                 )
             )
         }
@@ -147,7 +149,7 @@ fun StationView(station: Station) {
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = LocalBikeShareColors.current.card
         )
     ) {
         Column(
@@ -214,7 +216,6 @@ fun StationView(station: Station) {
                             station.freeBikes().toString(),
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
-                            color = availabilityColor
                         )
                     }
                 }

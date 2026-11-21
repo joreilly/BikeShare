@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<resources>
-
-    <style name="PlatformAdjusted.Theme.BikeShare" parent="NightAdjusted.Theme.BikeShare">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-</resources>

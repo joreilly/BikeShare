@@ -140,9 +140,8 @@ fun CountryViewListPreview() {
 // ---------------------------------------------------------------------------
 // Theme catalog
 //
-// The shared module has no theme wrapper of its own — the Android app supplies BikeShareTheme and
-// the desktop/web hosts supply their own — so these render against the ambient MaterialTheme, which
-// is exactly what the shared composables above see.
+// These render against the ambient MaterialTheme; wrap a preview in BikeShareTheme to see the
+// app's colours.
 // ---------------------------------------------------------------------------
 
 @Composable

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- The app enables edge-to-edge, which takes over the system bars; this mainly sets the
+         window background so it matches the Compose theme's surface before the first frame. -->
     <style name="NightAdjusted.Theme.BikeShare" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
     <style name="PlatformAdjusted.Theme.BikeShare" parent="NightAdjusted.Theme.BikeShare">
-        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Theme.BikeShare" parent="PlatformAdjusted.Theme.BikeShare" />
