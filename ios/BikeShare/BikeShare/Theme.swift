@@ -23,5 +23,5 @@ let BikeBlue = adaptive(light: 0x005FAF, dark: 0xA5C8FF)
 // as hue so they stay distinguishable with red-green colour blindness; counts use the normal text
 // colour rather than these.
 let lowAvailabilityColor = adaptive(light: 0x9B1B12, dark: 0xF28B73)
-let mediumAvailabilityColor = adaptive(light: 0x946200, dark: 0xFFD43B)
+let mediumAvailabilityColor = adaptive(light: 0xFFA000, dark: 0xFFD43B)
 let highAvailabilityColor = adaptive(light: 0x10A535, dark: 0x168C25)

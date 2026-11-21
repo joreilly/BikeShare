@@ -94,16 +94,17 @@ private val DarkColors = darkColorScheme(
 
 /**
  * How well stocked a station is, used by the list's progress bar and bike icon and by the map
- * markers. Each set is at least 3:1 against its mode's surface and its colours stay apart under
- * deuteranopia and protanopia (lightness differs, not just hue). Numbers are drawn in the normal
- * text colour, so these never carry text on their own.
+ * markers. The colours in each set stay apart under deuteranopia and protanopia (lightness differs,
+ * not just hue), and all are at least 3:1 against their mode's surface except the light-mode amber
+ * (#FFA000, about 2:1), kept for a true amber. Numbers are drawn in the normal text colour, so
+ * these never carry text on their own.
  */
 @Immutable
 data class AvailabilityColors(val low: Color, val medium: Color, val high: Color)
 
 private val LightAvailability = AvailabilityColors(
     low = Color(0xFF9B1B12),
-    medium = Color(0xFF946200),
+    medium = Color(0xFFFFA000),
     high = Color(0xFF10A535),
 )
 
