@@ -23,6 +23,11 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlin.math.sqrt
 import java.util.Locale
+import android.location.Address
+import android.location.Geocoder
+import androidx.appfunctions.AppFunctionNotSupportedException
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 /**
  * AppFunctions for BikeShare. KSP generates the concrete [BikeShareAppFunctionService]
@@ -83,11 +88,15 @@ abstract class BaseBikeShareAppFunctionService : AppFunctionService() {
 
     /**
      * Finds the stations of a bike share network closest to a location, with their current
-     * number of free bikes and empty docks.
+     * number of free bikes and empty docks. Give the location as a place name, or as latitude
+     * and longitude when they're already known (for example from a station).
      *
      * @param networkId ID of the network, as returned in [NetworkResponse.id].
-     * @param latitude Latitude of the location to search around, in degrees.
-     * @param longitude Longitude of the location to search around, in degrees.
+     * @param place Name or address of the place to search around, such as a landmark, street or
+     *   area ("Tower Bridge", "Grafton Street"). The app looks up where it is, so use this for
+     *   named places instead of guessing coordinates.
+     * @param latitude Latitude of the location to search around, in degrees. Only when known.
+     * @param longitude Longitude of the location to search around, in degrees. Only when known.
      * @param minFreeBikes Only include stations with at least this many free bikes. Omit it to
      *   include every station.
      * @param minEmptyDocks Only include stations with at least this many empty docks, for
@@ -98,26 +107,82 @@ abstract class BaseBikeShareAppFunctionService : AppFunctionService() {
     @AppFunctionDeclaration(isDescribedByKDoc = true)
     suspend fun findNearbyStations(
         networkId: String,
-        latitude: Double,
-        longitude: Double,
+        place: String? = null,
+        latitude: Double? = null,
+        longitude: Double? = null,
         minFreeBikes: Int = 0,
         minEmptyDocks: Int = 0,
         limit: Int = 0,
     ): List<StationResponse> = withContext(Dispatchers.IO) {
-        if (latitude !in -90.0..90.0 || longitude !in -180.0..180.0) {
-            throw AppFunctionInvalidArgumentException(
-                "Latitude must be between -90 and 90, and longitude between -180 and 180."
+        val (lat, lon) = when {
+            !place.isNullOrBlank() -> locate(place, networkId)
+            latitude != null && longitude != null -> {
+                if (latitude !in -90.0..90.0 || longitude !in -180.0..180.0) {
+                    throw AppFunctionInvalidArgumentException(
+                        "Latitude must be between -90 and 90, and longitude between -180 and 180."
+                    )
+                }
+                latitude to longitude
+            }
+            else -> throw AppFunctionInvalidArgumentException(
+                "Give a place name, or both latitude and longitude."
             )
         }
         // An omitted limit arrives as 0, not the declared default.
         val count = if (limit <= 0) DEFAULT_NEARBY_LIMIT else limit.coerceAtMost(MAX_NEARBY_LIMIT)
         stations(networkId)
             .filter { it.freeBikes() >= minFreeBikes && (it.empty_slots ?: 0) >= minEmptyDocks }
-            .map { it to distanceMetres(latitude, longitude, it.latitude, it.longitude) }
+            .map { it to distanceMetres(lat, lon, it.latitude, it.longitude) }
             .sortedBy { it.second }
             .take(count)
             .map { (station, distance) -> station.toResponse(distance) }
     }
+
+    /**
+     * Where [place] is, looked up with [Geocoder] near the network first, so "Tower Bridge" is the
+     * one in London for Santander Cycles. Models given only a name guess coordinates, and in
+     * testing Gemini Nano put "near Tower Bridge" in central London, about 3.5km out.
+     */
+    private suspend fun locate(place: String, networkId: String): Pair<Double, Double> {
+        if (!Geocoder.isPresent()) {
+            throw AppFunctionNotSupportedException(
+                "Looking up places isn't available on this device. Give latitude and longitude instead."
+            )
+        }
+        val network = load("the list of bike share networks") { repository.getNetworkList() }
+            .firstOrNull { it.id == networkId }
+        val geocoder = Geocoder(applicationContext)
+        val address = network?.let {
+            geocoder.find(
+                place,
+                it.latitude - NEARBY_DEGREES, it.longitude - NEARBY_DEGREES,
+                it.latitude + NEARBY_DEGREES, it.longitude + NEARBY_DEGREES,
+            )
+        } ?: geocoder.find(place)
+            ?: throw AppFunctionElementNotFoundException("Couldn't find a place called '$place'.")
+        if (network != null &&
+            distanceMetres(network.latitude, network.longitude, address.latitude, address.longitude) > MAX_PLACE_DISTANCE_METRES
+        ) {
+            throw AppFunctionElementNotFoundException(
+                "'$place' was found, but not near the ${network.name} network in ${network.city}."
+            )
+        }
+        return address.latitude to address.longitude
+    }
+
+    private suspend fun Geocoder.find(name: String, vararg box: Double): Address? =
+        suspendCancellableCoroutine { continuation ->
+            val listener = object : Geocoder.GeocodeListener {
+                override fun onGeocode(addresses: MutableList<Address>) =
+                    continuation.resume(addresses.firstOrNull())
+                override fun onError(errorMessage: String?) = continuation.resume(null)
+            }
+            if (box.size == 4) {
+                getFromLocationName(name, 1, box[0], box[1], box[2], box[3], listener)
+            } else {
+                getFromLocationName(name, 1, listener)
+            }
+        }
 
     private suspend fun stations(networkId: String): List<Station> {
         if (networkId.isBlank()) {
@@ -172,6 +237,11 @@ abstract class BaseBikeShareAppFunctionService : AppFunctionService() {
         const val DEFAULT_NEARBY_LIMIT = 5
         const val MAX_NEARBY_LIMIT = 20
         const val EARTH_RADIUS_METRES = 6_371_000.0
+
+        // Place lookups search this far (in degrees, roughly 30km) around the network first,
+        // and accept a place this far from the network's centre at most.
+        const val NEARBY_DEGREES = 0.3
+        const val MAX_PLACE_DISTANCE_METRES = 50_000
 
         // Great-circle (haversine) distance, rounded to the metre.
         fun distanceMetres(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Int {
