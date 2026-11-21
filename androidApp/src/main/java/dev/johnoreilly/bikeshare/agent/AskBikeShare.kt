@@ -45,6 +45,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
@@ -103,6 +105,16 @@ private fun AskBikeShareSheet(viewModel: BikeShareAgentViewModel, onDismiss: () 
     }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
+        // Put the keyboard away once a question is asked: left open, it takes most of the sheet
+        // and only the first line or two of the answer is visible. Read inside the sheet, which
+        // is its own window: from outside, these act on the activity's window instead.
+        val keyboard = LocalSoftwareKeyboardController.current
+        val focusManager = LocalFocusManager.current
+        val ask = { question: String ->
+            keyboard?.hide()
+            focusManager.clearFocus()
+            viewModel.ask(question)
+        }
         Column(Modifier.fillMaxHeight(0.85f).imePadding().padding(horizontal = 16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
@@ -133,7 +145,7 @@ private fun AskBikeShareSheet(viewModel: BikeShareAgentViewModel, onDismiss: () 
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 if (messages.isEmpty() && availability == BikeShareAgentViewModel.Availability.Ready) {
-                    item { Suggestions(onPick = viewModel::ask) }
+                    item { Suggestions(onPick = ask) }
                 }
                 items(messages) { message ->
                     when (message) {
@@ -148,13 +160,12 @@ private fun AskBikeShareSheet(viewModel: BikeShareAgentViewModel, onDismiss: () 
                 modifier = Modifier.padding(vertical = 12.dp).navigationBarsPadding(),
             ) {
                 val send = {
-                    viewModel.ask(input)
+                    ask(input)
                     input = ""
                 }
                 OutlinedTextField(
                     value = input,
                     onValueChange = { input = it },
-                    placeholder = { Text("Which Paris stations have the most free bikes?") },
                     enabled = availability == BikeShareAgentViewModel.Availability.Ready,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
                     keyboardActions = KeyboardActions(onSend = { send() }),
@@ -185,11 +196,11 @@ private fun Suggestions(onPick: (String) -> Unit) {
     Column(Modifier.padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text("Try", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         listOf(
-            // None name a landmark: Gemini Nano doesn't reliably know where they are, so
-            // findNearbyStations got central-London coordinates for "near Tower Bridge".
+            // One per AppFunction. The landmark works because findNearbyStations looks places
+            // up itself; asked to supply coordinates, Gemini Nano put Tower Bridge 3.5km out.
             "Which bike share networks are there in Spain?",
             "Which Citi Bike stations in New York have the most free bikes?",
-            "Which London stations have the most empty docks?",
+            "Any free docks near Tower Bridge in London?",
         ).forEach { suggestion ->
             AssistChip(onClick = { onPick(suggestion) }, label = { Text(suggestion) })
         }

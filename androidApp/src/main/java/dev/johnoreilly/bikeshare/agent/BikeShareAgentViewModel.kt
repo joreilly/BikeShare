@@ -163,6 +163,8 @@ class BikeShareAgentViewModel(application: Application) : AndroidViewModel(appli
             Keep answers short: name the stations and say how many bikes and free docks each has.
             For the stations with the most free bikes or empty docks, call listStations with
             sortBy ("freeBikes" or "emptyDocks") and limit 5, and keep the order it returns.
+            For stations near a named place, call findNearbyStations with that place's name as
+            place. Never guess latitude and longitude.
         """.trimIndent()
     }
 }
