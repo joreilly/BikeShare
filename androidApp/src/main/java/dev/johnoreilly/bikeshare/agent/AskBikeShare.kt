@@ -52,6 +52,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mikepenz.markdown.m3.Markdown
+import com.mikepenz.markdown.model.rememberMarkdownState
 
 /**
  * Lays an "Ask" button over [content] that opens a chat with the on-device agent. Shows nothing
@@ -92,8 +93,13 @@ private fun AskBikeShareSheet(viewModel: BikeShareAgentViewModel, onDismiss: () 
     var input by rememberSaveable { mutableStateOf("") }
     val listState = rememberLazyListState()
 
-    LaunchedEffect(messages.size, (messages.lastOrNull() as? ChatMessage.Agent)?.text?.length) {
+    // Animate to a new message, but follow a streaming reply without animating: restarting an
+    // animation on every chunk of text made the list jitter.
+    LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) listState.animateScrollToItem(messages.lastIndex)
+    }
+    LaunchedEffect((messages.lastOrNull() as? ChatMessage.Agent)?.text?.length) {
+        if (messages.isNotEmpty() && !listState.isScrollInProgress) listState.scrollToItem(messages.lastIndex)
     }
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
@@ -216,8 +222,10 @@ private fun AgentReply(message: ChatMessage.Agent) {
             )
         }
         when {
-            // Gemini Nano answers in Markdown (bold names, numbered and bulleted lists)
-            message.text.isNotEmpty() -> Markdown(message.text)
+            // Gemini Nano answers in Markdown (bold names, numbered and bulleted lists). The reply
+            // streams in, and each change is re-parsed: retainState keeps the last render on
+            // screen meanwhile, where the default blanks it to a loading state, which flashed.
+            message.text.isNotEmpty() -> Markdown(rememberMarkdownState(message.text, retainState = true))
             message.inProgress -> CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
         }
         message.error?.let {
