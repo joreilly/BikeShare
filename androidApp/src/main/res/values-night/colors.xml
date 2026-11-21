@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BikeShareTheme's dark surface (common/.../ui/theme/BikeShareTheme.kt) -->
+    <color name="window_background">#FF101510</color>
+</resources>

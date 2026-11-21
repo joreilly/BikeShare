@@ -228,7 +228,6 @@ private fun SelectedStationCard(station: Station, onDismiss: () -> Unit, modifie
                         text = station.freeBikes().toString(),
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Bold,
-                        color = station.availabilityColor(),
                     )
                     Icon(
                         Icons.Default.LocalParking,

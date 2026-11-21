@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import dev.johnoreilly.bikeshare.agent.AskBikeShareOverlay
 import dev.johnoreilly.bikeshare.agent.BikeShareAgentViewModel
-import dev.johnoreilly.bikeshare.ui.theme.BikeShareTheme
+import dev.johnoreilly.common.ui.theme.BikeShareTheme
 
 
 class MainActivity : ComponentActivity() {

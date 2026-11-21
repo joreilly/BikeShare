@@ -30,6 +30,7 @@ import bikeshare.common.generated.resources.allDrawableResources
 import com.slack.circuit.codegen.annotations.CircuitInject
 import dev.johnoreilly.common.screens.CountryListScreen
 import dev.johnoreilly.common.viewmodel.Country
+import dev.johnoreilly.common.ui.theme.LocalBikeShareColors
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import software.amazon.lastmile.kotlin.inject.anvil.AppScope
@@ -44,8 +45,8 @@ fun CountryListUi(state: CountryListScreen.State, modifier: Modifier = Modifier)
             TopAppBar(
                 title = { Text("Choose a Country", style = MaterialTheme.typography.titleLarge) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
+                    containerColor = LocalBikeShareColors.current.appBar,
+                    titleContentColor = LocalBikeShareColors.current.onAppBar
                 )
             ) 
         }
@@ -95,7 +96,7 @@ fun CountryView(country: Country, countrySelected: (country: Country) -> Unit) {
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = LocalBikeShareColors.current.card
         )
     ) {
         Row(

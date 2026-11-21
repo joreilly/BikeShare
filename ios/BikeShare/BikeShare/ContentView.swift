@@ -286,7 +286,6 @@ struct StationView : View {
                         Text("\(station.freeBikes())")
                             .font(.body)
                             .fontWeight(.bold)
-                            .foregroundColor(availabilityColor)
                     }
                 }
                 
