@@ -9,7 +9,7 @@ androidxActivity = "1.13.0"
 # at runtime (NoSuchMethodError) with it. Move on when genai-agent does.
 androidxAppFunctions = "1.0.0-alpha13"
 androidxComposeBom = "2026.09.00"
-androidxLifecycle = "2.11.0"
+androidxLifecycle = "2.11.1"
 androidxNavigationCompose = "2.10.2"
 androidxRoom = "3.0.3"
 circuit = "0.39.0"
